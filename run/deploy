@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+user = ""
+server = ""
+destination = ""
+
+project = "./dist"
+
+exclude = nil
+
+# In case deploying the entire project:
+#
+# exclude = %w[
+# .git
+# server.pid
+# scripts
+# coffee
+# ].inject("") { |t,x| t + "--exclude=#{ x } " }
+
+system "npm run gulp build"
+
+system "rsync -OPav #{ project } #{ user }@#{ server }:#{ destination } #{ exclude } --delete-after"

@@ -1,2 +1,3 @@
 # web-jumpstart
-Quick small web application
+
+I haven't got the time for your frameworks and things...

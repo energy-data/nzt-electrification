@@ -1,0 +1,6 @@
+if [[ -f ./server.pid ]]; then
+    ./stop
+    rm server.pid
+fi
+
+nohup rackup > /dev/null &
