@@ -1,5 +1,7 @@
 #!/bin/bash
 
-npm run gulp watch &
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd ./dist; python -m http.server
+cd $DIR/../; npm run gulp watch &
+
+cd $DIR/../dist; python -m http.server
