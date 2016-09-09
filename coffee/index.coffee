@@ -18,18 +18,9 @@ require [
   'd3'
   'topojson'
   'map'
-  'js-extras'
-  'web-extras'
 ],
 
 (u, _g, d3, topojson, map) ->
-  aspect_ratios =
-    NGA: "xMidYMid"
-    TZA: "xMaxYMin"
-    ZMB: "xMaxYMin"
-
-  assets = 'assets'
-
   blur_filter = (defs) ->
     filter = defs.append 'filter'
       .attr 'id', 'dropshadow'
@@ -66,7 +57,7 @@ require [
         .attr 'xlink:href', "/images/#{ iso3 }.png"
         .attr 'width',  34
         .attr 'height', 30
-        .attr 'preserveAspectRatio', "#{ aspect_ratios[iso3.toString()] } slice"
+        .attr 'preserveAspectRatio', "#{ _g.aspect_ratios[iso3.toString()] } slice"
 
 
   load = (iso3, topo, callback) ->
@@ -120,12 +111,12 @@ require [
       u.tmpl '#selector-template', 'body', iso3, size, c['name']
 
       d3.queue()
-        .defer d3.json, "/#{ assets }/#{ iso3 }-adm0.json"
+        .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm0.json"
         .await (error, adm0) ->
           load iso3, adm0
 
 
   d3.queue()
-    .defer d3.json, "/#{ assets }/countries.json"
+    .defer d3.json, "/#{ _g.assets }/countries.json"
     .await (error, countries) ->
       if error then console.error error else run countries

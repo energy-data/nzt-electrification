@@ -1,4 +1,4 @@
-define ['utils', 'data', 'scenario', 'd3', 'map'], (u, data, scenario, d3, map) ->
+define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
   tc = d3.schemeCategory10.splice(0,8)
 
   iso3 = location.getQueryParam('iso3')

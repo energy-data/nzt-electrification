@@ -32,6 +32,13 @@ define [], () ->
 
     bound_objects: ['place', 'grid', 'scenario', 'summary']
 
+    assets: 'assets'
+
+    aspect_ratios:
+      NGA: 'xMidYMid'
+      TZA: 'xMaxYMin'
+      ZMB: 'xMaxYMin'
+
   window._g = _g
 
   return _g

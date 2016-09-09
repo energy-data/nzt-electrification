@@ -21,16 +21,9 @@ require [
   'd3'
   'map'
   'grid'
-  'js-extras'
-  'web-extras'
 ],
 
 (u, _g, data, scenario, d3, map, grid) ->
-  window.d3 = d3
-  # window.map = map
-
-  assets = 'assets'
-
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -162,12 +155,12 @@ require [
 
 
   d3.queue(4)
-    .defer d3.json, "/#{ assets }/#{ iso3 }-adm0.json"
-    .defer d3.json, "/#{ assets }/#{ iso3 }-adm1.json"
-    .defer d3.json, "/#{ assets }/#{ iso3 }-adm2.json"
-    .defer d3.json, "/#{ assets }/#{ iso3 }-existing-transmission-lines.json"
-    .defer d3.json, "/#{ assets }/#{ iso3 }-planned-transmission-lines.json"
-    .defer d3.json, "/#{ assets }/countries.json"
+    .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm0.json"
+    .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm1.json"
+    .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm2.json"
+    .defer d3.json, "/#{ _g.assets }/#{ iso3 }-existing-transmission-lines.json"
+    .defer d3.json, "/#{ _g.assets }/#{ iso3 }-planned-transmission-lines.json"
+    .defer d3.json, "/#{ _g.assets }/countries.json"
 
     .await (error, adm0, adm1, adm2, existing_transmission, planned_transmission, countries) ->
       if error then console.error error else run arguments
