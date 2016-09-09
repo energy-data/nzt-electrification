@@ -1,0 +1,15 @@
+body {
+  margin: 0 !important;
+}
+
+.adm {
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+}
+
+.monospace {
+  font-family: Monaco, Consolas, Courier New, monospace;
+}

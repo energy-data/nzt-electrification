@@ -11,9 +11,17 @@
     <title>NZT Electrification</title>
   </head>
 
-  <body>
-    <div id="selector" class="row"></div>
-  </body>
+  <body class="row"></body>
+
+  <script id="selector-template"
+          type="text/template">
+    <div id="selector-{0}"
+         class="country-selector col-md-{1}">
+      <h1>{2}</h1>
+
+      <svg id="svg-{0}"></svg>
+    </div>
+  </script>
 
   <script data-main="./javascripts/index"
           src="./lib/requirejs/require.js"></script>

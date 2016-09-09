@@ -1,0 +1,22 @@
+body {
+  overflow-x: hidden;
+}
+
+svg, .country-selector {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  opacity: 1;
+  transition: opacity .4s ease;
+  /* margin: auto; */
+}
+
+.country-selector {
+  text-align: center;
+  cursor: pointer;
+}
+
+h1 {
+  font-family: Monaco, Consolas, Dejavu Sans Mono, monospace;
+  height: 80px;
+}
