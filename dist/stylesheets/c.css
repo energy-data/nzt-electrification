@@ -1,0 +1,56 @@
+svg {
+  width: 100%;
+}
+
+span[data] {
+  color: #efc20d;
+}
+
+path.adm {
+  transition: fill .4s ease, opacity .4s ease;
+}
+
+.pane {
+  padding: 20px;
+
+  color: white;
+  background-color: rgba(0,0,0,0.7);
+}
+
+#adm-info {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 101%;
+}
+
+#grid-info {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  font-size: 0.85em;
+
+  min-width: 420px;
+}
+
+#summary-info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  font-size: 0.85em;
+
+  min-width: 250px;
+}
+
+#scenario-selector {
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+
+td {
+  padding-right: 10px;
+}
