@@ -1,8 +1,10 @@
 define [], () ->
   check = (args...) ->
-    for a in args
+    for a,i in args
       if not a?
-        console.error "Function called with insufficient arguments!"
+        console.error "Function called with insufficient arguments!
+          The #{ i }-th argument is '#{ typeof a }'"
+
         throw Error "ArgumentError"
 
 

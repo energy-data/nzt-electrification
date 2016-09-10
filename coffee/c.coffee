@@ -154,7 +154,7 @@ require [
     data.place['adm0_name'] = _country['name']
 
 
-  d3.queue(4)
+  d3.queue(5)
     .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm0.json"
     .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm1.json"
     .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm2.json"

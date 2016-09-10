@@ -1,17 +1,14 @@
 define ['utils'], (u) ->
-  scenarios = ["l1","l2","l3","l4","l5","n1","n2","n3","n4","n5"]
-
   data.scenario['scn'] = 'l1'
   data.scenario['callback'] = [
     'scn',
     (args...) ->
-      if args[2] not in scenarios
+      if args[2] not in _g.scenarios
         throw Error "This scenario is dodgy:", args
 
       else
         console.info data.place, args[2]
   ]
-
 
   expand = (t) ->
     u.check t[0], t[1]
@@ -23,7 +20,7 @@ define ['utils'], (u) ->
   load_selector = ->
     sss = '#scenario-selector select'
 
-    for t in scenarios
+    for t in _g.scenarios
       u.tmpl '#scenario-option-template',
              sss,
              t, expand(t)

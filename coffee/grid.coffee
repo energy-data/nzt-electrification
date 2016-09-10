@@ -7,7 +7,7 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
   scn = data.scenario['scn']
 
-  u.check scn
+  u.check scn, iso3
 
   load = (o) ->
     adm       = o.adm
@@ -52,10 +52,10 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
               for k,v of e
                 data.grid[k] = v
 
-              data.grid['long'] = d['coordinates'][0]
-              data.grid['lat']  = d['coordinates'][1]
-              data.grid['technology'] = tech['name']
+              data.grid['long'] = e['x']
+              data.grid['lat']  = e['y']
 
+              data.grid['technology'] = tech['name']
 
         d3.selectAll('path.line').raise()
 
