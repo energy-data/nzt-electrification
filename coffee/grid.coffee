@@ -54,6 +54,9 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
               data.grid['long'] = e['x']
               data.grid['lat']  = e['y']
+              data.grid['ic']   = e["ic_#{ scn }"]
+              data.grid['lc']   = e["lc_#{ scn }"]
+              data.grid['cap']  = e["cap_#{ scn }"]
 
               data.grid['technology'] = tech['name']
 
