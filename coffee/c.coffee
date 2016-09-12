@@ -117,6 +117,31 @@ require [
 
     document.getElementsByTagName('title')[0].text = "#{ _country['name'] } - Electrification"
 
+    $('[data="adm0_name"]').on 'click', ->
+      data.place['adm1'] = undefined
+      data.place['adm1_name'] = undefined
+
+      data.place['adm2'] = undefined
+      data.place['adm2_name'] = undefined
+
+      map.resize_to
+        node: d3.select('#container').node()
+        duration: 1000
+
+
+    $('[data="adm1_name"]').on 'click', ->
+      it = d3.select("path#adm1-#{ data.place['adm1'] }").node()
+
+      data.place['adm2'] = undefined
+      data.place['adm2_name'] = undefined
+
+      data.place['bbox'] = map.to_bbox it.getBBox()
+
+      grid.load
+        adm: [null, 1, data.place['adm1']]
+        svg_box: it.getBBox()
+
+
     $('#export-summary').on 'click', ->
       o =
         grid_summary: data.summary
