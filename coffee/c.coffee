@@ -147,8 +147,7 @@ require [
         grid_summary: data.summary
         location: data.place
 
-      u.dwnld JSON.stringify(o), 'export-summary.json', 'application/octet-stream'
-    window.grid = grid
+      u.dwnld JSON.stringify(o), 'export-summary.json'
 
 
     $('#export-grids').on 'click', ->
@@ -156,7 +155,7 @@ require [
         grid_summary: data.summary
         location: data.place
 
-      u.dwnld JSON.stringify(data.grid_collection), 'export-grids.json', 'application/octet-stream'
+      u.dwnld JSON.stringify(data.grid_collection), 'export-grids.json'
 
 
     scenario.load_selector()

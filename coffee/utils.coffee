@@ -25,11 +25,11 @@ define [], () ->
 
     a.style = "display:none;"
 
-    blob = new Blob [string], type: datatype
+    blob = new Blob [string], type: (datatype || 'application/octet-stream')
     url  = URL.createObjectURL blob
 
     a.href     = url
-    a.download = filename
+    a.download = filename || "RENAME_ME.dat"
     a.click()
 
     window.URL.revokeObjectURL url
