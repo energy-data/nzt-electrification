@@ -10,6 +10,10 @@ path.adm {
   transition: fill .4s ease, opacity .4s ease;
 }
 
+path.adm1:hover, path.adm2:hover {
+  fill: steelblue;
+}
+
 .pane {
   padding: 20px;
 

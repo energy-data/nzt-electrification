@@ -77,29 +77,6 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
     d3.selectAll('path.line').raise()
 
 
-  load_adm = (topo, pathname, callback) ->
-    u.check topo, pathname
-
-    path = load_topo
-      topo: topo
-      pathname: pathname
-      cls: 'adm'
-      fill: 'white'
-
-    path
-      .on 'mouseenter', (d) ->
-        d3.select(this).style('fill', 'steelblue')
-
-      .on 'mouseleave', ->
-        d3.select(this).style('fill', 'white')
-
-
-    if typeof callback is 'function'
-      return callback.call this, path
-    else
-      return path
-
-
   load_topo = (o) ->
     topo     = o.topo
     pathname = o.pathname
@@ -139,7 +116,6 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
 
 
   return map =
-    load_adm: load_adm
     load_topo: load_topo
 
     geo_path: geo_path

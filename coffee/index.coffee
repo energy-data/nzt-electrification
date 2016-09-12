@@ -111,7 +111,6 @@ require [
         map.resize_to
           node: path.node()
           svg: svg
-          duration: 1
           padding: 3
           container: container
 
