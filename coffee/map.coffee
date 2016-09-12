@@ -28,13 +28,13 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
     node       = o.node
     svg        = o.svg || _svg
     delay      = o.delay || 300
-    duration   = o.duration || 1
+    duration   = o.duration || 0
     padding    = o.padding  || 0.5
     container  = o.container || _container
 
     u.check node, container, svg
 
-    transition = duration > 1
+    transition = duration > 0
 
     box = node.getBBox()
 
