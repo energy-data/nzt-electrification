@@ -36,7 +36,9 @@ path.adm1:hover, path.adm2:hover {
 
   font-size: 0.85em;
 
-  min-width: 420px;
+  min-width: 340px;
+
+  display: none;
 }
 
 #summary-info {
@@ -47,6 +49,8 @@ path.adm1:hover, path.adm2:hover {
   font-size: 0.85em;
 
   min-width: 250px;
+
+  display: none;
 }
 
 #scenario-selector {

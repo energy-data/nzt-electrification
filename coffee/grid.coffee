@@ -11,6 +11,8 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
   _container = d3.select('#container')
 
+  grid_info = $('#grid-info')
+
   u.check scn, iso3
 
   load = (o) ->
@@ -64,7 +66,18 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
             .attr 'class', "grid"
             .attr 'd', map.geo_path
             .attr 'fill', (d) -> tc[e[scn]]
+
+            .on 'mouseleave', (d) ->
+              d3.select(this)
+                .attr 'stroke', 'none'
+
             .on 'mouseenter', (d) ->
+              grid_info.show()
+
+              d3.select(this)
+                .attr 'stroke', 'red'
+                .attr 'stroke-width', 0.01
+
               for k,v of e
                 data.grid[k] = v
 

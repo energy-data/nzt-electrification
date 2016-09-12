@@ -52,6 +52,9 @@ require [
   load_adm1 = ->
     load_adm adm1, 'adm1'
       .on 'click', (d) ->
+        $('#summary-info').fadeOut()
+        $('#grid-info').fadeOut()
+
         d3.selectAll('path.grid').remove()
 
         data.place['adm1']      = d['id']
@@ -88,6 +91,8 @@ require [
           adm: it.id.match /adm(.*)-(\d*)?/
           svg_box: it.getBBox()
 
+        $('#summary-info').fadeIn()
+
         map.resize_to
           node: this
           duration: 1000
@@ -119,6 +124,8 @@ require [
       grid.load
         adm: [null, 1, data.place['adm1']]
         svg_box: it.getBBox()
+
+      $('#summary-info').fadeOut()
 
 
     $('#export-summary').on 'click', ->
