@@ -60,7 +60,7 @@ require [
         .attr 'preserveAspectRatio', "#{ _g.aspect_ratios[iso3.toString()] } slice"
 
 
-  load = (iso3, topo, callback) ->
+  load = (iso3, topo, indicator, callback) ->
     svg = d3.select "svg#svg-#{ iso3 }"
       .attr 'width', 460
       .attr 'height', 400
@@ -84,6 +84,24 @@ require [
           .attr 'style', 'filter:url(#dropshadow)'
           .attr 'stroke', 'none'
 
+          .on 'mouseenter', ->
+            i = indicator
+            $('#overview').html ""
+
+            u.tmpl(
+              '#overview-template',
+              '#overview',
+              i['Country Name'],
+              i['POP2015'],
+              i['POP2030'],
+              i['Access to electricity (% of population)_2012'],
+              i['Rural population (% of total population)_2015'],
+              i['Access to electricity, rural (% of rural population)'],
+              i['GDP per capita (current US$)_2015'],
+              i['GDP (current billion US$)'],
+              i['Expenditures_2015_est_in billion USD']
+            )
+
           .on 'click', ->
             for c in document.getElementsByClassName 'country-selector'
               d3.select(c).style('opacity', 0) if c.id isnt "selector-#{ iso3 }"
@@ -102,6 +120,7 @@ require [
 
   run = (args) ->
     countries = _g.countries = args[1]
+    indicators = args[2]
 
     size   = 12 / countries.length
 
@@ -113,10 +132,11 @@ require [
       d3.queue()
         .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm0.json"
         .await (error, adm0) ->
-          load iso3, adm0
+          load iso3, adm0, indicators.find (x) -> parseInt(x['Country Code']) is c['code']
 
 
   d3.queue()
     .defer d3.json, "/#{ _g.assets }/countries.json"
-    .await (error, countries) ->
+    .defer d3.csv,  "/#{ _g.assets }/indicators.csv"
+    .await (error, countries, indicators) ->
       if error then console.error error else run arguments

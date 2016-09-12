@@ -11,7 +11,9 @@
     <title>NZT Electrification</title>
   </head>
 
-  <body class="row"></body>
+  <body class="row">
+    <div id="overview"></div>
+  </body>
 
   <script id="selector-template"
           type="text/template">
@@ -21,6 +23,38 @@
 
       <svg id="svg-{0}"></svg>
     </div>
+  </script>
+
+  <script id="overview-template"
+          type="text/template">
+    <!-- 0: country name -->
+    <!-- 1: population 2015 -->
+    <!-- 2: population 2030 -->
+    <!-- 3: access electricity 2012 -->
+    <!-- 4: rural population 2015 -->
+    <!-- 5: rural access electricity -->
+    <!-- 6: gdp per capita 2015 -->
+    <!-- 7: gdp 2015 -->
+    <!-- 8: expenditures 2015 -->
+
+    <h3>Brief overview of {0}:</h3>
+
+    <p>
+      {0}΄s population stands at {1} in 2015 and it is estimated to
+      reach {2} by 2030. Only {3}% of the {0} population has access to
+      electricity.
+    </p>
+
+    <p>
+      {4}% of the total population resides in rural areas and the
+      level of access is just {5}%.
+    </p>
+
+    <p>
+      The current GDP per capita is {6} USD, while the total GDP
+      accounts for {7} billion USD. The total expenditures in 2015
+      reached {8} billion USD.
+    </p>
   </script>
 
   <script data-main="./javascripts/index"
