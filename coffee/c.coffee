@@ -65,7 +65,6 @@ require [
         map.resize_to
           node: this
           duration: 1000
-          transition: true
 
         d3.selectAll('path.adm2').each (e) ->
           el = this
@@ -86,20 +85,16 @@ require [
         data.place['adm2_name'] = d.properties['name']
 
         it = this
-        box = it.getBBox()
+
+        data.place['bbox'] = map.to_bbox it.getBBox()
 
         grid.load
           adm: it.id.match /adm(.*)-(\d*)?/
-          container: d3.select('#container')
-          coord: [
-            map.projection.invert([box['x']               , box['y']                ]),
-            map.projection.invert([box['x'] + box['width'], box['y'] + box['height']])
-          ]
+          svg_box: it.getBBox()
 
         map.resize_to
           node: this
           duration: 1000
-          transition: true
 
 
   run = (args...) ->
@@ -146,7 +141,6 @@ require [
       node: d3.select('#container').node()
       delay: 0
       duration: 1
-      transition: true
 
     map.setup_drag()
 

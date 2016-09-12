@@ -7,15 +7,19 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
   scn = data.scenario['scn']
 
+  _container = d3.select('#container')
+
   u.check scn, iso3
 
   load = (o) ->
     adm       = o.adm
-    coord     = o.coord
-    container = o.container
+    svg_box   = o.svg_box
+    container = o.container || _container
     country   = _g.countries.find (c) -> c['iso3'] is iso3
 
-    u.check adm, coord, container, country
+    u.check adm, svg_box, container, country
+
+    box = map.to_bbox svg_box
 
     data.summary['total_count'] = 0
 
@@ -27,8 +31,8 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
     d3.queue()
       .defer d3.json, "http://localhost:4000/grids?" +
         "select=#{ attrs }" +
-        "&x=gt.#{ coord[0][0] }&x=lt.#{ coord[1][0] }" +
-        "&y=gt.#{ coord[1][1] }&y=lt.#{ coord[0][1] }" +
+        "&x=gt.#{ box[0] }&x=lt.#{ box[2] }" +
+        "&y=gt.#{ box[1] }&y=lt.#{ box[3] }" +
         "&adm#{ adm[1] }=eq.#{ adm[2] }" +
         "&country_code=eq.#{ country['code'] }"
 

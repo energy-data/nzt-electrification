@@ -15,16 +15,26 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
       .attr 'id', 'container'
 
 
+  to_bbox = (b) ->
+    c = [
+      projection.invert([b['x']             , b['y']              ]),
+      projection.invert([b['x'] + b['width'], b['y'] + b['height']])
+    ]
+
+    return [c[0][0], c[1][1], c[1][0], c[0][1]]
+
+
   resize_to = (o) ->
     node       = o.node
     svg        = o.svg || _svg
     delay      = o.delay || 300
     duration   = o.duration || 1
     padding    = o.padding  || 0.5
-    transition = o.transition || false
     container  = o.container || _container
 
     u.check node, container, svg
+
+    transition = duration > 1
 
     box = node.getBBox()
 
@@ -134,6 +144,8 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
 
     geo_path: geo_path
     projection: projection
+
+    to_bbox: to_bbox
 
     resize_to: resize_to
     setup_drag: setup_drag
