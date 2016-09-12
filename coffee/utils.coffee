@@ -19,8 +19,25 @@ define [], () ->
     return r
 
 
+  dwnld = (string, filename, datatype) ->
+    a = document.createElement 'a'
+    document.body.appendChild a
+
+    a.style = "display:none;"
+
+    blob = new Blob [string], type: datatype
+    url  = URL.createObjectURL blob
+
+    a.href     = url
+    a.download = filename
+    a.click()
+
+    window.URL.revokeObjectURL url
+
+
   utils =
     check: check
     tmpl: tmpl
+    dwnld: dwnld
 
   return utils

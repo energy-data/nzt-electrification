@@ -117,6 +117,23 @@ require [
 
     document.getElementsByTagName('title')[0].text = "#{ _country['name'] } - Electrification"
 
+    $('#export-summary').on 'click', ->
+      o =
+        grid_summary: data.summary
+        location: data.place
+
+      u.dwnld JSON.stringify(o), 'export-summary.json', 'application/octet-stream'
+    window.grid = grid
+
+
+    $('#export-grids').on 'click', ->
+      o =
+        grid_summary: data.summary
+        location: data.place
+
+      u.dwnld JSON.stringify(data.grid_collection), 'export-grids.json', 'application/octet-stream'
+
+
     scenario.load_selector()
 
     load_adm1()
