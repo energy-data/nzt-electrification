@@ -3,6 +3,8 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
   iso3 = location.getQueryParam('iso3')
 
+  count_threshold = 20000
+
   attrs = ['x','y','country_code','population_2030','new_conn','gd_curr','gd_plan','rd','ghi','wind_cf','hp','hp_d','urban','l1','l2','l3','l4','l5','n1','n2','n3','n4','n5','lc_l1','lc_l2','lc_l3','lc_l4','lc_l5','lc_n1','lc_n2','lc_n3','lc_n4','lc_n5','cap_l1','cap_l2','cap_l3','cap_l4','cap_l5','cap_n1','cap_n2','cap_n3','cap_n4','cap_n5','ic_l1','ic_l2','ic_l3','ic_l4','ic_l5','ic_n1','ic_n2','ic_n3','ic_n4','ic_n5']
 
   scn = data.scenario['scn']
@@ -39,9 +41,11 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
       .await (error, grids) ->
         data.grid_collection = grids
 
-        if grids.length > 20000
+        if grids.length > count_threshold
           c = confirm "Loading #{ grids.length } will most likely make the webpage sluggish. Continue?"
-          return if not c
+
+        if not c
+          grids = grids.sort(-> return 0.5 - Math.random()).splice(0, count_threshold)
 
         counts = {}
 
