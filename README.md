@@ -1,3 +1,1 @@
-# web-jumpstart
-
-I haven't got the time for your frameworks and things...
+dist/landing.md
