@@ -37,12 +37,20 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
         "&country_code=eq.#{ country['code'] }"
 
       .await (error, grids) ->
-        window.grids = grids
+        data.grid_collection = grids
+
+        if grids.length > 20000
+          c = confirm "Loading #{ grids.length } will most likely make the webpage sluggish. Continue?"
+          return if not c
+
+        counts = {}
+
+        for t in _g.technologies
+          if t? then counts[t['id']] = 0
 
         grids.map (e) ->
           tech = _g.technologies[e[scn]]
-          data.summary['total_count'] += 1
-          data.summary["#{ tech['id'] }_count"] += 1
+          counts[tech['id']] += 1
 
           container.append("path")
             .datum
@@ -63,6 +71,11 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
               data.grid['cap']  = e["cap_#{ scn }"]
 
               data.grid['technology'] = tech['name']
+
+        for t in _g.technologies
+          if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
+
+        data.summary['total_count'] = grids.length
 
         d3.selectAll('path.line').raise()
 
