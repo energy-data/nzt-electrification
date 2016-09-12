@@ -100,8 +100,8 @@ require [
         if typeof callback is 'function' then callback.call this, iso3, path, box
 
 
-  run = (countries) ->
-    _g.countries = countries
+  run = (args) ->
+    countries = _g.countries = args[1]
 
     size   = 12 / countries.length
 
@@ -119,4 +119,4 @@ require [
   d3.queue()
     .defer d3.json, "/#{ _g.assets }/countries.json"
     .await (error, countries) ->
-      if error then console.error error else run countries
+      if error then console.error error else run arguments
