@@ -97,26 +97,7 @@ require [
           duration: 1000
 
 
-  run = (args...) ->
-    for t in _g.technologies
-      continue if not t
-      u.tmpl '#summary-count-template',
-             '#summary-info table',
-             t['name'], "#{ t['id'] }_count"
-
-    adm0 = args[0][1]
-    adm1 = args[0][2]
-    adm2 = args[0][3]
-
-    existing_transmission = args[0][4]
-    planned_transmission  = args[0][5]
-
-    _g.countries = args[0][6]
-
-    _country = _g.countries.find (c) -> c['iso3'] is iso3
-
-    document.getElementsByTagName('title')[0].text = "#{ _country['name'] } - Electrification"
-
+  setup_interactions = ->
     $('[data="adm0_name"]').on 'click', ->
       data.place['adm1'] = undefined
       data.place['adm1_name'] = undefined
@@ -157,6 +138,28 @@ require [
 
       u.dwnld JSON.stringify(data.grid_collection), 'export-grids.json'
 
+
+  run = (args...) ->
+    for t in _g.technologies
+      continue if not t
+      u.tmpl '#summary-count-template',
+             '#summary-info table',
+             t['name'], "#{ t['id'] }_count"
+
+    adm0 = args[0][1]
+    adm1 = args[0][2]
+    adm2 = args[0][3]
+
+    existing_transmission = args[0][4]
+    planned_transmission  = args[0][5]
+
+    _g.countries = args[0][6]
+
+    _country = _g.countries.find (c) -> c['iso3'] is iso3
+
+    document.getElementsByTagName('title')[0].text = "#{ _country['name'] } - Electrification"
+
+    setup_interactions()
 
     scenario.load_selector()
 
