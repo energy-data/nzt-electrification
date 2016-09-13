@@ -26,17 +26,17 @@ path.adm1:hover, path.adm2:hover {
   left: 0;
   top: 0;
 
-  width: 101%;
+  height: 60px;
+
+  width: 102%;
 }
 
 #grid-info {
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 60px;
 
   font-size: 0.85em;
-
-  min-width: 340px;
 
   display: none;
 }

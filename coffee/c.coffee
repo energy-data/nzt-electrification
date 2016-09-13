@@ -129,7 +129,7 @@ require [
         adm: [null, 1, data.place['adm1']]
         svg_box: it.getBBox()
 
-      $('#summary-info').fadeOut()
+      $('#summary-info').fadeIn()
 
 
     $('#export-summary').on 'click', ->

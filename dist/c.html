@@ -22,21 +22,28 @@
     <div id="adm-info"
          class="pane row center">
       <div class="col-sm-2">
-        <strong><span data="adm0_name">&nbsp;</span></strong>
-      </div>
-      <div class="col-sm-2">
-        <strong><span data="adm1_name">&nbsp;</span></strong>
-      </div>
-      <div class="col-sm-2">
-        <strong><span data="adm2_name">&nbsp;</span></strong>
+        <span data="adm0_name"
+              class="pointer">&nbsp;</span>
       </div>
 
       <div class="col-sm-2">
-        <span id="export-summary">export summary</span>
+        <span data="adm1_name"
+              class="pointer">&nbsp;</span>
       </div>
 
       <div class="col-sm-2">
-        <span id="export-grids">export grids</span>
+        <span data="adm2_name"
+              class="pointer">&nbsp;</span>
+      </div>
+
+      <div class="col-sm-2">
+        <span id="export-summary"
+              class="pointer">export summary</span>
+      </div>
+
+      <div class="col-sm-2">
+        <span id="export-grids"
+              class="pointer">export grids</span>
       </div>
     </div>
 
@@ -44,8 +51,8 @@
          class="pane">
       <table class="monospace">
         <tr>
-          <td>Total:</td>
-          <td><span data="total_count"></span></td>
+          <td>Total:
+          <td><span data="total_count"></span>
         </tr>
 
         <br />
@@ -54,82 +61,114 @@
 
     <div id="grid-info"
          class="pane">
-      <table class="monospace">
-        <tr>
-          <td>Coordinates:</td>
-          <td><span data="long"></span>, <span data="lat"></span></td>
-        </tr>
+      <ul class="monospace">
+        <li>
+          <div class="center">
+            <span data="technology"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Technology:</td>
-          <td><span data="technology"></span></td>
-        </tr>
+        <br />
 
-        <tr>
-          <td>Population 2030:</td>
-          <td><span data="p_2030"></span></td>
-        </tr>
+        <li>
+          <div class="center">
+            <span data="long"></span>, <span data="lat"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>New Connections:</td>
-          <td><span data="nc"></span></td>
-        </tr>
+        <br />
 
-        <tr>
-          <td>Investment Cost:</td>
-          <td>$<span data="ic"></span></td>
-        </tr>
+        <li>
+          Population 2030:
+          <div class="right">
+            <span data="p_2030"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Levelised cost:</td>
-          <td>$<span data="lc"></span></td>
-        </tr>
+        <li>
+          New Connections:
+          <div class="right">
+            <span data="nc"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>New capacity:</td>
-          <td><span data="cap"></span></td>
-        </tr>
+        <li>
+          Investment Cost:
+          <div class="right">
+            $<span data="ic"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Grid Distance Current:</td>
-          <td><span data="gd_c"></span></td>
-        </tr>
+        <li>
+          Levelised cost:
+          <div class="right">
+            $<span data="lc"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Grid Distance Planned:</td>
-          <td><span data="gd_p"></span></td>
-        </tr>
+        <li>
+          New capacity:
+          <div class="right">
+            <span data="cap"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Road Distance:</td>
-          <td><span data="rd"></span></td>
-        </tr>
+        <li>
+          Grid Distance Current:
+          <div class="right">
+            <span data="gd_c"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>GHI:</td>
-          <td><span data="ghi"></span></td>
-        </tr>
+        <li>
+          Grid Distance Planned:
+          <div class="right">
+            <span data="gd_p"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Wind CF:</td>
-          <td><span data="w_cf"></span></td>
-        </tr>
+        <li>
+          Road Distance:
+          <div class="right">
+            <span data="rd"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Hydropower:</td>
-          <td><span data="hp"></span></td>
-        </tr>
+        <li>
+          Global Horizontal Irradiance:
+          <div class="right">
+            <span data="ghi"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Hydropower Distance:</td>
-          <td><span data="hp_d"></span></td>
-        </tr>
+        <li>
+          Wind Power Capacity Factor:
+          <div class="right">
+            <span data="w_cf"></span>
+          </div>
+        </li>
 
-        <tr>
-          <td>Is Urban:</td>
-          <td><span data="u"></span></td>
-        </tr>
-      </table>
+        <li>
+          Potential small and mini Hydropower: &nbsp;
+          <div class="right">
+            <span data="hp"></span>
+          </div>
+        </li>
+
+        <li>
+          Distance to Hydropower Potencial:
+          <div class="right">
+            <span data="hp_d"></span>
+          </div>
+        </li>
+
+        <li>
+          Is Urban:
+          <div class="right">
+            <span data="u"></span>
+          </div>
+        </li>
+      </ul>
     </div>
   </body>
 

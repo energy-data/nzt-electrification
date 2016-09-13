@@ -2,12 +2,25 @@ body {
   margin: 0 !important;
 }
 
-.adm {
-  cursor: pointer;
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.right {
+  text-align: right;
 }
 
 .center {
   text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.adm {
+  cursor: pointer;
 }
 
 .monospace {
