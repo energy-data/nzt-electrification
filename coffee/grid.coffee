@@ -15,32 +15,89 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
   u.check scn, iso3
 
-  load = (o) ->
-    adm       = o.adm
-    svg_box   = o.svg_box
-    container = o.container || _container
-    country   = _g.countries.find (c) -> c['iso3'] is iso3
+  fetch = (o) ->
+    d3.queue()
+      .defer d3.json, "http://localhost:4000/grids?" +
+        "select=#{ attrs }" +
+        "&x=gt.#{ o.box[0] }&x=lt.#{ o.box[2] }" +
+        "&y=gt.#{ o.box[1] }&y=lt.#{ o.box[3] }" +
+        "&adm#{ o.adm[1] }=eq.#{ o.adm[2] }" +
+        "&cc=eq.#{ o.country_code }"
 
-    u.check adm, svg_box, container, country
+      .await (error, grids) ->
+        if error? then console.log error
+        if typeof o.callback is 'function' then o.callback.call null, grids
 
-    box = map.to_bbox svg_box
 
+  draw = (grids) ->
     data.summary['total_count'] = 0
 
     for t in _g.technologies
       data.summary["#{ t['id'] }_count"] = 0 if t
 
+    counts = {}
+
+    for t in _g.technologies
+      if t? then counts[t['id']] = 0
+
+    grids.map (e) ->
+      tech = _g.technologies[e[scn]]
+      counts[tech['id']] += 1
+
+      _container.append("path")
+        .datum
+          type: "Point",
+          coordinates: [e.x, e.y]
+
+        .attr 'class', "grid"
+        .attr 'd', map.geo_path
+        .attr 'fill', (d) -> tc[e[scn]]
+
+        .on 'mouseleave', (d) ->
+          d3.select(this)
+            .attr 'stroke', 'none'
+
+        .on 'mouseenter', (d) ->
+          grid_info.show()
+
+          d3.select(this)
+            .attr 'stroke', 'red'
+            .attr 'stroke-width', 0.01
+
+          for k,v of e
+            data.grid[k] = v
+
+          data.grid['long'] = e['x']
+          data.grid['lat']  = e['y']
+          data.grid['ic']   = e["ic_#{ scn }"]
+          data.grid['lc']   = e["lc_#{ scn }"]
+          data.grid['cap']  = e["c_#{ scn }"]
+
+          data.grid['technology'] = tech['name']
+
+    for t in _g.technologies
+      if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
+
+    data.summary['total_count'] = grids.length
+
+
+  load = (o) ->
+    adm       = o.adm
+    svg_box   = o.svg_box
+    country   = _g.countries.find (c) -> c['iso3'] is iso3
+
+    u.check adm, svg_box, _container, country
+
+    box = map.to_bbox svg_box
+
     d3.selectAll('path.grid').remove()
 
-    d3.queue()
-      .defer d3.json, "http://localhost:4000/grids?" +
-        "select=#{ attrs }" +
-        "&x=gt.#{ box[0] }&x=lt.#{ box[2] }" +
-        "&y=gt.#{ box[1] }&y=lt.#{ box[3] }" +
-        "&adm#{ adm[1] }=eq.#{ adm[2] }" +
-        "&cc=eq.#{ country['code'] }"
+    fetch
+      country_code: country['code']
+      adm: adm
+      box: box
 
-      .await (error, grids) ->
+      callback: (grids) ->
         data.grid_collection = grids
 
         if grids.length > count_threshold
@@ -49,50 +106,7 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
         if not c
           grids = grids.sort(-> return 0.5 - Math.random()).splice(0, count_threshold)
 
-        counts = {}
-
-        for t in _g.technologies
-          if t? then counts[t['id']] = 0
-
-        grids.map (e) ->
-          tech = _g.technologies[e[scn]]
-          counts[tech['id']] += 1
-
-          container.append("path")
-            .datum
-              type: "Point",
-              coordinates: [e.x, e.y]
-
-            .attr 'class', "grid"
-            .attr 'd', map.geo_path
-            .attr 'fill', (d) -> tc[e[scn]]
-
-            .on 'mouseleave', (d) ->
-              d3.select(this)
-                .attr 'stroke', 'none'
-
-            .on 'mouseenter', (d) ->
-              grid_info.show()
-
-              d3.select(this)
-                .attr 'stroke', 'red'
-                .attr 'stroke-width', 0.01
-
-              for k,v of e
-                data.grid[k] = v
-
-              data.grid['long'] = e['x']
-              data.grid['lat']  = e['y']
-              data.grid['ic']   = e["ic_#{ scn }"]
-              data.grid['lc']   = e["lc_#{ scn }"]
-              data.grid['cap']  = e["c_#{ scn }"]
-
-              data.grid['technology'] = tech['name']
-
-        for t in _g.technologies
-          if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
-
-        data.summary['total_count'] = grids.length
+        draw grids
 
         d3.selectAll('path.line').raise()
 
