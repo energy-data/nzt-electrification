@@ -1,5 +1,5 @@
 define ['utils', 'd3', 'map'], (u, d3, map) ->
-  tc = d3.schemeCategory10.splice(0,8)
+  tc = _g.technologies.map (t) -> return if t then t['color'] else null
 
   iso3 = location.getQueryParam('iso3')
 
