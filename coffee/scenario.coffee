@@ -1,14 +1,18 @@
-define ['utils'], (u) ->
-  data.scenario['scn'] = 'l1'
-  data.scenario['callback'] = [
-    'scn',
-    (args...) ->
-      if args[2] not in _g.scenarios
-        throw Error "This scenario is dodgy:", args
+define ['utils', 'grid'], (u, grid) ->
+  init = ->
+    data.scenario['scn'] = 'l1'
+    data.scenario['callback'] = [
+      'scn',
+      (args...) ->
+        if args[2] not in _g.scenarios
+          throw Error "This scenario is dodgy:", args
 
-      else
-        console.info data.place, args[2]
-  ]
+        else
+          if data.place['adm1']
+            console.info data.place, args[2]
+            grid.draw data.grid_collection['grids']
+    ]
+
 
   expand = (t) ->
     u.check t[0], t[1]
@@ -35,4 +39,5 @@ define ['utils'], (u) ->
 
 
   return scenario =
+    init: init
     load_selector: load_selector

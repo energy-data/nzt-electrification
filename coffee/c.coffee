@@ -145,7 +145,7 @@ require [
         grid_summary: data.summary
         location: data.place
 
-      u.dwnld JSON.stringify(data.grid_collection), 'export-grids.json'
+      u.dwnld JSON.stringify(data.grid_collection['grids']), 'export-grids.json'
 
 
   run = (args...) ->
@@ -170,6 +170,7 @@ require [
 
     setup_interactions()
 
+    scenario.init()
     scenario.load_selector()
 
     load_adm1()

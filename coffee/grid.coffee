@@ -1,4 +1,4 @@
-define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
+define ['utils', 'd3', 'map'], (u, d3, map) ->
   tc = d3.schemeCategory10.splice(0,8)
 
   iso3 = location.getQueryParam('iso3')
@@ -7,13 +7,11 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
   attrs = ['x','y','cc','p_2030','nc','gd_c','gd_p','rd','ghi','w_cf','hp','hp_d','u','l1','l2','l3','l4','l5','n1','n2','n3','n4','n5','lc_l1','lc_l2','lc_l3','lc_l4','lc_l5','lc_n1','lc_n2','lc_n3','lc_n4','lc_n5','c_l1','c_l2','c_l3','c_l4','c_l5','c_n1','c_n2','c_n3','c_n4','c_n5','ic_l1','ic_l2','ic_l3','ic_l4','ic_l5','ic_n1','ic_n2','ic_n3','ic_n4','ic_n5']
 
-  scn = data.scenario['scn']
-
   _container = d3.select('#container')
 
   grid_info = $('#grid-info')
 
-  u.check scn, iso3
+  u.check iso3
 
   fetch = (o) ->
     d3.queue()
@@ -30,6 +28,10 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
 
   draw = (grids) ->
+    scn = data.scenario['scn']
+
+    d3.selectAll('path.grid').remove()
+
     data.summary['total_count'] = 0
 
     for t in _g.technologies
@@ -78,7 +80,7 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
     for t in _g.technologies
       if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
 
-    data.summary['total_count'] = grids.length
+    d3.selectAll('path.line').raise()
 
 
   load = (o) ->
@@ -90,16 +92,12 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
     box = map.to_bbox svg_box
 
-    d3.selectAll('path.grid').remove()
-
     fetch
       country_code: country['code']
       adm: adm
       box: box
 
       callback: (grids) ->
-        data.grid_collection = grids
-
         if grids.length > count_threshold
           c = confirm "Loading #{ grids.length } will most likely make the webpage sluggish. Continue?"
 
@@ -108,8 +106,11 @@ define ['utils', 'scenario', 'd3', 'map'], (u, scenario, d3, map) ->
 
         draw grids
 
-        d3.selectAll('path.line').raise()
+        data.summary['total_count'] = grids.length
+
+        data.grid_collection['grids'] = grids
 
 
   return grid =
+    draw: draw
     load: load
