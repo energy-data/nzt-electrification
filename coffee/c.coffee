@@ -121,6 +121,10 @@ require [
 
       data.place['bbox'] = map.to_bbox it.getBBox()
 
+      map.resize_to
+        node: it
+        duration: 1000
+
       grid.load
         adm: [null, 1, data.place['adm1']]
         svg_box: it.getBBox()
