@@ -1,17 +1,6 @@
-define ['utils', 'grid'], (u, grid) ->
+define ['utils'], (u) ->
   init = ->
     data.scenario['scn'] = 'l1'
-    data.scenario['callback'] = [
-      'scn',
-      (args...) ->
-        if args[2] not in _g.scenarios
-          throw Error "This scenario is dodgy:", args
-
-        else
-          if data.place['adm1']
-            console.info data.place, args[2]
-            grid.draw data.grid_collection['grids']
-    ]
 
 
   expand = (t) ->
@@ -36,6 +25,8 @@ define ['utils', 'grid'], (u, grid) ->
       ds['scn']      = v
       ds['diesel_p'] = v[0]
       ds['tier']     = v[1]
+
+    $(sss).val data.scenario['scn']
 
 
   return scenario =

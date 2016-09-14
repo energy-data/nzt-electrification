@@ -1,4 +1,7 @@
 define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
+  #
+  # Variables:
+  #
 
   iso3 = location.getQueryParam('iso3')
 
@@ -8,7 +11,11 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   grid_info = $('#grid-info')
 
-  u.check iso3
+  u.check iso3, _container, grid_info
+
+  #
+  # Function definitions:
+  #
 
   fetch = (o) ->
     d3.queue()
@@ -25,6 +32,8 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
 
   draw = (grids) ->
+    return if not grids?
+
     scn = data.scenario['scn']
 
     d3.selectAll('path.grid').remove()

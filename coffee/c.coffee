@@ -187,6 +187,17 @@ require [
     scenario.init()
     scenario.load_selector()
 
+    data.scenario['callback'] = [
+      'scn',
+      (args...) ->
+        if args[2] not in _g.scenarios
+          throw Error "This scenario is dodgy:", args
+
+        else
+          grid.draw data.grid_collection['grids']
+    ]
+
+
     load_adm1()
 
     path_adm2 = load_adm adm2, 'adm2'
