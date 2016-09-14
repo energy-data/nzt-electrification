@@ -2,8 +2,21 @@ svg {
   width: 100%;
 }
 
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #efc20d;
+  text-decoration: none;
+}
+
 .row {
   margin-left: 0 !important;
+}
+
+hr {
+  border-top: 1px solid #777;
 }
 
 span[data] {
@@ -57,22 +70,12 @@ path.adm1:hover, path.adm2:hover {
   display: none;
 }
 
-#scenario-selector {
+#controls {
   position: absolute;
   top: 60px;
   left: 0;
-
-  color: black;
 }
 
-#mode-selector {
-  position: absolute;
-  top: 200px;
-  left: 0;
-
+select {
   color: black;
-}
-
-td {
-  padding-right: 10px;
 }

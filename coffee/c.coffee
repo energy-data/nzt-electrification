@@ -133,7 +133,9 @@ require [
       $('#summary-info').fadeIn()
 
 
-    $('#export-summary').on 'click', ->
+    $('#export-summary').on 'click', (e) ->
+      e.preventDefault()
+
       o =
         grid_summary: data.summary
         location: data.place
@@ -141,7 +143,9 @@ require [
       u.dwnld JSON.stringify(o), 'export-summary.json'
 
 
-    $('#export-grids').on 'click', ->
+    $('#export-grids').on 'click', (e) ->
+      e.preventDefault()
+
       o =
         grid_summary: data.summary
         location: data.place

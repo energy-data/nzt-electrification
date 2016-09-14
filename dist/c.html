@@ -14,14 +14,33 @@
   <body>
     <svg id="svg"></svg>
 
-    <div id="scenario-selector"
+    <div id="controls"
          class="pane">
-      <select></select>
-    </div>
+      <h4 class="center">Select</h4>
 
-    <div id="mode-selector"
-         class="pane">
-      <select></select>
+      <div id="scenario-selector">
+        <h5>Scenario:</h5>
+
+        <select></select>
+      </div>
+
+      <div id="mode-selector">
+        <h5>Colouring mode:</h5>
+
+        <select></select>
+      </div>
+
+      <hr />
+
+      <h4 class="center">Exports</h4>
+
+      <a id="export-summary"
+         href="#">summary</a>
+
+      &nbsp;
+
+      <a id="export-grids"
+         href="#">grids</a>
     </div>
 
     <div id="adm-info"
@@ -39,16 +58,6 @@
       <div class="col-sm-2">
         <span data="adm2_name"
               class="pointer">&nbsp;</span>
-      </div>
-
-      <div class="col-sm-2">
-        <span id="export-summary"
-              class="pointer">export summary</span>
-      </div>
-
-      <div class="col-sm-2">
-        <span id="export-grids"
-              class="pointer">export grids</span>
       </div>
     </div>
 
