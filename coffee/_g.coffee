@@ -3,31 +3,31 @@ define [], () ->
     technologies: [ null, {
       id:   "grid"
       name: "Grid"
-      color: "#27AE60"
+      color: "#528885"
     }, {
       id:   "sa_diesel"
       name: "S.A. Diesel"
-      color: "#E74C3C"
+      color: "#FF7364"
     }, {
       id:   "sa_pv"
       name: "S.A. Photo Voltaic"
-      color: "#F39C12"
+      color: "#FFD38C"
     }, {
       id:   "mg_diesel"
       name: "M.G. Diesel"
-      color: "#C0392B"
+      color: "#D13A36"
     }, {
       id:   "mg_pv"
       name: "M.G. Photo Voltaic"
-      color: "#F1C40F"
+      color: "#E6AF00"
     }, {
       id:   "mg_wind"
       name: "M.G. Wind"
-      color: "#ECF0F1"
+      color: "#8F77AD"
     }, {
       id:   "mg_hydro"
       name: "M.G. Hydro"
-      color: "#2980B9"
+      color: "#00518E"
     }]
 
     scenarios: ["l1","l2","l3","l4","l5","n1","n2","n3","n4","n5"]
