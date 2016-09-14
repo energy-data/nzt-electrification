@@ -1,9 +1,11 @@
-define ['utils'], (u) ->
   min_opacity = 0.01
+define ['utils', 'dictionary'], (u, dictionary) ->
 
   hd  = 200
 
   tc = _g.technologies.map (t) -> return if t then t['color'] else null
+
+  dg = dictionary['grid']
 
   modes = [{
     type: "technology"
@@ -12,7 +14,7 @@ define ['utils'], (u) ->
       return tc[g[scn]]
   }, {
     type: "population"
-    full: "Population 2030"
+    full: dg['p_2030']
     fill: (g) ->
       p = g['p_2030']
       o = if (p < hd) then (((p / hd) * (1 - min_opacity)) + min_opacity) else 1
