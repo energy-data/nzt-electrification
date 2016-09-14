@@ -2,6 +2,10 @@ svg {
   width: 100%;
 }
 
+.row {
+  margin-left: 0 !important;
+}
+
 span[data] {
   color: #efc20d;
 }
@@ -28,7 +32,7 @@ path.adm1:hover, path.adm2:hover {
 
   height: 60px;
 
-  width: 102%;
+  width: 100%;
 }
 
 #grid-info {
@@ -57,6 +61,8 @@ path.adm1:hover, path.adm2:hover {
   position: absolute;
   top: 60px;
   left: 0;
+
+  color: black;
 }
 
 td {
