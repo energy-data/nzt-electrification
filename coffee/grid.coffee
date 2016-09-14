@@ -1,5 +1,4 @@
-define ['utils', 'd3', 'map'], (u, d3, map) ->
-  tc = _g.technologies.map (t) -> return if t then t['color'] else null
+define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   iso3 = location.getQueryParam('iso3')
 
@@ -51,7 +50,7 @@ define ['utils', 'd3', 'map'], (u, d3, map) ->
 
         .attr 'class', "grid"
         .attr 'd', map.geo_path
-        .attr 'fill', (d) -> tc[e[scn]]
+        .attr 'fill', (d) -> mode.fill e, scn
 
         .on 'mouseleave', (d) ->
           d3.select(this)

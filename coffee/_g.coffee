@@ -32,7 +32,7 @@ define [], () ->
 
     scenarios: ["l1","l2","l3","l4","l5","n1","n2","n3","n4","n5"]
 
-    bound_objects: ['place', 'grid', 'scenario', 'summary', 'grid_collection']
+    bound_objects: ['place', 'grid', 'scenario', 'summary', 'grid_collection', "mode"]
 
     assets: 'assets'
 

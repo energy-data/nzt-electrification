@@ -21,9 +21,10 @@ require [
   'd3'
   'map'
   'grid'
+  'mode'
 ],
 
-(u, _g, data, scenario, d3, map, grid) ->
+(u, _g, data, scenario, d3, map, grid, mode) ->
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -169,6 +170,19 @@ require [
     document.getElementsByTagName('title')[0].text = "#{ _country['name'] } - Electrification"
 
     setup_interactions()
+
+    mode.init()
+    mode.load_selector()
+
+    data.mode['callback'] = [
+      'type',
+      (args...) ->
+        if args[2] not in mode.modes.map((m) -> m['type'])
+          throw Error "This mode is dodgy:", args
+
+        else
+          grid.draw data.grid_collection['grids']
+    ]
 
     scenario.init()
     scenario.load_selector()

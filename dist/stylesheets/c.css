@@ -65,6 +65,14 @@ path.adm1:hover, path.adm2:hover {
   color: black;
 }
 
+#mode-selector {
+  position: absolute;
+  top: 200px;
+  left: 0;
+
+  color: black;
+}
+
 td {
   padding-right: 10px;
 }
