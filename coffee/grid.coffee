@@ -11,6 +11,8 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   grid_info = $('#grid-info')
 
+  locked = null
+
   u.check iso3, _container, grid_info
 
   #
@@ -60,12 +62,28 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
         .attr 'class', "grid"
         .attr 'd', map.geo_path
         .attr 'fill', (d) -> mode.fill e, scn
+        .attr 'stroke', 'red'
+        .attr 'stroke-width', 0
 
         .on 'mouseleave', (d) ->
-          d3.select(this)
-            .attr 'stroke', 'none'
+          if this isnt locked then d3.select(this).attr('stroke-width', 0)
+
+
+        .on 'click', (d) ->
+          if this is locked
+            d3.select(this).attr('stroke-width', 0)
+            locked = null
+
+          else
+            d3.select(locked).attr('stroke-width', 0)
+
+            locked = this
+            d3.select(locked).attr('stroke-width', 0.01)
+
 
         .on 'mouseenter', (d) ->
+          return if locked isnt null
+
           grid_info.show()
 
           d3.select(this)
