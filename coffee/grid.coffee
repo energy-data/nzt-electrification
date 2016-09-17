@@ -36,6 +36,8 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
   draw = (grids) ->
     return if not grids?
 
+    locked = null
+
     scn = data.scenario['scn']
 
     d3.selectAll('path.grid').remove()
