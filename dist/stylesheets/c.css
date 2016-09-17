@@ -79,6 +79,8 @@ path.adm1:hover, path.adm2:hover {
 
   top: 60px;
   left: 0;
+
+  transition: left .4s ease;
 }
 
 select {

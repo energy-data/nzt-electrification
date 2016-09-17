@@ -153,6 +153,16 @@ require [
       u.dwnld JSON.stringify(data.grid_collection['grids']), 'export-grids.json'
 
 
+    $('#controls-control').on 'click', (e) ->
+      e.preventDefault()
+
+      $('#controls').css left: 0
+
+
+    $('#controls').on 'mouseleave', (e) ->
+      $(this).css left: "#{ -1 * this.clientWidth }px"
+
+
   run = (args...) ->
     for t in _g.technologies
       continue if not t
