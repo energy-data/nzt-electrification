@@ -31,6 +31,8 @@ require [
 
   path_adm2 = null
 
+  locked_adm2 = null
+
   _svg = d3.select 'svg#svg'
     .attr 'width',  d3.select('html').node().clientWidth
     .attr 'height', d3.select('html').node().clientHeight
@@ -41,7 +43,7 @@ require [
     path = map.load_topo
       topo: topo
       pathname: pathname
-      cls: 'adm'
+      cls: 'adm hoverable'
       fill: 'white'
 
     if typeof callback is 'function'
@@ -84,6 +86,10 @@ require [
       .on 'click', (d) ->
         it = this
 
+        return if locked_adm2 is it
+
+        d3.selectAll('path.adm2').classed 'hoverable', true
+
         data.place['adm2']      = d['id']
         data.place['adm2_name'] = d.properties['name']
 
@@ -92,6 +98,9 @@ require [
         grid.load
           adm: it.id.match /adm(.*)-(\d*)?/
           svg_box: it.getBBox()
+
+        d3.select(it).classed 'hoverable', false
+        locked_adm2 = it
 
         $('#summary-info').fadeIn()
 
