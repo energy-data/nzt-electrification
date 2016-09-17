@@ -108,6 +108,7 @@ require [
 
             setTimeout (-> window.location = "/c.html?iso3=#{ iso3 }"), 600
 
+
         map.resize_to
           node: path.node()
           svg: svg

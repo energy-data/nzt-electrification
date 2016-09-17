@@ -11,10 +11,6 @@ a:hover {
   text-decoration: none;
 }
 
-.row {
-  margin-left: 0 !important;
-}
-
 hr {
   border-top: 1px solid #777;
 }
@@ -32,8 +28,6 @@ path.adm1:hover, path.adm2:hover {
 }
 
 .pane {
-  padding: 20px;
-
   color: white;
   background-color: rgba(0,0,0,0.7);
 }
@@ -43,7 +37,9 @@ path.adm1:hover, path.adm2:hover {
   left: 0;
   top: 0;
 
-  height: 60px;
+  padding: 20px 0;
+
+  line-height: 20px;
 
   width: 100%;
 }
@@ -53,7 +49,9 @@ path.adm1:hover, path.adm2:hover {
   right: 0;
   top: 60px;
 
-  font-size: 0.85em;
+  padding: 20px;
+
+  font-size: 0.6em;
 
   display: none;
 }
@@ -63,7 +61,9 @@ path.adm1:hover, path.adm2:hover {
   left: 0;
   bottom: 0;
 
-  font-size: 0.85em;
+  padding: 20px;
+
+  font-size: 0.6em;
 
   min-width: 250px;
 
@@ -72,6 +72,11 @@ path.adm1:hover, path.adm2:hover {
 
 #controls {
   position: absolute;
+
+  font-size: 0.8em;
+
+  padding: 20px;
+
   top: 60px;
   left: 0;
 }

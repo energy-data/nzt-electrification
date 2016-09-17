@@ -1,0 +1,39 @@
+.row .row { margin:  0 -1.5em; }
+.col      { padding: 0  1.5em; }
+
+.row:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media only screen {
+  .col {
+    float: left;
+    box-sizing: border-box;
+
+    width: 100%;
+  }
+
+  .col.c1 { width: 8.33% }
+
+  .col.c2 { width: 16.66% }
+
+  .col.c3 { width: 25% }
+
+  .col.c4 { width: 33% }
+
+  .col.c5 { width: 41.66%; }
+
+  .col.c6 { width: 50% }
+
+  .col.c7 { width: 58.33% }
+
+  .col.c8 { width: 66.66%; }
+
+  .col.c9 { width: 75%; }
+
+  .col.c10 { width: 83.33%; }
+
+  .col.c11 { width: 91.66%; }
+}

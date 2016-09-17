@@ -4,9 +4,9 @@
   <head>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" type="text/css" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/c.css" />
+    <link rel="stylesheet" type="text/css" href="./stylesheets/grid.css" />
 
     <title></title>
   </head>
@@ -14,50 +14,70 @@
   <body>
     <svg id="svg"></svg>
 
-    <div id="controls"
-         class="pane">
-      <h4 class="center">Select</h4>
-
-      <div id="scenario-selector">
-        <h5>Scenario:</h5>
-
-        <select></select>
+    <div id="adm-info"
+         class="pane row center">
+      <div class="col c1">
+        <a id="controls-control"
+           href="#"
+           class="pointer">X</a>
       </div>
 
-      <div id="mode-selector">
-        <h5>Colouring mode:</h5>
+      <div class="col c2">
+        <span data="adm0_name"
+              class="pointer"></span>
+      </div>
 
-        <select></select>
+      <div class="col c2">
+        <span data="adm1_name"
+              class="pointer"></span>
+      </div>
+
+      <div class="col c2">
+        <span data="adm2_name"
+              class="pointer"></span>
+      </div>
+    </div>
+
+    <div id="controls"
+         class="pane">
+      <h4>Select</h4>
+
+      <div id="scenario-selector"
+           class="row">
+        <div class="col c5">
+          <strong>Scenario:</strong>
+        </div>
+
+        <div class="col c6">
+          <select></select>
+        </div>
+      </div>
+
+      <div id="mode-selector"
+           class="row">
+        <div class="col c5">
+          <strong>Colour mode:</strong>
+        </div>
+
+        <div class="col c6">
+          <select></select>
+        </div>
       </div>
 
       <hr />
 
-      <h4 class="center">Exports</h4>
+      <div class="row">
+        <h4>Exports</h4>
 
-      <a id="export-summary"
-         href="#">summary</a>
+        <div class="col c6">
+          <a id="export-summary"
+             href="#">summary</a>
+        </div>
 
-      &nbsp;
-
-      <a id="export-grids"
-         href="#">grids</a>
-    </div>
-
-    <div id="adm-info"
-         class="pane row center">
-      <div class="col-sm-2">
-        <span data="adm0_name"
-              class="pointer">&nbsp;</span>
-      </div>
-
-      <div class="col-sm-2">
-        <span data="adm1_name"
-              class="pointer">&nbsp;</span>
-      </div>
-
-      <div class="col-sm-2">
-        <span data="adm2_name"
-              class="pointer">&nbsp;</span>
+        <div class="col c6">
+          <a id="export-grids"
+             href="#">grids</a>
+        </div>
       </div>
     </div>
 
