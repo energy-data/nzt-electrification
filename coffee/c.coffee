@@ -56,7 +56,7 @@ require [
         $('#summary-info').fadeOut()
         $('#grid-info').fadeOut()
 
-        d3.selectAll('path.grid').remove()
+        grid.clear()
 
         data.place['adm1']      = d['id']
         data.place['adm1_name'] = d.properties['name']
@@ -107,13 +107,15 @@ require [
       data.place['adm2'] = undefined
       data.place['adm2_name'] = undefined
 
+      grid.clear()
+
       map.resize_to
         node: d3.select('#container').node()
         duration: 1000
 
 
     $('[data="adm1_name"]').on 'click', ->
-      d3.selectAll('path.grid').remove()
+      grid.clear()
 
       it = d3.select("path#adm1-#{ data.place['adm1'] }").node()
 

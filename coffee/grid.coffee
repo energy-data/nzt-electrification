@@ -33,6 +33,10 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
         if typeof o.callback is 'function' then o.callback.call null, grids
 
 
+  clear = ->
+    d3.selectAll('path.grid').remove()
+
+
   draw = (grids) ->
     return if not grids?
 
@@ -40,7 +44,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
     scn = data.scenario['scn']
 
-    d3.selectAll('path.grid').remove()
+    clear()
 
     data.summary['total_count'] = 0
 
@@ -140,3 +144,4 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
   return grid =
     draw: draw
     load: load
+    clear: clear
