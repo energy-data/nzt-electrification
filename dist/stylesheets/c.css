@@ -2,13 +2,14 @@ svg {
   width: 100%;
 }
 
-a:visited {
+a {
+  color: #7587A6;
   text-decoration: none;
 }
 
 a:hover {
-  color: #efc20d;
-  text-decoration: none;
+  color: #7587A6;
+  text-decoration: underline;
 }
 
 hr {
@@ -16,7 +17,8 @@ hr {
 }
 
 span[data] {
-  color: #efc20d;
+  color: #7587A6;
+  font-weight: bold;
 }
 
 path.adm {
@@ -65,8 +67,6 @@ path.adm1:hover, path.adm2:hover {
 
   font-size: 0.6em;
 
-  min-width: 250px;
-
   display: none;
 }
 
@@ -78,7 +78,7 @@ path.adm1:hover, path.adm2:hover {
   padding: 20px;
 
   top: 60px;
-  left: 0;
+  left: -500px;
 
   transition: left .4s ease;
 }

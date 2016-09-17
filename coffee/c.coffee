@@ -79,6 +79,7 @@ require [
       d3.select(this).style 'display', ->
         if e.properties.adm1 is adm1_id then 'block' else 'none'
 
+
     path_adm2
       .on 'click', (d) ->
         it = this
