@@ -32,7 +32,7 @@ path.adm1:hover, path.adm2:hover {
   background-color: rgba(0,0,0,0.7);
 }
 
-#adm-info {
+#navbar {
   position: absolute;
   left: 0;
   top: 0;
