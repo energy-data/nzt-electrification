@@ -44,6 +44,8 @@ path.adm1:hover, path.adm2.hoverable:hover {
   line-height: 20px;
 
   width: 100%;
+
+  z-index: 1001;
 }
 
 #grid-info {

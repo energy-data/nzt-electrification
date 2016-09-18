@@ -304,6 +304,8 @@ require [
     map.resize_to
       node: target.node()
       duration: 1
+      callback: ->
+        $('.loading').fadeOut()
 
 
   d3.queue(5)

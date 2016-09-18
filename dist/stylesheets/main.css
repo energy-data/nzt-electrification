@@ -34,3 +34,39 @@ ul {
 .monospace {
   font-family: Monaco, Consolas, Courier New, monospace;
 }
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+
+  vertical-align: middle;
+  text-align: center;
+
+  background-color: white;
+
+  z-index: 1000;
+}
+
+.spinner {
+  vertical-align: middle;
+
+  border: 16px solid rgba(0,0,0,0.7);
+  border-top: 16px solid #7587A6;
+  border-radius: 50%;
+
+  margin: 120px auto;
+
+  width: 120px;
+  height: 120px;
+
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
