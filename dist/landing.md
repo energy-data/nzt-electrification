@@ -113,7 +113,7 @@ in different localities.
 
 | Level of access | Tier-0 | Tier-1 | Tier-2 | Tier-3 | Tier-4 | Tier-5 |
 |-----------------|--------|--------|--------|--------|--------|--------|
-| Indicative appliances powered | Torch and Radio | Task lightning <br />+<br /> Phone charging or radio | General lightning <br />+<br /> Air circulation <br />+<br /> Television | Tier 2 <br />+<br /> Light appliances <br /> (i.e. General food processing and washing machine) | Tier 3 <br />+<br /> Medium or continuous appliances <br /> (i.e. Water heating, ironing, water pumping rice cooking, refrigeration, microwave) | Tier 4 <br />+<br /> Heavy or continuous appliances <br /> (i.e. Air conditioning) |
+| Indicative appliances powered | Torch and Radio | Task lightning <br />+<br /> Phone charging or Radio | General lightning <br />+<br /> Air circulation <br />+<br /> Television | Tier 2 <br />+<br /> Light appliances <br /> (i.e. general food processing and washing machine) | Tier 3 <br />+<br /> Medium or continuous appliances <br /> (i.e. water heating, ironing, water pumping rice cooking, refrigeration, microwave) | Tier 4 <br />+<br /> Heavy or continuous appliances <br /> (i.e. air conditioning) |
 | Consumption per <br /> household and year (kWh) | - | 22 | 224 | 695 | 1800 | 2195 |
 
 ## Potential Indicators:
@@ -121,6 +121,7 @@ in different localities.
 **GDP/capita and total GDP, Access to electricity, Rural/Urban, Annual Expenditures**
 
 For each grid we can show:
+
 - Electrification technology
 - Population 2030
 - Power Capacity
