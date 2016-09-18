@@ -66,6 +66,11 @@ require [
 
         grid.clear()
 
+        if location.getQueryParam 'adm2'
+          history.pushState { reload: false }, null, location.updateQueryParam('adm2', null)
+
+        history.pushState null, null, location.updateQueryParam('adm1', d['id'])
+
         data.place['adm1']      = d['id']
         data.place['adm1_name'] = d.properties['name']
 
@@ -93,6 +98,8 @@ require [
 
         d3.selectAll('path.adm2').classed 'hoverable', true
         d3.select(this).classed 'hoverable', false
+
+        history.pushState null, null, location.updateQueryParam('adm2', d['id'])
 
         data.place['adm2']      = d['id']
         data.place['adm2_name'] = d.properties['name']
@@ -177,6 +184,13 @@ require [
 
 
   run = (args...) ->
+    window.onpopstate = (e) ->
+      if e.state? and e.state['reload'] is false
+        history.back()
+
+      else
+        run args...
+
     $('#summary-info table').html ""
 
     for t in _g.technologies
@@ -248,15 +262,48 @@ require [
       fill: 'none'
 
 
-    map.resize_to
-      node: d3.select('#container').node()
-      delay: 0
-      duration: 1
-
     map.setup_drag()
 
     data.place['adm0']      = _country['iso3']
     data.place['adm0_name'] = _country['name']
+
+    admin1 = parseInt(location.getQueryParam('adm1'))
+    admin2 = parseInt(location.getQueryParam('adm2'))
+
+    target_id = ->
+      if admin1 > -1 and isNaN(admin2)
+        return "#adm1-#{ admin1 }"
+
+      else if admin2 > -1
+        return "#adm2-#{ admin2 }"
+
+      else
+        return '#container'
+
+
+    target = d3.select target_id()
+
+    if admin2 > -1
+      data.place['adm2']      = admin2 || undefined
+      data.place['adm2_name'] = target.datum().properties['name'] || undefined
+
+      admin1 = target.datum().properties['adm1']
+
+      data.place['adm1']      = admin1 || undefined
+      data.place['adm1_name'] = d3.select("#adm1-#{ admin1 }").datum().properties['name'] || undefined
+
+    else if admin1 > -1
+      data.place['adm1']      = admin1 || undefined
+      data.place['adm1_name'] = target.datum().properties['name'] || undefined
+
+
+    load_adm2 admin1
+
+    set_adm1_fills admin1
+
+    map.resize_to
+      node: target.node()
+      duration: 1
 
 
   d3.queue(5)
