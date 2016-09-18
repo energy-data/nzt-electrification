@@ -52,6 +52,12 @@ require [
       return path
 
 
+  set_adm1_fills = (id) ->
+    d3.selectAll('path.adm1').each (e) ->
+      d3.select(this).attr 'fill', ->
+        if e.id is id then 'none' else '#eee'
+
+
   load_adm1 = ->
     load_adm adm1, 'adm1'
       .on 'click', (d) ->
@@ -63,9 +69,7 @@ require [
         data.place['adm1']      = d['id']
         data.place['adm1_name'] = d.properties['name']
 
-        d3.selectAll('path.adm1').each (e) ->
-          d3.select(this).attr 'fill', ->
-            if e.id is d.id then 'none' else '#eee'
+        set_adm1_fills d.id
 
         map.resize_to
           node: this
@@ -81,26 +85,23 @@ require [
       d3.select(this).style 'display', ->
         if e.properties.adm1 is adm1_id then 'block' else 'none'
 
-
     path_adm2
       .on 'click', (d) ->
-        it = this
+        return if locked_adm2 is this
 
-        return if locked_adm2 is it
+        locked_adm2 = this
 
         d3.selectAll('path.adm2').classed 'hoverable', true
+        d3.select(this).classed 'hoverable', false
 
         data.place['adm2']      = d['id']
         data.place['adm2_name'] = d.properties['name']
 
-        data.place['bbox'] = map.to_bbox it.getBBox()
+        data.place['bbox'] = map.to_bbox this.getBBox()
 
         grid.load
-          adm: it.id.match /adm(.*)-(\d*)?/
-          svg_box: it.getBBox()
-
-        d3.select(it).classed 'hoverable', false
-        locked_adm2 = it
+          adm: this.id.match /adm(.*)-(\d*)?/
+          svg_box: this.getBBox()
 
         $('#summary-info').fadeIn()
 
@@ -176,6 +177,8 @@ require [
 
 
   run = (args...) ->
+    $('#summary-info table').html ""
+
     for t in _g.technologies
       continue if not t
       u.tmpl '#summary-count-template',

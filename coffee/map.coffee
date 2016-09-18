@@ -25,12 +25,13 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
 
 
   resize_to = (o) ->
-    node       = o.node
-    svg        = o.svg || _svg
-    delay      = o.delay || 300
-    duration   = o.duration || 0
-    padding    = o.padding  || 0.5
-    container  = o.container || _container
+    node      = o.node
+    svg       = o.svg || _svg
+    delay     = o.delay || 300
+    duration  = o.duration || 0
+    padding   = o.padding  || 0.5
+    container = o.container || _container
+    callback  = o.callback
 
     u.check node, container, svg
 
@@ -62,8 +63,8 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
               svg.node().parentNode.clientWidth  / 2,
               svg.node().parentNode.clientHeight / 2
             )
-            .scale(factor)
-            .translate(-center[0], -center[1])
+            .scale factor
+            .translate -center[0], -center[1]
           )
 
     else
@@ -73,17 +74,19 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
       container
         .attr 'transform', "translate(#{ x_shift }, #{ y_shift })scale(#{ factor })"
 
-    d3.selectAll('.adm,.line').attr('stroke-width', 1.2 / factor)
+    d3.selectAll('path.adm, path.line').attr('stroke-width', 1.2 / factor)
     d3.selectAll('path.line').raise()
+
+    if typeof callback is 'function' then callback.apply null, arguments
 
 
   load_topo = (o) ->
-    topo     = o.topo
-    pathname = o.pathname
-    callback = o.callback
-    cls      = o.cls   || "path"
-    color    = o.color || "#ccc"
-    fill     = o.fill  || "none"
+    topo      = o.topo
+    pathname  = o.pathname
+    callback  = o.callback
+    cls       = o.cls   || "path"
+    color     = o.color || "#ccc"
+    fill      = o.fill  || "none"
     container = o.container || _container
 
     u.check topo, pathname, container
@@ -110,7 +113,7 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
   zoom = d3.zoom().on "zoom", ->
     _container.attr "transform", d3.event.transform
 
-    _container.selectAll('path.adm1')
+    _container.selectAll('path.adm, path.line')
       .attr "stroke-width", 1.2 / d3.event.transform['k']
 
 
