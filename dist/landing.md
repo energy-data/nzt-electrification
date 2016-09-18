@@ -102,19 +102,23 @@ household size of 5 is assumed thoroughly.
 
 ### Diesel prices:
 
-The model assumes two international diesel prices, **0.34** US$/liter
-(current international diesel price) and **0.82** US$/liter (projected
-international diesel price), used to calculate diesel costs in
-different localities.
+The model assumes two international diesel prices, **0.34** US$ per
+liter (current international diesel price) and **0.82** US$ per liter
+(projected international diesel price), used to calculate diesel costs
+in different localities.
 
 
 ## Mapping of tiers of electricity for indicative services
 
-[[table goes here]]
+
+| Level of access | Tier-0 | Tier-1 | Tier-2 | Tier-3 | Tier-4 | Tier-5 |
+|-----------------|--------|--------|--------|--------|--------|--------|
+| Indicative appliances powered | Torch and Radio | Task lightning <br />+<br /> Phone charging or radio | General lightning <br />+<br /> Air circulation <br />+<br /> Television | Tier 2 <br />+<br /> Light appliances <br /> (i.e. General food processing and washing machine) | Tier 3 <br />+<br /> Medium or continuous appliances <br /> (i.e. Water heating, ironing, water pumping rice cooking, refrigeration, microwave) | Tier 4 <br />+<br /> Heavy or continuous appliances <br /> (i.e. Air conditioning) |
+| Consumption per <br /> household and year (kWh) | - | 22 | 224 | 695 | 1800 | 2195 |
 
 ## Potential Indicators:
-**GDP/capita and total GDP, Access to electricity, Rural/Urban, Annual
-Expenditures**
+
+**GDP/capita and total GDP, Access to electricity, Rural/Urban, Annual Expenditures**
 
 For each grid we can show:
 - Electrification technology
