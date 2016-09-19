@@ -33,9 +33,10 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
         if typeof o.callback is 'function' then o.callback.call null, grids
 
 
-  clear = ->
+  clear = (full = false) ->
     d3.selectAll('path.grid').remove()
-    data.grid_collection['grids'] = []
+
+    if full then data.grid_collection['grids'] = []
 
 
   draw = (grids) ->

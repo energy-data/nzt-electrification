@@ -185,7 +185,7 @@ require [
 
   run = (args...) ->
     window.onpopstate = (e) ->
-      grid.clear()
+      grid.clear(true)
 
       if e.state? and e.state['reload'] is false
         history.back()
