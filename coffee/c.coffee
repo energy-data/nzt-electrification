@@ -269,6 +269,7 @@ require [
 
     admin1 = parseInt(location.getQueryParam('adm1'))
     admin2 = parseInt(location.getQueryParam('adm2'))
+    load_grids = location.getQueryParam('load_grids').toBoolean()
 
     target_id = ->
       if admin1 > -1 and isNaN(admin2)
@@ -300,6 +301,11 @@ require [
     load_adm2 admin1
 
     set_adm1_fills admin1
+
+    if load_grids
+      grid.load
+        adm: target.node().id.match /adm(.*)-(\d*)?/
+        svg_box: target.node().getBBox()
 
     map.resize_to
       node: target.node()
