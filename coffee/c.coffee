@@ -64,7 +64,7 @@ require [
         $('#summary-info').fadeOut()
         $('#grid-info').fadeOut()
 
-        grid.clear()
+        grid.clear(true)
 
         if location.getQueryParam 'adm2'
           history.pushState { reload: false }, null, location.updateQueryParam('adm2', null)
