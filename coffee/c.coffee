@@ -318,6 +318,8 @@ require [
     set_adm1_fills admin1
 
     if load_grids
+      $('#summary-info').show()
+
       grid.load
         adm: target.node().id.match /adm(.*)-(\d*)?/
         svg_box: target.node().getBBox()
