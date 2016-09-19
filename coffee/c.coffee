@@ -176,10 +176,20 @@ require [
     $('#controls-control').on 'click', (e) ->
       e.preventDefault()
 
-      $('#controls').css left: 0
+      icon = $(this).find('i')
+
+      if icon.hasClass 'active'
+        $('#controls').trigger 'mouseleave'
+        icon.removeClass 'active'
+
+      else
+        $('#controls').css left: 0
+        icon.addClass 'active'
 
 
     $('#controls').on 'mouseleave', (e) ->
+      $('#controls-control i').toggleClass 'active'
+
       $(this).css left: "#{ -1 * this.clientWidth }px"
 
 
