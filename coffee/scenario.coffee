@@ -3,6 +3,10 @@ define ['utils'], (u) ->
     data.scenario['scn'] = 'l1'
 
 
+  clear_selector = ->
+    $('#scenario-selector select').html ""
+
+
   expand = (t) ->
     u.check t[0], t[1]
 
@@ -32,3 +36,4 @@ define ['utils'], (u) ->
   return scenario =
     init: init
     load_selector: load_selector
+    clear_selector: clear_selector

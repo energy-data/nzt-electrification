@@ -185,6 +185,8 @@ require [
 
   run = (args...) ->
     window.onpopstate = (e) ->
+      grid.clear()
+
       if e.state? and e.state['reload'] is false
         history.back()
 
@@ -192,6 +194,9 @@ require [
         run args...
 
     $('#summary-info table').html ""
+
+    scenario.clear_selector()
+    mode.clear_selector()
 
     for t in _g.technologies
       continue if not t

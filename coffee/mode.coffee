@@ -51,6 +51,9 @@ define ['utils', 'dictionary'], (u, dictionary) ->
     data.mode['type'] = 'technology'
 
 
+  clear_selector = ->
+    $('#mode-selector select').html ""
+
   fill = (args...) ->
     mm = modes.find (m) -> m['type'] is data.mode['type']
 
@@ -78,3 +81,4 @@ define ['utils', 'dictionary'], (u, dictionary) ->
     modes: modes
     fill: fill
     load_selector: load_selector
+    clear_selector: clear_selector

@@ -35,6 +35,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   clear = ->
     d3.selectAll('path.grid').remove()
+    data.grid_collection['grids'] = []
 
 
   draw = (grids) ->
