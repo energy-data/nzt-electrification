@@ -37,6 +37,8 @@ require [
     .attr 'width',  d3.select('html').node().clientWidth
     .attr 'height', d3.select('html').node().clientHeight
 
+  d3.select('#container').attr 'transform', "scale(25)"
+
   load_adm = (topo, pathname, callback) ->
     u.check topo, pathname
 
@@ -65,6 +67,9 @@ require [
         $('#grid-info').fadeOut()
 
         grid.clear(true)
+
+        data.place['adm2'] = undefined
+        data.place['adm2_name'] = undefined
 
         if location.getQueryParam 'adm2'
           history.pushState { reload: false }, null, location.updateQueryParam('adm2', null)
@@ -100,6 +105,11 @@ require [
         d3.select(this).classed 'hoverable', false
 
         history.pushState null, null, location.updateQueryParam('adm2', d['id'])
+
+        admin1 = d.properties['adm1']
+
+        data.place['adm1']      = admin1 || undefined
+        data.place['adm1_name'] = d3.select("#adm1-#{ admin1 }").datum().properties['name'] || undefined
 
         data.place['adm2']      = d['id']
         data.place['adm2_name'] = d.properties['name']
@@ -328,7 +338,7 @@ require [
       node: target.node()
       duration: 1
       callback: ->
-        $('.loading').fadeOut()
+        $('.loading').fadeOut(2000)
 
 
   d3.queue(5)
