@@ -259,12 +259,35 @@ require [
       'scn',
       (args...) ->
         if args[2] not in _g.scenarios
-          throw Error "This scenario is dodgy:", args
+          throw Error "This scenario is dodgy: #{ args[2] }"
 
         else
           grid.draw data.grid_collection['grids']
     ]
 
+    data.scenario['callback'] = [
+      'tier',
+      (args...) ->
+        t = args[2]
+
+        if t not in [1..5]
+          throw Error "This tier is dodgy: #{ t }"
+
+        else
+          data.scenario['scn'] = "#{ data.scenario['diesel_p'] }#{ t }"
+    ]
+
+    data.scenario['callback'] = [
+      'diesel_p',
+      (args...) ->
+        t = args[2]
+
+        if t not in ["l", "n"]
+          throw Error "This diesel price is dodgy: #{ t }"
+
+        else
+          data.scenario['scn'] = "#{ t }#{ data.scenario['tier'] }"
+    ]
 
     load_adm1()
 
@@ -292,8 +315,8 @@ require [
     data.place['adm0']      = _country['iso3']
     data.place['adm0_name'] = _country['name']
 
-    admin1 = parseInt(location.getQueryParam('adm1'))
-    admin2 = parseInt(location.getQueryParam('adm2'))
+    admin1 = parseInt location.getQueryParam('adm1')
+    admin2 = parseInt location.getQueryParam('adm2')
     load_grids = location.getQueryParam('load_grids').toBoolean()
 
     target_id = ->

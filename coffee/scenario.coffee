@@ -1,6 +1,8 @@
 define ['utils'], (u) ->
   init = ->
     data.scenario['scn'] = 'l1'
+    data.scenario['tier'] = '1'
+    data.scenario['diesel_p'] = 'l'
 
 
   clear_selector = ->
@@ -28,7 +30,7 @@ define ['utils'], (u) ->
 
       ds['scn']      = v
       ds['diesel_p'] = v[0]
-      ds['tier']     = v[1]
+      ds['tier']     = parseInt v[1]
 
     $(sss).val data.scenario['scn']
 
