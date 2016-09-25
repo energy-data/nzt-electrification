@@ -96,4 +96,12 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 select {
   color: black;
+#mode-selector a {
+  display: block;
+}
+
+#mode-selector a.active {
+  color: white;
+}
+
 }

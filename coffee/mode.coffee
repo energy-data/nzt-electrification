@@ -7,14 +7,18 @@ define ['utils', 'dictionary'], (u, dictionary) ->
 
   dg = dictionary['grid']
 
+  mss = '#mode-selector'
+
   modes = [{
     type: "technology"
     full: "Technology"
+    icon: "blur_circular"
     fill: (g, scn) ->
       return tc[g[scn]]
   }, {
     type: "population"
-    full: dg['p_2030']
+    full: "Population"
+    icon: "people"
     fill: (g) ->
       p = g['p_2030']
       o = if (p < hd) then (((p / hd) * (1 - min_opacity)) + min_opacity) else 1
@@ -23,13 +27,15 @@ define ['utils', 'dictionary'], (u, dictionary) ->
       return "rgba(0,0,0,#{ o })"
   }, {
     type: "w_cf"
-    full: dg['w_cf']
+    full: "Wind"
+    icon: "cloud"
     fill: (g, scn) ->
       # TODO: rule?
       return (if g['w_cf'] > 0 then 'black' else 'none')
   }, {
     type: "ghi"
-    full: dg['ghi']
+    full: "GHI"
+    icon: "wb_sunny"
     fill: (g, scn) ->
       s = g['ghi']
 
@@ -38,7 +44,8 @@ define ['utils', 'dictionary'], (u, dictionary) ->
       return "rgba(0,0,0,#{ o })"
   }, {
     type: "hp"
-    full: dg['hp']
+    full: "Hydro"
+    icon: "opacity"
     fill: (g, scn) ->
       s = g['ghi']
 
@@ -53,7 +60,7 @@ define ['utils', 'dictionary'], (u, dictionary) ->
     t = 'technology'
 
     data.mode['type'] = t
-    $("#mode-selector a[bind='#{ t }']").addClass 'active'
+    $("#{ mss } a[bind='#{ t }']").addClass 'active'
 
     data.mode['callback'] = [
       'type',
@@ -67,7 +74,7 @@ define ['utils', 'dictionary'], (u, dictionary) ->
 
 
   clear_selector = ->
-    $('#mode-selector select').html ""
+    $(mss).html '<ul></ul>'
 
 
   fill = (args...) ->
@@ -77,21 +84,23 @@ define ['utils', 'dictionary'], (u, dictionary) ->
 
 
   load_selector = ->
-    mss = '#mode-selector select'
     clear_selector()
-
 
     for m in modes
       u.tmpl '#mode-option-template', mss,
              m['type'], m['full'], m['icon']
 
+    $mssa = $(mss + ' a')
 
-    $(mss).on 'change', (e) ->
-      v = $(e.target).val()
+    $mssa.on 'click', (e) ->
+      e.preventDefault()
+      $this = $(this)
 
-      data.mode['type'] = v
+      $mssa.removeClass 'active'
 
-    $(mss).val data.mode['type']
+      data.mode['type'] = $this.attr 'bind'
+
+      $this.addClass 'active'
 
 
   return mode =

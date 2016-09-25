@@ -218,7 +218,12 @@
 
   <script type="text/template"
           id="mode-option-template">
-    <option value="{0}">{1}</option>
+    <li style="display: inline-block; width: 30%; margin-top: 10px; margin-bottom: 10px;"
+        class="center">
+      <a href="#" bind="{0}">
+        <i class="material-icons">{2}</i><br />{1}
+      </a>
+    </li>
   </script>
 
   <script data-main="./javascripts/c"
