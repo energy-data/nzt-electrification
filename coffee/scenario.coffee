@@ -1,8 +1,44 @@
 define ['utils'], (u) ->
-  init = ->
+  init = (grid) ->
+    load_selector()
+
     data.scenario['scn'] = 'l1'
-    data.scenario['tier'] = '1'
+    data.scenario['tier'] = 1
     data.scenario['diesel_p'] = 'l'
+
+    data.scenario['callback'] = [
+      'scn',
+      (args...) ->
+        if args[2] not in _g.scenarios
+          throw Error "This scenario is dodgy: #{ args[2] }"
+
+        else
+          grid.draw data.grid_collection['grids']
+    ]
+
+    data.scenario['callback'] = [
+      'tier',
+      (args...) ->
+        t = args[2]
+
+        if t not in [1..5]
+          throw Error "This tier is dodgy: #{ t }"
+
+        else
+          data.scenario['scn'] = "#{ data.scenario['diesel_p'] }#{ t }"
+    ]
+
+    data.scenario['callback'] = [
+      'diesel_p',
+      (args...) ->
+        t = args[2]
+
+        if t not in ["l", "n"]
+          throw Error "This diesel price is dodgy: #{ t }"
+
+        else
+          data.scenario['scn'] = "#{ t }#{ data.scenario['tier'] }"
+    ]
 
 
   clear_selector = ->
@@ -17,6 +53,8 @@ define ['utils'], (u) ->
 
 
   load_selector = ->
+    clear_selector()
+
     sss = '#scenario-selector select'
 
     for t in _g.scenarios
@@ -37,5 +75,3 @@ define ['utils'], (u) ->
 
   return scenario =
     init: init
-    load_selector: load_selector
-    clear_selector: clear_selector

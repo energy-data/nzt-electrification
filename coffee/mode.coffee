@@ -47,12 +47,28 @@ define ['utils', 'dictionary'], (u, dictionary) ->
       return "rgba(0,0,0,#{ o })"
   }]
 
-  init = ->
-    data.mode['type'] = 'technology'
+  init = (grid) ->
+    load_selector()
+
+    t = 'technology'
+
+    data.mode['type'] = t
+    $("#mode-selector a[bind='#{ t }']").addClass 'active'
+
+    data.mode['callback'] = [
+      'type',
+      (args...) ->
+        if args[2] not in mode.modes.map((m) -> m['type'])
+          throw Error "This mode is dodgy:", args
+
+        else
+          grid.draw data.grid_collection['grids']
+    ]
 
 
   clear_selector = ->
     $('#mode-selector select').html ""
+
 
   fill = (args...) ->
     mm = modes.find (m) -> m['type'] is data.mode['type']
@@ -62,11 +78,13 @@ define ['utils', 'dictionary'], (u, dictionary) ->
 
   load_selector = ->
     mss = '#mode-selector select'
+    clear_selector()
+
 
     for m in modes
-      u.tmpl '#mode-option-template',
-             mss,
-             m['type'], m['full']
+      u.tmpl '#mode-option-template', mss,
+             m['type'], m['full'], m['icon']
+
 
     $(mss).on 'change', (e) ->
       v = $(e.target).val()
@@ -80,5 +98,3 @@ define ['utils', 'dictionary'], (u, dictionary) ->
     init: init
     modes: modes
     fill: fill
-    load_selector: load_selector
-    clear_selector: clear_selector

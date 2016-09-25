@@ -118,7 +118,7 @@ require [
         if typeof callback is 'function' then callback.call this, iso3, path, box
 
 
-  run = (args) ->
+  run = (args...) ->
     countries = _g.countries = args[1]
     indicators = args[2]
 
@@ -139,4 +139,4 @@ require [
     .defer d3.json, "/#{ _g.assets }/countries.json"
     .defer d3.csv,  "/#{ _g.assets }/indicators.csv"
     .await (error, countries, indicators) ->
-      if error then console.error error else run arguments
+      if error then console.error error else run.apply this, arguments

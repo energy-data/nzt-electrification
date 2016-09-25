@@ -213,86 +213,31 @@ require [
       else
         run args...
 
-    $('#summary-info table').html ""
-
-    scenario.clear_selector()
-    mode.clear_selector()
-
-    for t in _g.technologies
-      continue if not t
-      u.tmpl '#summary-count-template',
-             '#summary-info table',
-             t['name'], "#{ t['id'] }_count"
-
-    adm0 = args[0][1]
-    adm1 = args[0][2]
-    adm2 = args[0][3]
-
-    existing_transmission = args[0][4]
-    planned_transmission  = args[0][5]
-
-    _g.countries = args[0][6]
+    _g.countries = args[6]
 
     _country = _g.countries.find (c) -> c['iso3'] is iso3
 
     document.getElementsByTagName('title')[0].text = "#{ _country['name'] } - Electrification"
 
-    setup_interactions()
+    # Params
+    #
+    admin1 = parseInt location.getQueryParam('adm1')
+    admin2 = parseInt location.getQueryParam('adm2')
+    load_grids = location.getQueryParam('load_grids').toBoolean()
 
-    mode.init()
-    mode.load_selector()
+    # Data and state
+    #
+    data.place['adm0']      = _country['iso3']
+    data.place['adm0_name'] = _country['name']
 
-    data.mode['callback'] = [
-      'type',
-      (args...) ->
-        if args[2] not in mode.modes.map((m) -> m['type'])
-          throw Error "This mode is dodgy:", args
+    # Map initialisation
+    #
+    adm0 = args[1]
+    adm1 = args[2]
+    adm2 = args[3]
 
-        else
-          grid.draw data.grid_collection['grids']
-    ]
-
-    scenario.init()
-    scenario.load_selector()
-
-    data.scenario['callback'] = [
-      'scn',
-      (args...) ->
-        if args[2] not in _g.scenarios
-          throw Error "This scenario is dodgy: #{ args[2] }"
-
-        else
-          grid.draw data.grid_collection['grids']
-    ]
-
-    data.scenario['callback'] = [
-      'tier',
-      (args...) ->
-        t = args[2]
-
-        if t not in [1..5]
-          throw Error "This tier is dodgy: #{ t }"
-
-        else
-          data.scenario['scn'] = "#{ data.scenario['diesel_p'] }#{ t }"
-    ]
-
-    data.scenario['callback'] = [
-      'diesel_p',
-      (args...) ->
-        t = args[2]
-
-        if t not in ["l", "n"]
-          throw Error "This diesel price is dodgy: #{ t }"
-
-        else
-          data.scenario['scn'] = "#{ t }#{ data.scenario['tier'] }"
-    ]
-
-    load_adm1()
-
-    path_adm2 = load_adm adm2, 'adm2'
-    d3.selectAll('path.adm2').style 'display', 'none'
+    existing_transmission = args[4]
+    planned_transmission  = args[5]
 
     map.load_topo
       topo: existing_transmission
@@ -301,7 +246,6 @@ require [
       color: 'gold'
       fill: 'none'
 
-
     map.load_topo
       topo: planned_transmission
       cls: 'line'
@@ -309,15 +253,19 @@ require [
       color: 'yellow'
       fill: 'none'
 
-
     map.setup_drag()
 
-    data.place['adm0']      = _country['iso3']
-    data.place['adm0_name'] = _country['name']
+    setup_interactions()
 
-    admin1 = parseInt location.getQueryParam('adm1')
-    admin2 = parseInt location.getQueryParam('adm2')
-    load_grids = location.getQueryParam('load_grids').toBoolean()
+    # Mode and scenario
+    #
+    mode.init grid
+    scenario.init grid
+
+    load_adm1()
+
+    path_adm2 = load_adm adm2, 'adm2'
+    d3.selectAll('path.adm2').style 'display', 'none'
 
     target_id = ->
       if admin1 > -1 and isNaN(admin2)
@@ -363,6 +311,14 @@ require [
       callback: ->
         $('.loading').fadeOut(2000)
 
+    $('#summary-info table').html ""
+
+    for t in _g.technologies
+      continue if not t
+      u.tmpl '#summary-count-template',
+             '#summary-info table',
+             t['name'], "#{ t['id'] }_count"
+
 
   d3.queue(5)
     .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm0.json"
@@ -373,4 +329,4 @@ require [
     .defer d3.json, "/#{ _g.assets }/countries.json"
 
     .await (error, adm0, adm1, adm2, existing_transmission, planned_transmission, countries) ->
-      if error then console.error error else run arguments
+      if error then console.error error else run.apply this, arguments
