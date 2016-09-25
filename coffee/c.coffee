@@ -239,6 +239,8 @@ require [
     existing_transmission = args[4]
     planned_transmission  = args[5]
 
+    load_adm1()
+
     map.load_topo
       topo: existing_transmission
       cls: 'line'
@@ -255,19 +257,15 @@ require [
 
     map.setup_drag()
 
-    setup_interactions()
-
     # Mode and scenario
     #
     mode.init grid
     scenario.init grid
 
-    load_adm1()
-
     path_adm2 = load_adm adm2, 'adm2'
     d3.selectAll('path.adm2').style 'display', 'none'
 
-    target_id = ->
+    target = d3.select (->
       if admin1 > -1 and isNaN(admin2)
         return "#adm1-#{ admin1 }"
 
@@ -276,9 +274,7 @@ require [
 
       else
         return '#container'
-
-
-    target = d3.select target_id()
+    )()
 
     if admin2 > -1
       data.place['adm2']      = admin2 || undefined
@@ -292,7 +288,6 @@ require [
     else if admin1 > -1
       data.place['adm1']      = admin1 || undefined
       data.place['adm1_name'] = target.datum().properties['name'] || undefined
-
 
     load_adm2 admin1
 
@@ -311,13 +306,7 @@ require [
       callback: ->
         $('.loading').fadeOut(2000)
 
-    $('#summary-info table').html ""
-
-    for t in _g.technologies
-      continue if not t
-      u.tmpl '#summary-count-template',
-             '#summary-info table',
-             t['name'], "#{ t['id'] }_count"
+    setup_interactions()
 
 
   d3.queue(5)

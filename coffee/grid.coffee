@@ -48,6 +48,15 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
     clear()
 
+    $('#summary-info table').html ""
+
+    for t in _g.technologies
+      continue if not t
+      u.tmpl '#summary-count-template',
+             '#summary-info table',
+             t['name'], "#{ t['id'] }_count"
+
+
     data.summary['total_count'] = 0
 
     for t in _g.technologies
