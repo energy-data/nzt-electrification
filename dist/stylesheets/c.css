@@ -94,8 +94,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   background-color: rgba(0,0,0,0.4);
 }
 
-select {
-  color: black;
 #mode-selector a {
   display: block;
 }
@@ -104,4 +102,13 @@ select {
   color: white;
 }
 
+#knob1 {
+  cursor: pointer;
+}
+
+#knob1 text {
+  fill: #505050;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-shadow: 1px 1px #a5a5a5;
 }
