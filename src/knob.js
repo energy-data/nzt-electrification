@@ -62,7 +62,7 @@ define(['d3'], (d3) => {
     };
   };
 
-  var rotate = (object, marker, knob, color) => {
+  var rotate = (object, marker, knob) => {
     repoint(object);
 
     let polar = cartesian_to_polar(pointer.x, pointer.y);
@@ -77,7 +77,7 @@ define(['d3'], (d3) => {
       console.log("Switching to tier", data.scenario['tier'] = t);
     let t = c['i'] + 1;
 
-    d3.selectAll(`${ marker }, ${ color }`)
+    d3.selectAll(`${ marker } circle`)
       .attr('cx',  cart.x + center.x)
       .attr('cy', -cart.y + center.y);
 
@@ -263,33 +263,31 @@ define(['d3'], (d3) => {
         .attr('fill', 'url(#gray)')
         .attr('filter', 'url(#inner_bevel)');
 
-    let marker0 = knob0.append('g');
-
     let pc = polar_to_cartesian(knob0.radius - (width/13), -t);
     let t = range[data.scenario['tier'] - 1];
 
-    let points = d3.selectAll(null);
+    let marker0 = knob0.append('g')
+        .attr('id', 'marker0');
 
     marker0.append('circle')
-      .attr('id', 'marker0')
       .attr('r', width / 20)
       .attr('cx', pc.x + center.x)
       .attr('cy', pc.y + center.y)
       .attr('fill', 'url(#gray_up)')
       .attr('filter', 'url(#shadow)')
-      .call(d3.drag().on('drag', function() {
-        rotate(this, '#marker0', knob0, '#yellow');
-      }));
 
     marker0.append('circle')
-      .attr('id', 'yellow')
       .attr('cx', pc.x + center.x)
       .attr('cy', pc.y + center.y)
       .attr('r', width / 70)
       .attr('fill', '#e49b12')
-      .call(d3.drag().on('drag', function() {
-        rotate(this, '#marker0', knob0, '#yellow');
-      }));
+
+    marker0.call(
+      d3.drag()
+        .on('drag', function() {
+          rotate(this, '#marker0', knob0);
+        })
+    );
 
     let knob1 = knobs.append('g').attr('id', 'knob1');
     knob1.radius = width * (4/16);
