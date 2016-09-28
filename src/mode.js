@@ -52,7 +52,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
       'type',
       (...args) => {
         if (modes.map((m) => m['type']).indexOf(args[2]) < 0)
-          throw Error(`This mode is dodgy ${ args[2] }` );
+          throw Error(`This mode is dodgy ${ args[2] }`);
 
         else
           points.draw(data.point_collection['points']);
@@ -61,11 +61,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
 
   var clear_selector = () => $(mss).html('<ul></ul>');
 
-  var fill = () => {
-    let mm = modes.find((m) => m['type'] === data.mode['type']);
-
-    return mm['fill'];
-  };
+  var fill = () => modes.find((m) => m['type'] === data.mode['type'])['fill'];
 
   var load_selector = () => {
     clear_selector();

@@ -120,6 +120,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
           data.point['technology'] = tech['name']
 
+
     for t in _g.technologies
       if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
 

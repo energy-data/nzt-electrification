@@ -11,16 +11,14 @@ define(['d3'], (d3) => {
 
   var pi = Math.PI;
   var pi2 = 2 * pi;
-  // var min_angle = (-2*pi) * (5/8);
-  // var max_angle = (-2*pi) * (7/8);
 
   var svg = null;
   var knobs = null;
 
   var steps = 5;
 
-  var min_angle = 0;
-  var max_angle = pi;
+  var min_angle = pi * (1/8);
+  var max_angle = pi * (7/8);
 
   var domain = (-max_angle) - (-min_angle);
   var step_w = domain / steps;
@@ -295,7 +293,6 @@ define(['d3'], (d3) => {
       .call(d3.drag().on('drag', function() {
         rotate(this, '#marker0', knob0, '#yellow');
       }));
-
 
     var knob1 = knobs.append('g').attr('id', 'knob1');
     knob1.radius = width * (4/16);
