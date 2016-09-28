@@ -67,7 +67,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
     for t in _g.technologies
       if t? then counts[t['id']] = 0
 
-    # TODO: cache fill function here before iterating.
+    fill = mode.fill()
 
     points.map (e) ->
       tech = _g.technologies[e[scn]]
@@ -80,7 +80,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
         .attr 'class', "point"
         .attr 'd', map.geo_path
-        .attr 'fill', (d) -> mode.fill e, scn
+        .attr 'fill', -> fill e, scn
         .attr 'stroke', 'red'
         .attr 'stroke-width', 0
 

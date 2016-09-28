@@ -61,10 +61,10 @@ define(['utils', 'dictionary'], (u, dictionary) => {
 
   var clear_selector = () => $(mss).html('<ul></ul>');
 
-  var fill = (...args) => {
+  var fill = () => {
     let mm = modes.find((m) => m['type'] === data.mode['type']);
 
-    return mm['fill'].call(null, ...args);
+    return mm['fill'];
   };
 
   var load_selector = () => {
