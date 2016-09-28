@@ -106,6 +106,7 @@ require [
         d3.select(this).classed 'hoverable', false
 
         history.pushState null, null, location.updateQueryParam('adm2', d['id'])
+        history.pushState null, null, location.updateQueryParam('load_points', true)
 
         admin1 = d.properties['adm1']
 
