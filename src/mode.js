@@ -38,6 +38,17 @@ define(['utils', 'dictionary'], (u, dictionary) => {
     full: "Hydro",
     icon: "opacity",
     fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['hp'], [0, 10000000]) })`
+  }, {
+    type: "lcsa",
+    full: "SA LCOE",
+    icon: "local_gas_station",
+    fill: (g) => {
+      // TODO: domain should be calculated by the min..max lcsa's from the point collection
+      //
+      let domain = (data.scenario['diesel_p'] === 'n' ? [0.51, 1.4] : [0.35, 0.7]);
+
+      return `rgba(0, 0, 0, ${ l_scale(g['lcsa_' + data.scenario['diesel_p']], domain, [0.01, 1]) })`
+    }
   }];
 
   var init = (points) => {

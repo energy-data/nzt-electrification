@@ -45,6 +45,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
     locked = null
 
     scn = data.scenario['scn']
+    diesel_p = data.scenario['diesel_p']
 
     clear()
 
@@ -117,6 +118,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
           data.point['ic']   = e["ic_#{ scn }"]
           data.point['lc']   = e["lc_#{ scn }"]
           data.point['cap']  = e["c_#{ scn }"]
+          data.point['lcsa'] = e["lcsa_#{ diesel_p }"]
 
           data.point['technology'] = tech['name']
 
