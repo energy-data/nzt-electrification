@@ -238,14 +238,6 @@ define(['d3'], (d3) => {
       .attr('operator', 'over');
   };
 
-  var init = () => {
-    svg = d3.select('div#knobs-container').append('svg')
-      .attr('width', width)
-      .attr('height', height);
-
-    knobs = svg.append('g').attr('id', 'knobs');
-  };
-
   var draw_knobs = () => {
     let knob0 = knobs.append('g').attr('id', 'knob0');
     knob0.radius = width * (7/16);
@@ -260,8 +252,8 @@ define(['d3'], (d3) => {
         .attr('fill', 'url(#gray)')
         .attr('filter', 'url(#inner_bevel)');
 
-    let pc = polar_to_cartesian(knob0.radius - (width/13), -t);
     let t = range[data.scenario['tier'] - 1];
+    let pc = polar_to_cartesian(knob0.radius - (width/13), -t);
 
     let marker0 = knob0.append('g')
         .attr('id', 'marker0');
@@ -335,9 +327,19 @@ define(['d3'], (d3) => {
     toggle_nps();
   };
 
-  init();
+  var init = () => {
+    svg = d3.select('div#knobs-container').append('svg')
+      .attr('width', width)
+      .attr('height', height);
 
-  do_defs();
+    knobs = svg.append('g').attr('id', 'knobs');
 
-  draw_knobs();
+    do_defs();
+
+    draw_knobs();
+  };
+
+  return {
+    init: init
+  }
 });
