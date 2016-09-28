@@ -54,7 +54,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
   var init = (points) => {
     load_selector();
 
-    var t = 'technology';
+    let t = 'technology';
 
     data.mode['type'] = t;
     $(`${ mss } a[bind='${ t }']`).addClass('active');

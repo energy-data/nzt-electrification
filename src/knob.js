@@ -32,14 +32,15 @@ define(['d3'], (d3) => {
   var range = [...Array(5)].map((_,i) => l_scale(i));
 
   var repoint = (object) => {
+    let m = d3.mouse(object)
     // translation to the center and make a decent coordinates system.
-    pointer.x =  d3.mouse(object)[0] - center.x;
-    pointer.y = (d3.mouse(object)[1] - center.y) * (-1);
+    pointer.x =   m[0] - center.x;
+    pointer.y = -(m[1] - center.y);
   };
 
   var closest = (x, arr) => {
-    var diffs = arr.map((v) => Math.abs(v - x));
-    var i = diffs.indexOf(Math.min.apply(null, diffs));
+    let diffs = arr.map((v) => Math.abs(v - x));
+    let i = diffs.indexOf(Math.min.apply(null, diffs));
 
     return {
       v: arr[i],
@@ -64,32 +65,28 @@ define(['d3'], (d3) => {
   var rotate = (object, marker, knob, color) => {
     repoint(object);
 
-    var polar = cartesian_to_polar(pointer.x, pointer.y);
-    var pa    = polar.a;
+    let polar = cartesian_to_polar(pointer.x, pointer.y);
+    let pa    = polar.a;
 
     if (pa < 0) pa = pa + pi2;
 
-    var c = closest(pa, range);
-    var cart = polar_to_cartesian(knob.radius - (width/13), c['v']);
-
-    var t = c['i'] + 1;
+    let c = closest(pa, range);
+    let cart = polar_to_cartesian(knob.radius - (width/13), c['v']);
 
     if (data.scenario['tier'] !== t)
       console.log("Switching to tier", data.scenario['tier'] = t);
+    let t = c['i'] + 1;
 
-    d3.select(marker)
+    d3.selectAll(`${ marker }, ${ color }`)
       .attr('cx',  cart.x + center.x)
       .attr('cy', -cart.y + center.y);
 
-    d3.select(color)
-      .attr('cx',  cart.x + center.x)
-      .attr('cy', -cart.y + center.y);
   };
 
   var do_defs = () => {
-    var defs = svg.append('svg:defs');
+    let defs = svg.append('svg:defs');
 
-    var gray = defs.append('linearGradient')
+    let gray = defs.append('linearGradient')
         .attr('id', 'gray')
         .attr('x1', 0)
         .attr('y1', 0)
@@ -104,7 +101,7 @@ define(['d3'], (d3) => {
       .attr('offset', 1)
       .attr('stop-color', '#cccccc');
 
-    var gray_up = defs.append('linearGradient')
+    let gray_up = defs.append('linearGradient')
         .attr('id', 'gray_up')
         .attr('x1', 0)
         .attr('y1', 0)
@@ -119,7 +116,7 @@ define(['d3'], (d3) => {
       .attr('offset', 1)
       .attr('stop-color', '#e2e2e2');
 
-    var inner_bevel = defs.append('filter')
+    let inner_bevel = defs.append('filter')
         .attr('id', 'inner_bevel')
         .attr('x0', '0%')
         .attr('x1', '0%')
@@ -181,7 +178,7 @@ define(['d3'], (d3) => {
       .attr('in2', 'withGlow')
       .attr('operator', 'over');
 
-    var shadow = defs.append('filter')
+    let shadow = defs.append('filter')
         .attr('id', 'shadow')
         .attr('x0', '0%')
         .attr('x1', '0%')
@@ -247,18 +244,16 @@ define(['d3'], (d3) => {
   var init = () => {
     svg = d3.select('div#knobs-container').append('svg')
       .attr('width', width)
-      .attr('height', height)
-      .on('mousemove', () => repoint(svg.node()))
-      .on('mousedown', () => repoint(svg.node()));
+      .attr('height', height);
 
     knobs = svg.append('g').attr('id', 'knobs');
   };
 
   var draw_knobs = () => {
-    var knob0 = knobs.append('g').attr('id', 'knob0');
+    let knob0 = knobs.append('g').attr('id', 'knob0');
     knob0.radius = width * (7/16);
 
-    var base0 = knob0.append('circle')
+    let base0 = knob0.append('circle')
         .attr('id', 'knob0')
         .attr('r', knob0.radius)
         .attr('cx', width / 2)
@@ -268,10 +263,12 @@ define(['d3'], (d3) => {
         .attr('fill', 'url(#gray)')
         .attr('filter', 'url(#inner_bevel)');
 
-    var marker0 = knob0.append('g');
-    var t = min_angle + range[0];
+    let marker0 = knob0.append('g');
 
-    var pc = polar_to_cartesian(knob0.radius - (width/13), t);
+    let pc = polar_to_cartesian(knob0.radius - (width/13), -t);
+    let t = range[data.scenario['tier'] - 1];
+
+    let points = d3.selectAll(null);
 
     marker0.append('circle')
       .attr('id', 'marker0')
@@ -294,10 +291,10 @@ define(['d3'], (d3) => {
         rotate(this, '#marker0', knob0, '#yellow');
       }));
 
-    var knob1 = knobs.append('g').attr('id', 'knob1');
+    let knob1 = knobs.append('g').attr('id', 'knob1');
     knob1.radius = width * (4/16);
 
-    var base1 = knob1.append('circle')
+    let base1 = knob1.append('circle')
         .attr('r', knob1.radius)
         .attr('cx', width/2)
         .attr('cy', width/2)
@@ -307,9 +304,9 @@ define(['d3'], (d3) => {
         .attr('filter', 'url(#inner_bevel)')
         .classed('nps', data.scenario['diesel_p'] !== 'n');
 
-    var knob1_text = knob1.append('text');
+    let knob1_text = knob1.append('text');
 
-    var toggle_nps = () => {
+    let toggle_nps = () => {
       base1.classed('nps', !base1.classed('nps'));
 
       if (base1.classed('nps')) {
