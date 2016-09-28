@@ -308,7 +308,9 @@ require [
       callback: ->
         $('.loading').fadeOut(2000)
 
+
     setup_interactions()
+    knob.init()
 
 
   d3.queue(5)
