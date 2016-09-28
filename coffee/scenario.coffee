@@ -1,5 +1,5 @@
 define ['utils'], (u) ->
-  init = (grid) ->
+  init = (points) ->
     load_selector()
 
     data.scenario['scn'] = 'l1'
@@ -13,7 +13,7 @@ define ['utils'], (u) ->
           throw Error "This scenario is dodgy: #{ args[2] }"
 
         else
-          grid.draw data.grid_collection['grids']
+          points.draw data.point_collection['points']
     ]
 
     data.scenario['callback'] = [

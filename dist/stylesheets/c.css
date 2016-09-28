@@ -52,7 +52,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
   z-index: 1001;
 }
 
-#grid-info {
+#point-info {
   position: absolute;
   right: 0;
   top: 70px;

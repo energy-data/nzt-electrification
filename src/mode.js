@@ -1,7 +1,7 @@
 define(['utils', 'dictionary'], (u, dictionary) => {
   var tc = _g.technologies.map((t) => t ? t['color'] : null);
 
-  var dg = dictionary['grid'];
+  var dg = dictionary['point'];
 
   var mss = '#mode-selector';
 
@@ -40,7 +40,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
     fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['hp'], [0, 10000000]) })`
   }];
 
-  var init = (grid) => {
+  var init = (points) => {
     load_selector();
 
     var t = 'technology';
@@ -55,7 +55,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
           throw Error(`This mode is dodgy ${ args[2] }` );
 
         else
-          grid.draw(data.grid_collection['grids']);
+          points.draw(data.point_collection['points']);
       }];
   };
 

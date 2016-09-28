@@ -9,7 +9,7 @@ requirejs.config
 
   'shim':
       'web-extras': 'deps': ['jquery']
-      'grid':       'deps': ['web-extras']
+      'points':     'deps': ['web-extras']
       'map':        'deps': ['web-extras']
       'utils':      'deps': ['js-extras']
 
@@ -20,11 +20,12 @@ require [
   'scenario'
   'd3'
   'map'
-  'grid'
+  'points'
   'mode'
+  'knob'
 ],
 
-(u, _g, data, scenario, d3, map, grid, mode) ->
+(u, _g, data, scenario, d3, map, points, mode, knob) ->
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -64,9 +65,9 @@ require [
     load_adm adm1, 'adm1'
       .on 'click', (d) ->
         $('#summary-info').fadeOut()
-        $('#grid-info').fadeOut()
+        $('#point-info').fadeOut()
 
-        grid.clear(true)
+        points.clear(true)
 
         data.place['adm2'] = undefined
         data.place['adm2_name'] = undefined
@@ -116,7 +117,7 @@ require [
 
         data.place['bbox'] = map.to_bbox this.getBBox()
 
-        grid.load
+        points.load
           adm: this.id.match /adm(.*)-(\d*)?/
           svg_box: this.getBBox()
 
@@ -135,7 +136,7 @@ require [
       data.place['adm2'] = undefined
       data.place['adm2_name'] = undefined
 
-      grid.clear()
+      points.clear()
 
       map.resize_to
         node: d3.select('#container').node()
@@ -143,7 +144,7 @@ require [
 
 
     $('[data="adm1_name"]').on 'click', ->
-      grid.clear()
+      points.clear()
 
       it = d3.select("path#adm1-#{ data.place['adm1'] }").node()
 
@@ -156,7 +157,7 @@ require [
         node: it
         duration: 1000
 
-      grid.load
+      points.load
         adm: [null, 1, data.place['adm1']]
         svg_box: it.getBBox()
 
@@ -167,20 +168,20 @@ require [
       e.preventDefault()
 
       o =
-        grid_summary: data.summary
+        points_summary: data.summary
         location: data.place
 
       u.dwnld JSON.stringify(o), 'export-summary.json'
 
 
-    $('#export-grids').on 'click', (e) ->
+    $('#export-points').on 'click', (e) ->
       e.preventDefault()
 
       o =
-        grid_summary: data.summary
+        points_summary: data.summary
         location: data.place
 
-      u.dwnld JSON.stringify(data.grid_collection['grids']), 'export-grids.json'
+      u.dwnld JSON.stringify(data.point_collection['points']), 'export-points.json'
 
 
     $('#controls-control').on 'click', (e) ->
@@ -205,7 +206,7 @@ require [
 
   run = (args...) ->
     window.onpopstate = (e) ->
-      grid.clear(true)
+      points.clear(true)
 
       if e.state? and e.state['reload'] is false
         history.back()
@@ -223,7 +224,7 @@ require [
     #
     admin1 = parseInt location.getQueryParam('adm1')
     admin2 = parseInt location.getQueryParam('adm2')
-    load_grids = location.getQueryParam('load_grids').toBoolean()
+    load_points = location.getQueryParam('load_points').toBoolean()
 
     # Data and state
     #
@@ -259,8 +260,8 @@ require [
 
     # Mode and scenario
     #
-    mode.init grid
-    scenario.init grid
+    mode.init points
+    scenario.init points
 
     path_adm2 = load_adm adm2, 'adm2'
     d3.selectAll('path.adm2').style 'display', 'none'
@@ -293,10 +294,10 @@ require [
 
     set_adm1_fills admin1
 
-    if load_grids
+    if load_points
       $('#summary-info').show()
 
-      grid.load
+      points.load
         adm: target.node().id.match /adm(.*)-(\d*)?/
         svg_box: target.node().getBBox()
 

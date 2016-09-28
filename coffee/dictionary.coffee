@@ -1,6 +1,6 @@
 define [], () ->
   dictionary =
-    grid:
+    point:
       p_2030: "Population 2030"
       gd_c: "Distance to the existing transmission network"
       gd_p: "Distance to the planned transmission network"

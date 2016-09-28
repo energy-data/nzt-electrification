@@ -9,11 +9,11 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   _container = d3.select('#container')
 
-  grid_info = $('#grid-info')
+  point_info = $('#point-info')
 
   locked = null
 
-  u.check iso3, _container, grid_info
+  u.check iso3, _container, point_info
 
   #
   # Function definitions:
@@ -21,26 +21,26 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   fetch = (o) ->
     d3.queue()
-      .defer d3.json, "http://localhost:4000/grids?" +
-        "select=#{ _g.grid_attrs }" +
+      .defer d3.json, "http://localhost:4000/points?" +
+        "select=#{ _g.point_attrs }" +
         "&x=gt.#{ o.box[0] }&x=lt.#{ o.box[2] }" +
         "&y=gt.#{ o.box[1] }&y=lt.#{ o.box[3] }" +
         "&adm#{ o.adm[1] }=eq.#{ o.adm[2] }" +
         "&cc=eq.#{ o.country_code }"
 
-      .await (error, grids) ->
+      .await (error, points) ->
         if error? then console.log error
-        if typeof o.callback is 'function' then o.callback.call null, grids
+        if typeof o.callback is 'function' then o.callback.call null, points
 
 
   clear = (full = false) ->
-    d3.selectAll('path.grid').remove()
+    d3.selectAll('path.point').remove()
 
-    if full then data.grid_collection['grids'] = []
+    if full then data.point_collection['points'] = []
 
 
-  draw = (grids) ->
-    return if not grids?
+  draw = (points) ->
+    return if not points?
 
     locked = null
 
@@ -67,7 +67,9 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
     for t in _g.technologies
       if t? then counts[t['id']] = 0
 
-    grids.map (e) ->
+    # TODO: cache fill function here before iterating.
+
+    points.map (e) ->
       tech = _g.technologies[e[scn]]
       counts[tech['id']] += 1
 
@@ -76,7 +78,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
           type: "Point",
           coordinates: [e.x, e.y]
 
-        .attr 'class', "grid"
+        .attr 'class', "point"
         .attr 'd', map.geo_path
         .attr 'fill', (d) -> mode.fill e, scn
         .attr 'stroke', 'red'
@@ -101,22 +103,22 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
         .on 'mouseenter', (d) ->
           return if locked isnt null
 
-          grid_info.show()
+          point_info.show()
 
           d3.select(this)
             .attr 'stroke', 'red'
             .attr 'stroke-width', 0.01
 
           for k,v of e
-            data.grid[k] = v
+            data.point[k] = v
 
-          data.grid['long'] = e['x']
-          data.grid['lat']  = e['y']
-          data.grid['ic']   = e["ic_#{ scn }"]
-          data.grid['lc']   = e["lc_#{ scn }"]
-          data.grid['cap']  = e["c_#{ scn }"]
+          data.point['long'] = e['x']
+          data.point['lat']  = e['y']
+          data.point['ic']   = e["ic_#{ scn }"]
+          data.point['lc']   = e["lc_#{ scn }"]
+          data.point['cap']  = e["c_#{ scn }"]
 
-          data.grid['technology'] = tech['name']
+          data.point['technology'] = tech['name']
 
     for t in _g.technologies
       if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
@@ -138,21 +140,21 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
       adm: adm
       box: box
 
-      callback: (grids) ->
-        if grids.length > count_threshold
-          c = confirm "Loading #{ grids.length } will most likely make the webpage sluggish. Continue?"
+      callback: (points) ->
+        if points.length > count_threshold
+          c = confirm "Loading #{ points.length } will most likely make the webpage sluggish. Continue?"
 
         if not c
-          grids = grids.sort(-> return 0.5 - Math.random()).splice(0, count_threshold)
+          points = points.sort(-> return 0.5 - Math.random()).splice(0, count_threshold)
 
-        draw grids
+        draw points
 
-        data.summary['total_count'] = grids.length
+        data.summary['total_count'] = points.length
 
-        data.grid_collection['grids'] = grids
+        data.point_collection['points'] = points
 
 
-  return grid =
+  return points =
     draw: draw
     load: load
     clear: clear
