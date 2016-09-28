@@ -17,6 +17,8 @@ define(['d3'], (d3) => {
 
   var steps = 5;
 
+  var tier = 0;
+
   var min_angle = pi * (1/8);
   var max_angle = pi * (7/8);
 
@@ -71,14 +73,11 @@ define(['d3'], (d3) => {
     let c = closest(pa, range);
     let cart = polar_to_cartesian(knob.radius - (width/13), c['v']);
 
-    if (data.scenario['tier'] !== t)
-      console.log("Switching to tier", data.scenario['tier'] = t);
-    let t = c['i'] + 1;
-
     d3.selectAll(`${ marker } circle`)
       .attr('cx',  cart.x + center.x)
       .attr('cy', -cart.y + center.y);
 
+    tier = c['i'] + 1;
   };
 
   var do_defs = () => {
@@ -285,6 +284,11 @@ define(['d3'], (d3) => {
         .on('drag', function() {
           rotate(this, '#marker0', knob0);
         })
+        .on('start', () => { tier = data.scenario['tier'] })
+        .on('end', () => {
+          if (data.scenario['tier'] !== tier)
+            console.log("Changed to tier", data.scenario['tier'] = tier);
+        })
     );
 
     let knob1 = knobs.append('g').attr('id', 'knob1');
@@ -319,14 +323,14 @@ define(['d3'], (d3) => {
         t = 'l';
       }
 
-      console.log("Switching to diesel price", data.scenario['diesel_p'] = t);
-
       knob1_text
         .attr('x',  (width  - knob1_text.node().clientWidth) / 2)
         .attr('y', ((height + knob1_text.node().clientHeight) / 2) - 5);
     };
 
-    knob1.on('click', toggle_nps);
+    knob1
+      .on('mousedown', () => { toggle_nps() })
+      .on('mouseup',   () => { console.log("Changed to diesel price", data.scenario['diesel_p'] = t) });
 
     toggle_nps();
   };
