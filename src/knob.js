@@ -20,16 +20,14 @@ define(['d3'], (d3) => {
   var min_angle = pi * (1/8);
   var max_angle = pi * (7/8);
 
-  var domain = (-max_angle) - (-min_angle);
-  var step_w = domain / steps;
 
-  var l_scale = (v, domain = [0, steps-1], range = [min_angle, max_angle]) => {
+  var l_scale = (v, domain, range) => {
     return v < domain[1] ?
       ((v / domain[1]) * (range[1] - range[0])) + range[0] :
       range[1];
   };
 
-  var range = [...Array(5)].map((_,i) => l_scale(i));
+  var range = [...Array(5)].map((_,i) => l_scale(i, [0, steps-1], [min_angle, max_angle]));
 
   var repoint = (object) => {
     let m = d3.mouse(object)
