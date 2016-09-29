@@ -192,9 +192,13 @@ define(['d3'], (d3) => {
         t = 'l';
       }
 
+      let box = knob1_text.node().getBBox()
+
+      let x =  (width  - box['width'])  / 2
+      let y = ((height + box['height']) / 2) - 5
+
       knob1_text
-        .attr('x',  (width  - knob1_text.node().clientWidth) / 2)
-        .attr('y', ((height + knob1_text.node().clientHeight) / 2) - 5);
+        .attr('transform', `translate(${ x }, ${ y })`);
     };
 
     knob1
