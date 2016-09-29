@@ -34,6 +34,8 @@ require [
 
   locked_adm2 = null
 
+  rerun = null
+
   _svg = d3.select 'svg#svg'
     .attr 'width',  d3.select('html').node().clientWidth
     .attr 'height', d3.select('html').node().clientHeight
@@ -55,6 +57,11 @@ require [
       return path
 
 
+  window.onpopstate = (e) ->
+    points.clear true
+    rerun false
+
+
   set_adm1_fills = (id) ->
     d3.selectAll('path.adm1').each (e) ->
       d3.select(this).attr 'fill', ->
@@ -72,10 +79,12 @@ require [
         data.place['adm2'] = undefined
         data.place['adm2_name'] = undefined
 
-        if location.getQueryParam 'adm2'
-          history.pushState { reload: false }, null, location.updateQueryParam('adm2', null)
-
         history.pushState null, null, location.updateQueryParam('adm1', d['id'])
+
+        if location.getQueryParam 'adm2'
+          history.replaceState null, null, location.updateQueryParam('adm2', null)
+
+        history.replaceState null, null, location.updateQueryParam('load_points', false)
 
         data.place['adm1']      = d['id']
         data.place['adm1_name'] = d.properties['name']
@@ -106,7 +115,7 @@ require [
         d3.select(this).classed 'hoverable', false
 
         history.pushState null, null, location.updateQueryParam('adm2', d['id'])
-        history.pushState null, null, location.updateQueryParam('load_points', true)
+        history.replaceState null, null, location.updateQueryParam('load_points', true)
 
         admin1 = d.properties['adm1']
 
@@ -158,6 +167,8 @@ require [
         node: it
         duration: 1000
 
+      history.pushState null, null, location.updateQueryParam('load_points', true)
+
       points.load
         adm: [null, 1, data.place['adm1']]
         svg_box: it.getBBox()
@@ -206,15 +217,6 @@ require [
 
 
   run = (args...) ->
-    window.onpopstate = (e) ->
-      points.clear(true)
-
-      if e.state? and e.state['reload'] is false
-        history.back()
-
-      else
-        run args...
-
     _g.countries = args[6]
 
     _country = _g.countries.find (c) -> c['iso3'] is iso3
@@ -308,9 +310,9 @@ require [
       callback: ->
         $('.loading').fadeOut(2000)
 
-
-    setup_interactions()
-    knob.init()
+    if (load_controls = args[7])
+      knob.init()
+      setup_interactions()
 
 
   d3.queue(5)
@@ -322,4 +324,7 @@ require [
     .defer d3.json, "/#{ _g.assets }/countries.json"
 
     .await (error, adm0, adm1, adm2, existing_transmission, planned_transmission, countries) ->
-      if error then console.error error else run.apply this, arguments
+      if error then console.error error
+      else
+        args = arguments
+        (rerun = (load_controls) => run.call this, args..., load_controls)(true)
