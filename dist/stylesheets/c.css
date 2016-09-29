@@ -88,6 +88,8 @@ path.adm1:hover, path.adm2.hoverable:hover {
   height: 100%;
 
   transition: left .4s ease;
+
+  z-index: 1001;
 }
 
 #controls-control i.active {

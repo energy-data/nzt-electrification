@@ -231,6 +231,8 @@ require [
 
 
   run = (args...) ->
+    load_controls = args[7]
+
     _g.countries = args[6]
 
     _country = _g.countries.find (c) -> c['iso3'] is iso3
@@ -325,7 +327,7 @@ require [
       callback: ->
         $('.loading').fadeOut(2000)
 
-    if (load_controls = args[7])
+    if (load_controls)
       knob.init()
       setup_interactions()
 

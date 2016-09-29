@@ -15,7 +15,6 @@ define(['d3'], (d3) => {
   var pi2 = 2 * pi;
 
   var svg = null;
-  var knobs = null;
 
   var steps = 5;
 
@@ -117,6 +116,8 @@ define(['d3'], (d3) => {
   };
 
   var draw_knobs = () => {
+    let knobs = svg.append('g').attr('id', 'knobs');
+
     let knob0 = knobs.append('g').attr('id', 'knob0');
     knob0.radius = width * (7/16);
 
@@ -127,8 +128,7 @@ define(['d3'], (d3) => {
         .attr('cy', width / 2)
         .attr('stroke', '#b8b8b8')
         .attr('stroke-width', '0.06em')
-        .attr('fill', 'url(#gray)')
-        .attr('filter', 'url(#inner_bevel)');
+        .attr('fill', 'url(#gray)');
 
     let t = range[data.scenario['tier'] - 1];
     let pc = polar_to_cartesian(knob0.radius - (width/13), -t);
@@ -147,7 +147,7 @@ define(['d3'], (d3) => {
       .attr('cx', pc.x + center.x)
       .attr('cy', pc.y + center.y)
       .attr('r', width / 70)
-      .attr('fill', '#e49b12')
+      .attr('fill', '#7587A6');
 
     marker0.call(
       d3.drag()
@@ -171,7 +171,6 @@ define(['d3'], (d3) => {
         .attr('stroke', '#b8b8b8')
         .attr('stroke-width', '0.06em')
         .attr('fill', 'url(#gray)')
-        .attr('filter', 'url(#inner_bevel)')
         .classed('nps', data.scenario['diesel_p'] !== 'n');
 
     let knob1_text = knob1.append('text');
@@ -213,8 +212,6 @@ define(['d3'], (d3) => {
     svg = kc.append('svg')
       .attr('width', width)
       .attr('height', height);
-
-    knobs = svg.append('g').attr('id', 'knobs');
 
     do_defs();
 
