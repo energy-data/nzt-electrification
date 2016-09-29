@@ -68,13 +68,25 @@ require [
         if e.id is id then 'none' else '#eee'
 
 
+  reset_adm2 = (target) ->
+    d3.selectAll('path.adm2').classed 'hoverable', true
+    locked_adm2 = null
+
+    a2 = parseInt location.getQueryParam 'adm2'
+
+    if a2 then target = "#adm2-#{ a2 }"
+
+    d3.select(target).classed 'hoverable', false
+
+
   load_adm1 = ->
     load_adm adm1, 'adm1'
       .on 'click', (d) ->
         $('#summary-info').fadeOut()
         $('#point-info').fadeOut()
 
-        points.clear(true)
+        points.clear true
+        reset_adm2 null
 
         data.place['adm2'] = undefined
         data.place['adm2_name'] = undefined
@@ -109,13 +121,12 @@ require [
       .on 'click', (d) ->
         return if locked_adm2 is this
 
-        locked_adm2 = this
-
-        d3.selectAll('path.adm2').classed 'hoverable', true
-        d3.select(this).classed 'hoverable', false
-
         history.pushState null, null, location.updateQueryParam('adm2', d['id'])
         history.replaceState null, null, location.updateQueryParam('load_points', true)
+
+        reset_adm2 this
+
+        locked_adm2 = this
 
         admin1 = d.properties['adm1']
 
@@ -168,6 +179,9 @@ require [
         duration: 1000
 
       history.pushState null, null, location.updateQueryParam('load_points', true)
+      history.replaceState null, null, location.updateQueryParam('adm2', null)
+
+      reset_adm2 null
 
       points.load
         adm: [null, 1, data.place['adm1']]
@@ -296,6 +310,7 @@ require [
     load_adm2 admin1
 
     set_adm1_fills admin1
+    reset_adm2 null
 
     if load_points
       $('#summary-info').show()
