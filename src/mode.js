@@ -47,7 +47,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
       //
       let domain = (data.scenario['diesel_p'] === 'n' ? [0.51, 1.4] : [0.35, 0.7]);
 
-      return `rgba(0, 0, 0, ${ l_scale(g['lcsa_' + data.scenario['diesel_p']], domain, [0.01, 1]) })`
+      return `rgba(0, 0, 0, ${ l_scale(g['lcsa_' + data.scenario['diesel_p']], domain, [0.01, 1]) })`;
     }
   }];
 

@@ -1,4 +1,6 @@
 define(['d3'], (d3) => {
+  var kc = d3.select('#knobs-container');
+
   var width  = 200;
   var height = 200;
 
@@ -327,8 +329,12 @@ define(['d3'], (d3) => {
     toggle_nps();
   };
 
+  var clear = () => kc.empty();
+
   var init = () => {
-    svg = d3.select('div#knobs-container').append('svg')
+    clear();
+
+    svg = kc.append('svg')
       .attr('width', width)
       .attr('height', height);
 
@@ -341,5 +347,5 @@ define(['d3'], (d3) => {
 
   return {
     init: init
-  }
+  };
 });
