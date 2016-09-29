@@ -98,7 +98,7 @@ define(['d3'], (d3) => {
 
     gray.append('stop')
       .attr('offset', 1)
-      .attr('stop-color', '#cccccc');
+      .attr('stop-color', '#bbbbbb');
 
     let gray_up = defs.append('linearGradient')
         .attr('id', 'gray_up')
@@ -114,130 +114,6 @@ define(['d3'], (d3) => {
     gray_up.append('stop')
       .attr('offset', 1)
       .attr('stop-color', '#e2e2e2');
-
-    let inner_bevel = defs.append('filter')
-        .attr('id', 'inner_bevel')
-        .attr('x0', '0%')
-        .attr('x1', '0%')
-        .attr('y0', '250%')
-        .attr('x1', '100%')
-        .attr('width', '200%')
-        .attr('height', '200%');
-
-    inner_bevel.append('feGaussianBlur')
-      .attr('in', 'SourceAlpha')
-      .attr('stdDeviation', 3)
-      .attr('result', 'blur');
-
-    inner_bevel.append('feOffset')
-      .attr('dy', -2)
-      .attr('dx0', -2);
-
-    inner_bevel.append('feComposite')
-      .attr('in2', 'SourceAlpha')
-      .attr('operator', 'arithmetic')
-      .attr('k2', -1)
-      .attr('k3',  1)
-      .attr('result', 'hlDiff');
-
-    inner_bevel.append('feFlood')
-      .attr('flood-color', 'black')
-      .attr('flood-opacity', 0.35);
-
-    inner_bevel.append('feComposite')
-      .attr('in2', 'hlDiff')
-      .attr('operator', 'in');
-
-    inner_bevel.append('feComposite')
-      .attr('in2', 'SourceGraphic')
-      .attr('operator', 'over')
-      .attr('result', 'withGlow');
-
-    inner_bevel.append('feOffset')
-      .attr('in', 'blur')
-      .attr('dy',  1)
-      .attr('dx0', 1);
-
-    inner_bevel.append('feComposite')
-      .attr('in2', 'SourceAlpha')
-      .attr('operator', 'arithmetic')
-      .attr('k2', -1)
-      .attr('k3',  1)
-      .attr('result', 'shadowDiff');
-
-    inner_bevel.append('feFlood')
-      .attr('flood-color', 'white')
-      .attr('flood-opacity', 0.6);
-
-    inner_bevel.append('feComposite')
-      .attr('in2', 'shadowDiff')
-      .attr('operator', 'in');
-
-    inner_bevel.append('feComposite')
-      .attr('in2', 'withGlow')
-      .attr('operator', 'over');
-
-    let shadow = defs.append('filter')
-        .attr('id', 'shadow')
-        .attr('x0', '0%')
-        .attr('x1', '0%')
-        .attr('y0', '250%')
-        .attr('y1', '100%')
-        .attr('width', '200%')
-        .attr('height', '200%');
-
-    shadow.append('feGaussianBlur')
-      .attr('in', 'SourceAlpha')
-      .attr('stdDeviation', '1')
-      .attr('result', 'blur');
-
-    shadow.append('feOffset')
-      .attr('dy',  -2)
-      .attr('dx0', -2);
-
-    shadow.append('feComposite')
-      .attr('in2', 'SourceAlpha')
-      .attr('operator', 'arithmetic')
-      .attr('k2', -1)
-      .attr('k3',  1)
-      .attr('result', 'hlDiff');
-
-    shadow.append('feFlood')
-      .attr('flood-color', 'white')
-      .attr('flood-opacity', 0.2);
-
-    shadow.append('feComposite')
-      .attr('in2', 'hlDiff')
-      .attr('operator', 'in');
-
-    shadow.append('feComposite')
-      .attr('in2', 'SourceGraphic')
-      .attr('operator', 'over')
-      .attr('result', 'withGlow');
-
-    shadow.append('feOffset')
-      .attr('in', 'blur')
-      .attr('dy',  5)
-      .attr('dx0', 5);
-
-    shadow.append('feComposite')
-      .attr('in2', 'SourceAlpha')
-      .attr('operator', 'arithmetic')
-      .attr('k2', -1)
-      .attr('k3',  1)
-      .attr('result', 'shadowDiff');
-
-    shadow.append('feFlood')
-      .attr('flood-color', 'black')
-      .attr('flood-opacity', 0.02);
-
-    shadow.append('feComposite')
-      .attr('in2', 'shadowDiff')
-      .attr('operator', 'in');
-
-    shadow.append('feComposite')
-      .attr('in2', 'withGlow')
-      .attr('operator', 'over');
   };
 
   var draw_knobs = () => {
