@@ -219,13 +219,13 @@ define(['d3'], (d3) => {
         .attr('d', arc)
         .attr('id', 'tier-arc')
         .attr('transform', `translate(${ center.x }, ${ center.y })`)
-        .attr('fill', 'none')
+        .attr('fill', 'none');
 
     for (let i = 0; i < steps; i++) {
       svg.append('text')
         .attr('x', (48 * i)) // TODO: this 4_ is empirical...
         .attr('dy', -width/21)
-        .attr('class', 'tier-label')
+        .attr('class', 'tier-label monospace')
 
         .append('textPath')
         .attr('xlink:href','#tier-arc')

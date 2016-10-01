@@ -148,7 +148,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 }
 
 text.tier-label {
-  font-size: 1.1em;
+  font-size: 0.85em;
   fill: #7587A6;
   font-weight: bold;
   cursor: pointer;

@@ -352,6 +352,8 @@ require [
       callback: ->
         $('.loading').fadeOut(2000)
 
+    $('#controls-control').click()
+
 
   d3.queue(5)
     .defer d3.json, "/#{ _g.assets }/#{ iso3 }-adm0.json"
