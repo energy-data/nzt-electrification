@@ -15,7 +15,7 @@ define ['_g'], (_g) ->
 
           div = document.querySelectorAll("[data='#{ property }']")[0]
 
-          if div? then div.innerText = (if value? then value else null)
+          if div? then div.innerText = (if value? then value else "")
 
         if target['callbacks']? and target['callbacks'][property]?
           target['callbacks'][property].apply null, arguments
