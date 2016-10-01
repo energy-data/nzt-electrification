@@ -222,16 +222,19 @@ define(['d3'], (d3) => {
         .attr('fill', 'none');
 
     for (let i = 0; i < steps; i++) {
-      svg.append('text')
-        .attr('x', (48 * i)) // TODO: this 4_ is empirical...
-        .attr('dy', -width/21)
-        .attr('class', 'tier-label monospace')
+      let text = svg.append('text')
+          .attr('x', (48 * i)) // TODO: this 4_ is empirical...
+          .attr('dy', -width/21)
+          .attr('class', 'tier-label monospace')
 
-        .append('textPath')
+          .on('click', () => {
+            data.scenario['tier'] = (i+1);
+            rotate(d3.select('#marker0').node(), '#marker0', d3.select('#knob0'));
+          });
+
+      text.append('textPath')
         .attr('xlink:href','#tier-arc')
         .text(_g.tiers_power[i])
-
-        .on('click', () => data.scenario['tier'] = (i+1));
     }
   };
 

@@ -24,9 +24,9 @@
   - [ ] coffeescript => ES6
   - [ ] $ grep -r TODO .
 
-* [2/4] BUGS
+* [3/5] BUGS
   - [ ] firefox => writes null on adm1 & adm2 names
   - [X] firefox => knobs not getting styling
   - [X] firefox => knobs => "HIGH" "LOW" not centered
   - [ ] point: click => reeval point-info
-  - [ ] knob: label: click => rotate
+  - [X] knob: label: click => rotate
