@@ -252,10 +252,9 @@ require [
       'adm1',
       (args...) ->
         if typeof args[2] isnt 'number'
-          throw Error "This adm1 is dodgy: #{ args[2] }"
+          console.log "This adm1 is dodgy: #{ args[2] }. Assuming adm0..."
 
-        else
-          summary.fetch 'adm1', args[2]
+        else summary.fetch()
     ]
 
     data.place['callback'] = [
@@ -264,8 +263,7 @@ require [
         if typeof args[2] isnt 'number'
           console.log "This adm2 is dodgy: #{ args[2] }. Assuming adm1..."
 
-        else
-          summary.fetch 'adm2', args[2]
+        else summary.fetch()
     ]
 
     # Map drawing

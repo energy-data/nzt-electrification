@@ -1,4 +1,4 @@
-define ['utils'], (u) ->
+define ['utils', 'summary'], (u, summary) ->
   init = (points) ->
     load_selector()
 
@@ -13,6 +13,7 @@ define ['utils'], (u) ->
           throw Error "This scenario is dodgy: #{ args[2] }"
 
         else
+          summary.fetch()
           points.draw data.point_collection['points']
     ]
 

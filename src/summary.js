@@ -1,5 +1,17 @@
 define(['d3', 'utils'], (d3, u) => {
-  var fetch = (adm, x) => {
+  var fetch = () => {
+    let adm = (() => {
+      if (!data.place['adm2']) return 'adm1';
+      else return 'adm2';
+    })();
+
+    let x = data.place['adm2'] || data.place['adm1'];
+
+    if (!x || !adm) {
+      console.warn("Summary Fetch: Not enough arguments.");
+      return false;
+    }
+
     d3.queue()
       .defer(d3.json,
              `http://localhost:4000/${ adm }_records?` +
