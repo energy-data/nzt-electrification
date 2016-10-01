@@ -141,8 +141,7 @@ define(['d3'], (d3) => {
       .attr('r', width / 20)
       .attr('cx', pc.x + center.x)
       .attr('cy', pc.y + center.y)
-      .attr('fill', 'url(#gray_up)')
-      .attr('filter', 'url(#shadow)')
+      .attr('fill', 'url(#gray_up)');
 
     marker0.append('circle')
       .attr('cx', pc.x + center.x)
