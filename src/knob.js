@@ -23,6 +23,8 @@ define(['d3'], (d3) => {
   var min_angle = pi * (1/8);
   var max_angle = pi * (7/8);
 
+  var knob0_radius = width * (7/16);
+  var knob1_radius = width * (4/16);
 
   var l_scale = (v, domain, range) => {
     return v < domain[1] ?
@@ -72,7 +74,7 @@ define(['d3'], (d3) => {
     if (pa < 0) pa = pa + pi2;
 
     let c = closest(pa, range);
-    let cart = polar_to_cartesian(knob.radius - (width/13), c['v']);
+    let cart = polar_to_cartesian(knob0_radius - (width/13), c['v']);
 
     d3.selectAll(`${ marker } circle`)
       .attr('cx',  cart.x + center.x)
@@ -119,11 +121,10 @@ define(['d3'], (d3) => {
     let knobs = svg.append('g').attr('id', 'knobs');
 
     let knob0 = knobs.append('g').attr('id', 'knob0');
-    knob0.radius = width * (7/16);
 
     let base0 = knob0.append('circle')
         .attr('id', 'knob0')
-        .attr('r', knob0.radius)
+        .attr('r', knob0_radius)
         .attr('cx', center.x)
         .attr('cy', center.y)
         .attr('stroke', '#b8b8b8')
@@ -131,7 +132,7 @@ define(['d3'], (d3) => {
         .attr('fill', 'url(#gray)');
 
     let t = range[data.scenario['tier'] - 1];
-    let pc = polar_to_cartesian(knob0.radius - (width/13), -t);
+    let pc = polar_to_cartesian(knob0_radius - (width/13), -t);
 
     let marker0 = knob0.append('g')
         .attr('id', 'marker0');
@@ -162,10 +163,9 @@ define(['d3'], (d3) => {
     );
 
     let knob1 = knobs.append('g').attr('id', 'knob1');
-    knob1.radius = width * (4/16);
 
     let base1 = knob1.append('circle')
-        .attr('r', knob1.radius)
+        .attr('r', knob1_radius)
         .attr('cx', center.x)
         .attr('cy', center.y)
         .attr('stroke', '#b8b8b8')

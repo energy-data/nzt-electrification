@@ -1,7 +1,7 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [2/10] UI/UX
+* [2/11] UI/UX
   - [ ] points: "loading..." while loading
   - [ ] points: better prompting when > 20000
   - [ ] points: locked red => other colour
@@ -10,6 +10,7 @@
   - [ ] pane: hide button
   - [ ] fonts: unify (left is sans & right is mono)
   - [ ] navbar: sucks...
+  - [ ] urban: 1 => true, 0 => false
   - [X] knob: tier labels
   - [X] knob: reflect <->
 

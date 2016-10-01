@@ -28,7 +28,7 @@ define(['utils', 'summary'], (u, summary) => {
       (...args) => {
         let t = args[2];
 
-        if ([...Array(5).keys()].indexOf(t) < 0)
+        if ([...Array(5).keys()].indexOf(t-1) < 0)
           throw Error(`This tier is dodgy: ${ t }`);
 
         else
