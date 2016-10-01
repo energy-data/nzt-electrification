@@ -99,6 +99,8 @@ require [
   load_adm2 = (it, d) ->
     return if locked_adm2 is it
 
+    $('#point-info').fadeOut()
+
     history.pushState null, null, location.updateQueryParam('adm2', d['id'])
     history.replaceState null, null, location.updateQueryParam('load_points', true)
 
@@ -146,6 +148,7 @@ require [
 
   setup_interactions = ->
     $('[data="adm0_name"]').on 'click', ->
+      $('#point-info').fadeOut()
       data.place['adm1'] = undefined
       data.place['adm1_name'] = undefined
 
