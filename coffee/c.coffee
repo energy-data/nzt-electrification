@@ -149,13 +149,13 @@ require [
   setup_interactions = ->
     $('[data="adm0_name"]').on 'click', ->
       $('#point-info').fadeOut()
+      points.clear()
+
       data.place['adm1'] = undefined
       data.place['adm1_name'] = undefined
 
       data.place['adm2'] = undefined
       data.place['adm2_name'] = undefined
-
-      points.clear()
 
       map.resize_to
         node: d3.select('#container').node()
@@ -163,27 +163,18 @@ require [
 
 
     $('[data="adm1_name"]').on 'click', ->
-      points.clear()
-
       it = d3.select("path#adm1-#{ data.place['adm1'] }").node()
 
-      data.place['adm2'] = undefined
-      data.place['adm2_name'] = undefined
+      load_adm1 it, {
+        id: data.place['adm1'],
+        properties: {
+          name: data.place['adm1_name']
+        }
+      }
 
-      # Just to trigger the summary fetch
-      #
-      data.place['adm1'] = data.place['adm1']
+      history.replaceState null, null, location.updateQueryParam('load_points', true)
 
       data.place['bbox'] = map.to_bbox it.getBBox()
-
-      map.resize_to
-        node: it
-        duration: 1000
-
-      history.pushState null, null, location.updateQueryParam('load_points', true)
-      history.replaceState null, null, location.updateQueryParam('adm2', null)
-
-      reset_adm2 null
 
       points.load
         adm: [null, 1, data.place['adm1']]
