@@ -167,6 +167,10 @@ require [
       data.place['adm2'] = undefined
       data.place['adm2_name'] = undefined
 
+      # Just to trigger the summary fetch
+      #
+      data.place['adm1'] = data.place['adm1']
+
       data.place['bbox'] = map.to_bbox it.getBBox()
 
       map.resize_to
