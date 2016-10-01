@@ -21,11 +21,12 @@ require [
   'd3'
   'map'
   'points'
+  'summary'
   'mode'
   'knob'
 ],
 
-(u, _g, data, scenario, d3, map, points, mode, knob) ->
+(u, _g, data, scenario, d3, map, points, summary, mode, knob) ->
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -93,7 +94,6 @@ require [
       duration: 1000
 
     show_adm2 d.id
-
 
 
   load_adm2 = (it, d) ->
@@ -243,6 +243,26 @@ require [
     data.place['adm0']      = _country['iso3']
     data.place['adm0_name'] = _country['name']
     data.place['adm0_code'] = _country['code']
+
+    data.place['callback'] = [
+      'adm1',
+      (args...) ->
+        if typeof args[2] isnt 'number'
+          throw Error "This adm1 is dodgy: #{ args[2] }"
+
+        else
+          summary.fetch 'adm1', args[2]
+    ]
+
+    data.place['callback'] = [
+      'adm2',
+      (args...) ->
+        if typeof args[2] isnt 'number'
+          console.log "This adm2 is dodgy: #{ args[2] }. Assuming adm1..."
+
+        else
+          summary.fetch 'adm2', args[2]
+    ]
 
     # Map drawing
     #

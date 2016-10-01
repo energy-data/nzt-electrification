@@ -74,6 +74,13 @@ path.adm1:hover, path.adm2.hoverable:hover {
   font-size: 0.6em;
 
   display: none;
+
+  z-index: 1001;
+}
+
+#summary-info .color-square {
+  width: 1.5em;
+  height: 1.5em;
 }
 
 #controls {
