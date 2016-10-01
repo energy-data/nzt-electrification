@@ -1,0 +1,28 @@
+# -*- mode: org; -*-
+#+STARTUP: hidestars showall
+
+* [0/2] UI/UX
+  - [ ] points: "loading..." while loading
+  - [ ] points: better prompting when > 20000
+  - [ ] index
+  - [ ] pane: hide button
+  - [ ] fonts: unify (left is sans & right is mono)
+  - [ ] navbar: sucks...
+  - [ ] points: locked red => other colour
+  - [ ] points: colouring mode colours
+  - [ ] knob: tier labels
+  - [ ] knob: reflect <->
+
+* [1/3] Code
+  - [ ] coffeescript => ES6
+  - [X] c: cleanup
+  - [ ] points: hydro
+  - [ ] knob: do not reload if not "technology mode"
+  - [ ] exports: review...
+  - [ ] global-things to _things
+  - [ ] $ grep -r TODO .
+
+* [2/3] BUGS
+  - [ ] firefox => writes null on adm1 & adm2 names
+  - [X] firefox => knobs not getting styling
+  - [X] firefox => knobs => "HIGH" "LOW" not centered

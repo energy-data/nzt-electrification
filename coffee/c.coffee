@@ -149,7 +149,7 @@ require [
   setup_interactions = ->
     $('[data="adm0_name"]').on 'click', ->
       $('#point-info').fadeOut()
-      points.clear()
+      points.clear true
 
       data.place['adm1'] = undefined
       data.place['adm1_name'] = undefined
