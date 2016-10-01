@@ -1,25 +1,5 @@
-html {
-  overflow: hidden;
-}
-
 svg#svg {
   width: 100%;
-}
-
-a {
-  color: #7587A6;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #7587A6;
-  text-decoration: none;
-}
-
-hr {
-  border: solid #555555 1px;
-  border-top: none !important;
-  color: transparent;
 }
 
 span[data], .number {
@@ -38,6 +18,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 .pane {
   color: #cacaca;
   background-color: rgba(0,0,0,0.7);
+  transition: all .4s ease !important;
 }
 
 #navbar {
@@ -50,8 +31,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   line-height: 24px;
 
   width: 100%;
-
-  z-index: 1001;
 }
 
 #point-info {
@@ -84,8 +63,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   font-size: 0.6em;
 
   display: none;
-
-  z-index: 1001;
 }
 
 .info-table {
@@ -114,26 +91,26 @@ path.adm1:hover, path.adm2.hoverable:hover {
   font-size: 0.8em;
 
   padding: 20px;
-
   top: 70px;
-  left: -500px;
+
   height: 100%;
-
-  transition: left .4s ease;
-
-  z-index: 1001;
 }
 
-#controls-control i.active {
-  background-color: rgba(0,0,0,0.4);
-}
-
-#mode-selector a {
-  display: block;
-}
-
-#mode-selector a.active {
+.active {
+  background-color: rgba(0, 0, 0, 0.08);
   color: #cacaca;
+}
+
+#mode-selector li {
+  display: inline-block;
+  width: 30%;
+}
+
+#mode-selector li a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  display: block;
 }
 
 #knob1 {
@@ -152,4 +129,20 @@ text.tier-label {
   fill: #7587A6;
   font-weight: bold;
   cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.close-button a {
+  cursor: pointer;
+  display: block;
+  line-height: 21px;
 }

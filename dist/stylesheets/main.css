@@ -10,9 +10,29 @@ body {
   margin: 0 !important;
 }
 
+html {
+  overflow: hidden;
+}
+
+hr {
+  border: solid #555555 1px;
+  border-top: none !important;
+  color: transparent;
+}
+
 ul {
   list-style-type: none;
   padding: 0px;
+}
+
+a {
+  color: #7587A6;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #7587A6;
+  text-decoration: none;
 }
 
 .right {

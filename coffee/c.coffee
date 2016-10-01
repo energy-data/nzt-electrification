@@ -147,6 +147,12 @@ require [
 
 
   setup_interactions = ->
+    $('.close-button').on 'click', (e) ->
+      e.preventDefault()
+
+      $(this).closest('.pane').fadeToggle()
+
+
     $('[data="adm0_name"]').on 'click', ->
       $('#point-info').fadeOut()
       points.clear true
@@ -204,16 +210,9 @@ require [
     $('#controls-control').on 'click', (e) ->
       e.preventDefault()
 
-      icon = $(this).find('i')
-      $controls = $('#controls')
+      $('#controls').fadeToggle()
+      $(this).find('i').toggleClass('active')
 
-      if icon.hasClass 'active'
-        $controls.css left: "#{ -1 * $controls[0].clientWidth }px"
-        icon.removeClass 'active'
-
-      else
-        $('#controls').css left: 0
-        icon.addClass 'active'
 
 
   run = (args...) ->
@@ -351,8 +350,6 @@ require [
       duration: 1
       callback: ->
         $('.loading').fadeOut(2000)
-
-    $('#controls-control').click()
 
 
   d3.queue(5)

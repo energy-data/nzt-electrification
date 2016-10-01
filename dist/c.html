@@ -22,7 +22,7 @@
            href="#"
            class="pointer"
            style="display: block;">
-          <i class="material-icons">menu</i>
+          <i class="material-icons active">menu</i>
         </a>
       </div>
 
@@ -77,11 +77,15 @@
 
     <div id="summary-info"
          class="pane">
+      <div class="close-button"><a href="#" class="active">&times;</a></div>
+
       <table class="info-table monospace"></table>
     </div>
 
     <div id="point-info"
          class="pane">
+      <div class="close-button"><a href="#" class="active">&times;</a></div>
+
       <table class="info-table monospace">
         <tr>
           <td colspan="2"
@@ -251,8 +255,7 @@
 
   <script type="text/template"
           id="mode-option-template">
-    <li style="display: inline-block; width: 30%; margin-top: 10px; margin-bottom: 10px;"
-        class="center">
+    <li class="center">
       <a href="#" bind="{0}">
         <i class="material-icons">{2}</i><br />{1}
       </a>
