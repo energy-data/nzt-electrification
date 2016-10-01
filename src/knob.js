@@ -223,7 +223,7 @@ define(['d3'], (d3) => {
 
     for (let i = 0; i < steps; i++) {
       let text = svg.append('text')
-          .attr('x', (48 * i)) // TODO: this 4_ is empirical...
+          .attr('dx', (48 * i)) // TODO: this 4_ is empirical...
           .attr('dy', -width/21)
           .attr('class', 'tier-label monospace')
 
