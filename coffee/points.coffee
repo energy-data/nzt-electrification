@@ -100,6 +100,8 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
           data.point['technology'] = tech['name']
 
+          data.point['urban'] = !!e['u']
+
 
     d3.selectAll('path.line').raise()
 
