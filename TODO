@@ -4,23 +4,23 @@
 * [2/10] UI/UX
   - [ ] points: "loading..." while loading
   - [ ] points: better prompting when > 20000
+  - [ ] points: locked red => other colour
+  - [ ] points: colouring mode colours
   - [ ] index page
   - [ ] pane: hide button
   - [ ] fonts: unify (left is sans & right is mono)
   - [ ] navbar: sucks...
-  - [ ] points: locked red => other colour
-  - [ ] points: colouring mode colours
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
 * [2/8] Code
-  - [ ] coffeescript => ES6
-  - [X] c: cleanup
   - [ ] points: hydro
+  - [X] c: cleanup
   - [X] knob: do not reload if not "technology mode"
   - [ ] exports: review...
   - [ ] global-things to _things
   - [ ] scenario: init from url params
+  - [ ] coffeescript => ES6
   - [ ] $ grep -r TODO .
 
 * [2/4] BUGS
@@ -28,3 +28,4 @@
   - [X] firefox => knobs not getting styling
   - [X] firefox => knobs => "HIGH" "LOW" not centered
   - [ ] point: click => reeval point-info
+  - [ ] knob: label: click => rotate
