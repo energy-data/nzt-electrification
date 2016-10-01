@@ -206,11 +206,41 @@
   </body>
 
   <script type="text/template"
+          id="summary-header-template">
+    <tr>
+      <td></td>
+      <td colspan="3" class="center">Points</td>
+      <td colspan="2" class="center">Population</td>
+      <td colspan="2" class="center">Capacity</td>
+      <td colspan="2" class="center">Investments</td>
+    </tr>
+  </script>
+
+  <script type="text/template"
+          id="summary-subheader-template">
+    <tr>
+      <td></td>
+      <td></td>
+      <td colspan="2" class="center"><span class="number">{0}</span>    </td>
+      <td colspan="2" class="center"><span class="number">{1}</span>    </td>
+      <td colspan="2" class="center"><span class="number">{2}</span> KWh</td>
+      <td colspan="2" class="center"><span class="number">{3}</span> USD</td>
+    </tr>
+  </script>
+
+  <script type="text/template"
           id="summary-count-template">
     <tr>
       <td style="background-color: {1};">&nbsp;</td>
       <td>{0}</td>
       <td class="right number">{2}</td>
+      <td class="right number">{3}</td>
+      <td class="right number">{4}</td>
+      <td class="right number">{5}</td>
+      <td class="right number">{6}</td>
+      <td class="right number">{7}</td>
+      <td class="right number">{8}</td>
+      <td class="right number">{9}</td>
     </tr>
   </script>
 

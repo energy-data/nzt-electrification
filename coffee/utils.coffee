@@ -35,9 +35,14 @@ define [], () ->
     window.URL.revokeObjectURL url
 
 
+  percent = (x, y, p) ->
+    return ((x / y) * 100).toFixed(p || 2) + "%";
+
+
   utils =
     check: check
     tmpl: tmpl
     dwnld: dwnld
+    percent: percent
 
   return utils

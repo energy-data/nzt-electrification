@@ -28,18 +28,36 @@ define(['d3', 'utils'], (d3, u) => {
   var handle = (obj) => {
     $('#summary-info table').html("");
 
-    u.tmpl('#summary-count-template',
-           '#summary-info table',
-           "Total", null, obj.reduce(((x,y) => x + y['pts']), 0));
+    let total_pts = obj.reduce(((a,b) => a + b['pts']), 0);
+    let total_population = obj.reduce(((a,b) => a + b['population']), 0);
+    let total_capacity = obj.reduce(((a,b) => a + b['capacity']), 0);
+    let total_investments = obj.reduce(((a,b) => a + b['investments']), 0);
+
+    u.tmpl('#summary-header-template', '#summary-info table');
+
+    u.tmpl(
+      '#summary-subheader-template',
+      '#summary-info table',
+      total_pts.toLocaleString(),
+      total_population.toLocaleString(),
+      total_capacity.toLocaleString(),
+      total_investments.toLocaleString()
+    );
 
     _g.technologies.map((t,i) => {
       let c = obj.find((x) => x['tech'] === i);
 
       if (!c) return;
 
-      u.tmpl('#summary-count-template',
-             '#summary-info table',
-             t['name'], t['color'], c['pts']);
+      u.tmpl(
+        '#summary-count-template',
+        '#summary-info table',
+        t['name'], t['color'],
+        c['pts'].toLocaleString(), u.percent(c['pts'], total_pts),
+        c['population'].toLocaleString(), u.percent(c['population'],total_population),
+        c['capacity'].toLocaleString(), u.percent(c['capacity'],total_capacity),
+        c['investments'].toLocaleString(), u.percent(c['investments'],total_investments)
+      );
     });
 
     $('#summary-info').show();
