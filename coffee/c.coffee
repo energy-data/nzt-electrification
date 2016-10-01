@@ -82,7 +82,6 @@ require [
   load_adm1 = ->
     load_adm adm1, 'adm1'
       .on 'click', (d) ->
-        $('#summary-info').fadeOut()
         $('#point-info').fadeOut()
 
         points.clear true
@@ -142,7 +141,6 @@ require [
           adm: this.id.match /adm(.*)-(\d*)?/
           svg_box: this.getBBox()
 
-        $('#summary-info').fadeIn()
 
         map.resize_to
           node: this
@@ -186,8 +184,6 @@ require [
       points.load
         adm: [null, 1, data.place['adm1']]
         svg_box: it.getBBox()
-
-      $('#summary-info').fadeIn()
 
 
     $('#export-summary').on 'click', (e) ->
@@ -316,8 +312,6 @@ require [
     reset_adm2 null
 
     if load_points
-      $('#summary-info').show()
-
       points.load
         adm: target.node().id.match /adm(.*)-(\d*)?/
         svg_box: target.node().getBBox()

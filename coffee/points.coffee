@@ -47,30 +47,10 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
     clear()
 
-    $('#summary-info table').html ""
-
-    for t in _g.technologies
-      continue if not t
-      u.tmpl '#summary-count-template',
-             '#summary-info table',
-             t['name'], "#{ t['id'] }_count"
-
-
-    data.summary['total_count'] = 0
-
-    for t in _g.technologies
-      data.summary["#{ t['id'] }_count"] = 0 if t
-
-    counts = {}
-
-    for t in _g.technologies
-      if t? then counts[t['id']] = 0
-
     fill = mode.fill()
 
     points.map (e) ->
       tech = _g.technologies[e[scn]]
-      counts[tech['id']] += 1
 
       _container.append("path")
         .datum
@@ -121,9 +101,6 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
           data.point['technology'] = tech['name']
 
 
-    for t in _g.technologies
-      if t? then data.summary["#{ t['id'] }_count"] = counts[t['id']]
-
     d3.selectAll('path.line').raise()
 
 
@@ -147,8 +124,6 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
           points = points.sort(-> return 0.5 - Math.random()).splice(0, count_threshold)
 
         draw points
-
-        data.summary['total_count'] = points.length
 
         data.point_collection['points'] = points
 
