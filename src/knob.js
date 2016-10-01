@@ -124,8 +124,8 @@ define(['d3'], (d3) => {
     let base0 = knob0.append('circle')
         .attr('id', 'knob0')
         .attr('r', knob0.radius)
-        .attr('cx', width / 2)
-        .attr('cy', width / 2)
+        .attr('cx', center.x)
+        .attr('cy', center.y)
         .attr('stroke', '#b8b8b8')
         .attr('stroke-width', '0.06em')
         .attr('fill', 'url(#gray)');
@@ -166,8 +166,8 @@ define(['d3'], (d3) => {
 
     let base1 = knob1.append('circle')
         .attr('r', knob1.radius)
-        .attr('cx', width/2)
-        .attr('cy', width/2)
+        .attr('cx', center.x)
+        .attr('cy', center.y)
         .attr('stroke', '#b8b8b8')
         .attr('stroke-width', '0.06em')
         .attr('fill', 'url(#gray)')
@@ -194,8 +194,8 @@ define(['d3'], (d3) => {
 
       let box = knob1_text.node().getBBox()
 
-      let x =  (width  - box['width'])  / 2
-      let y = ((height + box['height']) / 2) - 5
+      let x = (center.x - (box['width']  / 2));
+      let y = (center.y + (box['height'] / 2)) - 5;
 
       knob1_text
         .attr('transform', `translate(${ x }, ${ y })`);

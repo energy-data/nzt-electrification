@@ -205,20 +205,15 @@ require [
       e.preventDefault()
 
       icon = $(this).find('i')
+      $controls = $('#controls')
 
       if icon.hasClass 'active'
-        $('#controls').trigger 'mouseleave'
+        $controls.css left: "#{ -1 * $controls[0].clientWidth }px"
         icon.removeClass 'active'
 
       else
         $('#controls').css left: 0
         icon.addClass 'active'
-
-
-    $('#controls').on 'mouseleave', (e) ->
-      $('#controls-control i').toggleClass 'active'
-
-      $(this).css left: "#{ -1 * this.clientWidth }px"
 
 
   run = (args...) ->
