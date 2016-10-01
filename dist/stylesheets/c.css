@@ -146,3 +146,10 @@ path.adm1:hover, path.adm2.hoverable:hover {
   font-weight: bold;
   text-shadow: 1px 1px #a5a5a5;
 }
+
+text.tier-label {
+  font-size: 1.1em;
+  fill: #7587A6;
+  font-weight: bold;
+  cursor: pointer;
+}

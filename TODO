@@ -1,7 +1,7 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [0/10] UI/UX
+* [2/10] UI/UX
   - [ ] points: "loading..." while loading
   - [ ] points: better prompting when > 20000
   - [ ] index page
@@ -10,8 +10,8 @@
   - [ ] navbar: sucks...
   - [ ] points: locked red => other colour
   - [ ] points: colouring mode colours
-  - [ ] knob: tier labels
-  - [ ] knob: reflect <->
+  - [X] knob: tier labels
+  - [X] knob: reflect <->
 
 * [1/8] Code
   - [ ] coffeescript => ES6

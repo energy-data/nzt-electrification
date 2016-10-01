@@ -2,11 +2,11 @@ define(['d3'], (d3) => {
   var kc = d3.select('#knobs-container');
 
   var width  = 200;
-  var height = 200;
+  var height = 230;
 
   var center = {
     x: width / 2,
-    y: height / 2
+    y: (width / 2) + 20
   };
 
   var pointer = {};
@@ -30,7 +30,7 @@ define(['d3'], (d3) => {
       range[1];
   };
 
-  var range = [...Array(5)].map((_,i) => l_scale(i, [0, steps-1], [min_angle, max_angle]));
+  var range = [...Array(5)].map((_,i) => l_scale(i, [0, steps-1], [min_angle, max_angle])).reverse();
 
   var repoint = (object) => {
     let m = d3.mouse(object)
@@ -208,6 +208,33 @@ define(['d3'], (d3) => {
     toggle_nps();
   };
 
+  var draw_labels = () => {
+    let arc = d3.arc()
+        .innerRadius((width * (7/16)))
+        .outerRadius((width * (7/16)))
+        .startAngle((range.last() - 0.05) - (pi/2))
+        .endAngle((range.first() + 0.2) - (pi/2));
+
+    let path = svg.append('path')
+        .attr('d', arc)
+        .attr('id', 'tier-arc')
+        .attr('transform', `translate(${ center.x }, ${ center.y })`)
+        .attr('fill', 'none')
+
+    for (let i = 0; i < steps; i++) {
+      svg.append('text')
+        .attr('x', (48 * i)) // TODO: this 4_ is empirical...
+        .attr('dy', -width/21)
+        .attr('class', 'tier-label')
+
+        .append('textPath')
+        .attr('xlink:href','#tier-arc')
+        .text(_g.tiers_power[i])
+
+        .on('click', () => data.scenario['tier'] = (i+1));
+    }
+  };
+
   var clear = () => kc.empty();
 
   var init = () => {
@@ -220,6 +247,8 @@ define(['d3'], (d3) => {
     do_defs();
 
     draw_knobs();
+
+    draw_labels();
   };
 
   return {
