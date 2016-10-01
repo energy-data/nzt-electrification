@@ -2,11 +2,11 @@ define(['utils', 'summary'], (u, summary) => {
   var init = (points) => {
     load_selector();
 
-    data.scenario['scn'] = 'l1';
-    data.scenario['tier'] = 1;
-    data.scenario['diesel_p'] = 'l';
+    _d.scenario['scn'] = 'l1';
+    _d.scenario['tier'] = 1;
+    _d.scenario['diesel_p'] = 'l';
 
-    data.scenario['callback'] = [
+    _d.scenario['callback'] = [
       'scn',
       (...args) => {
         let t = args[2];
@@ -17,13 +17,13 @@ define(['utils', 'summary'], (u, summary) => {
         else {
           summary.fetch();
 
-          if (data.mode['type'] === 'technology')
-            points.draw(data.point_collection['points']);
+          if (_d.mode['type'] === 'technology')
+            points.draw(_d.point_collection['points']);
         }
       }
     ];
 
-    data.scenario['callback'] = [
+    _d.scenario['callback'] = [
       'tier',
       (...args) => {
         let t = args[2];
@@ -32,11 +32,11 @@ define(['utils', 'summary'], (u, summary) => {
           throw Error(`This tier is dodgy: ${ t }`);
 
         else
-          data.scenario['scn'] = `${ data.scenario['diesel_p'] }${ t }`;
+          _d.scenario['scn'] = `${ _d.scenario['diesel_p'] }${ t }`;
       }
     ];
 
-    data.scenario['callback'] = [
+    _d.scenario['callback'] = [
       'diesel_p',
       (...args) => {
         let t = args[2];
@@ -45,7 +45,7 @@ define(['utils', 'summary'], (u, summary) => {
           throw Error(`This diesel price is dodgy: ${ t }`);
 
         else
-          data.scenario['scn'] = `${ t }${ data.scenario['tier'] }`;
+          _d.scenario['scn'] = `${ t }${ _d.scenario['tier'] }`;
       }
     ];
   };
@@ -76,14 +76,14 @@ define(['utils', 'summary'], (u, summary) => {
 
     $(sss).on('change', (e) => {
       let v = $(e.target).val();
-      let ds = data.scenario;
+      let ds = _d.scenario;
 
       ds['scn']      = v;
       ds['diesel_p'] = v[0];
       ds['tier']     = parseInt(v[1]);
     });
 
-    $(sss).val(data.scenario['scn']);
+    $(sss).val(_d.scenario['scn']);
   };
 
   return {

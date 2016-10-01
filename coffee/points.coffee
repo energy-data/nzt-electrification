@@ -24,7 +24,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
         "&x=gt.#{ o.box[0] }&x=lt.#{ o.box[2] }" +
         "&y=gt.#{ o.box[1] }&y=lt.#{ o.box[3] }" +
         "&adm#{ o.adm[1] }=eq.#{ o.adm[2] }" +
-        "&cc=eq.#{ data.place['adm0_code'] }"
+        "&cc=eq.#{ _d.place['adm0_code'] }"
 
       .await (error, points) ->
         if error? then console.log error
@@ -34,7 +34,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
   clear = (full = false) ->
     d3.selectAll('path.point').remove()
 
-    if full then data.point_collection['points'] = []
+    if full then _d.point_collection['points'] = []
 
 
   draw = (points) ->
@@ -42,8 +42,8 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
     locked = null
 
-    scn = data.scenario['scn']
-    diesel_p = data.scenario['diesel_p']
+    scn = _d.scenario['scn']
+    diesel_p = _d.scenario['diesel_p']
 
     clear()
 
@@ -89,18 +89,18 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
             .attr 'stroke-width', 0.01
 
           for k,v of e
-            data.point[k] = v.toLocaleString()
+            _d.point[k] = v.toLocaleString()
 
-          data.point['long'] = e['x']
-          data.point['lat']  = e['y']
-          data.point['ic']   = e["ic_#{ scn }"].toLocaleString()
-          data.point['lc']   = e["lc_#{ scn }"].toLocaleString()
-          data.point['cap']  = e["c_#{ scn }"].toLocaleString()
-          data.point['lcsa'] = e["lcsa_#{ diesel_p }"].toLocaleString()
+          _d.point['long'] = e['x']
+          _d.point['lat']  = e['y']
+          _d.point['ic']   = e["ic_#{ scn }"].toLocaleString()
+          _d.point['lc']   = e["lc_#{ scn }"].toLocaleString()
+          _d.point['cap']  = e["c_#{ scn }"].toLocaleString()
+          _d.point['lcsa'] = e["lcsa_#{ diesel_p }"].toLocaleString()
 
-          data.point['technology'] = tech['name']
+          _d.point['technology'] = tech['name']
 
-          data.point['urban'] = !!e['u']
+          _d.point['urban'] = !!e['u']
 
 
     d3.selectAll('path.line').raise()
@@ -127,7 +127,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
         draw points
 
-        data.point_collection['points'] = points
+        _d.point_collection['points'] = points
 
 
   return points =

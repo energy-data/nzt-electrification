@@ -131,7 +131,7 @@ define(['d3'], (d3) => {
         .attr('stroke-width', '0.06em')
         .attr('fill', 'url(#gray)');
 
-    let t = range[data.scenario['tier'] - 1];
+    let t = range[_d.scenario['tier'] - 1];
     let pc = polar_to_cartesian(knob0_radius - (width/13), -t);
 
     let marker0 = knob0.append('g')
@@ -155,10 +155,10 @@ define(['d3'], (d3) => {
         .on('drag', function() {
           rotate(this, '#marker0', knob0);
         })
-        .on('start', () => { tier = data.scenario['tier'] })
+        .on('start', () => { tier = _d.scenario['tier'] })
         .on('end', () => {
-          if (data.scenario['tier'] !== tier)
-            console.log("Changed to tier", data.scenario['tier'] = tier);
+          if (_d.scenario['tier'] !== tier)
+            console.log("Changed to tier", _d.scenario['tier'] = tier);
         })
     );
 
@@ -171,7 +171,7 @@ define(['d3'], (d3) => {
         .attr('stroke', '#b8b8b8')
         .attr('stroke-width', '0.06em')
         .attr('fill', 'url(#gray)')
-        .classed('nps', data.scenario['diesel_p'] !== 'n');
+        .classed('nps', _d.scenario['diesel_p'] !== 'n');
 
     let knob1_text = knob1.append('text');
 
@@ -203,7 +203,7 @@ define(['d3'], (d3) => {
 
     knob1
       .on('mousedown', () => { toggle_nps() })
-      .on('mouseup',   () => { console.log("Changed to diesel price", data.scenario['diesel_p'] = t) });
+      .on('mouseup',   () => { console.log("Changed to diesel price", _d.scenario['diesel_p'] = t) });
 
     toggle_nps();
   };
@@ -228,7 +228,7 @@ define(['d3'], (d3) => {
           .attr('class', 'tier-label monospace')
 
           .on('click', () => {
-            data.scenario['tier'] = (i+1);
+            _d.scenario['tier'] = (i+1);
             rotate(d3.select('#marker0').node(), '#marker0', d3.select('#knob0'));
           });
 

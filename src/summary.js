@@ -1,11 +1,11 @@
 define(['d3', 'utils'], (d3, u) => {
   var fetch = () => {
     let adm = (() => {
-      if (!data.place['adm2']) return 'adm1';
+      if (!_d.place['adm2']) return 'adm1';
       else return 'adm2';
     })();
 
-    let x = data.place['adm2'] || data.place['adm1'];
+    let x = _d.place['adm2'] || _d.place['adm1'];
 
     if (!x || !adm) {
       console.warn("Summary Fetch: Not enough arguments.");
@@ -16,9 +16,9 @@ define(['d3', 'utils'], (d3, u) => {
       .defer(d3.json,
              `http://localhost:4000/${ adm }_records?` +
              `select=results` +
-             `&cc=eq.${ data.place['adm0_code'] }` +
-             `&scn=eq.${ data.scenario['scn'] }` +
-             `&adm=eq.${ data.place[adm] }`)
+             `&cc=eq.${ _d.place['adm0_code'] }` +
+             `&scn=eq.${ _d.scenario['scn'] }` +
+             `&adm=eq.${ _d.place[adm] }`)
       .await((error, results) => {
         if (error) console.log(error);
         handle(results.map((x) => x['results']));

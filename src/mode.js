@@ -45,9 +45,9 @@ define(['utils', 'dictionary'], (u, dictionary) => {
     fill: (g) => {
       // TODO: domain should be calculated by the min..max lcsa's from the point collection
       //
-      let domain = (data.scenario['diesel_p'] === 'n' ? [0.51, 1.4] : [0.35, 0.7]);
+      let domain = (_d.scenario['diesel_p'] === 'n' ? [0.51, 1.4] : [0.35, 0.7]);
 
-      return `rgba(0, 0, 0, ${ l_scale(g['lcsa_' + data.scenario['diesel_p']], domain, [0.01, 1]) })`;
+      return `rgba(0, 0, 0, ${ l_scale(g['lcsa_' + _d.scenario['diesel_p']], domain, [0.01, 1]) })`;
     }
   }];
 
@@ -56,23 +56,23 @@ define(['utils', 'dictionary'], (u, dictionary) => {
 
     let t = 'technology';
 
-    data.mode['type'] = t;
+    _d.mode['type'] = t;
     $(`${ mss } a[bind='${ t }']`).addClass('active');
 
-    data.mode['callback'] = [
+    _d.mode['callback'] = [
       'type',
       (...args) => {
         if (modes.map((m) => m['type']).indexOf(args[2]) < 0)
           throw Error(`This mode is dodgy ${ args[2] }`);
 
         else
-          points.draw(data.point_collection['points']);
+          points.draw(_d.point_collection['points']);
       }];
   };
 
   var clear_selector = () => $(mss).html('<ul></ul>');
 
-  var fill = () => modes.find((m) => m['type'] === data.mode['type'])['fill'];
+  var fill = () => modes.find((m) => m['type'] === _d.mode['type'])['fill'];
 
   var load_selector = () => {
     clear_selector();
@@ -88,7 +88,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
 
       $mssa.removeClass('active');
 
-      data.mode['type'] = $this.attr('bind');
+      _d.mode['type'] = $this.attr('bind');
 
       $this.addClass('active');
     });

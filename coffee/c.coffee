@@ -16,7 +16,7 @@ requirejs.config
 require [
   'utils'
   '_g'
-  'data'
+  '_d'
   'scenario'
   'd3'
   'map'
@@ -26,7 +26,7 @@ require [
   'knob'
 ],
 
-(u, _g, data, scenario, d3, map, points, summary, mode, knob) ->
+(u, _g, _d, scenario, d3, map, points, summary, mode, knob) ->
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -74,8 +74,8 @@ require [
     points.clear true
     reset_adm2 null
 
-    data.place['adm2'] = undefined
-    data.place['adm2_name'] = undefined
+    _d.place['adm2'] = undefined
+    _d.place['adm2_name'] = undefined
 
     history.pushState null, null, location.updateQueryParam('adm1', d['id'])
 
@@ -84,8 +84,8 @@ require [
 
     history.replaceState null, null, location.updateQueryParam('load_points', false)
 
-    data.place['adm1']      = d['id']
-    data.place['adm1_name'] = d.properties['name']
+    _d.place['adm1']      = d['id']
+    _d.place['adm1_name'] = d.properties['name']
 
     set_adm1_fills d.id
 
@@ -110,13 +110,13 @@ require [
 
     admin1 = d.properties['adm1']
 
-    data.place['adm1']      = admin1 || undefined
-    data.place['adm1_name'] = d3.select("#adm1-#{ admin1 }").datum().properties['name'] || undefined
+    _d.place['adm1']      = admin1 || undefined
+    _d.place['adm1_name'] = d3.select("#adm1-#{ admin1 }").datum().properties['name'] || undefined
 
-    data.place['adm2']      = d['id']
-    data.place['adm2_name'] = d.properties['name']
+    _d.place['adm2']      = d['id']
+    _d.place['adm2_name'] = d.properties['name']
 
-    data.place['bbox'] = map.to_bbox it.getBBox()
+    _d.place['bbox'] = map.to_bbox it.getBBox()
 
     points.load
       adm: it.id.match /adm(.*)-(\d*)?/
@@ -151,11 +151,11 @@ require [
       $('#point-info').fadeOut()
       points.clear true
 
-      data.place['adm1'] = undefined
-      data.place['adm1_name'] = undefined
+      _d.place['adm1'] = undefined
+      _d.place['adm1_name'] = undefined
 
-      data.place['adm2'] = undefined
-      data.place['adm2_name'] = undefined
+      _d.place['adm2'] = undefined
+      _d.place['adm2_name'] = undefined
 
       map.resize_to
         node: d3.select('#container').node()
@@ -163,21 +163,21 @@ require [
 
 
     $('[data="adm1_name"]').on 'click', ->
-      it = d3.select("path#adm1-#{ data.place['adm1'] }").node()
+      it = d3.select("path#adm1-#{ _d.place['adm1'] }").node()
 
       load_adm1 it, {
-        id: data.place['adm1'],
+        id: _d.place['adm1'],
         properties: {
-          name: data.place['adm1_name']
+          name: _d.place['adm1_name']
         }
       }
 
       history.replaceState null, null, location.updateQueryParam('load_points', true)
 
-      data.place['bbox'] = map.to_bbox it.getBBox()
+      _d.place['bbox'] = map.to_bbox it.getBBox()
 
       points.load
-        adm: [null, 1, data.place['adm1']]
+        adm: [null, 1, _d.place['adm1']]
         svg_box: it.getBBox()
 
 
@@ -185,8 +185,8 @@ require [
       e.preventDefault()
 
       o =
-        points_summary: data.summary
-        location: data.place
+        points_summary: _d.summary
+        location: _d.place
 
       u.dwnld JSON.stringify(o), 'export-summary.json'
 
@@ -195,10 +195,10 @@ require [
       e.preventDefault()
 
       o =
-        points_summary: data.summary
-        location: data.place
+        points_summary: _d.summary
+        location: _d.place
 
-      u.dwnld JSON.stringify(data.point_collection['points']), 'export-points.json'
+      u.dwnld JSON.stringify(_d.point_collection['points']), 'export-points.json'
 
 
     $('#controls-control').on 'click', (e) ->
@@ -233,11 +233,11 @@ require [
 
     # Data and state
     #
-    data.place['adm0']      = _country['iso3']
-    data.place['adm0_name'] = _country['name']
-    data.place['adm0_code'] = _country['code']
+    _d.place['adm0']      = _country['iso3']
+    _d.place['adm0_name'] = _country['name']
+    _d.place['adm0_code'] = _country['code']
 
-    data.place['callback'] = [
+    _d.place['callback'] = [
       'adm1',
       (args...) ->
         if typeof args[2] isnt 'number'
@@ -246,7 +246,7 @@ require [
         else summary.fetch()
     ]
 
-    data.place['callback'] = [
+    _d.place['callback'] = [
       'adm2',
       (args...) ->
         if typeof args[2] isnt 'number'
@@ -311,17 +311,17 @@ require [
     )()
 
     if admin2 > -1
-      data.place['adm2']      = admin2 || undefined
-      data.place['adm2_name'] = target.datum().properties['name'] || undefined
+      _d.place['adm2']      = admin2 || undefined
+      _d.place['adm2_name'] = target.datum().properties['name'] || undefined
 
       admin1 = target.datum().properties['adm1']
 
-      data.place['adm1']      = admin1 || undefined
-      data.place['adm1_name'] = d3.select("#adm1-#{ admin1 }").datum().properties['name'] || undefined
+      _d.place['adm1']      = admin1 || undefined
+      _d.place['adm1_name'] = d3.select("#adm1-#{ admin1 }").datum().properties['name'] || undefined
 
     else if admin1 > -1
-      data.place['adm1']      = admin1 || undefined
-      data.place['adm1_name'] = target.datum().properties['name'] || undefined
+      _d.place['adm1']      = admin1 || undefined
+      _d.place['adm1_name'] = target.datum().properties['name'] || undefined
 
 
     # Controls
