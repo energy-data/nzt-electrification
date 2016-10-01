@@ -17,10 +17,12 @@ a:hover {
 }
 
 hr {
-  border: 1px solid #777;
+  border: solid #555555 1px;
+  border-top: none !important;
+  color: transparent;
 }
 
-span[data] {
+span[data], .number {
   color: #7587A6;
   font-weight: bold;
 }
@@ -34,7 +36,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 }
 
 .pane {
-  color: white;
+  color: #cacaca;
   background-color: rgba(0,0,0,0.7);
 }
 
@@ -64,6 +66,14 @@ path.adm1:hover, path.adm2.hoverable:hover {
   display: none;
 }
 
+#point-info .info-table td:first-child {
+  border-right: #555555 solid 1px !important;
+}
+
+#point-info .info-table td:last-child {
+  border-right: none !important;
+}
+
 #summary-info {
   position: absolute;
   right: 0;
@@ -78,9 +88,24 @@ path.adm1:hover, path.adm2.hoverable:hover {
   z-index: 1001;
 }
 
-#summary-info .color-square {
-  width: 1.5em;
-  height: 1.5em;
+.info-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.info-table td {
+  border-top: #555555 solid 1px;
+  border-right: #555555 solid 1px;
+  margin: 0 !important;
+  padding: 7px 12px;
+}
+
+.info-table tr:first-child td {
+  border-top: none;
+}
+
+.info-table td:last-child, .info-table td:first-child {
+  border-right: none;
 }
 
 #controls {
@@ -108,7 +133,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 }
 
 #mode-selector a.active {
-  color: white;
+  color: #cacaca;
 }
 
 #knob1 {

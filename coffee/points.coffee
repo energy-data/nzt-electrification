@@ -89,14 +89,14 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
             .attr 'stroke-width', 0.01
 
           for k,v of e
-            data.point[k] = v
+            data.point[k] = v.toLocaleString()
 
           data.point['long'] = e['x']
           data.point['lat']  = e['y']
-          data.point['ic']   = e["ic_#{ scn }"]
-          data.point['lc']   = e["lc_#{ scn }"]
-          data.point['cap']  = e["c_#{ scn }"]
-          data.point['lcsa'] = e["lcsa_#{ diesel_p }"]
+          data.point['ic']   = e["ic_#{ scn }"].toLocaleString()
+          data.point['lc']   = e["lc_#{ scn }"].toLocaleString()
+          data.point['cap']  = e["c_#{ scn }"].toLocaleString()
+          data.point['lcsa'] = e["lcsa_#{ diesel_p }"].toLocaleString()
 
           data.point['technology'] = tech['name']
 

@@ -77,126 +77,125 @@
 
     <div id="summary-info"
          class="pane">
-      <table class="monospace"></table>
+      <table class="info-table monospace"></table>
     </div>
 
     <div id="point-info"
          class="pane">
-      <ul class="monospace">
-        <li>
-          <div class="center">
+      <table class="info-table monospace">
+        <tr>
+          <td colspan="2"
+              class="center">
             <span data="technology"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <br />
-
-        <li>
-          <div class="center">
+        <tr>
+          <td colspan="2"
+              class="center">
             <span data="long"></span>, <span data="lat"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <br />
+        <tr>
+          <td>Population 2030</td>
 
-        <li>
-          Population 2030:
-          <div class="right">
+          <td class="right">
             <span data="p_2030"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <li>
-          New Connections:
-          <div class="right">
+        <tr>
+          <td>New Connections</td>
+          <td class="right">
             <span data="nc"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <li>
-          Investment Cost:
-          <div class="right">
-            $ <span data="ic"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Investment Cost</td>
+          <td class="right">
+            <span data="ic"></span> USD
+          </td>
+        </tr>
 
-        <li>
-          Levelised cost:
-          <div class="right">
-            $ <span data="lc"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Levelised cost</td>
+          <td class="right">
+            <span data="lc"></span> USD
+          </td>
+        </tr>
 
-        <li>
-          New capacity:
-          <div class="right">
-            <span data="cap"></span>
-          </div>
-        </li>
+        <tr>
+          <td>New capacity</td>
+          <td class="right">
+            <span data="cap"></span> KWh
+          </td>
+        </tr>
 
-        <li>
-          Grid Distance Current:
-          <div class="right">
-            <span data="gd_c"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Grid Distance (current)</td>
+          <td class="right">
+            <span data="gd_c"></span> Km
+          </td>
+        </tr>
 
-        <li>
-          Grid Distance Planned:
-          <div class="right">
-            <span data="gd_p"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Grid Distance (planned)</td>
+          <td class="right">
+            <span data="gd_p"></span> Km
+          </td>
+        </tr>
 
-        <li>
-          Road Distance:
-          <div class="right">
-            <span data="rd"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Road Distance</td>
+          <td class="right">
+            <span data="rd"></span> Km
+          </td>
+        </tr>
 
-        <li>
-          Global Horizontal Irradiance:
-          <div class="right">
+        <tr>
+          <td>Global Horizontal Irradiance</td>
+          <td class="right">
             <span data="ghi"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <li>
-          Wind Power Capacity Factor:
-          <div class="right">
+        <tr>
+          <td>Wind Power Capacity Factor</td>
+          <td class="right">
             <span data="w_cf"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <li>
-          Potential small and mini Hydropower: &nbsp;
-          <div class="right">
+        <tr>
+          <td>Potential small and mini Hydropower</td>
+          <td class="right">
             <span data="hp"></span>
-          </div>
-        </li>
+          </td>
+        </tr>
 
-        <li>
-          Distance to Hydropower Potencial:
-          <div class="right">
-            <span data="hp_d"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Distance to Hydropower Potencial</td>
+          <td class="right">
+            <span data="hp_d"></span> Km
+          </td>
+        </tr>
 
-        <li>
-          Levelised Cost of Diesel:
-          <div class="right">
-            <span data="lcsa"></span>
-          </div>
-        </li>
+        <tr>
+          <td>Levelised Cost of Diesel</td>
+          <td class="right">
+            <span data="lcsa"></span> USD
+          </td>
+        </tr>
 
-        <li>
-          Is Urban:
-          <div class="right">
+        <tr>
+          <td>Is Urban</td>
+          <td class="right">
             <span data="u"></span>
-          </div>
-        </li>
-      </ul>
+          </td>
+        </tr>
+      </table>
     </div>
 
     <div class="loading">
@@ -209,10 +208,9 @@
   <script type="text/template"
           id="summary-count-template">
     <tr>
-      <td><div class="color-square"
-               style="background-color: {1};"></div></td>
+      <td style="background-color: {1};">&nbsp;</td>
       <td>{0}</td>
-      <td>{2}</td>
+      <td class="right number">{2}</td>
     </tr>
   </script>
 
