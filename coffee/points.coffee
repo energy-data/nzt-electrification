@@ -3,8 +3,6 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
   # Variables:
   #
 
-  iso3 = location.getQueryParam('iso3')
-
   count_threshold = 20000
 
   _container = d3.select('#container')
@@ -13,7 +11,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   locked = null
 
-  u.check iso3, _container, point_info
+  u.check _container, point_info
 
   #
   # Function definitions:
@@ -26,7 +24,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
         "&x=gt.#{ o.box[0] }&x=lt.#{ o.box[2] }" +
         "&y=gt.#{ o.box[1] }&y=lt.#{ o.box[3] }" +
         "&adm#{ o.adm[1] }=eq.#{ o.adm[2] }" +
-        "&cc=eq.#{ o.country_code }"
+        "&cc=eq.#{ data.place['adm0_code'] }"
 
       .await (error, points) ->
         if error? then console.log error
@@ -132,14 +130,12 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
   load = (o) ->
     adm       = o.adm
     svg_box   = o.svg_box
-    country   = _g.countries.find (c) -> c['iso3'] is iso3
 
-    u.check adm, svg_box, _container, country
+    u.check adm, svg_box, _container
 
     box = map.to_bbox svg_box
 
     fetch
-      country_code: country['code']
       adm: adm
       box: box
 

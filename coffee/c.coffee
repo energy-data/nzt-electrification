@@ -249,6 +249,7 @@ require [
     #
     data.place['adm0']      = _country['iso3']
     data.place['adm0_name'] = _country['name']
+    data.place['adm0_code'] = _country['code']
 
     # Map initialisation
     #
