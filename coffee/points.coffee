@@ -50,8 +50,6 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
     fill = mode.fill()
 
     points.map (e) ->
-      tech = _g.technologies[e[scn]]
-
       _container.append("path")
         .datum
           type: "Point",
@@ -77,6 +75,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
             locked = this
             d3.select(locked).attr('stroke-width', 0.01)
+            info e, scn, diesel_p
 
 
         .on 'mouseenter', (d) ->
@@ -88,22 +87,28 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
             .attr 'stroke', 'red'
             .attr 'stroke-width', 0.01
 
-          for k,v of e
-            _d.point[k] = v.toLocaleString()
-
-          _d.point['long'] = e['x']
-          _d.point['lat']  = e['y']
-          _d.point['ic']   = e["ic_#{ scn }"].toLocaleString()
-          _d.point['lc']   = e["lc_#{ scn }"].toLocaleString()
-          _d.point['cap']  = e["c_#{ scn }"].toLocaleString()
-          _d.point['lcsa'] = e["lcsa_#{ diesel_p }"].toLocaleString()
-
-          _d.point['technology'] = tech['name']
-
-          _d.point['urban'] = !!e['u']
+          info e, scn, diesel_p
 
 
     d3.selectAll('path.line').raise()
+
+
+  info = (e, scn, diesel_p) ->
+    tech = _g.technologies[e[scn]]
+
+    for k,v of e
+      _d.point[k] = v.toLocaleString()
+
+    _d.point['long'] = e['x']
+    _d.point['lat']  = e['y']
+    _d.point['ic']   = e["ic_#{ scn }"].toLocaleString()
+    _d.point['lc']   = e["lc_#{ scn }"].toLocaleString()
+    _d.point['cap']  = e["c_#{ scn }"].toLocaleString()
+    _d.point['lcsa'] = e["lcsa_#{ diesel_p }"].toLocaleString()
+
+    _d.point['technology'] = tech['name']
+
+    _d.point['urban'] = !!e['u']
 
 
   load = (o) ->
