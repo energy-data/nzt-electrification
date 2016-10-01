@@ -14,7 +14,9 @@ define ['utils', 'summary'], (u, summary) ->
 
         else
           summary.fetch()
-          points.draw data.point_collection['points']
+
+          if data.mode['type'] is 'technology'
+            points.draw data.point_collection['points']
     ]
 
     data.scenario['callback'] = [
