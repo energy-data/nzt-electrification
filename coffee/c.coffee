@@ -11,10 +11,10 @@ requirejs.config
       'web-extras': 'deps': ['jquery']
       'points':     'deps': ['web-extras']
       'map':        'deps': ['web-extras']
-      'utils':      'deps': ['js-extras']
+      '_u':         'deps': ['js-extras']
 
 require [
-  'utils'
+  '_u'
   '_g'
   '_d'
   'scenario'
@@ -26,7 +26,7 @@ require [
   'knob'
 ],
 
-(u, _g, _d, scenario, d3, map, points, summary, mode, knob) ->
+(_u, _g, _d, scenario, d3, map, points, summary, mode, knob) ->
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -47,7 +47,7 @@ require [
 
 
   load_adm = (topo, pathname, callback) ->
-    u.check topo, pathname
+    _u.check topo, pathname
 
     path = map.load_topo
       topo: topo
@@ -136,7 +136,7 @@ require [
 
 
   show_adm2 = (adm1_id) ->
-    u.check adm1_id
+    _u.check adm1_id
 
     d3.selectAll('path.adm2').each (e) ->
       d3.select(this).style 'display', ->
@@ -224,7 +224,7 @@ require [
         points_summary: _d.summary
         location: _d.place
 
-      u.dwnld JSON.stringify(o), 'export-summary.json'
+      _u.dwnld JSON.stringify(o), 'export-summary.json'
 
 
     $('#export-points').on 'click', (e) ->
@@ -234,7 +234,7 @@ require [
         points_summary: _d.summary
         location: _d.place
 
-      u.dwnld JSON.stringify(_d.point_collection['points']), 'export-points.json'
+      _u.dwnld JSON.stringify(_d.point_collection['points']), 'export-points.json'
 
 
     $('#controls-control').on 'click', (e) ->

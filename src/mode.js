@@ -1,4 +1,4 @@
-define(['utils', 'dictionary'], (u, dictionary) => {
+define(['dictionary'], (dictionary) => {
   var tc = _g.technologies.map((t) => t ? t['color'] : null);
 
   var dg = dictionary['point'];
@@ -77,7 +77,7 @@ define(['utils', 'dictionary'], (u, dictionary) => {
   var load_selector = () => {
     clear_selector();
 
-    modes.map((m) => u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']));
+    modes.map((m) => _u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']));
 
     let $mssa = $(mss + ' a');
 

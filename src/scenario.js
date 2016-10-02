@@ -1,4 +1,4 @@
-define(['utils', 'summary'], (u, summary) => {
+define(['summary'], (summary) => {
   var init = (points) => {
     load_selector();
 
@@ -55,7 +55,7 @@ define(['utils', 'summary'], (u, summary) => {
   };
 
   var expand = (t) => {
-    u.check(t[0], t[1]);
+    _u.check(t[0], t[1]);
 
     let str = "";
     str += (t[0] === "l" ? "Low" : "NPS") + " " + t[1];
@@ -67,7 +67,7 @@ define(['utils', 'summary'], (u, summary) => {
     let sss = '#scenario-selector select';
 
     _g.scenarios.map((t) => {
-      u.tmpl(
+      _u.tmpl(
         '#scenario-option-template',
         sss,
         t, expand(t)

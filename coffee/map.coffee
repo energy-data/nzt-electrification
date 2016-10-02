@@ -1,4 +1,4 @@
-define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
+define ['d3', 'topojson'], (d3, topojson) ->
   projection = d3.geoMercator()
 
   geo_path = d3.geoPath()
@@ -33,7 +33,7 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
     container = o.container || _container
     callback  = o.callback
 
-    u.check node, container, svg
+    _u.check node, container, svg
 
     transition = duration > 0
 
@@ -89,7 +89,7 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
     fill      = o.fill  || "none"
     container = o.container || _container
 
-    u.check topo, pathname, container
+    _u.check topo, pathname, container
 
     features = topojson.feature(topo, topo.objects[pathname]).features
 

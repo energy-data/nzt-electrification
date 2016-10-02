@@ -10,12 +10,12 @@ requirejs.config({
   'shim': {
     'web-extras': { 'deps': ['jquery'] },
     'index':      { 'deps': ['web-extras'] },
-    'utils':      { 'deps': ['js-extras'] }
+    '_u':         { 'deps': ['js-extras'] }
   }
 });
 
 require([
-  'utils',
+  '_u',
   '_g',
   'd3',
   'topojson',

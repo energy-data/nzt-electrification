@@ -1,4 +1,4 @@
-define(['d3', 'utils'], (d3, u) => {
+define(['d3'], (d3) => {
   var fetch = () => {
     let adm = (() => {
       if (!_d.place['adm2']) return 'adm1';
@@ -33,9 +33,9 @@ define(['d3', 'utils'], (d3, u) => {
     let total_capacity = obj.reduce(((a,b) => a + b['capacity']), 0);
     let total_investments = obj.reduce(((a,b) => a + b['investments']), 0);
 
-    u.tmpl('#summary-header-template', '#summary-info table');
+    _u.tmpl('#summary-header-template', '#summary-info table');
 
-    u.tmpl(
+    _u.tmpl(
       '#summary-subheader-template',
       '#summary-info table',
       total_pts.toLocaleString(),
@@ -49,14 +49,14 @@ define(['d3', 'utils'], (d3, u) => {
 
       if (!c) return;
 
-      u.tmpl(
+      _u.tmpl(
         '#summary-count-template',
         '#summary-info table',
         t['name'], t['color'],
-        c['pts'].toLocaleString(), u.percent(c['pts'], total_pts),
-        c['population'].toLocaleString(), u.percent(c['population'],total_population),
-        c['capacity'].toLocaleString(), u.percent(c['capacity'],total_capacity),
-        c['investments'].toLocaleString(), u.percent(c['investments'],total_investments)
+        c['pts'].toLocaleString(), _u.percent(c['pts'], total_pts),
+        c['population'].toLocaleString(), _u.percent(c['population'],total_population),
+        c['capacity'].toLocaleString(), _u.percent(c['capacity'],total_capacity),
+        c['investments'].toLocaleString(), _u.percent(c['investments'],total_investments)
       );
     });
 

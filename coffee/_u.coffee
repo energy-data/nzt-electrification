@@ -45,4 +45,6 @@ define [], () ->
     dwnld: dwnld
     percent: percent
 
+  window._u = utils
+
   return utils

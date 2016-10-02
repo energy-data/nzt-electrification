@@ -1,4 +1,4 @@
-define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
+define ['mode', 'd3', 'map'], (mode, d3, map) ->
   #
   # Variables:
   #
@@ -11,7 +11,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
   locked = null
 
-  u.check _container, point_info
+  _u.check _container, point_info
 
   #
   # Function definitions:
@@ -115,7 +115,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
     adm       = o.adm
     svg_box   = o.svg_box
 
-    u.check adm, svg_box, _container
+    _u.check adm, svg_box, _container
 
     box = map.to_bbox svg_box
 
