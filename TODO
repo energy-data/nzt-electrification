@@ -1,10 +1,10 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [6/12] UI/UX
+* [7/12] UI/UX
   - [ ] points: better prompting when > 20000
   - [X] index page
-  - [ ] navbar: sucks...
+  - [X] navbar: sucks...
   - [ ] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
   - [ ] points: colouring mode colours

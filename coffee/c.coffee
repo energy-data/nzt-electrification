@@ -24,9 +24,10 @@ require [
   'summary'
   'mode'
   'knob'
+  'navbar'
 ],
 
-(_u, _g, _d, scenario, d3, map, points, summary, mode, knob) ->
+(_u, _g, _d, scenario, d3, map, points, summary, mode, knob, navbar) ->
   iso3 = location.getQueryParam 'iso3'
 
   adm0 = adm1 = adm2 = null
@@ -135,6 +136,11 @@ require [
       duration: 1000
 
 
+  # TODO: remove this (used in navbar)
+  #
+  window.load_adm1 = load_adm1
+  window.load_adm2 = load_adm2
+
   show_adm2 = (adm1_id) ->
     _u.check adm1_id
 
@@ -152,96 +158,6 @@ require [
     if a2 then target = "#adm2-#{ a2 }"
 
     d3.select(target).classed 'hoverable', false
-
-
-  setup_interactions = ->
-    $('.close-button').on 'click', (e) ->
-      e.preventDefault()
-
-      $(this).closest('.pane').toggle()
-
-      $('#restore-panes').show()
-
-
-    $('#hide-panes').on 'click', (e) ->
-      e.preventDefault()
-
-      $('#summary-info, #point-info').addClass('hidden')
-
-      $(this).hide()
-      $('#restore-panes').show()
-
-
-    $('#restore-panes').on 'click', (e) ->
-      e.preventDefault()
-
-      $('#summary-info, #point-info')
-        .removeClass('hidden')
-        .show()
-
-      $(this).hide()
-      $('#hide-panes').show()
-
-
-    $('[data="adm0_name"]').on 'click', ->
-      $('#point-info').hide()
-      points.clear true
-
-      _d.place['adm1'] = undefined
-      _d.place['adm1_name'] = undefined
-
-      _d.place['adm2'] = undefined
-      _d.place['adm2_name'] = undefined
-
-      map.resize_to
-        node: d3.select('#container').node()
-        duration: 1000
-
-
-    $('[data="adm1_name"]').on 'click', ->
-      it = d3.select("path#adm1-#{ _d.place['adm1'] }").node()
-
-      load_adm1 it, {
-        id: _d.place['adm1'],
-        properties: {
-          name: _d.place['adm1_name']
-        }
-      }
-
-      history.replaceState null, null, location.updateQueryParam('load_points', true)
-
-      _d.place['bbox'] = map.to_bbox it.getBBox()
-
-      points.load
-        adm: [null, 1, _d.place['adm1']]
-        svg_box: it.getBBox()
-
-
-    $('#export-summary').on 'click', (e) ->
-      e.preventDefault()
-
-      o =
-        location: _d.place
-        technology_results: _d.summary['results']
-
-      _u.dwnld JSON.stringify(o), 'export-summary.json'
-
-
-    $('#export-points').on 'click', (e) ->
-      e.preventDefault()
-
-      if not _d.point_collection['points']? or not _d.point_collection['points'].length
-        alert "Theres no points to export. Load some first."
-        return
-
-      _u.dwnld JSON.stringify(_d.point_collection['points']), 'export-points.json'
-
-
-    $('#controls-control').on 'click', (e) ->
-      e.preventDefault()
-
-      $('#controls').toggleClass('hidden')
-      $(this).find('i').toggleClass('active')
 
 
   run = (args...) ->
@@ -270,8 +186,11 @@ require [
       (args...) ->
         if typeof args[2] isnt 'number'
           console.log "This adm1 is dodgy: #{ args[2] }. Assuming adm0..."
+          $('[data="adm1_name"]').closest('.with-dropdown').hide()
 
-        else summary.fetch()
+        else
+          summary.fetch()
+          $('[data="adm1_name"]').closest('.with-dropdown').show()
     ]
 
     _d.place['callback'] = [
@@ -279,8 +198,11 @@ require [
       (args...) ->
         if typeof args[2] isnt 'number'
           console.log "This adm2 is dodgy: #{ args[2] }. Assuming adm1..."
+          $('[data="adm2_name"]').closest('.with-dropdown').hide()
 
-        else summary.fetch()
+        else
+          summary.fetch()
+          $('[data="adm2_name"]').closest('.with-dropdown').show()
     ]
 
     # Map drawing
@@ -356,7 +278,7 @@ require [
     #
     if (load_controls)
       knob.init()
-      setup_interactions()
+      navbar.setup()
 
 
     # Focus target adm
