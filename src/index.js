@@ -25,7 +25,23 @@ require([
 
   if (width > 500) width = 500;
 
-  var blur_filter = (defs) => {
+  let flag_style = (svg, iso3) => {
+    let defs = svg.append('defs');
+
+    defs.append('pattern')
+      .attr('id', `flag-${ iso3 }`)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('patternUnits', 'objectBoundingBox')
+      .attr('width',  1)
+      .attr('height', 1)
+
+      .append('image')
+      .attr('xlink:href', `/images/${ iso3 }.png`)
+      .attr('width',  34)
+      .attr('height', 30)
+      .attr('preserveAspectRatio', `${ _g.aspect_ratios[iso3.toString()] } slice`);
+
     let filter = defs.append('filter')
         .attr('id', 'dropshadow')
         .attr('width', '130%')
@@ -48,31 +64,12 @@ require([
       .attr('mode', 'normal');
   };
 
-  let wall_flag = (defs, iso3) => {
-    defs.append('pattern')
-      .attr('id', `flag-${ iso3 }`)
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('patternUnits', 'objectBoundingBox')
-      .attr('width',  1)
-      .attr('height', 1)
-
-      .append('image')
-      .attr('xlink:href', `/images/${ iso3 }.png`)
-      .attr('width',  34)
-      .attr('height', 30)
-      .attr('preserveAspectRatio', `${ _g.aspect_ratios[iso3.toString()] } slice`);
-  };
-
   var load = (iso3, topo, callback) => {
     let svg = d3.select(`svg#svg-${ iso3 }`)
         .attr('width',  width)
         .attr('height', width);
 
-    let defs = svg.append('defs');
-
-    wall_flag(defs, iso3);
-    blur_filter(defs);
+    flag_style(svg, iso3);
 
     let container = svg.append('g').attr('id', 'container');
 
@@ -96,18 +93,16 @@ require([
             setTimeout((() => window.location = `/c.html?iso3=${ iso3 }`), 600);
           });
 
-        return path;
+        map.resize_to({
+          node: path.node(),
+          svg: svg,
+          padding: 3,
+          container: container
+        })
+
+        typeof callback === 'function' ? callback.call(this, iso3, path, box) : false
       }
     });
-
-    map.resize_to({
-      node: path.node(),
-      svg: svg,
-      padding: 3,
-      container: container
-    })
-
-    typeof callback === 'function' ? callback.call(this, iso3, path, box) : false
   };
 
   var run = (...args) => {
@@ -134,18 +129,17 @@ require([
              parseFloat(ind['GDP per capita (current US$)_2015']).toFixed(2).toLocaleString(),
              parseFloat(ind['GDP (current billion US$)']).toFixed(2).toLocaleString(),
              parseFloat(ind['Expenditures_2015_est_in billion USD']).toFixed(2).toLocaleString(),
-             iso3
-            );
+             iso3);
 
       d3.queue()
         .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
         .await((error, adm0) => load(iso3, adm0));
 
       $('.country-item').on('click', (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        $('.overview').css('visibility', 'hidden')
-        $(`#overview-${ $(e.target).attr('iso3') }`).css('visibility', 'visible')
+        $('.overview').css('visibility', 'hidden');
+        $(`#overview-${ $(e.target).attr('iso3') }`).css('visibility', 'visible');
       });
     });
   }

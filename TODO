@@ -2,23 +2,23 @@
 #+STARTUP: hidestars showall
 
 * [3/11] UI/UX
-  - [ ] points: "loading..." while loading
   - [ ] points: better prompting when > 20000
+  - [ ] index page
+  - [ ] navbar: sucks...
+  - [ ] points: "loading..." while loading
   - [ ] points: locked red => other colour
   - [ ] points: colouring mode colours
-  - [ ] index page
   - [ ] pane: hide button
   - [ ] fonts: unify (left is sans & right is mono)
-  - [ ] navbar: sucks...
   - [X] urban: 1 => true, 0 => false
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
 * [3/8] Code
+  - [ ] exports: review...
   - [ ] points: hydro
   - [X] c: cleanup
   - [X] knob: do not reload if not "technology mode"
-  - [ ] exports: review...
   - [X] global-things to _things
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6
