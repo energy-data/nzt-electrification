@@ -221,8 +221,8 @@ require [
       e.preventDefault()
 
       o =
-        points_summary: _d.summary
         location: _d.place
+        technology_results: _d.summary['results']
 
       _u.dwnld JSON.stringify(o), 'export-summary.json'
 
@@ -230,9 +230,9 @@ require [
     $('#export-points').on 'click', (e) ->
       e.preventDefault()
 
-      o =
-        points_summary: _d.summary
-        location: _d.place
+      if not _d.point_collection['points']? or not _d.point_collection['points'].length
+        alert "Theres no points to export. Load some first."
+        return
 
       _u.dwnld JSON.stringify(_d.point_collection['points']), 'export-points.json'
 

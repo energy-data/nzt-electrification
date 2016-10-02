@@ -21,7 +21,10 @@ define(['d3'], (d3) => {
              `&adm=eq.${ _d.place[adm] }`)
       .await((error, results) => {
         if (error) console.log(error);
-        handle(results.map((x) => x['results']));
+
+        let r = results.map((x) => x['results']);
+        handle(r);
+        _d.summary['results'] = r;
       });
   };
 

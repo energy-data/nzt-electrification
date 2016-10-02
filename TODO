@@ -15,12 +15,14 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [3/8] Code
-  - [ ] exports: review...
+* [4/9] Code
+  - [X] exports: review...
+  - [ ] exports: improve filenames
   - [ ] points: hydro
   - [X] c: cleanup
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
+  - [ ] exports: current point
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6
   - [ ] $ grep -r TODO .
