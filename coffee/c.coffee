@@ -160,6 +160,28 @@ require [
 
       $(this).closest('.pane').toggle()
 
+      $('#restore-panes').show()
+
+
+    $('#hide-panes').on 'click', (e) ->
+      e.preventDefault()
+
+      $('#summary-info, #point-info').addClass('hidden')
+
+      $(this).hide()
+      $('#restore-panes').show()
+
+
+    $('#restore-panes').on 'click', (e) ->
+      e.preventDefault()
+
+      $('#summary-info, #point-info')
+        .removeClass('hidden')
+        .show()
+
+      $(this).hide()
+      $('#hide-panes').show()
+
 
     $('[data="adm0_name"]').on 'click', ->
       $('#point-info').hide()

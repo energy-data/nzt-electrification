@@ -1,7 +1,7 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [5/12] UI/UX
+* [6/12] UI/UX
   - [ ] points: better prompting when > 20000
   - [X] index page
   - [ ] navbar: sucks...
@@ -9,7 +9,7 @@
   - [ ] points: locked red => other colour
   - [ ] points: colouring mode colours
   - [X] pane: hide button
-  - [ ] pane: restore or keep hidden
+  - [X] pane: restore or keep hidden
   - [ ] fonts: unify (left is sans & right is mono)
   - [X] urban: 1 => true, 0 => false
   - [X] knob: tier labels
