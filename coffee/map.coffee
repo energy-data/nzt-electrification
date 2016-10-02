@@ -84,8 +84,8 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
     topo      = o.topo
     pathname  = o.pathname
     callback  = o.callback
-    cls       = o.cls   || "path"
-    color     = o.color || "#ccc"
+    cls       = o.cls    || "path"
+    stroke    = o.stroke || "#ccc"
     fill      = o.fill  || "none"
     container = o.container || _container
 
@@ -98,7 +98,7 @@ define ['utils', 'd3', 'topojson'], (u, d3, topojson) ->
       .enter().append('path')
         .attr 'id', (d) -> if d.id then "#{ pathname }-#{ d.id }" else null
         .attr 'class', "#{ cls } #{ pathname }"
-        .attr 'stroke', color
+        .attr 'stroke', stroke
         .attr 'fill', fill
         .attr 'd', geo_path
 

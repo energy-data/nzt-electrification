@@ -18,7 +18,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 .pane {
   color: #cacaca;
   background-color: rgba(0,0,0,0.7);
-  transition: all .4s ease !important;
+  transition: all .3s ease !important;
 }
 
 #navbar {
@@ -115,6 +115,15 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 #knob1 {
   cursor: pointer;
+}
+
+#marker0 {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+#marker0:active {
+  cursor: move;
 }
 
 #knob1 text {

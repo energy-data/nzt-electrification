@@ -64,12 +64,20 @@ require [
 
   set_adm1_fills = (id) ->
     d3.selectAll('path.adm1').each (e) ->
-      d3.select(this).attr 'fill', ->
-        if e.id is id then 'none' else '#eee'
+      elem = d3.select(this)
+
+      if e.id is id
+        elem.style 'visibility', 'hidden'
+
+      else
+        elem
+          .style 'visibility', 'visible'
+          .attr 'fill', '#eee'
+          .attr 'stroke', '#ccc'
 
 
   load_adm1 = (it, d) ->
-    $('#point-info').fadeOut()
+    $('#point-info').hide()
 
     points.clear true
     reset_adm2 null
@@ -99,7 +107,7 @@ require [
   load_adm2 = (it, d) ->
     return if locked_adm2 is it
 
-    $('#point-info').fadeOut()
+    $('#point-info').hide()
 
     history.pushState null, null, location.updateQueryParam('adm2', d['id'])
     history.replaceState null, null, location.updateQueryParam('load_points', true)
@@ -150,11 +158,11 @@ require [
     $('.close-button').on 'click', (e) ->
       e.preventDefault()
 
-      $(this).closest('.pane').fadeToggle()
+      $(this).closest('.pane').toggle()
 
 
     $('[data="adm0_name"]').on 'click', ->
-      $('#point-info').fadeOut()
+      $('#point-info').hide()
       points.clear true
 
       _d.place['adm1'] = undefined
@@ -210,9 +218,8 @@ require [
     $('#controls-control').on 'click', (e) ->
       e.preventDefault()
 
-      $('#controls').fadeToggle()
+      $('#controls').toggleClass('hidden')
       $(this).find('i').toggleClass('active')
-
 
 
   run = (args...) ->
@@ -275,14 +282,14 @@ require [
       topo: existing_transmission
       cls: 'line'
       pathname: 'existing'
-      color: 'gold'
+      stroke: 'gold'
       fill: 'none'
 
     map.load_topo
       topo: planned_transmission
       cls: 'line'
       pathname: 'planned'
-      color: 'yellow'
+      stroke: 'yellow'
       fill: 'none'
 
     map.setup_drag()
