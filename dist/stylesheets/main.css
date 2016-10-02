@@ -10,10 +10,6 @@ body {
   margin: 0 !important;
 }
 
-html {
-  overflow: hidden;
-}
-
 hr {
   border: solid #555555 1px;
   border-top: none !important;
@@ -49,6 +45,12 @@ a:hover {
 
 .adm {
   cursor: pointer;
+}
+
+.pane {
+  color: #cacaca;
+  background-color: rgba(0,0,0,0.7);
+  transition: all .3s ease !important;
 }
 
 .hidden {

@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 svg#svg {
   width: 100%;
 }
@@ -13,12 +17,6 @@ path.adm {
 
 path.adm1:hover, path.adm2.hoverable:hover {
   fill: steelblue;
-}
-
-.pane {
-  color: #cacaca;
-  background-color: rgba(0,0,0,0.7);
-  transition: all .3s ease !important;
 }
 
 #navbar {
@@ -111,6 +109,10 @@ path.adm1:hover, path.adm2.hoverable:hover {
   padding-bottom: 10px;
 
   display: block;
+}
+
+#knobs-container {
+  text-align: center;
 }
 
 #knob1 {

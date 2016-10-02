@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8">
 
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" type="text/css" href="./stylesheets/grid.css" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/index.css" />
@@ -12,49 +15,61 @@
   </head>
 
   <body class="row">
-    <div id="overview"></div>
+    <div id="country-list"
+         class="pane col c3">
+      <ul></ul>
+    </div>
+
+    <div id="overview"
+         class="col c9"></div>
   </body>
 
-  <script id="selector-template"
+  <script id="li-template"
           type="text/template">
-    <div id="selector-{0}"
-         class="country-selector col c{1}">
-      <h1>{2}</h1>
-
-      <svg id="svg-{0}"></svg>
-    </div>
+    <li class="country-item">
+      <a href="#"
+         iso3="{1}">{0}</a>
+    </li>
   </script>
+
+  <!-- 0: country name -->
+  <!-- 1: population 2015 -->
+  <!-- 2: population 2030 -->
+  <!-- 3: access electricity 2012 -->
+  <!-- 4: rural population 2015 -->
+  <!-- 5: rural access electricity -->
+  <!-- 6: gdp per capita 2015 -->
+  <!-- 7: gdp 2015 -->
+  <!-- 8: expenditures 2015 -->
 
   <script id="overview-template"
           type="text/template">
-    <!-- 0: country name -->
-    <!-- 1: population 2015 -->
-    <!-- 2: population 2030 -->
-    <!-- 3: access electricity 2012 -->
-    <!-- 4: rural population 2015 -->
-    <!-- 5: rural access electricity -->
-    <!-- 6: gdp per capita 2015 -->
-    <!-- 7: gdp 2015 -->
-    <!-- 8: expenditures 2015 -->
+    <div class="overview"
+         id="overview-{9}">
+      <div id="selector-{9}"
+           class="country-selector col">
+        <svg id="svg-{9}"></svg>
+      </div>
 
-    <h3>Brief overview of {0}:</h3>
+      <h3>Brief overview of {0}:</h3>
 
-    <p>
-      {0}'s population stands at {1} in 2015 and it is estimated to
-      reach {2} by 2030. Only {3}% of the {0} population has access to
-      electricity.
-    </p>
+      <p>
+        {0}'s population stands at {1} in 2015 and it is estimated to
+        reach {2} by 2030. Only {3}% of the {0} population has access to
+        electricity.
+      </p>
 
-    <p>
-      {4}% of the total population resides in rural areas and the
-      level of access is just {5}%.
-    </p>
+      <p>
+        {4}% of the total population resides in rural areas and the
+        level of access is just {5}%.
+      </p>
 
-    <p>
-      The current GDP per capita is {6} USD, while the total GDP
-      accounts for {7} billion USD. The total expenditures in 2015
-      reached {8} billion USD.
-    </p>
+      <p>
+        The current GDP per capita is {6} USD, while the total GDP
+        accounts for {7} billion USD. The total expenditures in 2015
+        reached {8} billion USD.
+      </p>
+    </div>
   </script>
 
   <script data-main="./javascripts/index"

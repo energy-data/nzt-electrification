@@ -1,5 +1,5 @@
 .row .row { margin:  0 -1.5em; }
-.col      { padding: 0  1.5em; }
+/* .col      { padding: 0  1.5em; } */
 
 .row:after {
   content: "";
