@@ -119,6 +119,7 @@ define ['d3', 'topojson'], (d3, topojson) ->
 
   setup_drag = ->
     _svg.call zoom
+      .on "dblclick.zoom", null
 
 
   return map =
