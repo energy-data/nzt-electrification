@@ -108,7 +108,7 @@ define ['utils', 'mode', 'd3', 'map'], (u, mode, d3, map) ->
 
     _d.point['technology'] = tech['name']
 
-    _d.point['urban'] = !!e['u']
+    _d.point['urban'] = (!!e['u']).toString()
 
 
   load = (o) ->
