@@ -157,3 +157,7 @@ text.tier-label {
   display: block;
   line-height: 21px;
 }
+
+.point {
+  cursor: cell;
+}

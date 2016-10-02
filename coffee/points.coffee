@@ -73,9 +73,13 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
           else
             d3.select(locked).attr('stroke-width', 0)
 
-            locked = this
-            d3.select(locked).attr('stroke-width', 0.01)
+            d3.select(this)
+              .attr('stroke-width', 0.02)
+              .raise()
+
             info e, scn, diesel_p
+
+            locked = this
 
 
         .on 'mouseenter', (d) ->
@@ -83,9 +87,7 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
 
           point_info.show()
 
-          d3.select(this)
-            .attr 'stroke', 'red'
-            .attr 'stroke-width', 0.01
+          d3.select(this).attr('stroke-width', 0.01)
 
           info e, scn, diesel_p
 
