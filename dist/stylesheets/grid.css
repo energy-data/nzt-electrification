@@ -7,14 +7,15 @@
   display: table;
 }
 
-@media only screen {
-  .col {
-    float: left;
-    box-sizing: border-box;
+.col {
+  float: left;
+  box-sizing: border-box;
 
-    width: 100%;
-  }
+  width: 100%;
+}
 
+
+@media only screen and (min-width: 768px) {
   .col.c1 { width: 8.33% }
 
   .col.c2 { width: 16.66% }

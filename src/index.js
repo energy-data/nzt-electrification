@@ -12,7 +12,7 @@ requirejs.config({
     'index':      { 'deps': ['web-extras'] },
     'utils':      { 'deps': ['js-extras'] }
   }
-})
+});
 
 require([
   'utils',

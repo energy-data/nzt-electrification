@@ -22,8 +22,7 @@ body {
 }
 
 .country-item {
-  /* font-size: 1.5em; // for normal displays...  */
-  font-size: 1em;
+  font-size: 1.5em;
   text-align: right;
 }
 
@@ -39,4 +38,19 @@ body {
 .country-selector {
   text-align: center;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  #overview {
+    position: absolute;
+    z-index: 0;
+  }
+
+  #overview * {
+    z-index: 0;
+  }
+
+  #country-list {
+    z-index: 1000;
+  }
 }

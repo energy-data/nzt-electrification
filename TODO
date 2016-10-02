@@ -1,14 +1,15 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [3/11] UI/UX
+* [5/12] UI/UX
   - [ ] points: better prompting when > 20000
-  - [ ] index page
+  - [X] index page
   - [ ] navbar: sucks...
   - [ ] points: "loading..." while loading
   - [ ] points: locked red => other colour
   - [ ] points: colouring mode colours
-  - [ ] pane: hide button
+  - [X] pane: hide button
+  - [ ] pane: restore or keep hidden
   - [ ] fonts: unify (left is sans & right is mono)
   - [X] urban: 1 => true, 0 => false
   - [X] knob: tier labels
@@ -24,7 +25,8 @@
   - [ ] coffeescript => ES6
   - [ ] $ grep -r TODO .
 
-* [7/7] BUGS
+* [7/8] BUGS
+  - [ ] knob: label: click => click on text if clunky
   - [X] firefox => writes null on adm1 & adm2 names
   - [X] firefox => knobs not getting styling
   - [X] firefox => knobs => "HIGH" "LOW" not centered
