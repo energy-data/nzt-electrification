@@ -122,7 +122,7 @@ define(['map', 'points'], (map, points) => {
 
       let box = map.to_bbox(d3.select(`path#adm${ adm }-${ adm_v }`).node().getBBox());
 
-      let url = "http://localhost:4000/points?" +
+      let url = `${ _conf['data_source'] }/points?` +
           `select=${ _g.point_attrs }` +
           `&x=gt.${ box[0] }&x=lt.${ box[2] }` +
           `&y=gt.${ box[1] }&y=lt.${ box[3] }` +

@@ -29,14 +29,14 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [4/13] First review
+* [5/13] First review
   - [ ] index: show 3 countries
   - [ ] index: round GDP {per capita, total} and expenditures
   - [ ] add sources links from pdf
   - [ ] map: {color, dashed and solid} transmission lines
   - [ ] background maps
   - [ ] knob: labels: KWh => tier number
-  - [ ] loading points fails (API problem)?
+  - [X] loading points fails (API problem)?
   - [X] new capacity => added capacity
   - [X] capacity units W or KW
   - [X] levelised cost => LCOE in USD/kWh

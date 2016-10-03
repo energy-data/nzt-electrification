@@ -14,7 +14,7 @@ define(['d3'], (d3) => {
 
     d3.queue()
       .defer(d3.json,
-             `http://localhost:4000/${ adm }_records?` +
+             `${ _conf['data_source'] }/${ adm }_records?` +
              `select=results` +
              `&cc=eq.${ _d.place['adm0_code'] }` +
              `&scn=eq.${ _d.scenario['scn'] }` +

@@ -25,6 +25,7 @@ require [
   'mode'
   'knob'
   'navbar'
+  '_conf'
 ],
 
 (_u, _g, _d, scenario, d3, map, points, summary, mode, knob, navbar) ->

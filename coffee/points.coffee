@@ -19,7 +19,7 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
 
   fetch = (o) ->
     d3.queue()
-      .defer d3.json, "http://localhost:4000/points?" +
+      .defer d3.json, "#{ _conf['data_source'] }/points?" +
         "select=#{ _g.point_attrs }" +
         "&x=gt.#{ o.box[0] }&x=lt.#{ o.box[2] }" +
         "&y=gt.#{ o.box[1] }&y=lt.#{ o.box[3] }" +
