@@ -65,7 +65,7 @@ require [
 
 
   set_adm1_fills = (id) ->
-    d3.selectAll('path.adm1').each (e) ->
+    d3.selectAll('.adm1').each (e) ->
       elem = d3.select(this)
 
       if e.id is id
@@ -148,7 +148,7 @@ require [
   show_adm2 = (adm1_id) ->
     _u.check adm1_id
 
-    d3.selectAll('path.adm2').each (e) ->
+    d3.selectAll('.adm2').each (e) ->
       d3.select(this).style 'display', ->
         if e.properties.adm1 is adm1_id then 'block' else 'none'
 

@@ -102,6 +102,13 @@ define ['d3', 'topojson'], (d3, topojson) ->
         .attr 'fill', fill
         .attr 'd', geo_path
 
+    label = container.selectAll "text.adm-label"
+      .data features
+      .enter().append 'text'
+        .attr 'class', "adm-label #{ pathname }"
+        .attr 'transform', (d) -> "translate(#{ geo_path.centroid(d) })"
+        .text (d) -> d.properties['name']
+
 
     if typeof callback is 'function'
       return callback.call this, path

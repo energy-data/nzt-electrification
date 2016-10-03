@@ -15,6 +15,22 @@ path.adm {
   transition: fill .4s ease, opacity .4s ease;
 }
 
+.adm-label {
+  text-anchor: middle;
+  pointer-events: none;
+  stroke: none;
+}
+
+.adm-label.adm1 {
+  fill: black;
+  font-size: 0.008em;
+}
+
+.adm-label.adm2 {
+  fill: #424242;
+  font-size: 0.004em;
+}
+
 path.adm1:hover, path.adm2.hoverable:hover {
   fill: steelblue;
 }

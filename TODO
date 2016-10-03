@@ -14,11 +14,11 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [7/13] Code
+* [8/13] Code
   - [X] KW => kW
   - [ ] points: hydro
   - [X] choose data-source
-  - [ ] map: add names to states and municipalities
+  - [X] map: add names to states and municipalities
   - [ ] exports: current point
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6

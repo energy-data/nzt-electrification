@@ -53,7 +53,7 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
       history.replaceState(null, null, location.updateQueryParam('adm1', null));
       history.replaceState(null, null, location.updateQueryParam('adm2', null));
 
-      d3.selectAll('path.adm2').style('display', 'none');
+      d3.selectAll('.adm2').style('display', 'none');
 
       set_adm1_fills(0);
 
