@@ -224,8 +224,6 @@ require [
     load_adm adm2, 'adm2'
       .on 'click', (d) -> load_adm2 this, d
 
-    d3.selectAll('path.adm2').style 'display', 'none'
-
     map.load_topo
       topo: existing_transmission
       cls: 'line'

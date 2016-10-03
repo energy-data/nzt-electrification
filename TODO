@@ -34,7 +34,7 @@
   - [ ] index: round GDP {per capita, total} and expenditures
   - [ ] add sources links from pdf
   - [ ] map: {color, dashed and solid} transmission lines
-  - [ ] background maps
+  - [ ] background maps?
   - [ ] knob: labels: KWh => tier number
   - [X] loading points fails (API problem)?
   - [X] new capacity => added capacity

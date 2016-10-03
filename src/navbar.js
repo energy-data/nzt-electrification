@@ -95,6 +95,8 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
 
       _d.place['bbox'] = map.to_bbox(target.getBBox());
 
+      history.replaceState(null, null, location.updateQueryParam('load_points', true));
+
       points.load({
         adm: [null, adm, _d.place[`adm${ adm }`]],
         svg_box: target.getBBox()
