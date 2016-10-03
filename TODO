@@ -15,7 +15,9 @@
   - [X] knob: reflect <->
 
 * [5/10] Code
+  - [ ] KW => kW
   - [ ] points: hydro
+  - [ ] choose data-source
   - [ ] map: add names to states and municipalities
   - [ ] exports: current point
   - [ ] scenario: init from url params
@@ -26,6 +28,21 @@
   - [X] c: cleanup
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
+
+* [0/13] First review
+  - [ ] index: show 3 countries
+  - [ ] index: round GDP {per capita, total} and expenditures
+  - [ ] add sources links from pdf
+  - [ ] map: {color, dashed and solid} transmission lines
+  - [ ] background maps
+  - [ ] knob: labels: KWh => tier number
+  - [ ] loading points fails (API problem)?
+  - [ ] new capacity => added capacity
+  - [ ] capacity units W or KW
+  - [ ] levelised cost => LCOE in USD/KWh
+  - [ ] is urban => urban
+  - [ ] summarise capacity kW or MW
+  - [ ] points => settlements NOOOO!
 
 * [7/8] BUGS
   - [ ] knob: label: click => click on text if clunky
