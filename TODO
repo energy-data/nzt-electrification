@@ -29,9 +29,9 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [6/13] First review
+* [7/13] First review
   - [ ] index: show 3 countries
-  - [ ] index: round GDP {per capita, total} and expenditures
+  - [X] index: round GDP {per capita, total} and expenditures
   - [ ] add sources links from pdf
   - [ ] map: {color, dashed and solid} transmission lines
   - [ ] background maps?

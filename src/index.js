@@ -126,9 +126,9 @@ require([
              parseFloat(ind['Access to electricity (% of population)_2012']).toFixed(2).toLocaleString(),
              parseFloat(ind['Rural population (% of total population)_2015']).toFixed(2).toLocaleString(),
              parseFloat(ind['Access to electricity, rural (% of rural population)']).toFixed(2).toLocaleString(),
-             parseFloat(ind['GDP per capita (current US$)_2015']).toFixed(2).toLocaleString(),
-             parseFloat(ind['GDP (current billion US$)']).toFixed(2).toLocaleString(),
-             parseFloat(ind['Expenditures_2015_est_in billion USD']).toFixed(2).toLocaleString(),
+             parseFloat(ind['GDP per capita (current US$)_2015']).toFixed(0).toLocaleString(),
+             parseFloat(ind['GDP (current billion US$)']).toFixed(0).toLocaleString(),
+             parseFloat(ind['Expenditures_2015_est_in billion USD']).toFixed(0).toLocaleString(),
              iso3);
 
       d3.queue()
