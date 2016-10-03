@@ -14,8 +14,8 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [5/10] Code
-  - [ ] KW => kW
+* [6/13] Code
+  - [X] KW => kW
   - [ ] points: hydro
   - [ ] choose data-source
   - [ ] map: add names to states and municipalities
