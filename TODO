@@ -29,7 +29,7 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [0/13] First review
+* [4/13] First review
   - [ ] index: show 3 countries
   - [ ] index: round GDP {per capita, total} and expenditures
   - [ ] add sources links from pdf
@@ -37,10 +37,10 @@
   - [ ] background maps
   - [ ] knob: labels: KWh => tier number
   - [ ] loading points fails (API problem)?
-  - [ ] new capacity => added capacity
-  - [ ] capacity units W or KW
-  - [ ] levelised cost => LCOE in USD/KWh
-  - [ ] is urban => urban
+  - [X] new capacity => added capacity
+  - [X] capacity units W or KW
+  - [X] levelised cost => LCOE in USD/kWh
+  - [X] is urban => urban
   - [ ] summarise capacity kW or MW
   - [ ] points => settlements NOOOO!
 
