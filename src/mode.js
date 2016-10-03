@@ -11,8 +11,6 @@ define(['dictionary'], (dictionary) => {
       range[1];
   };
 
-  // TODO: set colour per mode. (not just black!)
-  //
   var modes = [{
     type: "technology",
     full: "Technology",

@@ -3,29 +3,28 @@
 
 * [7/12] UI/UX
   - [ ] points: better prompting when > 20000
-  - [X] index page
-  - [X] navbar: sucks...
   - [ ] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
   - [ ] points: colouring mode colours
   - [X] pane: hide button
   - [X] pane: restore or keep hidden
-  - [ ] fonts: unify (left is sans & right is mono)
+  - [X] index page
+  - [X] navbar: sucks...
   - [X] urban: 1 => true, 0 => false
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [4/9] Code
-  - [X] exports: review...
-  - [ ] exports: improve filenames
+* [5/10] Code
   - [ ] points: hydro
-  - [X] c: cleanup
-  - [X] knob: do not reload if not "technology mode"
-  - [X] global-things to _things
   - [ ] exports: current point
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6
   - [ ] $ grep -r TODO .
+  - [X] exports: review...
+  - [X] exports: improve filenames
+  - [X] c: cleanup
+  - [X] knob: do not reload if not "technology mode"
+  - [X] global-things to _things
 
 * [7/8] BUGS
   - [ ] knob: label: click => click on text if clunky
