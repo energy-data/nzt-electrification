@@ -82,6 +82,22 @@ define(['map', 'points'], (map, points) => {
       });
     });
 
+    $('.load-points').on('click', (e) => {
+      e.preventDefault();
+
+      let adm   = (_d.place['adm2'] ?            2              :   1);
+      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
+
+      let target = d3.select(`path#adm${ adm }-${ adm_v }`).node();
+
+      _d.place['bbox'] = map.to_bbox(target.getBBox());
+
+      points.load({
+        adm: [null, adm, _d.place[`adm${ adm }`]],
+        svg_box: target.getBBox()
+      });
+    });
+
     $('.export-summary').on('click', (e) => {
       e.preventDefault();
 
