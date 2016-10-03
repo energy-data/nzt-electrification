@@ -16,6 +16,7 @@
 
 * [5/10] Code
   - [ ] points: hydro
+  - [ ] map: add names to states and municipalities
   - [ ] exports: current point
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6

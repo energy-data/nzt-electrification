@@ -42,19 +42,16 @@ define(['map', 'points'], (map, points) => {
       $('#point-info').hide();
       points.clear(true);
 
+      history.pushState(null, null, location.updateQueryParam('load_points', false));
+
       _d.place['adm1'] = undefined;
       _d.place['adm1_name'] = undefined;
 
       _d.place['adm2'] = undefined;
       _d.place['adm2_name'] = undefined;
 
-      history.pushState(null, null, location.updateQueryParam('load_points', false));
-
-      if (location.getQueryParam('adm1'))
-        history.replaceState(null, null, location.updateQueryParam('adm1', null));
-
-      if (location.getQueryParam('adm2'))
-        history.replaceState(null, null, location.updateQueryParam('adm2', null));
+      history.replaceState(null, null, location.updateQueryParam('adm1', null));
+      history.replaceState(null, null, location.updateQueryParam('adm2', null));
 
       d3.selectAll('path.adm2').style('display', 'none');
 
