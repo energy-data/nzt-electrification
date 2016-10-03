@@ -89,7 +89,7 @@ require [
     history.pushState null, null, location.updateQueryParam('adm1', d['id'])
 
     if location.getQueryParam 'adm2'
-      history.replaceState null, null, location.updateQueryParam('adm2', null)
+      history.pushState null, null, location.updateQueryParam('adm2', null)
 
     history.replaceState null, null, location.updateQueryParam('load_points', false)
 

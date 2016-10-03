@@ -48,8 +48,14 @@ define(['map', 'points'], (map, points) => {
       _d.place['adm2'] = undefined;
       _d.place['adm2_name'] = undefined;
 
-      history.replaceState(null, null, location.updateQueryParam('adm1', null));
-      history.replaceState(null, null, location.updateQueryParam('adm2', null));
+      history.pushState(null, null, location.updateQueryParam('load_points', false));
+
+      if (location.getQueryParam('adm1'))
+        history.replaceState(null, null, location.updateQueryParam('adm1', null));
+
+      if (location.getQueryParam('adm2'))
+        history.replaceState(null, null, location.updateQueryParam('adm2', null));
+
       d3.selectAll('path.adm2').style('display', 'none');
 
       set_adm1_fills(0);
