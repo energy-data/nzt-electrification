@@ -141,6 +141,7 @@ require [
   #
   window.load_adm1 = load_adm1
   window.load_adm2 = load_adm2
+  window.set_adm1_fills = set_adm1_fills
 
 
   show_adm2 = (adm1_id) ->
