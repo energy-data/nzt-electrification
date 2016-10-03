@@ -1,7 +1,5 @@
-define(['dictionary'], (dictionary) => {
+define([], () => {
   var tc = _g.technologies.map((t) => t ? t['color'] : null);
-
-  var dg = dictionary['point'];
 
   var mss = '#mode-selector';
 
