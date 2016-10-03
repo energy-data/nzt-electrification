@@ -100,7 +100,7 @@ require [
 
     map.resize_to
       node: it
-      duration: 1000
+      duration: 600
 
     show_adm2 d.id
 
@@ -127,19 +127,21 @@ require [
 
     _d.place['bbox'] = map.to_bbox it.getBBox()
 
-    points.load
-      adm: it.id.match /adm(.*)-(\d*)?/
-      svg_box: it.getBBox()
+    if location.getQueryParam('load_points').toBoolean()
+      points.load
+        adm: it.id.match /adm(.*)-(\d*)?/
+        svg_box: it.getBBox()
 
     map.resize_to
       node: it
-      duration: 1000
+      duration: 600
 
 
   # TODO: remove this (used in navbar)
   #
   window.load_adm1 = load_adm1
   window.load_adm2 = load_adm2
+
 
   show_adm2 = (adm1_id) ->
     _u.check adm1_id

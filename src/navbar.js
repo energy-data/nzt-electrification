@@ -39,14 +39,14 @@ define(['map', 'points'], (map, points) => {
     });
 
     $('[data="adm0_name"]').on('click', (e) => {
-      // $('#point-info').hide();
-      // points.clear(true);
+      $('#point-info').hide();
+      points.clear(true);
 
-      // _d.place['adm1'] = undefined;
-      // _d.place['adm1_name'] = undefined;
+      _d.place['adm1'] = undefined;
+      _d.place['adm1_name'] = undefined;
 
-      // _d.place['adm2'] = undefined;
-      // _d.place['adm2_name'] = undefined;
+      _d.place['adm2'] = undefined;
+      _d.place['adm2_name'] = undefined;
 
       map.resize_to({
         node: d3.select('#container').node(),
@@ -57,48 +57,26 @@ define(['map', 'points'], (map, points) => {
     $('[data="adm1_name"]').on('click', (e) => {
       e.preventDefault();
 
-      let it = d3.select(`path#adm1-${ _d.place['adm1'] }`).node();
+      let target = d3.select(`path#adm1-${ _d.place['adm1'] }`);
 
-      load_adm1(it, {
+      load_adm1(target.node(), {
         id: _d.place['adm1'],
         properties: {
           name: _d.place['adm1_name']
         }
       });
-
-      // _d.place['bbox'] = map.to_bbox it.getBBox()
-
-      // points.load
-      //   adm: [null, 1, _d.place['adm1']]
-      //   svg_box: it.getBBox()
-
-      // history.replaceState null, null, location.updateQueryParam('load_points', true);
     });
 
     $('[data="adm2_name"]').on('click', (e) => {
       e.preventDefault();
 
-      let d3it = d3.select(`path#adm2-${ _d.place['adm2'] }`)
-      let it   = d3it.node();
-
-      load_adm2(it, {
-        id: _d.place['adm2'],
-        properties: {
-          adm1: d3it.datum().properties['adm1'],
-          name: _d.place['adm2_name']
-        }
+      map.resize_to({
+        node: d3.select(`path#adm2-${ _d.place['adm2'] }`).node(),
+        duration: 600
       });
-
-      // _d.place['bbox'] = map.to_bbox it.getBBox()
-
-      // points.load
-      //   adm: [null, 1, _d.place['adm1']]
-      //   svg_box: it.getBBox()
-
-      // history.replaceState null, null, location.updateQueryParam('load_points', true);
     });
 
-    $('#export-summary').on('click', (e) => {
+    $('.export-summary').on('click', (e) => {
       e.preventDefault();
 
       _u.dwnld(JSON.stringify({
@@ -107,15 +85,26 @@ define(['map', 'points'], (map, points) => {
       }), 'export-summary.json');
     });
 
-    $('#export-points').on('click', (e) => {
+    $('.export-points').on('click', (e) => {
       e.preventDefault();
 
-      if (!_d.point_collection['points'] || !_d.point_collection['points'].length) {
-        alert("Theres no points to export. Load some first.");
-        return;
-      }
+      let adm   = (_d.place['adm2'] ?            "2"              : "1");
+      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
 
-      _u.dwnld(JSON.stringify(_d.point_collection['points']), 'export-points.json');
+      let box = map.to_bbox(d3.select(`path#adm${ adm }-${ adm_v }`).node().getBBox());
+
+      let url = "http://localhost:4000/points?" +
+          `select=${ _g.point_attrs }` +
+          `&x=gt.${ box[0] }&x=lt.${ box[2] }` +
+          `&y=gt.${ box[1] }&y=lt.${ box[3] }` +
+          `&adm${ adm }=eq.${ adm_v }` +
+          `&cc=eq.${ _d.place['adm0_code'] }`;
+
+      d3.queue()
+        .defer(d3.text(url).header("accept", "text/csv").get)
+        .await((error, response) => {
+          _u.dwnld(response, `export-points-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`);
+        });
     });
 
     $('#controls-control').on('click', (e) => {
