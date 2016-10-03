@@ -48,6 +48,9 @@ define(['map', 'points'], (map, points) => {
       _d.place['adm2'] = undefined;
       _d.place['adm2_name'] = undefined;
 
+      history.replaceState(null, null, location.updateQueryParam('adm1', null));
+      history.replaceState(null, null, location.updateQueryParam('adm2', null));
+
       map.resize_to({
         node: d3.select('#container').node(),
         duration: 1000
@@ -79,10 +82,14 @@ define(['map', 'points'], (map, points) => {
     $('.export-summary').on('click', (e) => {
       e.preventDefault();
 
+      let adm   = (_d.place['adm2'] ?            "2"              : "1");
+      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
+
       _u.dwnld(JSON.stringify({
         location: _d.place,
+        scenario: _d.scenario['scn'],
         technology_results: _d.summary['results']
-      }), 'export-summary.json');
+      }), `summary-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }-${ _d.scenario['scn'] }.json`);
     });
 
     $('.export-points').on('click', (e) => {
@@ -103,7 +110,7 @@ define(['map', 'points'], (map, points) => {
       d3.queue()
         .defer(d3.text(url).header("accept", "text/csv").get)
         .await((error, response) => {
-          _u.dwnld(response, `export-points-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`);
+          _u.dwnld(response, `points-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`);
         });
     });
 
