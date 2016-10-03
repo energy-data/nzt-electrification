@@ -186,25 +186,25 @@ require [
     _d.place['callback'] = [
       'adm1',
       (args...) ->
-        if typeof args[2] isnt 'number'
-          console.log "This adm1 is dodgy: #{ args[2] }. Assuming adm0..."
-          $('[data="adm1_name"]').closest('.with-dropdown').hide()
-
-        else
+        if typeof args[2] is 'number'
           summary.fetch()
           $('[data="adm1_name"]').closest('.with-dropdown').show()
+
+        else
+          console.log "This adm1 is dodgy: #{ args[2] }. Assuming adm0..."
+          $('[data="adm1_name"]').closest('.with-dropdown').hide()
     ]
 
     _d.place['callback'] = [
       'adm2',
       (args...) ->
-        if typeof args[2] isnt 'number'
-          console.log "This adm2 is dodgy: #{ args[2] }. Assuming adm1..."
-          $('[data="adm2_name"]').closest('.with-dropdown').hide()
-
-        else
+        if typeof args[2] is 'number'
           summary.fetch()
           $('[data="adm2_name"]').closest('.with-dropdown').show()
+
+        else
+          console.log "This adm2 is dodgy: #{ args[2] }. Assuming adm1..."
+          $('[data="adm2_name"]').closest('.with-dropdown').hide()
     ]
 
     # Map drawing
