@@ -1,4 +1,4 @@
-define(['map', 'points'], (map, points) => {
+define(['d3', 'map', 'points'], (d3, map, points) => {
   var setup = () => {
     $('.close-button').on('click', (e) => {
       e.preventDefault();
