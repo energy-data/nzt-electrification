@@ -43,7 +43,7 @@ define(['d3'], (d3) => {
       '#summary-info table',
       total_pts.toLocaleString(),
       total_population.toLocaleString(),
-      total_capacity.toLocaleString(),
+      (total_capacity / 1000).toFixed(2).toLocaleString(),
       total_investments.toLocaleString()
     );
 

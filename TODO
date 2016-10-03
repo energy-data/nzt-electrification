@@ -14,10 +14,10 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [6/13] Code
+* [7/13] Code
   - [X] KW => kW
   - [ ] points: hydro
-  - [ ] choose data-source
+  - [X] choose data-source
   - [ ] map: add names to states and municipalities
   - [ ] exports: current point
   - [ ] scenario: init from url params
@@ -29,7 +29,7 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [5/13] First review
+* [6/13] First review
   - [ ] index: show 3 countries
   - [ ] index: round GDP {per capita, total} and expenditures
   - [ ] add sources links from pdf
@@ -41,7 +41,7 @@
   - [X] capacity units W or KW
   - [X] levelised cost => LCOE in USD/kWh
   - [X] is urban => urban
-  - [ ] summarise capacity kW or MW
+  - [X] summarise capacity kW or MW
   - [ ] points => settlements NOOOO!
 
 * [7/8] BUGS
