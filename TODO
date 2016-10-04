@@ -1,7 +1,7 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [13/21] UI/UX
+* [14/23] UI/UX
   - [ ] index: pretty graphs for everything
   - [ ] landing
   - [ ] points: better prompting when > 20000
@@ -12,7 +12,7 @@
   - [ ] knob: labels: KWh => tier number
   - [ ] knob: high low (diesel price)
   - [ ] add sources links from pdf
-  - [ ] points => cells
+  - [X] points => cells
   - [X] faster font transitions
   - [X] GHI in kWh/m^2
   - [X] WPCF in %

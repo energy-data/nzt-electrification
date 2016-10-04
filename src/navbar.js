@@ -134,7 +134,7 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
       d3.queue()
         .defer(d3.text(url).header("accept", "text/csv").get)
         .await((error, response) => {
-          _u.dwnld(response, `points-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`);
+          _u.dwnld(response, `cells-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`);
         });
     });
 
