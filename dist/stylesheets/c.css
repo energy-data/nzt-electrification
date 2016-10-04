@@ -22,13 +22,13 @@ path.adm {
 }
 
 .adm-label.adm1 {
-  fill: black;
-  font-size: 0.008em;
+  fill: #333333;
+  transition: font-size 0.8s ease;
 }
 
 .adm-label.adm2 {
   fill: #424242;
-  font-size: 0.004em;
+  transition: font-size 0.8s ease;
 }
 
 path.adm1:hover, path.adm2.hoverable:hover {

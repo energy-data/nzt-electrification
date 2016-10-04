@@ -41,7 +41,9 @@ require [
     .attr 'width',  d3.select('html').node().clientWidth
     .attr 'height', d3.select('html').node().clientHeight
 
-  d3.select('#container').attr 'transform', "scale(25)"
+  # TOOD: I don't know...
+  #
+  d3.select('#container').attr 'transform', "scale(2)"
 
   window.onpopstate = (e) ->
     points.clear true
@@ -51,11 +53,15 @@ require [
   load_adm = (topo, pathname, callback) ->
     _u.check topo, pathname
 
+    all_paths = d3.select('#container').append('g')
+      .attr('id', "all-paths-#{ pathname }")
+
     path = map.load_topo
       topo: topo
       pathname: pathname
       cls: 'adm hoverable'
       fill: 'white'
+      container: all_paths
 
     if typeof callback is 'function'
       return callback.call this, path
@@ -224,6 +230,8 @@ require [
     load_adm adm2, 'adm2'
       .on 'click', (d) -> load_adm2 this, d
 
+    points.init()
+
     map.load_topo
       topo: existing_transmission
       cls: 'line'
@@ -259,7 +267,7 @@ require [
         return "#adm2-#{ admin2 }"
 
       else
-        return '#container'
+        return '#all-paths-adm1'
     )()
 
     if admin2 > -1
@@ -300,7 +308,7 @@ require [
 
     map.resize_to
       node: target.node()
-      duration: 1
+      duration: 0
       callback: ->
         $('.loading').fadeOut(2000)
 

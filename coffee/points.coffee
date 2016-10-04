@@ -3,19 +3,21 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
   # Variables:
   #
 
+  _container = null
+  _info = null
+
   count_threshold = 20000
 
-  _container = d3.select('#container')
-
-  point_info = $('#point-info')
-
   locked = null
-
-  _u.check _container, point_info
 
   #
   # Function definitions:
   #
+
+  init = () ->
+    _container = d3.select('#all-paths-adm2')
+    _info = $('#point-info')
+
 
   fetch = (o) ->
     d3.queue()
@@ -85,7 +87,7 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
         .on 'mouseenter', (d) ->
           return if locked isnt null
 
-          point_info.show()
+          _info.show()
 
           d3.select(this).attr('stroke-width', 0.01)
 
@@ -141,3 +143,4 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
     draw: draw
     load: load
     clear: clear
+    init: init

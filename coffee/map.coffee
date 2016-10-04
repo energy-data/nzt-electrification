@@ -35,8 +35,6 @@ define ['d3', 'topojson'], (d3, topojson) ->
 
     _u.check node, container, svg
 
-    transition = duration > 0
-
     box = node.getBBox()
 
     w = box.width  + (padding * 2)
@@ -47,35 +45,33 @@ define ['d3', 'topojson'], (d3, topojson) ->
 
     factor = Math.min cw/w, ch/h
 
-    if transition
-      center = [
-        box['x'] + (box['width']  / 2)
-        box['y'] + (box['height'] / 2)
-      ]
+    center = [
+      box['x'] + (box['width']  / 2)
+      box['y'] + (box['height'] / 2)
+    ]
 
-      svg.transition()
-        .delay delay
-        .duration duration
-        .call(
-          zoom.transform,
-          d3.zoomIdentity
-            .translate(
-              svg.node().parentNode.clientWidth  / 2,
-              svg.node().parentNode.clientHeight / 2
-            )
-            .scale factor
-            .translate -center[0], -center[1]
+    svg.transition()
+      .delay delay
+      .duration duration
+      .call(
+        zoom.transform,
+        d3.zoomIdentity
+          .translate(
+            svg.node().parentNode.clientWidth  / 2,
+            svg.node().parentNode.clientHeight / 2
           )
-
-    else
-      x_shift = (-box.x + padding) * factor
-      y_shift = (-box.y + padding) * factor
-
-      container
-        .attr 'transform', "translate(#{ x_shift }, #{ y_shift })scale(#{ factor })"
+          .scale factor
+          .translate -center[0], -center[1]
+        )
 
     d3.selectAll('path.adm, path.line').attr('stroke-width', 1.2 / factor)
     d3.selectAll('path.line').raise()
+
+    d3.selectAll("text.adm-label")
+      .attr 'font-size', (d) ->
+        if d.properties['adm1'] then "#{ 1 / factor }em"
+        else "#{ 1.1 / factor }em"
+
 
     if typeof callback is 'function' then callback.apply null, arguments
 
@@ -107,6 +103,7 @@ define ['d3', 'topojson'], (d3, topojson) ->
       .enter().append 'text'
         .attr 'class', "adm-label #{ pathname }"
         .attr 'transform', (d) -> "translate(#{ geo_path.centroid(d) })"
+        .attr 'font-size', "#{ 1/ 25 }em" # TOOD: I don't know...
         .text (d) -> d.properties['name']
 
 
