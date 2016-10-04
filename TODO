@@ -29,8 +29,8 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [8/13] First review
-  - [ ] index: show 3 countries
+* [9/13] First review
+  - [X] index: show 3 countries
   - [ ] knob: labels: KWh => tier number
   - [ ] add sources links from pdf
   - [ ] background maps?

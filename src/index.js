@@ -21,9 +21,7 @@ require([
   'topojson',
   'map',
 ], (u, _g, d3, topojson, map) => {
-  var width = $('#overview')[0].clientWidth - 60;
-
-  if (width > 500) width = 500;
+  var width = $('body')[0].clientHeight / 3;
 
   let flag_style = (svg, iso3) => {
     let defs = svg.append('defs');
@@ -82,16 +80,7 @@ require([
         path
           .attr('fill', `url(#flag-${ iso3 })`)
           .attr('style', 'filter:url(#dropshadow)')
-          .attr('stroke', 'none')
-
-          .on('click', () => {
-            $('.country-selector').map((i,c) => {
-              if (c.id !== `selector-${ iso3 }`)
-                d3.select(c).style('opacity', 0);
-            });
-
-            setTimeout((() => window.location = `/c.html?iso3=${ iso3 }`), 600);
-          });
+          .attr('stroke', 'none');
 
         map.resize_to({
           node: path.node(),
@@ -136,11 +125,15 @@ require([
         .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
         .await((error, adm0) => load(iso3, adm0));
 
-      $('.country-item').on('click', (e) => {
+      $('li.country-item').on('click', (e) => {
         e.preventDefault();
 
+        $('#select-something').remove();
+
+        let iso3 = $(e.target).closest('.country-item').attr('iso3');
+
         $('.overview').css('visibility', 'hidden');
-        $(`#overview-${ $(e.target).attr('iso3') }`).css('visibility', 'visible');
+        $(`#overview-${ iso3 }`).css('visibility', 'visible');
       });
     };
   }

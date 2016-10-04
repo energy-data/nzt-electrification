@@ -16,19 +16,27 @@
 
   <body class="row">
     <div id="country-list"
-         class="pane col c3">
+         class="pane col c6">
       <ul></ul>
     </div>
 
     <div id="overview"
-         class="col c9"></div>
+         class="col c6">
+      <div id="select-something">
+        Select a country...
+      </div>
+    </div>
   </body>
 
   <script id="li-template"
           type="text/template">
-    <li class="country-item">
-      <a href="#"
-         iso3="{1}">{0}</a>
+    <li class="country-item row"
+        iso3="{1}">
+      <div class="col c6">
+        <svg id="svg-{1}"></svg>
+      </div>
+
+      <div class="col c6 number no-mobile country-name">{0}</div>
     </li>
   </script>
 
@@ -46,11 +54,6 @@
           type="text/template">
     <div class="overview"
          id="overview-{9}">
-      <div id="selector-{9}"
-           class="country-selector col">
-        <svg id="svg-{9}"></svg>
-      </div>
-
       <h3>Brief overview of {0}:</h3>
 
       <p>
@@ -69,6 +72,9 @@
         accounts for {7} billion USD. The total expenditures in 2015
         reached {8} billion USD.
       </p>
+
+      <a href="/c.html?iso3={9}"
+         style="float: right; font-size: large;">Explore {0}</a>
     </div>
   </script>
 

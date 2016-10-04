@@ -96,6 +96,17 @@ a:hover {
   animation: spin 2s linear infinite;
 }
 
+a[data], .number {
+  color: #7587A6;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .no-mobile {
+    display: none;
+  }
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

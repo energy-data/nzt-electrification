@@ -6,11 +6,6 @@ svg#svg {
   width: 100%;
 }
 
-a[data], .number {
-  color: #7587A6;
-  font-weight: bold;
-}
-
 path.adm {
   transition: fill .4s ease, opacity .4s ease;
 }
