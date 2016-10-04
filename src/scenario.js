@@ -66,13 +66,13 @@ define(['summary'], (summary) => {
 
     let sss = '#scenario-selector select';
 
-    _g.scenarios.map((t) => {
+    for (let t of _g.scenarios) {
       _u.tmpl(
         '#scenario-option-template',
         sss,
         t, expand(t)
       );
-    });
+    };
 
     $(sss).on('change', (e) => {
       let v = $(e.target).val();

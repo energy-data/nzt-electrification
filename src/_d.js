@@ -30,11 +30,7 @@ define(['_g'], (_g) => {
 
   _d = {};
 
-  _g.bound_objects.map((o) => {
-    _d[o] = binder();
-  });
+  for (let o of _g.bound_objects) _d[o] = binder();
 
-  window._d = _d;
-
-  return _d;
+  return (window._d = _d);
 });

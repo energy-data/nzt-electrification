@@ -23,6 +23,7 @@ define(['d3'], (d3) => {
         if (error) console.log(error);
 
         let r = results.map((x) => x['results']);
+
         handle(r);
         _d.summary['results'] = r;
       });

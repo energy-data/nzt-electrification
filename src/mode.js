@@ -73,7 +73,8 @@ define([], () => {
   var load_selector = () => {
     clear_selector();
 
-    modes.map((m) => _u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']));
+    for (let m of modes)
+      _u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']);
 
     let $mssa = $(mss + ' a');
 

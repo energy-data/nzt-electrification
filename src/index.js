@@ -112,7 +112,7 @@ require([
 
     let size = 12 / countries.length;
 
-    countries.map((c) => {
+    for (let c of countries) {
       let iso3 = c['iso3'];
 
       let ind = indicators.find((x) => parseInt(x['Country Code']) === c['code']);
@@ -142,7 +142,7 @@ require([
         $('.overview').css('visibility', 'hidden');
         $(`#overview-${ $(e.target).attr('iso3') }`).css('visibility', 'visible');
       });
-    });
+    };
   }
 
   d3.queue()
