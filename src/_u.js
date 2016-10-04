@@ -35,7 +35,7 @@ define([], () => {
   };
 
   var percent = (x, y, p) => {
-    return ((x / y) * 100).toFixed(p || 2) + "%";
+    return ((x / y) * 100).toFixed(p || 2);
   };
 
   return (window._u = {

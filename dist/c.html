@@ -210,14 +210,15 @@
         <tr>
           <td>Global Horizontal Irradiance</td>
           <td class="right">
-            <span class="number" data="ghi"></span>
+            <span class="number" data="ghi"></span> kWh/m<sup>2</sup>
           </td>
         </tr>
 
         <tr>
           <td>Wind Power Capacity Factor</td>
           <td class="right">
-            <span class="number" data="w_cf"></span>
+            <!-- formatted w_cf -->
+            <span class="number" data="wind"></span> %
           </td>
         </tr>
 
@@ -238,13 +239,14 @@
         <tr>
           <td>Levelised Cost of Diesel</td>
           <td class="right">
-            <span class="number" data="lcsa"></span> USD
+            <span class="number" data="lcsa"></span> USD/kWh
           </td>
         </tr>
 
         <tr>
-          <td>Urban</td>
+          <td>Urban/Rural</td>
           <td class="right">
+            <!-- formatted u -->
             <span class="number" data="urban"></span>
           </td>
         </tr>
@@ -286,14 +288,14 @@
     <tr>
       <td style="background-color: {1};">&nbsp;</td>
       <td>{0}</td>
-      <td class="right number">{2}</td>
-      <td class="right number">{3}</td>
-      <td class="right number">{4}</td>
-      <td class="right number">{5}</td>
-      <td class="right number">{6}</td>
-      <td class="right number">{7}</td>
-      <td class="right number">{8}</td>
-      <td class="right number">{9}</td>
+      <td class="right"><span class="number">{2}</span></td>
+      <td class="right"><span class="number">{3}</span> %</td>
+      <td class="right"><span class="number">{4}</span></td>
+      <td class="right"><span class="number">{5}</span> %</td>
+      <td class="right"><span class="number">{6}</span></td>
+      <td class="right"><span class="number">{7}</span> %</td>
+      <td class="right"><span class="number">{8}</span></td>
+      <td class="right"><span class="number">{9}</span> %</td>
     </tr>
   </script>
 

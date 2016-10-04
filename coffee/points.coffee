@@ -112,7 +112,8 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
 
     _d.point['technology'] = tech['name']
 
-    _d.point['urban'] = (!!e['u']).toString()
+    _d.point['urban'] = if e['u'] then "Urban" else "Rural"
+    _d.point['wind']  = _u.percent(e['w_cf'], 1)
 
 
   load = (o) ->
