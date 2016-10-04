@@ -10,6 +10,10 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
 
   locked = null
 
+  fill = null
+  stroke = null
+  stroke_width = null
+
   #
   # Function definitions:
   #
@@ -39,6 +43,12 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
     if full then _d.point_collection['points'] = []
 
 
+  reset_stroke = (it) =>
+    d3.select(it)
+      .attr('stroke-width', stroke_width)
+      .attr('stroke', stroke)
+
+
   draw = (points) ->
     return if not points?
 
@@ -50,6 +60,8 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
     clear()
 
     fill = mode.fill()
+    stroke = mode.stroke()
+    stroke_width = mode.stroke_width()
 
     points.map (e) ->
       _container.append("path")
@@ -60,12 +72,11 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
         .attr 'class', "point"
         .attr 'd', map.geo_path
         .attr 'fill', -> fill e, scn
-        .attr 'stroke', 'red'
-        .attr 'stroke-width', 0
+        .attr 'stroke', -> stroke
+        .attr 'stroke-width', -> stroke_width
 
         .on 'mouseleave', (d) ->
-          if this isnt locked then d3.select(this).attr('stroke-width', 0)
-
+          if this isnt locked then reset_stroke this
 
         .on 'click', (d) ->
           if this is locked
@@ -73,9 +84,10 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
             locked = null
 
           else
-            d3.select(locked).attr('stroke-width', 0)
+            reset_stroke locked
 
             d3.select(this)
+              .attr('stroke', 'red')
               .attr('stroke-width', 0.02)
               .raise()
 
@@ -89,7 +101,9 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
 
           _info.show()
 
-          d3.select(this).attr('stroke-width', 0.01)
+          d3.select(this)
+            .attr('stroke-width', 0.01)
+            .attr('stroke', 'red')
 
           info e, scn, diesel_p
 

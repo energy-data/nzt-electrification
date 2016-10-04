@@ -3,7 +3,13 @@ define([], () => {
 
   var mss = '#mode-selector';
 
-  var l_scale = (v, domain = [0, 100], range = [0.2, 1]) => {
+  var fill         = () => tm()['fill'];
+  var stroke       = () => tm()['stroke'];
+  var stroke_width = () => tm()['stroke_width'];
+
+  var tm = () => modes.find((m) => m['type'] === _d.mode['type']);
+
+  var l_scale = (v, domain = [0, 100], range = [0, 1]) => {
     return v < domain[1] ?
       ((v / domain[1]) * (range[1] - range[0])) + range[0] :
       range[1];
@@ -18,12 +24,16 @@ define([], () => {
     type: "population",
     full: "Population",
     icon: "people",
-    fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['p_2030'], [0, 1000]) })`
+    fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['p_2030'], [0, 1000]) })`,
+    stroke: "lightgray",
+    stroke_width: 0.001
   }, {
     type: "w_cf",
     full: "Wind",
     icon: "cloud",
-    fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['w_cf'], [0, 0.4]) })`
+    fill: (g) => `rgba(0, 80, 255, ${ l_scale(g['w_cf'], [0, 0.4]) })`,
+    stroke: "rgba(0, 80, 255, 0.4)",
+    stroke_width: 0.001
   }, {
     type: "ghi",
     full: "GHI",
@@ -68,8 +78,6 @@ define([], () => {
 
   var clear_selector = () => $(mss).html('<ul></ul>');
 
-  var fill = () => modes.find((m) => m['type'] === _d.mode['type'])['fill'];
-
   var load_selector = () => {
     clear_selector();
 
@@ -92,8 +100,10 @@ define([], () => {
   };
 
   return {
-    init:  init,
+    init: init,
     modes: modes,
-    fill:  fill
+    fill: fill,
+    stroke: stroke,
+    stroke_width: stroke_width
   };
 });
