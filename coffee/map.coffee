@@ -102,7 +102,7 @@ define ['d3', 'topojson'], (d3, topojson) ->
         .attr 'fill', fill
         .attr 'd', geo_path
 
-    label = container.selectAll "text.adm-label"
+    label = container.selectAll "text.adm-label.#{ pathname }"
       .data features
       .enter().append 'text'
         .attr 'class', "adm-label #{ pathname }"
