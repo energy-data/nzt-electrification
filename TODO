@@ -1,16 +1,19 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [11/20] UI/UX
+* [13/21] UI/UX
+  - [ ] index: pretty graphs for everything
+  - [ ] landing
   - [ ] points: better prompting when > 20000
   - [ ] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
   - [ ] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
-  - [ ] back to country selection
+  - [X] back to country selection
   - [ ] knob: labels: KWh => tier number
+  - [ ] knob: high low (diesel price)
   - [ ] add sources links from pdf
-  - [ ] points => settlements NOOOO!
-  - [ ] faster font transitions
+  - [ ] points => cells
+  - [X] faster font transitions
   - [X] GHI in kWh/m^2
   - [X] WPCF in %
   - [X] Levelised Cost of Diesel gensets: USD/kWh

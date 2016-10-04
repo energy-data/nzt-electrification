@@ -4,10 +4,6 @@ body {
   width: 100%;
 }
 
-ul {
-  margin: 0px !important;
-}
-
 .overview {
   visibility: hidden;
   position: absolute;
@@ -30,15 +26,6 @@ ul {
   text-align: center;
   cursor: pointer;
   margin: 0 !important;
-}
-
-.country-item a {
-  padding: 20px;
-  display: block;
-}
-
-.country-item:hover {
-  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .country-name {

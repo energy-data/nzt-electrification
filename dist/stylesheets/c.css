@@ -6,6 +6,16 @@ svg#svg {
   width: 100%;
 }
 
+#home {
+  font-size: x-large;
+  margin-top: 1em;
+}
+
+#home a {
+  display: block;
+  padding: 10px !important;
+}
+
 path.adm {
   transition: fill .4s ease, opacity .4s ease;
 }
@@ -42,12 +52,8 @@ path.adm1:hover, path.adm2.hoverable:hover {
   width: 100%;
 }
 
-#navbar .col > .clickable {
+#navbar .col.clickable > a {
   padding: 20px 0;
-}
-
-#navbar .col > a.material-icons {
-  padding: 18px 0;
 }
 
 #point-info {
@@ -107,10 +113,13 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
   font-size: 0.8em;
 
-  padding: 20px;
-  top: 60px;
+  top: 64px;
 
   height: 100%;
+}
+
+#controls h3 {
+  margin-left: 1em;
 }
 
 .active {
@@ -120,12 +129,10 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 #mode-selector li {
   display: inline-block;
-  width: 30%;
 }
 
 #mode-selector li a {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
 
   display: block;
 }
@@ -185,19 +192,10 @@ text.tier-label {
   position: relative;
 }
 
-.clickable {
-  cursor: pointer;
-  display: block;
-}
-
-.clickable:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
 .dropdown {
   position: absolute;
 
-  top: 44px;
+  top: 48px;
   width: 100%;
 
   display: none;

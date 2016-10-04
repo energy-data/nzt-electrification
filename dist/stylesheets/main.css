@@ -22,6 +22,7 @@ ul {
 }
 
 a {
+  display: block !important;
   color: #7587A6;
   text-decoration: none;
 }
@@ -29,6 +30,24 @@ a {
 a:hover {
   color: #7587A6;
   text-decoration: none;
+}
+
+a:active, a.active {
+  color: white;
+}
+
+.clickable {
+  cursor: pointer;
+  display: block;
+}
+
+.clickable a {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.clickable:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .right {
@@ -96,7 +115,7 @@ a:hover {
   animation: spin 2s linear infinite;
 }
 
-a[data], .number {
+[data], .number {
   color: #7587A6;
   font-weight: bold;
 }

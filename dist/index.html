@@ -17,7 +17,7 @@
   <body class="row">
     <div id="country-list"
          class="pane col c6">
-      <ul></ul>
+      <ul style="margin: 0px !important;"></ul>
     </div>
 
     <div id="overview"
@@ -30,13 +30,15 @@
 
   <script id="li-template"
           type="text/template">
-    <li class="country-item row"
+    <li class="country-item row clickable"
         iso3="{1}">
       <div class="col c6">
         <svg id="svg-{1}"></svg>
       </div>
 
-      <div class="col c6 number no-mobile country-name">{0}</div>
+      <div class="col c6 number no-mobile country-name">
+        <a href="#">{0}</a>
+      </div>
     </li>
   </script>
 
