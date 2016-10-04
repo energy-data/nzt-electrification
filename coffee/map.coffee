@@ -32,6 +32,7 @@ define ['d3', 'topojson'], (d3, topojson) ->
     padding   = o.padding  || 0.5
     container = o.container || _container
     callback  = o.callback
+    interact  = o.interact isnt false
 
     _u.check node, container, svg
 
@@ -44,6 +45,15 @@ define ['d3', 'topojson'], (d3, topojson) ->
     ch = svg.attr 'height'
 
     factor = Math.min cw/w, ch/h
+
+    x_shift = (-box.x + padding) * factor
+    y_shift = (-box.y + padding) * factor
+
+    if not interact
+      container
+        .attr 'transform', "translate(#{ x_shift }, #{ y_shift })scale(#{ factor })"
+
+      return
 
     center = [
       box['x'] + (box['width']  / 2)

@@ -97,7 +97,8 @@ require([
           node: path.node(),
           svg: svg,
           padding: 3,
-          container: container
+          container: container,
+          interact: false
         })
 
         typeof callback === 'function' ? callback.call(this, iso3, path, box) : false
