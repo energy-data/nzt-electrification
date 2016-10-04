@@ -67,12 +67,6 @@ define ['d3', 'topojson'], (d3, topojson) ->
     d3.selectAll('path.adm, path.line').attr('stroke-width', 1.2 / factor)
     d3.selectAll('path.line').raise()
 
-    d3.selectAll("text.adm-label")
-      .attr 'font-size', (d) ->
-        if d.properties['adm1'] then "#{ 1 / factor }em"
-        else "#{ 1.1 / factor }em"
-
-
     if typeof callback is 'function' then callback.apply null, arguments
 
 
@@ -119,6 +113,11 @@ define ['d3', 'topojson'], (d3, topojson) ->
 
     _container.selectAll('path.adm, path.line')
       .attr "stroke-width", 1.2 / d3.event.transform['k']
+
+    d3.selectAll("text.adm-label")
+      .attr 'font-size', (d) ->
+        if d.properties['adm1'] then "#{ 1 / d3.event.transform['k'] }em"
+        else "#{ 1.1 / d3.event.transform['k'] }em"
 
 
   setup_drag = ->

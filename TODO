@@ -15,34 +15,34 @@
   - [X] knob: reflect <->
 
 * [8/13] Code
-  - [X] KW => kW
   - [ ] points: hydro
-  - [X] choose data-source
-  - [X] map: add names to states and municipalities
-  - [ ] exports: current point
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6
+  - [ ] exports: current point
   - [ ] $ grep -r TODO .
+  - [X] KW => kW
+  - [X] choose data-source
+  - [X] map: add names to states and municipalities
   - [X] exports: review...
   - [X] exports: improve filenames
   - [X] c: cleanup
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [7/13] First review
+* [8/13] First review
   - [ ] index: show 3 countries
-  - [X] index: round GDP {per capita, total} and expenditures
-  - [ ] add sources links from pdf
-  - [ ] map: {color, dashed and solid} transmission lines
-  - [ ] background maps?
   - [ ] knob: labels: KWh => tier number
+  - [ ] add sources links from pdf
+  - [ ] background maps?
+  - [ ] points => settlements NOOOO!
+  - [X] map: {color, dashed and solid} transmission lines
+  - [X] index: round GDP {per capita, total} and expenditures
   - [X] loading points fails (API problem)?
   - [X] new capacity => added capacity
   - [X] capacity units W or KW
   - [X] levelised cost => LCOE in USD/kWh
   - [X] is urban => urban
   - [X] summarise capacity kW or MW
-  - [ ] points => settlements NOOOO!
 
 * [7/8] BUGS
   - [ ] knob: label: click => click on text if clunky

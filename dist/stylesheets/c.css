@@ -19,16 +19,15 @@ path.adm {
   text-anchor: middle;
   pointer-events: none;
   stroke: none;
+  transition: font-size 0.6s ease;
 }
 
 .adm-label.adm1 {
   fill: #333333;
-  transition: font-size 0.8s ease;
 }
 
 .adm-label.adm2 {
   fill: #424242;
-  transition: font-size 0.8s ease;
 }
 
 .planned {
