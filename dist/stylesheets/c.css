@@ -46,9 +46,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   position: absolute;
   left: 0;
   top: 0;
-
-  /* line-height: 24px; */
-
   width: 100%;
 }
 
@@ -59,7 +56,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 #point-info {
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 64px;
 
   padding: 20px;
 
