@@ -1,11 +1,20 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [7/12] UI/UX
+* [7/19] UI/UX
   - [ ] points: better prompting when > 20000
   - [ ] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
-  - [ ] points: colouring mode colours
+  - [ ] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
+  - [ ] back to country selection
+  - [ ] knob: labels: KWh => tier number
+  - [ ] add sources links from pdf
+  - [ ] points => settlements NOOOO!
+  - [ ] GHI in kWh/m^2
+  - [ ] WPCF in %
+  - [ ] Levelised Cost of Diesel gensets: USD/kWh
+  - [ ] Urban and if false Rural
+  - [ ] faster font transitions
   - [X] pane: hide button
   - [X] pane: restore or keep hidden
   - [X] index page
@@ -20,6 +29,7 @@
   - [ ] coffeescript => ES6
   - [ ] exports: current point
   - [ ] $ grep -r TODO .
+  - [ ] background maps?
   - [X] KW => kW
   - [X] choose data-source
   - [X] map: add names to states and municipalities
@@ -29,12 +39,8 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
-* [9/13] First review
+* [9/9] First Review
   - [X] index: show 3 countries
-  - [ ] knob: labels: KWh => tier number
-  - [ ] add sources links from pdf
-  - [ ] background maps?
-  - [ ] points => settlements NOOOO!
   - [X] map: {color, dashed and solid} transmission lines
   - [X] index: round GDP {per capita, total} and expenditures
   - [X] loading points fails (API problem)?
