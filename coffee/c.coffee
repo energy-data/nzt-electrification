@@ -236,14 +236,14 @@ require [
       topo: existing_transmission
       cls: 'line'
       pathname: 'existing'
-      stroke: 'gold'
+      stroke: '#7587A6'
       fill: 'none'
 
     map.load_topo
       topo: planned_transmission
       cls: 'line'
       pathname: 'planned'
-      stroke: 'yellow'
+      stroke: '#7587A6'
       fill: 'none'
 
     map.setup_drag()
