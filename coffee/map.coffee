@@ -119,15 +119,15 @@ define ['d3', 'topojson'], (d3, topojson) ->
 
 
   zoom = d3.zoom().on "zoom", ->
-    _container.attr "transform", d3.event.transform
-
-    _container.selectAll('path.adm, path.line')
-      .attr "stroke-width", 1.2 / d3.event.transform['k']
-
     d3.selectAll("text.adm-label")
       .attr 'font-size', (d) ->
         if d.properties['adm1'] then "#{ 1 / d3.event.transform['k'] }em"
         else "#{ 1.1 / d3.event.transform['k'] }em"
+
+    _container.attr "transform", d3.event.transform
+
+    _container.selectAll('path.adm, path.line')
+      .attr "stroke-width", 1.2 / d3.event.transform['k']
 
 
   setup_drag = ->

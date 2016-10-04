@@ -14,7 +14,6 @@ path.adm {
   text-anchor: middle;
   pointer-events: none;
   stroke: none;
-  transition: font-size 0.6s ease;
 }
 
 .adm-label.adm1 {
