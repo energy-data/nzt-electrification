@@ -146,6 +146,8 @@ require [
       node: it
       duration: 600
 
+    d3.selectAll('.point').raise()
+
 
   # TODO: remove this (used in navbar)
   #

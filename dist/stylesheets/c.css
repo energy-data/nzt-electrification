@@ -119,11 +119,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   margin-left: 1em;
 }
 
-.active {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #cacaca;
-}
-
 #mode-selector li {
   display: inline-block;
 }

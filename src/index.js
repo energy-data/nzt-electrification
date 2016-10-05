@@ -118,12 +118,16 @@ require([
       $('li.country-item').on('click', (e) => {
         e.preventDefault();
 
+        $('.country-item').removeClass('active');
+
         $('#select-something').remove();
 
-        let iso3 = $(e.target).closest('.country-item').attr('iso3');
+        let i = $(e.target).closest('.country-item')
+
+        i.addClass('active');
 
         $('.overview').css('visibility', 'hidden');
-        $(`#overview-${ iso3 }`).css('visibility', 'visible');
+        $(`#overview-${ i.attr('iso3') }`).css('visibility', 'visible');
       });
     };
   }
