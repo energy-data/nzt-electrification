@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./stylesheets/grid.css" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/main.css" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/index.css" />
+    <link rel="stylesheet" type="text/css" href="./stylesheets/icons.css" />
 
     <title>NZT Electrification</title>
   </head>
@@ -21,7 +22,7 @@
     </div>
 
     <div id="overview"
-         class="col c6">
+         class="row col c6">
       <div id="select-something">
         Select a country...
       </div>
@@ -32,12 +33,12 @@
           type="text/template">
     <li class="country-item row clickable"
         iso3="{1}">
-      <div class="col c6">
-        <svg id="svg-{1}"></svg>
-      </div>
-
       <div class="col c6 number no-mobile country-name">
         <a href="#">{0}</a>
+      </div>
+
+      <div class="col c6">
+        <svg id="svg-{1}"></svg>
       </div>
     </li>
   </script>
@@ -54,31 +55,81 @@
 
   <script id="overview-template"
           type="text/template">
-    <div class="overview"
-         id="overview-{9}">
-      <h3>Brief overview of {0}:</h3>
+    <div class="overview col c6"
+         id="overview-{0}">
+      <div class="row center">
+        <a href="/c.html?iso3={0}"
+           style="font-size: xx-large; padding-bottom: 20px;">
+          Explore {1} &nbsp; <i class="material-icons active">arrow_forward</i>
 
-      <p>
-        {0}'s population stands at {1} in 2015 and it is estimated to
-        reach {2} by 2030. Only {3}% of the {0}n population has access to
-        electricity.
-      </p>
+        </a>
+      </div>
 
-      <p>
-        {4}% of the total population resides in rural areas and the
-        level of electricity access is just {5}%.
-      </p>
+      <hr />
 
-      <p>
-        The current GDP per capita is {6} USD, while the total GDP
-        accounts for {7} billion USD. The total expenditures in 2015
-        reached {8} billion USD.
-      </p>
+      <div class="row">
+        <div class="col c6 right">
+          <h3 class="">Access to electricity:</h3>
+        </div>
 
-      <a href="/c.html?iso3={9}"
-         style="float: right; font-size: large;">Explore {0}</a>
+        <div class="col c6 center">
+          <div class="access-graph"></div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row center">
+        <h2 class="">Rural population</h2>
+
+        <div class="col c6">
+          <div class="rural-graph"></div>
+        </div>
+
+        <div class="col c6">
+          Access to electricity:
+          <div class="rural-access-graph"></div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row population center">
+        <h2>Population growth</h2>
+
+        <div class="col c12">
+          <div class="population-graph"></div>
+        </div>
+      </div>
+
+      <hr />
     </div>
   </script>
+
+  <script id="population-template"
+          type="text/template">
+    <div class="row">
+      <div class="col c6 center">
+        <h3>2015</h3>
+        {2}
+        <br />
+        <span class="monospace">{0}</span> million
+      </div>
+
+      <div class="col c6 center">
+        <h3>2030</h3>
+        {3}
+        <br />
+        <span class="monospace">{1}</span> million
+      </div>
+    </div>
+  </script>
+
+  <script id="person-template"
+          type="text/template">
+    <img src="/images/person.png" width="{0}"></img>
+  </script>
+
 
   <script data-main="./javascripts/index"
           src="./lib/requirejs/require.js"></script>

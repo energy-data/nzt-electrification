@@ -18,9 +18,10 @@ require([
   'd3',
   'topojson',
   'map',
+  'overview',
   '_u',
   '_g'
-], (d3, topojson, map) => {
+], (d3, topojson, map, overview) => {
   var width = $('body')[0].clientHeight / 3;
 
   let flag_style = (svg, iso3) => {
@@ -106,20 +107,9 @@ require([
 
       let ind = indicators.find((x) => parseInt(x['Country Code']) === c['code']);
 
-      u.tmpl('#li-template', '#country-list ul', ind['Country Name'], iso3);
+      _u.tmpl('#li-template', '#country-list ul', ind['Country Name'], iso3);
 
-      u.tmpl('#overview-template',
-             '#overview',
-             ind['Country Name'],
-             parseInt(ind['POP2015']).toLocaleString(),
-             parseInt(ind['POP2030']).toLocaleString(),
-             parseFloat(ind['Access to electricity (% of population)_2012']).toFixed(2).toLocaleString(),
-             parseFloat(ind['Rural population (% of total population)_2015']).toFixed(2).toLocaleString(),
-             parseFloat(ind['Access to electricity, rural (% of rural population)']).toFixed(2).toLocaleString(),
-             parseFloat(ind['GDP per capita (current US$)_2015']).toFixed(0).toLocaleString(),
-             parseFloat(ind['GDP (current billion US$)']).toFixed(0).toLocaleString(),
-             parseFloat(ind['Expenditures_2015_est_in billion USD']).toFixed(0).toLocaleString(),
-             iso3);
+      overview.run(ind, iso3);
 
       d3.queue()
         .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
