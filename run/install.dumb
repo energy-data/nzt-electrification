@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+PROJECT=$DIR/..
+
+cd $PROJECT/dist/lib
+
+while read line
+do
+  curl -O $line
+done <$PROJECT/deps.dumb
+
+cd -

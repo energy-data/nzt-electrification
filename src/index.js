@@ -1,11 +1,11 @@
 requirejs.config({
   'baseUrl': './javascripts',
   'paths': {
-    'd3':         "../lib/d3/d3.min",
-    'topojson':   "../lib/topojson/topojson.min",
-    'jquery':     "../lib/jquery/dist/jquery.min",
-    'js-extras':  "../lib/js-extras/dist/js-extras.min",
-    'web-extras': "../lib/web-extras/dist/web-extras.min"
+    'd3':         "../lib/d3.v4.min",
+    'topojson':   "../lib/topojson.v1.min",
+    'jquery':     "../lib/jquery-3.1.1.min",
+    'js-extras':  "../lib/js-extras.min",
+    'web-extras': "../lib/web-extras.min"
   },
   'shim': {
     'web-extras': { 'deps': ['jquery'] },

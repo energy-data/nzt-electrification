@@ -1,0 +1,6 @@
+https://d3js.org/d3.v4.min.js
+http://d3js.org/topojson.v1.min.js
+http://requirejs.org/docs/release/2.3.2/minified/require.js
+https://code.jquery.com/jquery-3.1.1.min.js
+https://raw.githubusercontent.com/svexican/js-extras/master/dist/js-extras.min.js
+https://raw.githubusercontent.com/svexican/web-extras/master/dist/web-extras.min.js
