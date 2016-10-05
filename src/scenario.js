@@ -11,14 +11,16 @@ define(['summary'], (summary) => {
       (...args) => {
         let t = args[2];
 
-        if (_g.scenarios.indexOf(t) < 0) {
+        if (_g.scenarios.indexOf(t) < 0)
           throw Error(`This scenario is dodgy: ${ t }`);
-        }
+
         else {
           summary.fetch();
 
           if (['technology', 'lcsa'].indexOf(_d.mode['type']) > -1)
-            points.draw(_d.point_collection['points']);
+            $('.loading').fadeIn(() => {
+              points.draw(_d.point_collection['points']);
+            });
         }
       }
     ];

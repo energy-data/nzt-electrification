@@ -1,13 +1,15 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [19/23] UI/UX
-  - [X] index: pretty graphs for everything
+* [19/25] UI/UX
+  - [ ] improve index
   - [ ] landing
   - [ ] points: better prompting when > 20000
-  - [X] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
+  - [ ] knob: disable if mode does not apply
   - [ ] knob: labels: KWh => tier number
+  - [X] index: pretty graphs for everything
+  - [X] points: "loading..." while loading
   - [X] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
   - [X] back to country selection
   - [X] knob: high low (diesel price)
@@ -26,13 +28,14 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [9/14] Code
+* [9/15] Code
   - [ ] points: hydro
   - [ ] scenario: init from url params
-  - [X] coffeescript => ES6
+  - [ ] $loading callbacks seem iffy...
   - [ ] $ grep -r TODO .
   - [ ] background maps?
   - [ ] exports: current point
+  - [X] coffeescript => ES6
   - [X] KW => kW
   - [X] choose data-source
   - [X] map: add names to states and municipalities
