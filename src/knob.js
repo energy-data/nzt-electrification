@@ -26,13 +26,7 @@ define(['d3'], (d3) => {
   var knob0_radius = width * (7/16);
   var knob1_radius = width * (4/16);
 
-  var l_scale = (v, domain, range) => {
-    return v < domain[1] ?
-      ((v / domain[1]) * (range[1] - range[0])) + range[0] :
-      range[1];
-  };
-
-  var range = [...Array(5)].map((_,i) => l_scale(i, [0, steps-1], [min_angle, max_angle])).reverse();
+  var range = [...Array(5)].map((_,i) => _u.l_scale(i, [0, steps-1], [min_angle, max_angle])).reverse();
 
   var repoint = (object) => {
     let m = d3.mouse(object)

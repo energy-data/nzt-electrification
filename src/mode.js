@@ -9,12 +9,6 @@ define([], () => {
 
   var tm = () => modes.find((m) => m['type'] === _d.mode['type']);
 
-  var l_scale = (v, domain = [0, 100], range = [0, 1]) => {
-    return v < domain[1] ?
-      ((v / domain[1]) * (range[1] - range[0])) + range[0] :
-      range[1];
-  };
-
   var modes = [{
     type: "technology",
     full: "Technology",
@@ -24,26 +18,26 @@ define([], () => {
     type: "population",
     full: "Population",
     icon: "people",
-    fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['p_2030'], [0, 1000]) })`,
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['p_2030'], [0, 1000]) })`,
     stroke: "lightgray",
     stroke_width: 0.001
   }, {
     type: "w_cf",
     full: "Wind",
     icon: "cloud",
-    fill: (g) => `rgba(0, 80, 255, ${ l_scale(g['w_cf'], [0, 0.4]) })`,
+    fill: (g) => `rgba(0, 80, 255, ${ _u.l_scale(g['w_cf'], [0, 0.4]) })`,
     stroke: "rgba(0, 80, 255, 0.4)",
     stroke_width: 0.001
   }, {
     type: "ghi",
     full: "GHI",
     icon: "wb_sunny",
-    fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['ghi'], [0, 2500]) })`
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['ghi'], [0, 2500]) })`
   }, {
     type: "hp",
     full: "Hydro",
     icon: "opacity",
-    fill: (g) => `rgba(0, 0, 0, ${ l_scale(g['hp'], [0, 10000000]) })`
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['hp'], [0, 10000000]) })`
   }, {
     type: "lcsa",
     full: "SA LCOE",
@@ -53,7 +47,7 @@ define([], () => {
       //
       let domain = (_d.scenario['diesel_p'] === 'n' ? [0.51, 1.4] : [0.35, 0.7]);
 
-      return `rgba(0, 0, 0, ${ l_scale(g['lcsa_' + _d.scenario['diesel_p']], domain, [0.01, 1]) })`;
+      return `rgba(0, 0, 0, ${ _u.l_scale(g['lcsa_' + _d.scenario['diesel_p']], domain, [0.01, 1]) })`;
     }
   }];
 

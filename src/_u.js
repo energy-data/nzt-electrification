@@ -1,4 +1,10 @@
 define([], () => {
+  var l_scale = (v, domain = [0, 100], range = [0, 1]) => {
+    return v < domain[1] ?
+      ((v / domain[1]) * (range[1] - range[0])) + range[0] :
+      range[1];
+  };
+
   var check = (...args) => {
     args.map((a,i) => {
       if (a == null) {
@@ -39,6 +45,7 @@ define([], () => {
   };
 
   return (window._u = {
+    l_scale: l_scale,
     check: check,
     tmpl: tmpl,
     dwnld: dwnld,
