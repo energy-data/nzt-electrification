@@ -125,6 +125,10 @@ a:active, a.active {
   color: #cacaca;
 }
 
+.small {
+  font-size: small;
+}
+
 @media only screen and (max-width: 768px) {
   .no-mobile {
     display: none;
