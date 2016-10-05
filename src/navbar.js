@@ -13,7 +13,7 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
 
       $('#summary-info, #point-info').addClass('hidden');
 
-      $(e.target).hide();
+      $('#hide-panes').hide();
       $('#restore-panes').show();
     });
 
@@ -24,7 +24,7 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
         .removeClass('hidden')
         .show();
 
-      $(e.target).hide();
+      $('#restore-panes').hide();
       $('#hide-panes').show();
     });
 
