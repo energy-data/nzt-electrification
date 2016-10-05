@@ -10,17 +10,17 @@ requirejs.config({
   'shim': {
     'web-extras': { 'deps': ['jquery'] },
     'index':      { 'deps': ['web-extras'] },
-    '_u':         { 'deps': ['js-extras'] }
+    '_u':         { 'deps': ['js-extras', 'jquery'] }
   }
 });
 
 require([
-  '_u',
-  '_g',
   'd3',
   'topojson',
   'map',
-], (u, _g, d3, topojson, map) => {
+  '_u',
+  '_g'
+], (d3, topojson, map) => {
   var width = $('body')[0].clientHeight / 3;
 
   let flag_style = (svg, iso3) => {

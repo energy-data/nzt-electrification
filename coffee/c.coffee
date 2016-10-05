@@ -11,7 +11,10 @@ requirejs.config
       'web-extras': 'deps': ['jquery']
       'points':     'deps': ['web-extras']
       'map':        'deps': ['web-extras']
-      '_u':         'deps': ['js-extras']
+      '_u':         'deps': ['js-extras', 'jquery']
+      'mode':       'deps': ['_u']
+      'knob':       'deps': ['_u']
+      'overview':   'deps': ['_u']
 
 require [
   '_u'
