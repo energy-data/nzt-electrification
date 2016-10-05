@@ -263,18 +263,16 @@ require([
     //
     // TODO: clean this up.
     //
-    target = d3.select(
-      (() => {
-        if (admin1 > -1 && isNaN(admin2))
-          return `#adm1-${ admin1 }`;
+    target = d3.select((() => {
+      if (admin1 > -1 && isNaN(admin2))
+        return `#adm1-${ admin1 }`;
 
-        else if (admin2 > -1)
-          return `#adm2-${ admin2 }`;
+      else if (admin2 > -1)
+        return `#adm2-${ admin2 }`;
 
-        else
-          return '#all-paths-adm1';
-      })()
-    );
+      else
+        return '#all-paths-adm1';
+    })());
 
     if (admin2 > -1) {
       _d.place['adm2']      = admin2 || undefined;

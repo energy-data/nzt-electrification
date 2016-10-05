@@ -39,6 +39,8 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
     });
 
     $('[data="adm0_name"]').on('click', (e) => {
+      e.preventDefault();
+
       $('#point-info').hide();
       $('#summary-info').hide();
 
@@ -51,6 +53,16 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
       history.pushState(null, null, location.updateQueryParam('load_points', false));
       history.replaceState(null, null, location.updateQueryParam('adm1', null));
       history.replaceState(null, null, location.updateQueryParam('adm2', null));
+
+      d3.selectAll('.adm2').style('display', 'none');
+
+      points.clear(true);
+      set_adm1_fills(0);
+
+      map.resize_to({
+        node: d3.select('#all-paths-adm1').node(),
+        duration: 1000
+      });
     });
 
     $('[data="adm1_name"]').on('click', (e) => {
