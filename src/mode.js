@@ -1,4 +1,4 @@
-define([], () => {
+define(['d3'], (d3) => {
   var tc = _g.technologies.map((t) => t ? t['color'] : null);
 
   var mss = '#mode-selector';
@@ -8,6 +8,10 @@ define([], () => {
   var stroke_width = () => tm()['stroke_width'];
 
   var tm = () => modes.find((m) => m['type'] === _d.mode['type']);
+
+  var ghi_scale = d3.scaleLinear()
+      .domain([1979, 2500])
+      .range(["yellow", "red"]);
 
   var modes = [{
     type: "technology",
@@ -32,7 +36,7 @@ define([], () => {
     type: "ghi",
     full: "GHI",
     icon: "wb_sunny",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['ghi'], [0, 2500]) })`
+    fill: (g) => ghi_scale(g['ghi'])
   }, {
     type: "hp",
     full: "Hydro",
@@ -45,10 +49,14 @@ define([], () => {
     fill: (g) => {
       // TODO: domain should be calculated by the min..max lcsa's from the point collection
       //
-      let domain = (_d.scenario['diesel_p'] === 'n' ? [0.51, 1.4] : [0.35, 0.7]);
+      let f = d3.scaleLinear()
+          .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
+          .range([0, 1]);
 
-      return `rgba(0, 0, 0, ${ _u.l_scale(g['lcsa_' + _d.scenario['diesel_p']], domain, [0.01, 1]) })`;
-    }
+      return `rgba(105, 70 ,50, ${ f(g['lcsa_' + _d.scenario['diesel_p']]) })`;
+    },
+    stroke: "rgba(105, 70 ,50, 0.2)",
+    stroke_width: 0.001
   }];
 
   var init = (points) => {

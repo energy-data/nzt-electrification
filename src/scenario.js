@@ -17,7 +17,7 @@ define(['summary'], (summary) => {
         else {
           summary.fetch();
 
-          if (_d.mode['type'] === 'technology')
+          if (['technology', 'lcsa'].indexOf(_d.mode['type']) > -1)
             points.draw(_d.point_collection['points']);
         }
       }
