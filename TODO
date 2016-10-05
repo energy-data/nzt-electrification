@@ -7,9 +7,9 @@
   - [ ] points: better prompting when > 20000
   - [ ] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
+  - [ ] knob: labels: KWh => tier number
   - [X] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
   - [X] back to country selection
-  - [ ] knob: labels: KWh => tier number
   - [X] knob: high low (diesel price)
   - [X] add sources links from pdf
   - [X] points => cells

@@ -40,9 +40,7 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
 
     $('[data="adm0_name"]').on('click', (e) => {
       $('#point-info').hide();
-      points.clear(true);
-
-      history.pushState(null, null, location.updateQueryParam('load_points', false));
+      $('#summary-info').hide();
 
       _d.place['adm1'] = undefined;
       _d.place['adm1_name'] = undefined;
@@ -50,17 +48,9 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
       _d.place['adm2'] = undefined;
       _d.place['adm2_name'] = undefined;
 
+      history.pushState(null, null, location.updateQueryParam('load_points', false));
       history.replaceState(null, null, location.updateQueryParam('adm1', null));
       history.replaceState(null, null, location.updateQueryParam('adm2', null));
-
-      d3.selectAll('.adm2').style('display', 'none');
-
-      set_adm1_fills(0);
-
-      map.resize_to({
-        node: d3.select('#all-paths-adm1').node(),
-        duration: 1000
-      });
     });
 
     $('[data="adm1_name"]').on('click', (e) => {
