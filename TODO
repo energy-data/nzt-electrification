@@ -26,10 +26,10 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [8/13] Code
+* [9/14] Code
   - [ ] points: hydro
   - [ ] scenario: init from url params
-  - [ ] coffeescript => ES6
+  - [X] coffeescript => ES6
   - [ ] $ grep -r TODO .
   - [ ] background maps?
   - [ ] exports: current point
