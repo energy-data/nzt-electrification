@@ -153,9 +153,16 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 #knob1 text {
   fill: #505050;
-  font-size: 1.3em;
   font-weight: bold;
   text-shadow: 1px 1px #a5a5a5;
+}
+
+#knob1 text#diesel_p {
+  font-size: 2.7em;
+}
+
+#knob1 text.text {
+  font-size: 1.3em;
 }
 
 text.tier-label {

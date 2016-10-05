@@ -1,8 +1,8 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [14/23] UI/UX
-  - [ ] index: pretty graphs for everything
+* [16/23] UI/UX
+  - [X] index: pretty graphs for everything
   - [ ] landing
   - [ ] points: better prompting when > 20000
   - [ ] points: "loading..." while loading
@@ -10,7 +10,7 @@
   - [ ] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
   - [X] back to country selection
   - [ ] knob: labels: KWh => tier number
-  - [ ] knob: high low (diesel price)
+  - [X] knob: high low (diesel price)
   - [ ] add sources links from pdf
   - [X] points => cells
   - [X] faster font transitions
@@ -30,9 +30,9 @@
   - [ ] points: hydro
   - [ ] scenario: init from url params
   - [ ] coffeescript => ES6
-  - [ ] exports: current point
   - [ ] $ grep -r TODO .
   - [ ] background maps?
+  - [ ] exports: current point
   - [X] KW => kW
   - [X] choose data-source
   - [X] map: add names to states and municipalities
