@@ -1,11 +1,11 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [18/23] UI/UX
+* [19/23] UI/UX
   - [X] index: pretty graphs for everything
   - [ ] landing
   - [ ] points: better prompting when > 20000
-  - [ ] points: "loading..." while loading
+  - [X] points: "loading..." while loading
   - [ ] points: technology colour palette (+ locked point)
   - [ ] knob: labels: KWh => tier number
   - [X] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])

@@ -22,6 +22,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var fetch = (o) => {
+    $('.loading').fadeIn()
+
     d3.queue()
       .defer(d3.json,
              `${ _conf['data_source'] }/points?` +
@@ -110,6 +112,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     });
 
     d3.selectAll('path.line, text.adm2').raise();
+    $('.loading').fadeOut()
   };
 
   var info = (e, scn, diesel_p) => {

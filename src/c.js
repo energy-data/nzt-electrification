@@ -312,12 +312,12 @@ require([
         adm: target.node().id.match(/adm(.*)-(\d*)?/),
         svg_box: target.node().getBBox()
       });
-    }
+    } else $('.loading').fadeOut();
 
     map.resize_to({
       node: target.node(),
       duration: 0,
-      callback: () => $('.loading').fadeOut(2000)
+      callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
     });
   };
 

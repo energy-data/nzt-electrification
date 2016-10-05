@@ -96,6 +96,11 @@ a:active, a.active {
   text-align: center;
 
   background-color: white;
+  color: #737373;
+
+  font-size: large;
+  font-weight: bold;
+  font-family: monospace;
 
   z-index: 1000;
 }
