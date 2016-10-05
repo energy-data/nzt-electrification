@@ -107,7 +107,7 @@ define ['mode', 'd3', 'map'], (mode, d3, map) ->
 
           info e, scn, diesel_p
 
-
+    d3.selectAll('.point').raise()
     d3.selectAll('path.line, text.adm2').raise()
 
 
