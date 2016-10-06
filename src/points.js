@@ -52,7 +52,10 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var draw = (points) => {
-    if (! points) return;
+    if (! points) {
+      $('.loading').fadeOut()
+      return;
+    }
 
     locked = null;
 
