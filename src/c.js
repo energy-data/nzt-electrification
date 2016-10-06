@@ -263,6 +263,8 @@ require([
     //
     // TODO: clean this up.
     //
+    let left = 0;
+
     target = d3.select((() => {
       if (admin1 > -1 && isNaN(admin2))
         return `#adm1-${ admin1 }`;
@@ -270,8 +272,10 @@ require([
       else if (admin2 > -1)
         return `#adm2-${ admin2 }`;
 
-      else
+      else {
+        left = 5;
         return '#all-paths-adm1';
+      }
     })());
 
     if (admin2 > -1) {
@@ -317,7 +321,7 @@ require([
     map.resize_to({
       node: target.node(),
       duration: 0,
-      left: 5,
+      left: left,
       callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
     });
   };

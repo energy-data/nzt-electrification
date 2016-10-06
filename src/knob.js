@@ -172,8 +172,8 @@ define(['d3'], (d3) => {
 
       let box = knob1_icon.node().getBBox()
 
-      let x = (center.x - (box['width']  / 2));
-      let y = (center.y + (box['height'] / 2)) - 15;
+      let x = (center.x - 12) - 2;
+      let y = (center.y + (box['height'] / 2)) - 20;
 
       knob1_icon
         .attr('transform', `translate(${ x }, ${ y })`);

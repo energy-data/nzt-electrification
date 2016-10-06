@@ -49,20 +49,26 @@ path.adm1:hover, path.adm2.hoverable:hover {
   width: 100%;
 }
 
-#navbar .col.clickable > a {
-  padding: 20px 0;
+#navbar .col > a {
+  padding: 1em 0;
+  font-size: 1em;
 }
 
 #point-info {
   position: absolute;
+
+  font-size: 0.8em;
+  top: 4.2em;
+
   right: 0;
-  top: 64px;
 
-  padding: 20px;
-
-  font-size: 0.6em;
+  padding: 10px;
 
   display: none;
+}
+
+#point-info .info-table {
+  font-size: 0.8em;
 }
 
 #point-info .info-table td:first-child {
@@ -78,9 +84,9 @@ path.adm1:hover, path.adm2.hoverable:hover {
   right: 0;
   bottom: 0;
 
-  padding: 20px;
+  padding: 10px;
 
-  font-size: 0.6em;
+  font-size: 0.64em;
 
   display: none;
 }
@@ -106,17 +112,13 @@ path.adm1:hover, path.adm2.hoverable:hover {
 }
 
 #controls {
+  top: 4.2em;
   position: absolute;
 
   font-size: 0.8em;
-
-  top: 64px;
-
   height: 100%;
-}
 
-#controls h3 {
-  margin-left: 1em;
+  width: 250px;
 }
 
 #mode-selector li {
@@ -194,7 +196,7 @@ text.tier-label {
 .dropdown {
   position: absolute;
 
-  top: 48px;
+  top: 2.3em;
   width: 100%;
 
   display: none;
