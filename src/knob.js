@@ -74,180 +74,6 @@ define(['d3'], (d3) => {
     tier = c['i'] + 1;
   };
 
-  var do_defs = () => {
-    let defs = svg.append('svg:defs');
-
-    let gray = defs.append('linearGradient')
-        .attr('id', 'gray')
-        .attr('x1', 0)
-        .attr('y1', 0)
-        .attr('x2', 0)
-        .attr('y2', '100%');
-
-    gray.append('stop')
-      .attr('offset', 0)
-      .attr('stop-color', '#e2e2e2');
-
-    gray.append('stop')
-      .attr('offset', 1)
-      .attr('stop-color', '#bbbbbb');
-
-    let gray_up = defs.append('linearGradient')
-        .attr('id', 'gray_up')
-        .attr('x1', 0)
-        .attr('y1', 0)
-        .attr('x2', 0)
-        .attr('y2', '100%');
-
-    gray_up.append('stop')
-      .attr('offset', 0)
-      .attr('stop-color', '#b6b6b6');
-
-    gray_up.append('stop')
-      .attr('offset', 1)
-      .attr('stop-color', '#e2e2e2');
-  };
-
-  var draw_knobs = () => {
-    let knobs = svg.append('g').attr('id', 'knobs');
-
-    let knob0 = knobs.append('g').attr('id', 'knob0');
-
-    let knob1 = knobs.append('g').attr('id', 'knob1');
-
-    let base0 = knob0.append('circle')
-        .attr('id', 'knob0')
-        .attr('r', knob0_radius)
-        .attr('cx', center.x)
-        .attr('cy', center.y)
-        .attr('stroke', '#b8b8b8')
-        .attr('stroke-width', '0.06em')
-        .attr('fill', 'url(#gray)');
-
-    let base1 = knob1.append('circle')
-        .attr('r', knob1_radius)
-        .attr('cx', center.x)
-        .attr('cy', center.y)
-        .attr('stroke', '#b8b8b8')
-        .attr('stroke-width', '0.06em')
-        .attr('fill', 'url(#gray)')
-        .classed('nps', _d.scenario['diesel_p'] !== 'n');
-
-    // knob0 marker
-    {
-      let t = range[_d.scenario['tier'] - 1];
-      let pc = polar_to_cartesian(knob0_radius - (width/13), -t);
-
-      let marker0 = knob0.append('g').attr('id', 'marker0');
-
-      marker0.append('circle')
-        .attr('r', width / 20)
-        .attr('cx', pc.x + center.x)
-        .attr('cy', pc.y + center.y)
-        .attr('fill', 'url(#gray_up)');
-
-      marker0.append('circle')
-        .attr('cx', pc.x + center.x)
-        .attr('cy', pc.y + center.y)
-        .attr('r', width / 70)
-        .attr('fill', '#7587A6');
-
-      marker0.call(
-        d3.drag()
-          .on('drag', function() { rotate(this, '#marker0', knob0); })
-          .on('start', () => { tier = _d.scenario['tier'] })
-          .on('end', () => {
-            if (_d.scenario['tier'] !== tier)
-              console.log("Changed to tier", _d.scenario['tier'] = tier);
-          })
-      );
-    }
-
-    // knob1 icon:
-    {
-      let knob1_icon = knob1.append('text')
-          .attr('id', 'diesel_p')
-          .attr('class', 'material-icons')
-          .text("local_gas_station");
-
-      let box = knob1_icon.node().getBBox()
-
-      let x = (center.x - 12) - 2;
-      let y = (center.y + (box['height'] / 2)) - 20;
-
-      knob1_icon
-        .attr('transform', `translate(${ x }, ${ y })`);
-    }
-
-    // knob1 text:
-    {
-      let knob1_text = knob1.append('text')
-          .attr('class', 'text');
-
-      var toggle_nps = () => {
-        base1.classed('nps', !base1.classed('nps'));
-
-        if (base1.classed('nps')) {
-          knob1_text.text("HIGH");
-          base1.attr('fill', 'url(#gray_up)');
-
-          t = 'n';
-        }
-
-        else {
-          knob1_text.text("LOW");
-          base1.attr('fill', 'url(#gray)');
-
-          t = 'l';
-        }
-
-        let box = knob1_text.node().getBBox()
-
-        let x = (center.x - (box['width']  / 2));
-        let y = (center.y + (box['height'] / 2)) + 12;
-
-        knob1_text
-          .attr('transform', `translate(${ x }, ${ y })`);
-      };
-
-      knob1
-        .on('mousedown', () => { toggle_nps() })
-        .on('mouseup',   () => { console.log("Changed to diesel price", _d.scenario['diesel_p'] = t) });
-
-      toggle_nps();
-    }
-  };
-
-  var draw_labels = () => {
-    let arc = d3.arc()
-        .innerRadius((width * (7/16)))
-        .outerRadius((width * (7/16)))
-        .startAngle((range.last() - 0.05) - (pi/2))
-        .endAngle((range.first() + 0.2) - (pi/2));
-
-    let path = svg.append('path')
-        .attr('d', arc)
-        .attr('id', 'tier-arc')
-        .attr('transform', `translate(${ center.x }, ${ center.y })`)
-        .attr('fill', 'none');
-
-    for (let i = 0; i < steps; i++) {
-      let text = svg.append('text')
-          .attr('dx', (48 * i)) // TODO: this 4_ is empirical...
-          .attr('dy', -width/10)
-          .attr('class', 'tier-label monospace')
-
-          .on('click', () => {
-            _d.scenario['tier'] = (i+1);
-            rotate(d3.select('#marker0').node(), '#marker0', d3.select('#knob0'));
-          });
-
-      text.append('textPath')
-        .attr('xlink:href','#tier-arc')
-        .text(_g.tiers_power[i])
-    }
-  };
-
   var clear = () => kc.empty();
 
   var init = () => {
@@ -263,7 +89,7 @@ define(['d3'], (d3) => {
 
     center = {
       x: (total_width / 2),
-      y: (total_width / 2)
+      y: (total_width / 2) + 20
     };
 
     clear();
@@ -272,11 +98,172 @@ define(['d3'], (d3) => {
       .attr('width', total_width)
       .attr('height', height);
 
-    do_defs();
+    // definitions
+    {
+      let defs = svg.append('svg:defs');
 
-    draw_knobs();
+      let gray = defs.append('linearGradient')
+          .attr('id', 'gray')
+          .attr('x1', 0)
+          .attr('y1', 0)
+          .attr('x2', 0)
+          .attr('y2', '100%');
 
-    draw_labels();
+      gray.append('stop')
+        .attr('offset', 0)
+        .attr('stop-color', '#e2e2e2');
+
+      gray.append('stop')
+        .attr('offset', 1)
+        .attr('stop-color', '#bbbbbb');
+
+      let gray_up = defs.append('linearGradient')
+          .attr('id', 'gray_up')
+          .attr('x1', 0)
+          .attr('y1', 0)
+          .attr('x2', 0)
+          .attr('y2', '100%');
+
+      gray_up.append('stop')
+        .attr('offset', 0)
+        .attr('stop-color', '#b6b6b6');
+
+      gray_up.append('stop')
+        .attr('offset', 1)
+        .attr('stop-color', '#e2e2e2');
+    }
+
+    // knobs
+    {
+      let knobs = svg.append('g').attr('id', 'knobs');
+
+      let knob0 = knobs.append('g').attr('id', 'knob0');
+
+      let knob1 = knobs.append('g').attr('id', 'knob1');
+
+      let base0 = knob0.append('circle')
+          .attr('id', 'knob0')
+          .attr('r', knob0_radius)
+          .attr('cx', center.x)
+          .attr('cy', center.y)
+          .attr('stroke', '#b8b8b8')
+          .attr('stroke-width', '0.06em')
+          .attr('fill', 'url(#gray)');
+
+      let base1 = knob1.append('circle')
+          .attr('r', knob1_radius)
+          .attr('cx', center.x)
+          .attr('cy', center.y)
+          .attr('stroke', '#b8b8b8')
+          .attr('stroke-width', '0.06em')
+          .attr('fill', 'url(#gray)')
+          .classed('nps', _d.scenario['diesel_p'] !== 'n');
+
+      // knob0 marker
+      {
+        let t = range[_d.scenario['tier'] - 1];
+        let pc = polar_to_cartesian(knob0_radius - (width/13), -t);
+
+        let marker0 = knob0.append('g').attr('id', 'marker0');
+
+        marker0.append('circle')
+          .attr('r', width / 20)
+          .attr('cx', pc.x + center.x)
+          .attr('cy', pc.y + center.y)
+          .attr('fill', 'url(#gray_up)');
+
+        marker0.append('circle')
+          .attr('cx', pc.x + center.x)
+          .attr('cy', pc.y + center.y)
+          .attr('r', width / 70)
+          .attr('fill', '#7587A6');
+
+        marker0.call(
+          d3.drag()
+            .on('drag', function() { rotate(this, '#marker0', knob0); })
+            .on('start', () => { tier = _d.scenario['tier'] })
+            .on('end', () => {
+              if (_d.scenario['tier'] !== tier)
+                console.log("Changed to tier", _d.scenario['tier'] = tier);
+            })
+        );
+      }
+
+      // knob1 icon:
+      {
+        let knob1_icon = knob1.append('text')
+            .attr('id', 'diesel_p')
+            .attr('class', 'material-icons')
+            .text("local_gas_station");
+
+        let box = knob1_icon.node().getBBox()
+
+        let x = (center.x - 12) - 2;
+        let y = (center.y + (box['height'] / 2)) - 20;
+
+        knob1_icon
+          .attr('transform', `translate(${ x }, ${ y })`);
+      }
+
+      // knob1 text:
+      {
+        let knob1_text = knob1.append('text')
+            .attr('class', 'text');
+
+        var toggle_nps = () => {
+          base1.classed('nps', !base1.classed('nps'));
+
+          if (base1.classed('nps')) {
+            knob1_text.text("HIGH");
+            base1.attr('fill', 'url(#gray_up)');
+
+            t = 'n';
+          }
+
+          else {
+            knob1_text.text("LOW");
+            base1.attr('fill', 'url(#gray)');
+
+            t = 'l';
+          }
+
+          let box = knob1_text.node().getBBox()
+
+          let x = (center.x - (box['width']  / 2));
+          let y = (center.y + (box['height'] / 2)) + 12;
+
+          knob1_text
+            .attr('transform', `translate(${ x }, ${ y })`);
+        };
+
+        knob1
+          .on('mousedown', () => { toggle_nps() })
+          .on('mouseup',   () => { console.log("Changed to diesel price", _d.scenario['diesel_p'] = t) });
+
+        toggle_nps();
+      }
+    }
+
+    // icons
+    {
+      for (let i = 0; i < steps; i++) {
+        let cart = polar_to_cartesian(knob0_radius + 19, range[i]);
+
+        let it = document.getElementById(`icon-${ i+1 }`).innerHTML;
+
+        let icon = svg.append('g')
+            .html(it)
+            .attr('stroke-width', 1.5)
+            .attr('stroke', '#4c4c4c')
+            .attr('fill', '#7587A6')
+            .attr('class', 'tier-label')
+            .attr('transform', `translate(${ cart.x + center.x - 15 }, ${ -cart.y + center.y - 20 })scale(0.6)`)
+            .on('click', () => {
+              _d.scenario['tier'] = (i+1);
+              rotate(d3.select('#marker0').node(), '#marker0', d3.select('#knob0'));
+            });
+      }
+    }
   };
 
   return {

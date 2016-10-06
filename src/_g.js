@@ -30,8 +30,6 @@ define([], () => {
       color: "#00518E"
     }],
 
-    tiers_power: [22, 224, 695, 1800, 2195],
-
     scenarios: ["l1","l2","l3","l4","l5","n1","n2","n3","n4","n5"],
 
     bound_objects: ['place', 'point', 'scenario', 'summary', 'point_collection', "mode"],

@@ -1,13 +1,17 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [21/25] UI/UX
+* [22/29] UI/UX
   - [X] improve index
   - [ ] landing
+  - [ ] summary: scope (header)
+  - [ ] points: point data only on demand
+  - [ ] walkthrough
+  - [ ] mode: technology as main
   - [X] points: better prompting when > 20000
   - [ ] points: technology colour palette (+ locked point)
   - [ ] knob: disable if mode does not apply
-  - [ ] knob: labels: KWh => tier number
+  - [X] knob: labels: KWh => tier number (icons)
   - [X] index: pretty graphs for everything
   - [X] points: "loading..." while loading
   - [X] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
@@ -29,6 +33,7 @@
   - [X] knob: reflect <->
 
 * [9/15] Code
+  - [ ] summary: poulation => connected people
   - [ ] points: hydro
   - [ ] scenario: init from url params
   - [ ] $loading callbacks seem iffy...
