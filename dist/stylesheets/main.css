@@ -5,8 +5,15 @@
   src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url('/fonts/ODelI1aHBYDBqgeIAH2zlNzbP97U9sKh0jjxbPbfOKg.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTYnF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
+}
+
 body {
-  font-family: 'Source Sans Pro';
+  font-family: 'Open Sans';
   margin: 0 !important;
 }
 

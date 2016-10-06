@@ -1,10 +1,10 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [19/25] UI/UX
-  - [ ] improve index
+* [21/25] UI/UX
+  - [X] improve index
   - [ ] landing
-  - [ ] points: better prompting when > 20000
+  - [X] points: better prompting when > 20000
   - [ ] points: technology colour palette (+ locked point)
   - [ ] knob: disable if mode does not apply
   - [ ] knob: labels: KWh => tier number

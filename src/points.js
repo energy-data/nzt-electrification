@@ -147,9 +147,9 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
       callback: (points) => {
         if (points.length > count_threshold)
-          c = confirm(`Loading ${ points.length } will most likely make the webpage sluggish. Continue?`);
+          c = confirm(`Loading ${ points.length } will most likely make the webpage sluggish. Load all?`);
 
-        if (! c) points = points.sort(() => 0.5 - Math.random()).splice(0, count_threshold);
+        if (!c) points = points.sort(() => 0.5 - Math.random()).splice(0, count_threshold);
 
         draw(points);
 
