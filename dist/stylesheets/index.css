@@ -5,6 +5,11 @@ body {
   color: #737373;
 }
 
+h2, h3, h4 {
+  padding: 10px !important;
+  margin: 0 !important;
+}
+
 .overview {
   visibility: hidden;
   position: absolute;
@@ -34,8 +39,14 @@ body {
 }
 
 #select-something {
-  margin-top: 40%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background-color: white;
   text-align: center;
+  width: 50%;
+  height: 100%;
+  padding-top: 10%;
 }
 
 #sources {
@@ -46,6 +57,16 @@ body {
 
 #sources a {
   display: inline !important;
+}
+
+#population-counter {
+  position: absolute;
+  top: 2em;
+  font-family: monospace;
+}
+
+.population-final {
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {

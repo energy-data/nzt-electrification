@@ -109,12 +109,12 @@ require([
 
       _u.tmpl('#li-template', '#country-list ul', ind['Country Name'], iso3);
 
-      overview.run(ind, iso3);
-
       d3.queue()
         .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
         .await((error, adm0) => load(iso3, adm0));
     };
+
+    overview.init(indicators, countries);
 
     $('li.country-item').on('click', (e) => {
       e.preventDefault();
@@ -127,8 +127,7 @@ require([
 
       i.addClass('active');
 
-      $('.overview').css('visibility', 'hidden');
-      $(`#overview-${ i.attr('iso3') }`).css('visibility', 'visible');
+      overview.load(i.attr('iso3'));
     });
   };
 
