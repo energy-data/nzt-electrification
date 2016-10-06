@@ -317,6 +317,7 @@ require([
     map.resize_to({
       node: target.node(),
       duration: 0,
+      left: 5,
       callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
     });
   };

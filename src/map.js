@@ -26,6 +26,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
 
   var resize_to = function(o) {
     let node      = o.node;
+    let left      = o.left || 0;
     let svg       = o.svg || _svg;
     let delay     = o.delay || 300;
     let duration  = o.duration || 0;
@@ -68,7 +69,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
               svg.node().parentNode.clientHeight / 2
             )
             .scale(factor)
-            .translate(-center[0], -center[1]));
+            .translate(-center[0] + left, -center[1]));
 
     d3.selectAll('path.adm, path.line').attr('stroke-width', 1.2 / factor);
     d3.selectAll('path.line').raise();
