@@ -158,11 +158,12 @@ path.adm1:hover, path.adm2.hoverable:hover {
   font-size: 1.3em;
 }
 
-text.tier-label {
-  font-size: 0.85em;
-  fill: #7587A6;
-  font-weight: bold;
+.tier-label {
   cursor: pointer;
+}
+
+.tier-label.active path {
+  stroke: #cacaca;
 }
 
 .close-button {

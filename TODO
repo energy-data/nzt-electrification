@@ -1,14 +1,14 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [24/31] UI/UX
+* [26/31] UI/UX
   - [ ] landing
   - [ ] walkthrough
   - [ ] points: technology colour palette (+ locked point)
   - [ ] knob: tweak icons
   - [ ] knob: disable if mode does not apply (or switch to technology)
-  - [ ] knob: HIGH/LOW => usd prices
-  - [ ] knob: labels: KWh => tier number (icons)
+  - [X] knob: HIGH/LOW => usd prices
+  - [X] knob: labels: KWh => tier number (icons)
   - [X] improve index
   - [X] summary: scope (header)
   - [X] points: point data only on demand
@@ -68,8 +68,8 @@
   - [X] is urban => urban
   - [X] summarise capacity kW or MW
 
-* [7/8] BUGS
-  - [ ] knob: label: click => click on text if clunky
+* [8/8] BUGS
+  - [X] knob: label: click => click on text if clunky
   - [X] firefox => writes null on adm1 & adm2 names
   - [X] firefox => knobs not getting styling
   - [X] firefox => knobs => "HIGH" "LOW" not centered
