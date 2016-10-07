@@ -1,17 +1,19 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [22/29] UI/UX
-  - [X] improve index
+* [24/31] UI/UX
   - [ ] landing
-  - [ ] summary: scope (header)
-  - [ ] points: point data only on demand
   - [ ] walkthrough
-  - [ ] mode: technology as main
-  - [X] points: better prompting when > 20000
   - [ ] points: technology colour palette (+ locked point)
-  - [ ] knob: disable if mode does not apply
-  - [X] knob: labels: KWh => tier number (icons)
+  - [ ] knob: tweak icons
+  - [ ] knob: disable if mode does not apply (or switch to technology)
+  - [ ] knob: HIGH/LOW => usd prices
+  - [ ] knob: labels: KWh => tier number (icons)
+  - [X] improve index
+  - [X] summary: scope (header)
+  - [X] points: point data only on demand
+  - [X] mode: technology as main
+  - [X] points: better prompting when > 20000
   - [X] index: pretty graphs for everything
   - [X] points: "loading..." while loading
   - [X] points: colouring mode colours (wind blue, ghi [opacities, yellow -> red], lcoe [opacities, yellow -> red])
@@ -32,14 +34,13 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [9/15] Code
-  - [ ] summary: poulation => connected people
+* [10/16] Code
   - [ ] points: hydro
   - [ ] scenario: init from url params
   - [ ] $loading callbacks seem iffy...
   - [ ] $ grep -r TODO .
   - [ ] background maps?
-  - [ ] exports: current point
+  - [X] summary: poulation => connected people
   - [X] coffeescript => ES6
   - [X] KW => kW
   - [X] choose data-source
@@ -49,6 +50,12 @@
   - [X] c: cleanup
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
+
+* [0/4] Second Review
+  - [ ] missing expenditures and other indicators
+  - [ ] wait: index: inserting a poverty map jpeg?
+  - [ ] wait: index: projected increase in demand
+  - [ ] wait: index: access rate (world bank != internal inteligence)
 
 * [9/9] First Review
   - [X] index: show 3 countries
