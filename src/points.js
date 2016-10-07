@@ -95,7 +95,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
               .attr('stroke-width', 0.02)
               .raise();
 
-            info(e, scn, diesel_p);
+            load_info(e, scn, diesel_p);
 
             locked = this;
           }
@@ -110,7 +110,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
             .attr('stroke-width', 0.01)
             .attr('stroke', 'red');
 
-          info(e, scn, diesel_p);
+          load_info(e, scn, diesel_p);
         });
     });
 
@@ -118,7 +118,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     $('.loading').fadeOut()
   };
 
-  var info = (e, scn, diesel_p) => {
+  var load_info = (e, scn, diesel_p) => {
     let tech = _g.technologies[e[scn]];
 
     for (let k in e) _d.point[k] = e[k].toLocaleString();
