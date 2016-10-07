@@ -64,11 +64,21 @@ define(['d3'], (d3) => {
       );
     });
 
-    $('#summary-info').show();
+    show();
+  };
+
+  var show = () => {
+    $('#summary-info').removeClass('hidden');
+  };
+
+  var hide = () => {
+    $('#summary-info').addClass('hidden');
   };
 
   return {
     fetch: fetch,
-    handle: handle
+    handle: handle,
+    show: show,
+    hide: hide
   };
 });

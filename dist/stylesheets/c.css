@@ -63,8 +63,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   right: 0;
 
   padding: 10px;
-
-  display: none;
 }
 
 #point-info .info-table {
@@ -87,8 +85,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
   padding: 10px;
 
   font-size: 0.64em;
-
-  display: none;
 }
 
 .info-table {

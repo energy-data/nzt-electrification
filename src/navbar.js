@@ -3,29 +3,21 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
     $('.close-button').on('click', (e) => {
       e.preventDefault();
 
-      $(e.target).closest('.pane').toggle();
-
-      $('#restore-panes').show();
+      $(e.target).closest('.pane').addClass('hidden');
     });
 
     $('#hide-panes').on('click', (e) => {
       e.preventDefault();
 
-      $('#summary-info, #point-info').addClass('hidden');
-
-      $('#hide-panes').hide();
-      $('#restore-panes').show();
+      points.hide_info();
+      summary.hide();
     });
 
     $('#restore-panes').on('click', (e) => {
       e.preventDefault();
 
-      $('#summary-info, #point-info')
-        .removeClass('hidden')
-        .show();
-
-      $('#restore-panes').hide();
-      $('#hide-panes').show();
+      summary.show();
+      points.show_info();
     });
 
     $('.with-dropdown').on('click', (e) => {
@@ -41,8 +33,8 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
     $('[data="adm0_name"]').on('click', (e) => {
       e.preventDefault();
 
-      $('#point-info').hide();
-      $('#summary-info').hide();
+      points.hide_info();
+      summary.hide();
 
       _d.place['adm1'] = undefined;
       _d.place['adm1_name'] = undefined;

@@ -79,7 +79,7 @@ require([
   };
 
   var load_adm1 = (it, d) => {
-    $('#point-info').hide();
+    points.hide_info();
 
     points.clear(true);
     reset_adm2(null);
@@ -110,7 +110,7 @@ require([
   var load_adm2 = (it, d) => {
     if (locked_adm2 === it) return;
 
-    $('#point-info').hide()
+    points.hide_info();
 
     history.pushState(null, null, location.updateQueryParam('adm2', d['id']));
     history.replaceState(null, null, location.updateQueryParam('load_points', true));

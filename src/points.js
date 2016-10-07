@@ -4,7 +4,6 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   //
 
   var _container;
-  var _info;
 
   var count_threshold = 20000;
 
@@ -18,7 +17,6 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
   var init = () => {
     _container = d3.select('#all-paths-adm2');
-    _info = $('#point-info');
   };
 
   var fetch = (o) => {
@@ -98,13 +96,13 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
             load_info(e, scn, diesel_p);
 
             locked = this;
+
+            show_info();
           }
         })
 
         .on('mouseenter', function(d) {
           if (locked !== null) return;
-
-          _info.show();
 
           d3.select(this)
             .attr('stroke-width', 0.01)
@@ -161,10 +159,22 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     });
   };
 
+  var show_info = () => {
+    $('#point-info').removeClass('hidden');
+    $('#points-info-control').closest('.col').addClass('active');
+  };
+
+  var hide_info = () => {
+    $('#point-info').addClass('hidden');
+    $('#points-info-control').closest('.col').removeClass('active');
+  };
+
   return {
     draw: draw,
     load: load,
     clear: clear,
-    init: init
+    init: init,
+    show_info: show_info,
+    hide_info: hide_info
   };
 });
