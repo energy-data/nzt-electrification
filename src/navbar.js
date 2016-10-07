@@ -146,6 +146,13 @@ define(['d3', 'map', 'points'], (d3, map, points) => {
       $('#controls').toggleClass('hidden');
       $(e.target).find('i').toggleClass('active');
     });
+
+    $('#points-info-control').on('click', (e) => {
+      e.preventDefault();
+
+      $('#point-info').toggleClass('hidden');
+      $(e.target).closest('.col').toggleClass('active');
+    });
   };
 
   return {
