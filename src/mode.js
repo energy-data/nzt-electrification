@@ -88,6 +88,8 @@ define(['d3'], (d3) => {
     for (let m of modes)
       _u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']);
 
+    $("#mode-selector [bind='technology']").closest('li').removeClass('c4').addClass('c12');
+
     let $mssa = $(mss + ' a');
 
     $mssa.on('click', (e) => {
