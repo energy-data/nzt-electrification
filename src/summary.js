@@ -33,7 +33,7 @@ define(['d3'], (d3) => {
     $('#summary-info table').html("");
 
     let total_pts = obj.reduce(((a,b) => a + b['pts']), 0);
-    let total_population = obj.reduce(((a,b) => a + b['population']), 0);
+    let total_connections = obj.reduce(((a,b) => a + b['connections']), 0);
     let total_capacity = obj.reduce(((a,b) => a + b['capacity']), 0);
     let total_investments = obj.reduce(((a,b) => a + b['investments']), 0);
 
@@ -43,7 +43,7 @@ define(['d3'], (d3) => {
       '#summary-subheader-template',
       '#summary-info table',
       total_pts.toLocaleString(),
-      total_population.toLocaleString(),
+      total_connections.toLocaleString(),
       (total_capacity / 1000).toFixed(2).toLocaleString(),
       total_investments.toLocaleString()
     );
@@ -58,7 +58,7 @@ define(['d3'], (d3) => {
         '#summary-info table',
         t['name'], t['color'],
         c['pts'].toLocaleString(), _u.percent(c['pts'], total_pts),
-        c['population'].toLocaleString(), _u.percent(c['population'],total_population),
+        c['connections'].toLocaleString(), _u.percent(c['connections'],total_connections),
         c['capacity'].toLocaleString(), _u.percent(c['capacity'],total_capacity),
         c['investments'].toLocaleString(), _u.percent(c['investments'],total_investments)
       );
