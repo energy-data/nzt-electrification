@@ -15,9 +15,10 @@ define(['_g'], (_g) => {
         } else {
           target[property] = value;
 
-          let div = document.querySelectorAll(`[data='${ property }']`)[0];
+          let divs = document.querySelectorAll(`[data='${ property }']`);
 
-          if (div) div.innerText = (value ? value : "");
+          if (divs.length)
+            for (d of divs) d.innerText = (value ? value : "");
         }
 
         if (target['callbacks'] && target['callbacks'][property])
