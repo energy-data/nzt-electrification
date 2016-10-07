@@ -256,9 +256,9 @@ define(['d3'], (d3) => {
 
         cont.append('g')
           .html(it)
-          .attr('stroke-width', 3)
-          .attr('fill', 'none')
           .attr('stroke', '#7587A6')
+          .attr('stroke-width', 3)
+          .attr('fill', '#7587A6')
           .attr('transform', `translate(${ cart.x + center.x - 15 }, ${ -cart.y + center.y - 20 })scale(0.6)`);
 
         cont.append('rect')
