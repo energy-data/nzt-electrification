@@ -71,12 +71,14 @@ define(['d3'], (d3) => {
       .attr('cx',  cart.x + center.x)
       .attr('cy', -cart.y + center.y);
 
-    tier = c['i'] + 1;
+    return c['i'] + 1;
   };
 
   var clear = () => kc.empty();
 
   var init = () => {
+    tier = _d.scenario['tier'];
+
     kc = d3.select('#knobs-container');
 
     let total_width = $('#controls')[0].clientWidth;
@@ -161,7 +163,7 @@ define(['d3'], (d3) => {
 
       // knob0 marker
       {
-        let t = range[_d.scenario['tier'] - 1];
+        let t = range[tier - 1];
         let pc = polar_to_cartesian(knob0_radius - (width/13), -t);
 
         let marker0 = knob0.append('g').attr('id', 'marker0');
@@ -180,12 +182,8 @@ define(['d3'], (d3) => {
 
         marker0.call(
           d3.drag()
-            .on('drag', function() { rotate(this, '#marker0', knob0); })
-            .on('start', () => { tier = _d.scenario['tier'] })
-            .on('end', () => {
-              if (_d.scenario['tier'] !== tier)
-                console.log("Changed to tier", _d.scenario['tier'] = tier);
-            })
+            .on('drag', function() { rotate(this, '#marker0', knob0) })
+            .on('end', change_tier)
         );
       }
 
@@ -217,14 +215,14 @@ define(['d3'], (d3) => {
             knob1_text.text("$0.82 L");
             base1.attr('fill', 'url(#gray_up)');
 
-            t = 'n';
+            p = 'n';
           }
 
           else {
             knob1_text.text("$0.34 L");
             base1.attr('fill', 'url(#gray)');
 
-            t = 'l';
+            p = 'l';
           }
 
           let box = knob1_text.node().getBBox()
@@ -238,7 +236,7 @@ define(['d3'], (d3) => {
 
         knob1
           .on('mousedown', () => { toggle_nps() })
-          .on('mouseup',   () => { console.log("Changed to diesel price", _d.scenario['diesel_p'] = t) });
+          .on('mouseup',   () => { change_price(p) });
 
         toggle_nps();
       }
@@ -253,6 +251,7 @@ define(['d3'], (d3) => {
 
         let cont = svg.append('g')
             .attr('class', 'tier-label')
+            .attr('id',  `tier-label-${ i+1 }`)
 
         cont.append('g')
           .html(it)
@@ -270,16 +269,27 @@ define(['d3'], (d3) => {
           .attr('height', 30)
           .attr('x', cart.x + center.x - 15)
           .attr('y', -cart.y + center.y - 20)
-          .on('click', () => {
-            d3.selectAll('.tier-label').classed('active', false);
-
-            _d.scenario['tier'] = (i+1);
-            rotate(d3.select('#marker0').node(), '#marker0', d3.select('#knob0'));
-
-            cont.classed('active', true);
-          });
-      }
+          .on('click', change_tier);
+      };
     }
+
+    d3.select(`#tier-label-${ tier }`).classed('active', true);
+  };
+
+  var change_tier = () => {
+    tier = rotate(d3.select('#marker0').node(), '#marker0', d3.select('#knob0'));
+
+    d3.selectAll('.tier-label').classed('active', false);
+
+    if (_d.scenario['tier'] !== tier)
+      console.log("Changed to tier", _d.scenario['tier'] = tier);
+
+    d3.select(`#tier-label-${ tier }`).classed('active', true);
+  };
+
+  var change_price = (p) => {
+    if (_d.scenario['diesel_p'] !== p)
+      console.log("Changed to diesel price", _d.scenario['diesel_p'] = p);
   };
 
   return {
