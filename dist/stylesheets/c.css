@@ -147,6 +147,10 @@ path.adm1:hover, path.adm2.hoverable:hover {
   z-index: 10500;
 }
 
+.has-help * {
+  cursor: help !important;
+}
+
 #mode-selector li {
   display: inline-block;
 }

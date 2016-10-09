@@ -15,7 +15,7 @@ define([], () => {
             It represents an area of 1km<sup>2</sup> where a technology has been selected for electrification`,
     point_info: `Everything is to know about the currently focused cell. <br />
                  You can lock a cell to this pane by clicking on it on the map. Click it again or click another cell to unlock it. <br />
-                 This pane will also change depending on what cell you are hovering over on the map.`,
+                 This pane will also change depending on what cell you have locked on the map.`,
     adm0: "This is the country.",
     adm1: `This is a <strong>state</strong> or <strong>province</strong>.<br />
            You can click on one of its boroughs or click on the navbar for more actions.`,
@@ -50,7 +50,7 @@ define([], () => {
 
     $('#help, #help-container')
       .removeClass('hidden');
-  }
+  };
 
   var enable = () => {
     alert(`
@@ -63,6 +63,7 @@ To turn it off, just click on Help again.
 
   var disable = () => {
     document.removeEventListener('click', click_event, true);
+    $('#help, #help-container').addClass('hidden');
   };
 
   $('#toggle-help').on('click', (e) => {
@@ -70,6 +71,7 @@ To turn it off, just click on Help again.
 
     enabled = !enabled;
     $(e.target).toggleClass('active');
+    $('[help-data]').toggleClass('has-help');
 
     enabled ? enable() : disable();
   });
