@@ -64,7 +64,7 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
         set_adm1_fills(0);
 
         map.resize_to({
-          node: d3.select('#all-paths-adm1').node(),
+          node: d3.select('#paths-adm1').node(),
           duration: 1000
         });
       });

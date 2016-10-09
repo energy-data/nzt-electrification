@@ -76,7 +76,7 @@ require([
       topo: topo,
       cls: 'adm',
       pathname: 'adm0',
-      container: container,
+      parent: container,
       callback: (path, features) => {
         path
           .attr('fill', `url(#flag-${ iso3 })`)
@@ -87,7 +87,7 @@ require([
           node: path.node(),
           svg: svg,
           padding: 3,
-          container: container,
+          parent: container,
           interact: false
         })
 

@@ -34,9 +34,16 @@ require([
       .attr('width',  d3.select('html').node().clientWidth)
       .attr('height', d3.select('html').node().clientHeight);
 
+  var _container = d3.select('#container');
+
   // TOOD: I don't know...
   //
-  d3.select('#container').attr('transform', "scale(2)");
+  _container.attr('transform', "scale(2)");
+
+  var _transmission_lines = _container.append('g').attr('id', 'transmission-lines');
+
+  var _text_labels_adm1 = _container.append('g').attr('id', 'text-labels-adm1');
+  var _text_labels_adm2 = _container.append('g').attr('id', 'text-labels-adm2');
 
   window.onpopstate = (e) => {
     points.clear(true);
@@ -46,15 +53,15 @@ require([
   var load_adm = (topo, pathname, callback) => {
     _u.check(topo, pathname);
 
-    let all_paths = d3.select('#container').append('g')
-        .attr('id', `all-paths-${ pathname }`);
+    let all_paths = _container.append('g').attr('id', `paths-${ pathname }`);
 
     let path = map.load_topo({
       topo: topo,
       pathname: pathname,
       cls: 'adm hoverable',
       fill: 'white',
-      container: all_paths
+      labels: true,
+      parent: all_paths
     });
 
     if (typeof callback === 'function')
@@ -105,6 +112,8 @@ require([
       duration: 600
     });
 
+    d3.select('#text-labels-adm1').raise();
+
     show_adm2(d.id);
   };
 
@@ -140,8 +149,6 @@ require([
       node: it,
       duration: 600
     });
-
-    d3.selectAll('.point').raise();
   };
 
   // TODO: remove this (used in navbar)
@@ -238,6 +245,7 @@ require([
     points.init()
 
     map.load_topo({
+      parent: _transmission_lines,
       topo: existing_transmission,
       cls: 'line',
       pathname: 'existing',
@@ -246,6 +254,7 @@ require([
     });
 
     map.load_topo({
+      parent: _transmission_lines,
       topo: planned_transmission,
       cls: 'line',
       pathname: 'planned',
@@ -275,7 +284,7 @@ require([
 
       else {
         left = 5;
-        return '#all-paths-adm1';
+        return '#paths-adm1';
       }
     })());
 
@@ -325,6 +334,10 @@ require([
       left: left,
       callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
     });
+
+    _transmission_lines.raise();
+    _text_labels_adm1.raise();
+    _text_labels_adm2.raise();
   };
 
   d3.queue(5)

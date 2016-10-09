@@ -14,6 +14,7 @@
 
 body {
   font-family: 'Open Sans';
+  margin: 0 !important;
 }
 
 hr {

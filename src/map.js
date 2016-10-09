@@ -9,11 +9,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
 
   var _svg = d3.select('svg#svg');
 
-  var _container = (
-    !_svg.empty() ?
-      _svg.append('g').attr('id', 'container') :
-      null
-  );
+  var _container = (!_svg.empty() ? _svg.append('g').attr('id', 'container') : null);
 
   var to_bbox = (b) => {
     let c = [
@@ -26,16 +22,16 @@ define(['d3', 'topojson'], (d3, topojson) => {
 
   var resize_to = function(o) {
     let node      = o.node;
-    let left      = o.left || 0;
-    let svg       = o.svg || _svg;
-    let delay     = o.delay || 300;
-    let duration  = o.duration || 0;
+    let svg       = o.svg      || _svg;
+    let parent    = o.parent   || _container;
+    let left      = o.left     || 0;
     let padding   = o.padding  || 0.5;
-    let container = o.container || _container;
+    let delay     = o.delay    || 300;
+    let duration  = o.duration || 0;
     let callback  = o.callback;
     let interact  = (o.interact !== false);
 
-    _u.check(node, container, svg);
+    _u.check(node, parent, svg);
 
     let box = node.getBBox();
 
@@ -51,7 +47,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
     let y_shift = (-box.y + padding) * factor;
 
     if (! interact) {
-      container.attr('transform', `translate(${ x_shift }, ${ y_shift })scale(${ factor })`);
+      parent.attr('transform', `translate(${ x_shift }, ${ y_shift })scale(${ factor })`);
       return;
     }
 
@@ -71,9 +67,6 @@ define(['d3', 'topojson'], (d3, topojson) => {
             .scale(factor)
             .translate(-center[0] + left, -center[1]));
 
-    d3.selectAll('path.adm, path.line').attr('stroke-width', 1.2 / factor);
-    d3.selectAll('path.line').raise();
-
     (typeof callback === 'function') ? callback.apply(null, arguments) : null;
   };
 
@@ -81,16 +74,17 @@ define(['d3', 'topojson'], (d3, topojson) => {
     let topo      = o.topo;
     let pathname  = o.pathname;
     let callback  = o.callback;
+    let labels    = o.labels || false;
     let cls       = o.cls    || "path";
     let stroke    = o.stroke || "#ccc";
     let fill      = o.fill   || "none";
-    let container = o.container || _container;
+    let parent    = o.parent || _container;
 
-    _u.check(topo, pathname, container);
+    _u.check(topo, pathname, parent);
 
     let features = topojson.feature(topo, topo.objects[pathname]).features;
 
-    let path = container.selectAll(`path.${ pathname }`)
+    let path = parent.selectAll(`path.${ pathname }`)
         .data(features)
         .enter().append('path')
         .attr('id', (d) => d.id ? `${ pathname }-${ d.id }` : null)
@@ -99,13 +93,16 @@ define(['d3', 'topojson'], (d3, topojson) => {
         .attr('fill', fill)
         .attr('d', geo_path);
 
-    let label = container.selectAll(`text.adm-label.${ pathname }`)
+    if (labels) {
+      d3.select(`#text-labels-${ pathname }`)
+        .selectAll(`text.adm-label.${ pathname }`)
         .data(features)
         .enter().append('text')
         .attr('class', `adm-label ${ pathname }`)
         .attr('transform', (d) => `translate(${ geo_path.centroid(d) })`)
         .attr('font-size', `${ 1/ 25 }em`) // TOOD: I don't know...
         .text((d) => d.properties['name']);
+    }
 
     return (typeof callback === 'function') ?
       callback.call(this, path) :
@@ -122,8 +119,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
 
     _container.attr("transform", d3.event.transform);
 
-    _container.selectAll('path.adm, path.line')
-      .attr("stroke-width", 1.2 / d3.event.transform['k']);
+    _container.selectAll('path').attr("stroke-width", 1.2 / d3.event.transform['k']);
   });
 
   var setup_drag = () => {

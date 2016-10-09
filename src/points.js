@@ -3,7 +3,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   // Variables:
   //
 
-  var _container;
+  var _container, _points;
 
   var count_threshold = 20000;
 
@@ -16,7 +16,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   //
 
   var init = () => {
-    _container = d3.select('#all-paths-adm2');
+    _container = d3.select('#container');
+    _points = _container.append('g').attr('id', 'points');
   };
 
   var fetch = (o) => {
@@ -39,7 +40,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var clear = (full = false) => {
-    d3.selectAll('path.point').remove();
+    d3.selectAll('.point').remove();
     if (full) _d.point_collection['points'] = [];
   };
 
@@ -112,7 +113,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
         });
     });
 
-    d3.selectAll('path.line, text.adm2').raise();
+    d3.selectAll('#transmission-lines, #text-labels-adm2').raise();
     $('.loading').fadeOut()
   };
 
