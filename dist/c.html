@@ -29,13 +29,15 @@
         </a>
       </div>
 
-      <div class="col c3 clickable">
+      <div class="col c3 clickable"
+           help-data="adm0_name">
         <a data="adm0_name"
            href="#"></a>
       </div>
 
       <div class="col c3 with-dropdown clickable"
-           style="display: none;">
+           style="display: none;"
+           help-data="adm1_name">
         <a data="adm1_name"
            href="#"></a>
 
@@ -58,7 +60,8 @@
       </div>
 
       <div class="col c3 with-dropdown clickable"
-           style="display: none;">
+           style="display: none;"
+           help-data="adm2_name">
         <a data="adm2_name"
            href="#"></a>
 
@@ -76,7 +79,8 @@
       </div>
 
       <div class="col c1 clickable"
-           style="position: absolute; right: 0;">
+           style="position: absolute; right: 0;"
+           help-data="point_info">
         <a id="points-info-control">
           <i class="material-icons"
              style="font-size: 1em !important;">location_searching</i>
@@ -89,7 +93,8 @@
       <br />
       <div id="knobs-container"
            class="row col c12"
-           style="margin: auto;"></div>
+           style="margin: auto;"
+           help-data="scenario"></div>
 
       <hr />
 
@@ -111,13 +116,19 @@
       </div>
 
       <div class="row center clickable"
+           id="toggle-help">
+        <a href="#">Help</a>
+      </div>
+
+      <div class="row center clickable"
            id="home">
         <a href="/">Back to countries</a>
       </div>
     </div>
 
     <div id="summary-info"
-         class="pane hidden">
+         class="pane hidden"
+         help-data="summary">
       <div class="close-button"><a href="#" class="active">&times;</a></div>
 
       <h2 class="center">
@@ -130,7 +141,8 @@
     </div>
 
     <div id="point-info"
-         class="pane hidden">
+         class="pane hidden"
+         help-data="point_info">
       <div class="close-button"><a href="#" class="active">&times;</a></div>
 
       <table class="info-table monospace">
@@ -251,6 +263,13 @@
       </table>
     </div>
 
+    <div id="help-container"
+         class="hidden">
+      <div id="help">
+        Be helpful...
+      </div>
+    </div>
+
     <div class="loading">
       <div class="spinner"></div>
 
@@ -304,7 +323,8 @@
 
   <script type="text/template"
           id="mode-option-template">
-    <li class="center col c4 clickable">
+    <li class="center col c4 clickable"
+        help-data="mode">
       <a href="#" bind="{0}">
         <i class="material-icons">{2}</i><br />{1}
       </a>

@@ -12,6 +12,7 @@ requirejs.config({
     'points':     { 'deps': ['web-extras'] },
     'map':        { 'deps': ['web-extras'] },
     '_u':         { 'deps': ['js-extras', 'jquery'] },
+    'help':       { 'deps': ['jquery'] },
     'mode':       { 'deps': ['_u'] },
     'knob':       { 'deps': ['_u'] },
     'overview':   { 'deps': ['_u'] }
@@ -19,8 +20,8 @@ requirejs.config({
 });
 
 require([
-   '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'mode', 'knob', 'navbar', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   mode,   knob,   navbar) => {
+  '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'mode', 'knob', 'navbar', 'help', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   mode,   knob,   navbar, help) => {
   var adm0, adm1, adm2;
 
   var locked_adm2;

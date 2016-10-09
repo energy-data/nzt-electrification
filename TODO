@@ -1,12 +1,11 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [27/32] UI/UX
+* [29/31] UI/UX
   - [ ] landing
-  - [ ] walkthrough
   - [ ] points: technology colour palette (+ locked point)
-  - [ ] knob: disable if mode does not apply (or switch to technology)
-  - [ ] icons: go vanilla!
+  - [X] walkthrough
+  - [X] knob: disable if mode does not apply (or switch to technology)
   - [X] knob: tweak icons
   - [X] knob: HIGH/LOW => usd prices
   - [X] knob: labels: KWh => tier number (icons)

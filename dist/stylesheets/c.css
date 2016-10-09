@@ -108,13 +108,43 @@ path.adm1:hover, path.adm2.hoverable:hover {
 }
 
 #controls {
-  top: 4.2em;
   position: absolute;
+
+  top: 4.2em;
+  left: 0;
 
   font-size: 0.8em;
   height: 100%;
 
   width: 250px;
+}
+
+#help-container {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+
+  width: 100%;
+
+  text-align: center;
+  padding: 0;
+}
+
+#help {
+  margin: 0 auto !important;
+  width: 50%;
+
+  background-color: rgba(117, 135, 166, 1);
+  color: white;
+
+  border: 1px solid #4C6082;
+  border-top: none;
+  border-radius: 0 0 2px 2px;
+
+  padding: 2em;
+
+  z-index: 10500;
 }
 
 #mode-selector li {
