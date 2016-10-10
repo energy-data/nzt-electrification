@@ -17,6 +17,7 @@ svg#svg {
 }
 
 path.adm {
+  stroke-width: 0.01;
   transition: fill .4s ease, opacity .4s ease;
 }
 

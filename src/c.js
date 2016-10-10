@@ -20,8 +20,8 @@ requirejs.config({
 });
 
 require([
-  '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'mode', 'knob', 'navbar', 'help', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   mode,   knob,   navbar, help) => {
+   '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'knob', 'navbar', 'help', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   knob,   navbar,   help) => {
   var adm0, adm1, adm2;
 
   var locked_adm2;
@@ -35,10 +35,6 @@ require([
       .attr('height', d3.select('html').node().clientHeight);
 
   var _container = d3.select('#container');
-
-  // TOOD: I don't know...
-  //
-  _container.attr('transform', "scale(2)");
 
   var _transmission_lines = _container.append('g').attr('id', 'transmission-lines');
 
@@ -92,18 +88,11 @@ require([
     points.clear(true);
     reset_adm2(null);
 
-    _d.place['adm2'] = undefined;
-    _d.place['adm2_name'] = undefined;
+    place.nullify('adm2');
 
-    history.pushState(null, null, location.updateQueryParam('adm1', d['id']));
-
-    if (location.getQueryParam('adm2'))
-      history.pushState(null, null, location.updateQueryParam('adm2', null));
+    place.set('adm1', d['id'], d.properties['name'], true);
 
     history.replaceState(null, null, location.updateQueryParam('load_points', false));
-
-    _d.place['adm1']      = d['id'];
-    _d.place['adm1_name'] = d.properties['name'];
 
     set_adm1_fills(d.id);
 
@@ -118,26 +107,22 @@ require([
   };
 
   var load_adm2 = (it, d) => {
-    if (locked_adm2 === it) return;
+    if (locked_adm2 === d['id']) return;
 
     points.hide_info();
 
-    history.pushState(null, null, location.updateQueryParam('adm2', d['id']));
+    place.set('adm2', d['id'], d.properties['name'], true);
+
     history.replaceState(null, null, location.updateQueryParam('load_points', true));
 
     reset_adm2(it);
 
-    locked_adm2 = it;
+    locked_adm2 = d['id'];
 
     admin1 = d.properties['adm1'];
 
     _d.place['adm1']      = admin1 || undefined;
     _d.place['adm1_name'] = d3.select(`#adm1-${ admin1 }`).datum().properties['name'] || undefined;
-
-    _d.place['adm2']      = d['id'];
-    _d.place['adm2_name'] = d.properties['name'];
-
-    _d.place['bbox'] = map.to_bbox(it.getBBox());
 
     if (location.getQueryParam('load_points').toBoolean())
       points.load({
@@ -150,12 +135,6 @@ require([
       duration: 600
     });
   };
-
-  // TODO: remove this (used in navbar)
-  //
-  window.load_adm1 = load_adm1;
-  window.load_adm2 = load_adm2;
-  window.set_adm1_fills = set_adm1_fills;
 
   var show_adm2 = (adm1_id) => {
     _u.check(adm1_id);
@@ -171,9 +150,11 @@ require([
 
     let a2 = parseInt(location.getQueryParam('adm2'));
 
-    a2 ? target : `#adm2-${ a2 }`;
+    let it = (target ?
+              target :
+              (a2 ? `#adm2-${ a2 }` : null));
 
-    d3.select(target).classed('hoverable', false);
+    if (it) d3.select(it).classed('hoverable', false);
   };
 
   var run = (...args) => {
@@ -191,41 +172,9 @@ require([
     admin2 = parseInt(location.getQueryParam('adm2'));
     load_points = location.getQueryParam('load_points').toBoolean();
 
-    // Data and state
+    // Place
     //
-    _d.place['adm0']      = _country['iso3'];
-    _d.place['adm0_name'] = _country['name'];
-    _d.place['adm0_code'] = _country['code'];
-
-    _d.place['callback'] = [
-      'adm1',
-      (...args) => {
-        if (typeof args[2] === 'number') {
-          summary.fetch();
-          $('[data="adm1_name"]').closest('.with-dropdown').show();
-        }
-
-        else {
-          console.info(`This adm1 is dodgy: ${ args[2] }. Assuming adm0...`);
-          $('[data="adm1_name"]').closest('.with-dropdown').hide();
-        }
-      }
-    ];
-
-    _d.place['callback'] = [
-      'adm2',
-      (...args) => {
-        if (typeof args[2] === 'number') {
-          summary.fetch();
-          $('[data="adm2_name"]').closest('.with-dropdown').show();
-        }
-
-        else {
-          console.info(`This adm2 is dodgy: ${ args[2] }. Assuming adm1...`);
-          $('[data="adm2_name"]').closest('.with-dropdown').hide();
-        }
-      }
-    ];
+    place.init(_country);
 
     // Map drawing
     //
@@ -269,71 +218,76 @@ require([
     mode.init(points);
     scenario.init(points);
 
-    // Find self and target...
-    //
-    // TODO: clean this up.
-    //
     let left = 0;
 
-    target = d3.select((() => {
-      if (admin1 > -1 && isNaN(admin2))
-        return `#adm1-${ admin1 }`;
+    // Initialise adm regions
+    //
+    {
+      target = d3.select((() => {
+        if (admin1 > -1 && isNaN(admin2))
+          return `#adm1-${ admin1 }`;
 
-      else if (admin2 > -1)
-        return `#adm2-${ admin2 }`;
+        else if (admin2 > -1)
+          return `#adm2-${ admin2 }`;
 
-      else {
-        left = 5;
-        return '#paths-adm1';
+        else {
+          left = 5;
+          return '#paths-adm1';
+        }
+      })());
+
+      if (admin2 > -1) {
+        admin1 = target.datum().properties['adm1']
+
+        place.set('adm2', admin2, target.datum().properties['name'], false);
+        place.set('adm1', admin1, d3.select(`#adm1-${ admin1 }`).datum().properties['name'], false);
       }
-    })());
 
-    if (admin2 > -1) {
-      _d.place['adm2']      = admin2 || undefined;
-      _d.place['adm2_name'] = target.datum().properties['name'] || undefined;
+      else if (admin1 > -1) {
+        place.set('adm1', admin1, target.datum().properties['name'], false)
+      }
 
-      admin1 = target.datum().properties['adm1']
+      show_adm2(admin1);
 
-      _d.place['adm1']      = admin1 || undefined
-      _d.place['adm1_name'] = d3.select(`#adm1-${ admin1 }`).datum().properties['name'] || undefined
-
-    }
-
-    else if (admin1 > -1) {
-      _d.place['adm1']      = admin1 || undefined;
-      _d.place['adm1_name'] = target.datum().properties['name'] || undefined;
+      set_adm1_fills(admin1);
     }
 
     // Controls
     //
     if (load_controls) {
       knob.init();
-      navbar.setup();
+
+      // used in navbar (better than circular dependencies!)
+      //
+      window.load_adm1 = load_adm1;
+      window.load_adm2 = load_adm2;
+      window.set_adm1_fills = set_adm1_fills;
+
+      navbar.init();
     }
 
     // Focus target adm
     //
-    // TODO: should be done in a single line...
-    //
-    show_adm2(admin1);
+    {
+      if (admin2) {
+        reset_adm2(`#adm2-${ admin2 }`);
+        locked_adm2 = admin2;
+      };
 
-    set_adm1_fills(admin1);
+      if (load_points && (admin1 || admin2)) {
+        points.load({
+          adm: target.node().id.match(/adm(.*)-(\d*)?/),
+          svg_box: target.node().getBBox()
+        });
+      } else $('.loading').fadeOut();
 
-    reset_adm2(null);
-
-    if (load_points) {
-      points.load({
-        adm: target.node().id.match(/adm(.*)-(\d*)?/),
-        svg_box: target.node().getBBox()
+      map.resize_to({
+        node: target.node(),
+        duration: 0,
+        left: left,
+        callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
       });
-    } else $('.loading').fadeOut();
-
-    map.resize_to({
-      node: target.node(),
-      duration: 0,
-      left: left,
-      callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
-    });
+    }
 
     _transmission_lines.raise();
     _text_labels_adm1.raise();

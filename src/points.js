@@ -117,7 +117,6 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
       });
 
     d3.selectAll('#transmission-lines, #text-labels-adm2').raise();
-    $('.loading').fadeOut();
   };
 
   var find = (e) => {
@@ -177,6 +176,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
         draw(points);
 
         _d.point_collection['points'] = points;
+
+        $('.loading').fadeOut();
       }
     });
   };

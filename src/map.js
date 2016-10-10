@@ -110,6 +110,8 @@ define(['d3', 'topojson'], (d3, topojson) => {
   };
 
   var zoom = d3.zoom().on("zoom", () => {
+    _container.selectAll('path').style("stroke-width", 1.2 / d3.event.transform['k']);
+
     d3.selectAll("text.adm-label")
       .attr('font-size', (d) => {
         return d.properties['adm1'] ?
@@ -118,8 +120,6 @@ define(['d3', 'topojson'], (d3, topojson) => {
       });
 
     _container.attr("transform", d3.event.transform);
-
-    _container.selectAll('path').attr("stroke-width", 1.2 / d3.event.transform['k']);
   });
 
   var setup_drag = () => {

@@ -47,11 +47,6 @@ define(['d3'], (d3) => {
     full: "SA LCOE",
     icon: "local_gas_station",
     fill: (g) => {
-      // TODO: domain should be calculated by the min..max lcsa's from the point collection
-      //
-      // store in the summaries something like this
-      // select min(lcsa_n) from points where cc = 566 and adm1 = 1;
-      //
       let f = d3.scaleLinear()
           .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
           .range([0, 1]);

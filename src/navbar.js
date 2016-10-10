@@ -1,6 +1,7 @@
-define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
-  var setup = () => {
+define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, place) => {
+  var init = () => {
     // controls
+    //
     {
       $('#controls-control').on('click', (e) => {
         e.preventDefault();
@@ -18,6 +19,7 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
     }
 
     // panes
+    //
     {
       $('.close-button').on('click', (e) => {
         e.preventDefault();
@@ -41,6 +43,7 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
     }
 
     // navbar
+    //
     {
       $('[data="adm0_name"]').on('click', (e) => {
         e.preventDefault();
@@ -48,15 +51,10 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
         points.hide_info();
         summary.hide();
 
-        _d.place['adm1'] = undefined;
-        _d.place['adm1_name'] = undefined;
+        place.nullify('adm1');
+        place.nullify('adm2');
 
-        _d.place['adm2'] = undefined;
-        _d.place['adm2_name'] = undefined;
-
-        history.pushState(null, null, location.updateQueryParam('load_points', false));
-        history.replaceState(null, null, location.updateQueryParam('adm1', null));
-        history.replaceState(null, null, location.updateQueryParam('adm2', null));
+        history.replaceState(null, null, location.updateQueryParam('load_points', false));
 
         d3.selectAll('.adm2').style('display', 'none');
 
@@ -93,6 +91,7 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
     }
 
     // dropdowns
+    //
     {
       $('.with-dropdown').on('click', (e) => {
         $(e.target).closest('.with-dropdown').find('ul.dropdown').toggle();
@@ -106,6 +105,7 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
     }
 
     // actions
+    //
     {
       $('.load-points').on('click', (e) => {
         e.preventDefault();
@@ -114,8 +114,6 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
         let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
 
         let target = d3.select(`path#adm${ adm }-${ adm_v }`).node();
-
-        _d.place['bbox'] = map.to_bbox(target.getBBox());
 
         history.replaceState(null, null, location.updateQueryParam('load_points', true));
 
@@ -163,6 +161,6 @@ define(['d3', 'map', 'points', 'summary'], (d3, map, points, summary) => {
   };
 
   return {
-    setup: setup
+    init: init
   };
 });

@@ -102,8 +102,6 @@ define(['_d', 'd3'], (_d, d3) => {
       ticker = null;
     }
 
-    console.log(ticker);
-
     ticker = setInterval(() => {
       if (i >= to) {
         if (typeof callback === 'function') callback();

@@ -34,12 +34,13 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
-* [10/16] Code
+* [11/16] Code
   - [ ] points: hydro
+  - [ ] lcsa's colouring from min..max from the point collection
   - [ ] scenario: init from url params
   - [ ] $loading callbacks seem iffy...
-  - [ ] $ grep -r TODO .
   - [ ] background maps?
+  - [X] $ grep -r TODO .
   - [X] summary: poulation => connected people
   - [X] coffeescript => ES6
   - [X] KW => kW
