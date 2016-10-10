@@ -50,8 +50,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
       .attr('stroke', stroke);
   };
 
-  var draw = (points) => {
-    if (! points) {
+  var draw = (collection) => {
+    if (! collection) {
       $('.loading').fadeOut()
       return;
     }
@@ -67,72 +67,93 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     stroke = mode.stroke();
     stroke_width = mode.stroke_width();
 
-    points.map((e) => {
-      _container.append("path")
-        .datum({
-          type: "Point",
-          coordinates: [e.x, e.y]
-        })
-        .attr('class', "point")
-        .attr('d', map.geo_path)
-        .attr('fill', () => fill(e, scn))
-        .attr('stroke', stroke)
-        .attr('stroke-width', stroke_width)
+    let circles = "";
 
-        .on('mouseleave', function(d) { if (this !== locked) reset_stroke(this) })
+    // This is too much for D3, (check git history if curious)
+    //
+    collection.forEach((e,i) => {
+      let pp = map.projection([e.x, e.y]);
 
-        .on('click', function(d) {
-          if (this === locked) {
-            d3.select(this).attr('stroke-width', 0);
-            locked = null;
-
-          } else {
-            reset_stroke(locked);
-
-            d3.select(this)
-              .attr('stroke', 'red')
-              .attr('stroke-width', 0.02)
-              .raise();
-
-            load_info(e, scn, diesel_p);
-
-            locked = this;
-
-            show_info();
-          }
-        })
-
-        .on('mouseenter', function(d) {
-          if (locked !== null) return;
-
-          d3.select(this)
-            .attr('stroke-width', 0.01)
-            .attr('stroke', 'red');
-
-          load_info(e, scn, diesel_p);
-        });
+      circles += `<circle class="point"
+                          fill="${ fill(e,scn) }"
+                          stroke="${ stroke }"
+                          stroke-width="0.001"
+                          cx=${ pp[0] }
+                          cy=${ pp[1] }
+                          r="0.012"></circle>`;
     });
 
+    _points.node().innerHTML = circles;
+
+    _points
+      .on('click', () => {
+        let elem = d3.event.toElement;
+        let target = find(d3.event);
+
+        if (elem === locked) {
+          reset_stroke(elem);
+          locked = null;
+
+        } else {
+          reset_stroke(locked);
+
+          d3.select(elem)
+            .attr('stroke', 'red')
+            .attr('stroke-width', 0.01)
+            .raise();
+
+          load_info(target, scn, diesel_p);
+
+          locked = elem;
+
+          show_info();
+        }
+      })
+
+      .on('mousemove', function() {
+        if (locked !== null) return;
+
+        load_info(find(d3.event), scn, diesel_p);
+      });
+
     d3.selectAll('#transmission-lines, #text-labels-adm2').raise();
-    $('.loading').fadeOut()
+    $('.loading').fadeOut();
+  };
+
+  var find = (e) => {
+    let it = d3.select(e.toElement);
+
+    let x = it.attr('cx');
+    let y = it.attr('cy');
+
+    let p = map.projection.invert([x,y]);
+    let px = p[0];
+    let py = p[1];
+
+    return _d.point_collection['points'].find((e) => {
+      return (px < e['x'] + 0.007 && px > e['x'] - 0.007 &&
+              py < e['y'] + 0.007 && py > e['y'] - 0.007);
+    });
   };
 
   var load_info = (e, scn, diesel_p) => {
     let tech = _g.technologies[e[scn]];
 
-    for (let k in e) _d.point[k] = e[k].toLocaleString();
+    let p = _d.point;
 
-    _d.point['long'] = e['x'];
-    _d.point['lat']  = e['y'];
-    _d.point['ic']   = e[`ic_${ scn }`].toLocaleString();
-    _d.point['lc']   = e[`lc_${ scn }`].toLocaleString();
-    _d.point['cap']  = e[`c_${ scn }`].toLocaleString();
-    _d.point['lcsa'] = e[`lcsa_${ diesel_p }`].toLocaleString();
+    for (let k in e) p[k] = e[k].toLocaleString();
 
-    _d.point['technology'] = tech['name'];
+    p['long'] = e['x'];
+    p['lat']  = e['y'];
+    p['ic']   = e[`ic_${ scn }`].toLocaleString();
+    p['lc']   = e[`lc_${ scn }`].toLocaleString();
+    p['cap']  = e[`c_${ scn }`].toLocaleString();
+    p['lcsa'] = e[`lcsa_${ diesel_p }`].toLocaleString();
 
-    _d.point['urban'] = (e['u'] ? "Urban" : "Rural");
-    _d.point['wind']  = _u.percent(e['w_cf'], 1);
+    p['technology'] = tech['name'];
+
+    p['urban'] = (e['u'] ? "Urban" : "Rural");
+    p['wind']  = _u.percent(e['w_cf'], 1);
   };
 
   var load = (o) => {
