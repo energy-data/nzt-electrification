@@ -15,7 +15,9 @@ define(['_g'], (_g) => {
         } else {
           target[property] = value;
 
-          let divs = document.querySelectorAll(`[data='${ property }']`);
+          let elem = (target['scope'] ? document.getElementById(target['scope']) : null);
+
+          let divs = (elem ? elem : document).querySelectorAll(`[data='${ property }']`);
 
           if (divs.length)
             for (d of divs) d.innerText = (value ? value : "");
@@ -31,7 +33,10 @@ define(['_g'], (_g) => {
 
   _d = {};
 
-  for (let o of _g.bound_objects) _d[o] = binder();
+  for (let o of _g.bound_objects) {
+    _d[o['name']] = binder();
+    _d[o['name']]['scope'] = o['scope'];
+  }
 
   return (window._d = _d);
 });

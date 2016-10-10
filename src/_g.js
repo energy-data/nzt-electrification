@@ -32,7 +32,25 @@ define([], () => {
 
     scenarios: ["l1","l2","l3","l4","l5","n1","n2","n3","n4","n5"],
 
-    bound_objects: ['place', 'point', 'scenario', 'summary', 'point_collection', "mode"],
+    bound_objects: [{
+      name: 'place',
+      scope: null
+    } , {
+      name: 'point',
+      scope: 'point-info'
+    } , {
+      name: 'scenario',
+      scope: null
+    } , {
+      name: 'summary',
+      scope: 'summary-info'
+    } , {
+      name: 'point_collection',
+      scope: null
+    } , {
+      name: 'mode',
+      scope: null
+    }],
 
     assets: 'assets',
 
