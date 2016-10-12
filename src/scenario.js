@@ -2,9 +2,9 @@ define(['summary'], (summary) => {
   var init = (points) => {
     load_selector();
 
-    _d.scenario['scn'] = 'l1';
+    _d.scenario['scn'] = 'n1';
     _d.scenario['tier'] = 1;
-    _d.scenario['diesel_p'] = 'l';
+    _d.scenario['diesel_p'] = 'n';
 
     _d.scenario['callback'] = [
       'scn',
