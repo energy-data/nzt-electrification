@@ -117,6 +117,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
       });
 
     d3.selectAll('#transmission-lines, #text-labels-adm2').raise();
+    $('.loading').fadeOut();
   };
 
   var find = (e) => {
