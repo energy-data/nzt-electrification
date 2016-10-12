@@ -34,6 +34,7 @@
   - [X] knob: tier labels
   - [X] knob: reflect <->
 
+
 * [11/16] Code
   - [ ] points: hydro
   - [ ] lcsa's colouring from min..max from the point collection
@@ -52,11 +53,31 @@
   - [X] knob: do not reload if not "technology mode"
   - [X] global-things to _things
 
+
+* Third Review
+** [0/7] Overall
+  - [ ] High diesel price activated by default
+  - [ ] Diesel price button would be improve to make it clear that we can click on it
+  - [ ] Help mode enabled by default
+  - [ ] Separate Scenarios and Underlying Data (maybe color coding?)
+  - [ ] Make hovering more apparent, overall increase contrast of text, icons, etc.
+  - [ ] Pop-up error messages to look a little snazzier and re-write the texts in it
+  - [ ] Rework hierarchy between the summary and detailed data table to make it simpler, more logical and more interactive (ie. Expandable -
+click for more etc)
+
+** [0/4] State
+  - [ ] Look into possibility to reduce number of decimals, especially from investments and capacity
+  - [ ] Prioritize graphically population and investments, with having 'areas' and 'capacity' accessible with clicking somewhere
+  - [ ] Try to improve readability with increasing font and playing with colors in the result table
+  - [ ] Load randomize results automatically
+
+
 * [0/4] Second Review
   - [ ] missing expenditures and other indicators
   - [ ] wait: index: inserting a poverty map jpeg?
   - [ ] wait: index: projected increase in demand
   - [ ] wait: index: access rate (world bank != internal inteligence)
+
 
 * [9/9] First Review
   - [X] index: show 3 countries

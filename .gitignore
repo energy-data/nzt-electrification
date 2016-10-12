@@ -1,3 +1,5 @@
 node_modules
 dist/javascripts
 dist/lib
+server.pid
+diffs

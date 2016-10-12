@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+#
+env_file = %x[echo -n $(git root)/_]
+
+File.readlines(env_file).each { |line|
+  if line.match /^export /
+    key, value = line.gsub(/^export /, "").gsub("\n", '').split("=")
+
+    ENV[key] = %x[echo -n #{ value }]
+  end
+}
+
+user = ENV['SRV_USER']
+server = ENV['SRV_SERVER']
+destination = ENV['SRV_DEST']
+dist = ENV['DIST']
+
+exclude = nil
+
+# In case deploying the entire project:
+#
+# exclude = %w[
+#   .git
+#   server.pid
+#   scripts
+#   run
+#   _
+# ].inject("") { |t,x| t + "--exclude=#{ x } " }
+
+system "ln -sf ../nzt-conf.js #{ dist }/javascripts/_conf.js"
+system "rsync -OPrv --copy-links #{ dist } #{ user }@#{ server }:#{ destination } #{ exclude } --delete-after"
+system "ln -sf ../localhost-conf.js #{ dist }/javascripts/_conf.js"

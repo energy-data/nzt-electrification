@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+source $(git root)/_
+
+cd $DIST/lib
+
+while read -r line
+do
+    origin=$(sed -e 's:\(.*\)[[:space:]]::g' <<< $line)
+    destination=$(sed -e 's:[[:space:]]\(.*\)::g' <<< $line)
+
+    curl $origin -o $destination
+done <$PROJECT/dependencies.tsv
+
+cd -

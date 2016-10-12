@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source $(git root)/_
+
+if [[ -f $PID_FILE ]]; then
+   PROCESS=$(cat $PID_FILE)
+
+   echo "Killing $PROCESS ..."
+
+   kill $PROCESS
+
+   rm $PID_FILE
+else
+   echo "No $PID_FILE to kill."
+fi

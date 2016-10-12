@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# export PROJECT="$(builtin cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+export PROJECT=$(git root)
+export PID_FILE=$PROJECT/server.pid
+export DIST=$PROJECT/dist
+export WEB_PORT=
+
+export SRV_USER=
+export SRV_SERVER=
+export SRV_DEST=
