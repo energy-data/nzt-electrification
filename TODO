@@ -1,15 +1,15 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [28/44] UI/UX
+* [31/44] UI/UX
   - [ ] landing
   - [ ] try to make clear that this is a projection
-  - [ ] tweak units in summaries
-  - [ ] tweak units in point-info
+  - [X] tweak units in summaries
+  - [X] tweak units in point-info
   - [ ] population and investments come first
   - [ ] cells? area? points?
   - [ ] points: technology colour palette (+ locked point)
-  - [ ] show/hide: points details
+  - [X] show/hide: points details
   - [ ] Review navbar flow
   - [ ] sort summaries by population
   - [ ] grid/offgrid grouping
@@ -48,9 +48,9 @@
   - [X] knob: reflect <->
 
 
-* [11/22] Code
+* [12/20] Code
   - [ ] show scale gradients
-  - [ ] pie graphs in summaries
+  - [X] pie graphs in summaries
   - [ ] technologies NOT as array (initial NULL and ordering is a pain)
   - [ ] there seems to be a double call to the api
   - [ ] points: hydro
@@ -71,19 +71,20 @@
   - [X] global-things to _things
 
 
-* Third Review (from Yann)
-** [1/7] Overall
+* Third Review (from Team)
+  - [ ] Revision from Trello
+
+** [3/7] Overall
   - [X] High diesel price activated by default
   - [ ] ==== Diesel price button would be improve to make it clear that we can click on it
   - [ ] ==== Help mode enabled by default
-  - [ ] Separate Scenarios and Underlying Data (maybe color coding?)
+  - [X] Separate Scenarios and Underlying Data (maybe color coding?)
   - [ ] Make hovering more apparent, overall increase contrast of text, icons, etc.
   - [ ] Pop-up error messages to look a little snazzier and re-write the texts in it
-  - [ ] Rework hierarchy between the summary and detailed data table to make it simpler, more logical and more interactive (ie. Expandable -
-click for more etc)
+  - [X] Rework hierarchy between the summary and detailed data table to make it simpler, more logical and more interactive (ie. Expandable - click for more etc)
 
-** [0/4] State
-  - [ ] Truncate decimals from investments and capacity
+** [1/4] State
+  - [X] Truncate decimals from investments and capacity
   - [ ] Prioritize graphically population and investments, with having 'areas' and 'capacity' accessible with clicking somewhere
   - [ ] Try to improve readability with increasing font and playing with colors in the result table
   - [ ] Load randomize results automatically
@@ -106,6 +107,7 @@ click for more etc)
   - [X] levelised cost => LCOE in USD/kWh
   - [X] is urban => urban
   - [X] summarise capacity kW or MW
+
 
 * [8/8] BUGS
   - [X] knob: label: click => click on text if clunky

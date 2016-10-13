@@ -1,32 +1,17 @@
-#!/usr/bin/env ruby
+#!/bin/bash
 #
-env_file = %x[echo -n $(git root)/_]
+source $(git root)/_
 
-File.readlines(env_file).each { |line|
-  if line.match /^export /
-    key, value = line.gsub(/^export /, "").gsub("\n", '').split("=")
+ln -sf ../nzt-conf.js $DIST/javascripts/_conf.js
 
-    ENV[key] = %x[echo -n #{ value }]
-  end
-}
+rsync -OPrv --copy-links $DIST/ \
+      $SRV_USER@$SRV_SERVER:$SRV_DEST \
+      --delete-after
 
-user = ENV['SRV_USER']
-server = ENV['SRV_SERVER']
-destination = ENV['SRV_DEST']
-dist = ENV['DIST']
-
-exclude = nil
-
-# In case deploying the entire project:
+# In case deploying the entire project (not only $DIST):
 #
-# exclude = %w[
-#   .git
-#   server.pid
-#   scripts
-#   run
-#   _
-# ].inject("") { |t,x| t + "--exclude=#{ x } " }
+# --exclude=_
+# --exclude=.git
+# --exclude=run
 
-system "ln -sf ../nzt-conf.js #{ dist }/javascripts/_conf.js"
-system "rsync -OPrv --copy-links #{ dist } #{ user }@#{ server }:#{ destination } #{ exclude } --delete-after"
-system "ln -sf ../localhost-conf.js #{ dist }/javascripts/_conf.js"
+ln -sf ../localhost-conf.js $DIST/javascripts/_conf.js

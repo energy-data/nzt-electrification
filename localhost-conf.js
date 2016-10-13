@@ -1,5 +1,5 @@
 define([], () => {
   window._conf = {
-    data_source: "http://localhost:4000"
+    data_source: "http://nzt-api.localhost"
   }
 });
