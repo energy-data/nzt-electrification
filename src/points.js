@@ -149,6 +149,9 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     p['lc']   = e[`lc_${ scn }`].toLocaleString();
     p['cap']  = e[`c_${ scn }`].toLocaleString();
     p['lcsa'] = e[`lcsa_${ diesel_p }`].toLocaleString();
+    p['gd_c'] = e[`gd_c`].toFixed(1).toLocaleString();
+    p['gd_p'] = e[`gd_p`].toFixed(1).toLocaleString();
+    p['rd']   = e[`rd`].toFixed(1).toLocaleString();
 
     p['technology'] = tech['name'];
 
