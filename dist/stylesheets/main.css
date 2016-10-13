@@ -28,6 +28,10 @@ ul {
   padding: 0px;
 }
 
+td {
+  white-space: nowrap;
+}
+
 a {
   display: block !important;
   color: #7587A6;
@@ -55,6 +59,10 @@ a:active, a.active {
 
 .clickable:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.clickable:hover a {
+  color: #f1f1f1;
 }
 
 .right {
@@ -138,7 +146,7 @@ a:active, a.active {
 }
 
 .small {
-  font-size: small;
+  font-size: smaller !important;
 }
 
 @media only screen and (max-width: 768px) {
