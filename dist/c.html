@@ -29,53 +29,10 @@
         </a>
       </div>
 
-      <div class="col c3 clickable"
+      <div class="col c10 clickable"
            help-data="adm0_name">
-        <a data="adm0_name"
-           href="#"></a>
-      </div>
-
-      <div class="col c3 with-dropdown clickable"
-           style="display: none;"
-           help-data="adm1_name">
-        <a data="adm1_name"
-           href="#"></a>
-
-        <ul class="dropdown pane">
-          <li class="clickable">
-            <a href="#"
-               class="load-points">Load cells</a>
-          </li>
-
-          <li class="clickable">
-            <a href="#"
-               class="export-summary">Export summary</a>
-          </li>
-
-          <li class="clickable">
-            <a href="#"
-               class="export-points">Export cells</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col c3 with-dropdown clickable"
-           style="display: none;"
-           help-data="adm2_name">
-        <a data="adm2_name"
-           href="#"></a>
-
-        <ul class="dropdown pane">
-          <li class="clickable">
-            <a href="#"
-               class="export-summary">Export summary</a>
-          </li>
-
-          <li class="clickable">
-            <a href="#"
-               class="export-points">Export cells</a>
-          </li>
-        </ul>
+        - Projection 2030 - <a style="display: inline-block !important"
+                               data="adm0_name" href="#"></a>
       </div>
 
       <div class="col c1 clickable"
@@ -115,12 +72,20 @@
          class="pane hidden"
          help-data="summary">
       <div class="row">
-        <div class="col c8">
-          <h2 class="center">
-            <span data="adm1_name"></span>
-            <span data="adm2_name"></span>
-          </h2>
+        <div class="col c3 clickable">
+          <a data="adm1_name"></a>
         </div>
+
+        <div class="col c1 center">
+          <span id="adm2-arrow"
+                data="adm2_arrow"></span>
+        </div>
+
+        <div class="col c3 clickable">
+          <a data="adm2_name"></a>
+        </div>
+
+        <div class="col c1">&nbsp;</div>
 
         <div class="col c2">
           <div class="export-summary clickable"><a href="#">export</a></div>

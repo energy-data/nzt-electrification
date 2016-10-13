@@ -9,12 +9,10 @@ define(['summary'], (summary) => {
       (...args) => {
         if (typeof args[2] === 'number') {
           summary.fetch();
-          $('[data="adm1_name"]').closest('.with-dropdown').show();
         }
 
         else {
           console.info(`This adm1 is dodgy: ${ args[2] }. Assuming adm0...`);
-          $('[data="adm1_name"]').closest('.with-dropdown').hide();
         }
       }
     ];
@@ -24,15 +22,28 @@ define(['summary'], (summary) => {
       (...args) => {
         if (typeof args[2] === 'number') {
           summary.fetch();
-          $('[data="adm2_name"]').closest('.with-dropdown').show();
         }
 
         else {
           console.info(`This adm2 is dodgy: ${ args[2] }. Assuming adm1...`);
-          $('[data="adm2_name"]').closest('.with-dropdown').hide();
         }
       }
     ];
+
+    _d.place['callback'] = [
+      'adm2_name',
+      (...args) => {
+        if (args[2] == false || args[2] == null || args[2] == undefined) {
+          $('#adm2-arrow').html("&nbsp;");
+        }
+
+        else {
+          $('#adm2-arrow').html("&rarr;");
+        }
+      }
+    ];
+
+    _d.place['adm2_name'] = null;
   };
 
   var nullify = (adm) => {

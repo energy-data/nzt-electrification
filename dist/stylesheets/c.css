@@ -96,6 +96,15 @@ path.adm1:hover, path.adm2.hoverable:hover {
   font-size: 0.7em;
 }
 
+#summary-info a[data="adm1_name"],
+#summary-info a[data="adm2_name"],
+#summary-info span[data="adm2_arrow"] {
+  display: inline-block;
+  font-size: 1.3em !important;
+  cursor: pointer;
+  padding: 10px;
+}
+
 .info-table {
   border-spacing: 0;
   border-collapse: collapse;
