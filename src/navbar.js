@@ -18,30 +18,6 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
       });
     }
 
-    // panes
-    //
-    {
-      $('.close-button').on('click', (e) => {
-        e.preventDefault();
-
-        $(e.target).closest('.pane').addClass('hidden');
-      });
-
-      $('#hide-panes').on('click', (e) => {
-        e.preventDefault();
-
-        points.hide_info();
-        summary.hide();
-      });
-
-      $('#restore-panes').on('click', (e) => {
-        e.preventDefault();
-
-        summary.show();
-        points.show_info();
-      });
-    }
-
     // navbar
     //
     {
