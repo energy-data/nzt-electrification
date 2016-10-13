@@ -4,7 +4,7 @@ define([], () => {
   var dictionary = {
     adm0_name: "The country button. It simply zooms the map out to the entire country.",
     adm1_name: "State or province. It zooms out to that area and allows you to use certain functions under the menu.",
-    adm2_name: "Borough. It zooms out to that area and allows you to use certain functions under the menu.",
+    adm2_name: "District. It zooms out to that area and allows you to use certain functions under the menu.",
     scenario: `A <strong>scenario</strong> is a combination of a <strong>tier</strong> (kWh capacity given to a certain cell) and a <strong>diesel price</strong> (current and projected).<br />
                You can drag the knob (or click on the icons) and click central button to combine these 2 aspects. <br />
                This tool only has effect if the mode is set to 'Technology' or 'SA LCOE'.`,
@@ -18,8 +18,8 @@ define([], () => {
                  This pane will also change depending on what cell you have locked on the map.`,
     adm0: "This is the country.",
     adm1: `This is a <strong>state</strong> or <strong>province</strong>.<br />
-           You can click on one of its boroughs or click on the navbar for more actions.`,
-    adm2: `This is a <strong>borough</strong>.<br />
+           You can click on one of its district or click on the navbar for more actions.`,
+    adm2: `This is a <strong>district</strong>.<br />
            You can hover and select grids within it, change the scenario and mode on the controls...`
   };
 
