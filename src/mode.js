@@ -19,6 +19,19 @@ define(['d3'], (d3) => {
     icon: "blur_circular",
     fill: (g, scn) => tc[g[scn]]
   }, {
+    type: "lcsa",
+    full: "SA LCOE",
+    icon: "local_gas_station",
+    fill: (g) => {
+      let f = d3.scaleLinear()
+          .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
+          .range([0, 1]);
+
+      return `rgba(105, 70 ,50, ${ f(g['lcsa_' + _d.scenario['diesel_p']]) })`;
+    },
+    stroke: "rgba(105, 70 ,50, 0.2)",
+    stroke_width: 0.001
+  }, {
     type: "population",
     full: "Population",
     icon: "people",
@@ -42,19 +55,6 @@ define(['d3'], (d3) => {
     full: "Hydro",
     icon: "opacity",
     fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['hp'], [0, 10000000]) })`
-  }, {
-    type: "lcsa",
-    full: "SA LCOE",
-    icon: "local_gas_station",
-    fill: (g) => {
-      let f = d3.scaleLinear()
-          .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
-          .range([0, 1]);
-
-      return `rgba(105, 70 ,50, ${ f(g['lcsa_' + _d.scenario['diesel_p']]) })`;
-    },
-    stroke: "rgba(105, 70 ,50, 0.2)",
-    stroke_width: 0.001
   }];
 
   var init = (points) => {
@@ -86,7 +86,11 @@ define(['d3'], (d3) => {
     for (let m of modes)
       _u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']);
 
-    $("#mode-selector [bind='technology']").closest('li').removeClass('c4').addClass('c12');
+    $("#mode-selector")
+      .find("[bind='technology'], [bind='lcsa']")
+      .closest('li')
+      .removeClass('c3')
+      .addClass('c6');
 
     let $mssa = $(mss + ' a');
 
