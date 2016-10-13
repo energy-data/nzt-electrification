@@ -2,6 +2,7 @@ define(['d3'], (d3) => {
   var tc = _g.technologies.map((t) => t ? t['color'] : null);
 
   var mss = '#mode-selector';
+  var oms = '#other-mode-selector-menu';
 
   var fill         = () => tm()['fill'];
   var stroke       = () => tm()['stroke'];
@@ -78,21 +79,18 @@ define(['d3'], (d3) => {
       }];
   };
 
-  var clear_selector = () => $(mss).html('<ul></ul>');
+  var clear_selector = () => $(mss,oms).html('<ul></ul>');
 
   var load_selector = () => {
     clear_selector();
 
     for (let m of modes)
-      _u.tmpl('#mode-option-template', mss, m['type'], m['full'], m['icon']);
+      _u.tmpl('#mode-option-template',
+              (['technology', 'lcsa'].indexOf(m['type']) > -1 ? mss : oms),
+              m['type'], m['full'], m['icon'],
+              (['technology', 'lcsa'].indexOf(m['type']) > -1 ? "c6" : "c6"));
 
-    $("#mode-selector")
-      .find("[bind='technology'], [bind='lcsa']")
-      .closest('li')
-      .removeClass('c3')
-      .addClass('c6');
-
-    let $mssa = $(mss + ' a');
+    let $mssa = $('.mode-selector-option');
 
     $mssa.on('click', (e) => {
       e.preventDefault();

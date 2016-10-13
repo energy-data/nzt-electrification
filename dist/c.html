@@ -57,6 +57,15 @@
            class="row">
       </div>
 
+      <div class="row center clickable with-dropdown">
+        <a id="other-mode-selector"
+           href="#">Datasets</a>
+
+        <ul id="other-mode-selector-menu"
+            class="dropdown pane">
+        </ul>
+      </div>
+
       <div class="row center clickable"
            id="toggle-help">
         <a href="#">Help</a>
@@ -334,9 +343,10 @@
 
   <script type="text/template"
           id="mode-option-template">
-    <li class="center col c3 clickable small"
+    <li class="center col {3} clickable small"
         help-data="mode">
-      <a href="#" bind="{0}">
+      <a href="#" bind="{0}"
+         class="mode-selector-option">
         <i class="material-icons">{2}</i><br />{1}
       </a>
     </li>

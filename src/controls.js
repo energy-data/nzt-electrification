@@ -45,6 +45,10 @@ define(['knob', 'help'], (knob, help) => {
         });
     });
 
+    $('#other-mode-selector').on('click', (e) => {
+      e.preventDefault();
+    });
+
     knob.init();
   };
 
