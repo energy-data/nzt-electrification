@@ -1,4 +1,6 @@
-define(['d3'], (d3) => {
+define(['d3', 'pie'], (d3, pie) => {
+  var tech_colors = _g.technologies.map((t) => { if (t) return t['color'] });
+
   var fetch = () => {
     let adm = (() => {
       if (!_d.place['adm2']) return 'adm1';
@@ -22,30 +24,80 @@ define(['d3'], (d3) => {
       .await((error, results) => {
         if (error) console.log(error);
 
-        let r = results.map((x) => x['results']);
+        let r = results.map((x) => x['results']).sort_p('tech', true);
 
-        handle(r);
+        pies(r);
+        numbers(r);
         _d.summary['results'] = r;
       });
   };
 
-  var handle = (obj) => {
-    $('#summary-info table').html("");
+  var handle_totals = (obj) => {
+    return {
+      pts: obj.reduce(((a,b) => a + b['pts']), 0),
+      connections: obj.reduce(((a,b) => a + b['connections']), 0),
+      capacity: obj.reduce(((a,b) => a + b['capacity']), 0),
+      investments: obj.reduce(((a,b) => a + b['investments']), 0)
+    }
+  };
 
-    let total_pts = obj.reduce(((a,b) => a + b['pts']), 0);
-    let total_connections = obj.reduce(((a,b) => a + b['connections']), 0);
-    let total_capacity = obj.reduce(((a,b) => a + b['capacity']), 0);
-    let total_investments = obj.reduce(((a,b) => a + b['investments']), 0);
+  var pies = (obj) => {
+    $('#pies-table').html("");
+    $('#techs-table').html("");
 
-    _u.tmpl('#summary-header-template', '#summary-info table');
+    let totals = handle_totals(obj);
+
+    _u.tmpl('#pies-header-template', '#pies-table');
+
+    _u.tmpl('#pies-subheader-template', '#pies-table',
+            totals['pts'].toLocaleString(),
+            totals['connections'].toLocaleString(),
+            (totals['capacity'] / 1000000).toFixed(2).toLocaleString(),
+            (totals['investments'] / 1000000).toFixed(2).toLocaleString()
+           );
+
+    let colors = tech_colors.reduce(((x,c,i) => { if (obj.map((r) => r['tech']).indexOf(i) > -1) x.push(c); return x }), []);
+
+    _g.technologies.map((t,i) => {
+      let c = obj.find((x) => x['tech'] === i);
+
+      if (!c) return;
+
+      _u.tmpl(
+        '#pies-tech-tr-template',
+        '#techs-table',
+        t['name'], t['color']
+      );
+    });
+
+    _u.tmpl('#pies-graphs-template', '#pies-table');
+
+    for (let k of ['pts', 'connections', 'capacity', 'investments']) {
+      let chart = pie.chart(`#${ k }`,
+        obj.map((r) => { return [0,(r[k]/totals[k])*100] }),
+        40, colors, " "
+      );
+
+      chart.change(1);
+    }
+
+    show();
+  };
+
+  var numbers = (obj) => {
+    $('#numbers').html("");
+
+    let totals = handle_totals(obj);
+
+    _u.tmpl('#numbers-header-template', '#numbers');
 
     _u.tmpl(
-      '#summary-subheader-template',
-      '#summary-info table',
-      total_pts.toLocaleString(),
-      total_connections.toLocaleString(),
-      (total_capacity / 1000).toFixed(2).toLocaleString(),
-      total_investments.toLocaleString()
+      '#numbers-subheader-template',
+      '#numbers',
+      totals['pts'].toLocaleString(),
+      totals['connections'].toLocaleString(),
+      totals['capacity'].toLocaleString(),
+      totals['investments'].toLocaleString()
     );
 
     _g.technologies.map((t,i) => {
@@ -54,17 +106,22 @@ define(['d3'], (d3) => {
       if (!c) return;
 
       _u.tmpl(
-        '#summary-count-template',
-        '#summary-info table',
+        '#numbers-count-template',
+        '#numbers',
         t['name'], t['color'],
-        c['pts'].toLocaleString(), _u.percent(c['pts'], total_pts),
-        c['connections'].toLocaleString(), _u.percent(c['connections'],total_connections),
-        c['capacity'].toLocaleString(), _u.percent(c['capacity'],total_capacity),
-        c['investments'].toLocaleString(), _u.percent(c['investments'],total_investments)
+        c['pts'].toLocaleString(), _u.percent(c['pts'], totals['pts']),
+        c['connections'].toLocaleString(), _u.percent(c['connections'],totals['connections']),
+        c['capacity'].toLocaleString(), _u.percent(c['capacity'],totals['capacity']),
+        c['investments'].toLocaleString(), _u.percent(c['investments'],totals['investments'])
       );
     });
 
     show();
+  };
+
+  var toggle = () => {
+    $('#numbers').toggleClass('hidden');
+    $('#pies').toggleClass('hidden');
   };
 
   var show = () => {
@@ -77,8 +134,8 @@ define(['d3'], (d3) => {
 
   return {
     fetch: fetch,
-    handle: handle,
     show: show,
-    hide: hide
+    hide: hide,
+    toggle: toggle
   };
 });

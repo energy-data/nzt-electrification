@@ -66,6 +66,24 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
       });
     }
 
+    // panes
+    //
+    {
+      $('#toggle-summary-charts').on('click', (e) => {
+        e.preventDefault();
+        $(e.target).closest('.clickable').toggleClass('active');
+
+        summary.toggle();
+      });
+
+      $('#toggle-point-details').on('click', (e) => {
+        e.preventDefault();
+        $(e.target).closest('.clickable').toggleClass('active');
+
+        $('#point-info').find('tr.hideable').toggleClass('hidden');
+      });
+    }
+
     // dropdowns
     //
     {

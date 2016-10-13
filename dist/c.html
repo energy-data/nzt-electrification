@@ -114,14 +114,32 @@
     <div id="summary-info"
          class="pane hidden"
          help-data="summary">
+      <div class="row">
+        <div class="col c8">
+          <h2 class="center">
+            <span data="adm1_name"></span>
+            <span data="adm2_name"></span>
+          </h2>
+        </div>
 
-      <h2 class="center">
-        Summary for
-        <span data="adm1_name"></span>
-        <span data="adm2_name"></span>
-      </h2>
+        <div class="col c2">
+          <div class="export-summary clickable"><a href="#">export</a></div>
+        </div>
 
-      <table class="info-table monospace"></table>
+        <div class="col c2">
+          <div id="toggle-summary-charts"
+               class="clickable"><a href="#">details</a></div>
+        </div>
+      </div>
+
+      <table id="numbers"
+             class="info-table monospace hidden"></table>
+
+      <div id="pies"
+           class="row monospace">
+        <table id="techs-table"></table>
+        <table id="pies-table"></table>
+      </div>
     </div>
 
     <div id="point-info"
@@ -260,7 +278,37 @@
   </body>
 
   <script type="text/template"
-          id="summary-header-template">
+          id="pies-header-template">
+    <tr class="center">
+      <td>Cells</td>
+      <td>New Connections</td>
+      <td>Capacity</td>
+      <td>Investments</td>
+    </tr>
+  </script>
+
+  <script type="text/template"
+          id="pies-subheader-template">
+    <tr class="number center">
+      <td>{0}km<sup>2</sup></td>
+      <td>{1}     </td>
+      <td>{2}  MWh</td>
+      <td>{3}M USD</td>
+    </tr>
+  </script>
+
+  <script type="text/template"
+          id="pies-graphs-template">
+    <tr class="center">
+      <td id="pts"        ></td>
+      <td id="connections"></td>
+      <td id="capacity"   ></td>
+      <td id="investments"></td>
+    </tr>
+  </script>
+
+  <script type="text/template"
+          id="numbers-header-template">
     <tr>
       <td></td>
       <td colspan="3" class="center">Cells</td>
@@ -271,29 +319,28 @@
   </script>
 
   <script type="text/template"
-          id="summary-subheader-template">
-    <tr>
-      <td></td>
-      <td></td>
-      <td colspan="2" class="center"><span class="number">{0}</span>    </td>
-      <td colspan="2" class="center"><span class="number">{1}</span>    </td>
-      <td colspan="2" class="center"><span class="number">{2}</span> kWh</td>
-      <td colspan="2" class="center"><span class="number">{3}</span> USD</td>
+          id="numbers-subheader-template">
+    <tr class="number center">
+      <td colspan="2"></td>
+      <td colspan="2">{0} km<sup>2</sup></td>
+      <td colspan="2">{1}    </td>
+      <td colspan="2">{2}  Wh</td>
+      <td colspan="2">{3} USD</td>
     </tr>
   </script>
 
   <script type="text/template"
-          id="summary-count-template">
+          id="numbers-count-template">
     <tr>
       <td style="background-color: {1};">&nbsp;</td>
       <td>{0}</td>
-      <td class="right"><span class="number">{2}</span></td>
+      <td class="right"><span class="number">{2}</span> km<sup>2</sup></td>
       <td class="right"><span class="number">{3}</span> %</td>
       <td class="right"><span class="number">{4}</span></td>
       <td class="right"><span class="number">{5}</span> %</td>
-      <td class="right"><span class="number">{6}</span></td>
+      <td class="right"><span class="number">{6}</span> Wh</td>
       <td class="right"><span class="number">{7}</span> %</td>
-      <td class="right"><span class="number">{8}</span></td>
+      <td class="right"><span class="number">{8}</span> USD</td>
       <td class="right"><span class="number">{9}</span> %</td>
     </tr>
   </script>
@@ -301,6 +348,14 @@
   <script type="text/template"
           id="scenario-option-template">
     <option value="{0}">{1}</option>
+  </script>
+
+  <script type="text/template"
+          id="pies-tech-tr-template">
+    <tr>
+      <td style="background-color: {1};">&nbsp;</td>
+      <td>&nbsp;{0}</td>
+    </tr>
   </script>
 
   <script type="text/template"
