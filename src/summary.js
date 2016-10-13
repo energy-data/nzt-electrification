@@ -132,10 +132,32 @@ define(['d3', 'pie'], (d3, pie) => {
     $('#summary-info').addClass('hidden');
   };
 
+  var init = () => {
+    $('.export-summary').on('click', (e) => {
+      e.preventDefault();
+
+      let adm   = (_d.place['adm2'] ?            "2"              : "1");
+      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
+
+      _u.dwnld(JSON.stringify({
+        location: _d.place,
+        scenario: _d.scenario['scn'],
+        technology_results: _d.summary['results']
+      }), `summary-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }-${ _d.scenario['scn'] }.json`);
+    });
+
+    $('#toggle-summary-charts').on('click', (e) => {
+      e.preventDefault();
+      $(e.target).closest('.clickable').toggleClass('active');
+
+      toggle();
+    });
+  };
+
   return {
+    init: init,
     fetch: fetch,
     show: show,
-    hide: hide,
-    toggle: toggle
+    hide: hide
   };
 });

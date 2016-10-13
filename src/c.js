@@ -20,8 +20,8 @@ requirejs.config({
 });
 
 require([
-   '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'knob', 'navbar', 'help', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   knob,   navbar,   help) => {
+   '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   navbar,   controls) => {
   var adm0, adm1, adm2;
 
   var locked_adm2;
@@ -255,15 +255,15 @@ require([
     // Controls
     //
     if (load_controls) {
-      knob.init();
-
       // used in navbar (better than circular dependencies!)
       //
       window.load_adm1 = load_adm1;
       window.load_adm2 = load_adm2;
       window.set_adm1_fills = set_adm1_fills;
 
+      controls.init();
       navbar.init();
+      summary.init();
     }
 
     // Focus target adm

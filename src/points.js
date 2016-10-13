@@ -18,6 +18,20 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   var init = () => {
     _container = d3.select('#container');
     _points = _container.append('g').attr('id', 'points');
+
+    $('#toggle-point-details').on('click', (e) => {
+      e.preventDefault();
+      $(e.target).closest('.clickable').toggleClass('active');
+
+      $('#point-info').find('tr.hideable').toggleClass('hidden');
+    });
+
+    $('#points-info-control').on('click', (e) => {
+      e.preventDefault();
+
+      $('#point-info').toggleClass('hidden');
+      $(e.target).closest('.col').toggleClass('active');
+    });
   };
 
   var fetch = (o) => {
