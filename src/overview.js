@@ -1,4 +1,4 @@
-define(['_d', 'd3'], (_d, d3) => {
+define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var indicators;
 
   var ticker;
@@ -62,7 +62,7 @@ define(['_d', 'd3'], (_d, d3) => {
         as[1].push(100 - a);
       });
 
-      access_graph = pie_chart("#access-graph", as, 90, ['#7587A6', '#424242']);
+      access_graph = pie.chart("#access-graph", as, 90, ['#7587A6', '#424242']);
     }
 
     // rural population graph
@@ -76,7 +76,7 @@ define(['_d', 'd3'], (_d, d3) => {
         rs[1].push(100 - r);
       });
 
-      rural_population_graph = pie_chart("#rural-graph", rs, 90, ['#7587A6', '#424242']);
+      rural_population_graph = pie.chart("#rural-graph", rs, 90, ['#7587A6', '#424242']);
     }
 
     // rural access graph
@@ -90,7 +90,7 @@ define(['_d', 'd3'], (_d, d3) => {
         ras[1].push(100 - ra);
       });
 
-      rural_access_graph = pie_chart("#rural-access-graph", ras, 75, ['#7587A6', '#424242']);
+      rural_access_graph = pie.chart("#rural-access-graph", ras, 75, ['#7587A6', '#424242']);
     }
   };
 
@@ -115,77 +115,6 @@ define(['_d', 'd3'], (_d, d3) => {
 
       i += 1;
     }, parseInt(time/(to - from)));
-  };
-
-  var pie_chart = (container, data, radius, clrs) => {
-    let width =  radius * 2,
-        height = radius * 2;
-
-    let pie = d3.pie()
-        .value((d) => d[0])
-        .sort(null);
-
-    let arc = d3.arc()
-        .innerRadius(radius - (radius/4.5))
-        .outerRadius(radius - (radius/15));
-
-    let svg = d3.select(container).append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${ radius }, ${ radius })`);
-
-    let path = svg
-        .datum(data)
-        .selectAll("path")
-        .data(pie)
-        .enter().append("path")
-        .attr("fill", (d,i) => clrs[i])
-        .attr("d", arc)
-        .each(function(d) { this._current = d });
-
-    let text = svg.append("text")
-        .attr("dy", ".35em")
-        .attr("font-size", `${ radius / 47 }em`)
-        .attr("fill", "#424242")
-        .attr("class", "monospace")
-
-    function change(v) {
-      let t = "";
-
-      pie.value((d) => d[v]);
-
-      path = path.data(pie);
-
-      path
-        .transition()
-        .duration(750)
-        .attrTween("d", tween);
-
-      text
-        .text(data[0][v].toFixed(2))
-
-      let box = text.node().getBBox();
-
-      let x = ( - (box['width']  / 2));
-      let y = ( + (box['height'] / 10));
-
-      text
-        .attr('transform', `translate(${ x }, ${ y })`);
-
-    }
-
-    function tween(a) {
-      let i = d3.interpolate(this._current, a);
-      this._current = i(0);
-      return (t) => arc(i(t));
-    };
-
-    return {
-      change: change,
-      tween: tween,
-      path: path
-    };
   };
 
   var load = (iso3) => {
