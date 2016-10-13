@@ -169,13 +169,6 @@
         </tr>
 
         <tr>
-          <td>New Connections</td>
-          <td class="right">
-            <span class="number" data="nc"></span>
-          </td>
-        </tr>
-
-        <tr>
           <td>Investment Cost</td>
           <td class="right">
             <span class="number" data="ic"></span> USD
@@ -190,41 +183,63 @@
         </tr>
 
         <tr>
+          <td>Urban/Rural</td>
+          <td class="right">
+            <!-- formatted u -->
+            <span class="number" data="urban"></span>
+          </td>
+        </tr>
+
+        <tr class="hideable hidden">
+          <td>New Connections</td>
+          <td class="right">
+            <span class="number" data="nc"></span>
+          </td>
+        </tr>
+
+        <tr class="hideable hidden">
+          <td>Levelised Cost of Diesel</td>
+          <td class="right">
+            <span class="number" data="lcsa"></span> USD/kWh
+          </td>
+        </tr>
+
+        <tr class="hideable hidden">
           <td>Added capacity</td>
           <td class="right">
             <span class="number" data="cap"></span> W
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Grid Distance (current)</td>
           <td class="right">
             <span class="number" data="gd_c"></span> km
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Grid Distance (planned)</td>
           <td class="right">
             <span class="number" data="gd_p"></span> km
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Road Distance</td>
           <td class="right">
             <span class="number" data="rd"></span> km
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Global Horizontal Irradiance</td>
           <td class="right">
             <span class="number" data="ghi"></span> kWh/m<sup>2</sup>
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Wind Power Capacity Factor</td>
           <td class="right">
             <!-- formatted w_cf -->
@@ -232,35 +247,29 @@
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Potential small and mini Hydropower</td>
           <td class="right">
             <span class="number" data="hp"></span>
           </td>
         </tr>
 
-        <tr>
+        <tr class="hideable hidden">
           <td>Distance to Hydropower Potencial</td>
           <td class="right">
             <span class="number" data="hp_d"></span> km
           </td>
         </tr>
-
-        <tr>
-          <td>Levelised Cost of Diesel</td>
-          <td class="right">
-            <span class="number" data="lcsa"></span> USD/kWh
-          </td>
-        </tr>
-
-        <tr>
-          <td>Urban/Rural</td>
-          <td class="right">
-            <!-- formatted u -->
-            <span class="number" data="urban"></span>
-          </td>
-        </tr>
       </table>
+
+      <hr />
+
+      <div class="row small">
+        <div class="col c12">
+          <div id="toggle-point-details"
+               class="clickable"><a href="#">details</a></div>
+        </div>
+      </div>
     </div>
 
     <div id="help-container"

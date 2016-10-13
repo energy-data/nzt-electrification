@@ -78,6 +78,15 @@ path.adm1:hover, path.adm2.hoverable:hover {
   border-right: none !important;
 }
 
+#pies table {
+  display: inline-block !important;
+  vertical-align: super;
+}
+
+#pies-table td {
+  width: 25%;
+}
+
 #summary-info {
   position: absolute;
   right: 0;
