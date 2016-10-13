@@ -121,7 +121,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var find = (e) => {
-    let it = d3.select(e.toElement);
+    let it = d3.select(e.toElement || e.target);
 
     let x = it.attr('cx');
     let y = it.attr('cy');
