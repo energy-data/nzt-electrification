@@ -153,9 +153,8 @@ define(['_d', 'd3'], (_d, d3) => {
     function change(v) {
       let t = "";
 
-      pie.value((d) => {
-        return t = d[v];
-      });
+      pie.value((d) => d[v]);
+
       path = path.data(pie);
 
       path

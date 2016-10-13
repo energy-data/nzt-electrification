@@ -84,7 +84,7 @@ a:active, a.active {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .monospace {
