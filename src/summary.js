@@ -72,10 +72,12 @@ define(['d3', 'pie'], (d3, pie) => {
 
     _u.tmpl('#pies-graphs-template', '#pies-table');
 
-    for (let k of ['pts', 'connections', 'capacity', 'investments']) {
-      let chart = pie.chart(`#${ k }`,
+    for (let k of ['connections', 'investments', 'pts', 'capacity']) {
+      let chart = pie.chart(
+        `#${ k }`,
         obj.map((r) => { return [0,(r[k]/totals[k])*100] }),
-        40, colors, " "
+        ((['connections', 'investments'].indexOf(k) > -1) ? 50 : 30),
+        colors, " "
       );
 
       chart.change(1);
