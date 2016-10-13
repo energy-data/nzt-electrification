@@ -1,23 +1,23 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [31/44] UI/UX
+* [35/44] UI/UX
   - [ ] landing
   - [ ] try to make clear that this is a projection
-  - [X] tweak units in summaries
-  - [X] tweak units in point-info
   - [ ] population and investments come first
   - [ ] cells? area? points?
   - [ ] points: technology colour palette (+ locked point)
-  - [X] show/hide: points details
-  - [ ] Review navbar flow
-  - [ ] sort summaries by population
-  - [ ] grid/offgrid grouping
   - [ ] help enabled by default
-  - [ ] lower help below navbar
-  - [ ] knob: disable if mode does not apply (or switch to technology)
+  - [ ] sort summaries by population
   - [ ] contrast font color etc...
   - [ ] population/lcoe colours
+  - [X] grid/offgrid grouping
+  - [X] lower help below navbar
+  - [X] knob: disable if mode does not apply (or switch to technology)
+  - [X] show/hide: points details
+  - [X] Review navbar flow
+  - [X] tweak units in summaries
+  - [X] tweak units in point-info
   - [X] walkthrough
   - [X] knob: tweak icons
   - [X] knob: HIGH/LOW => usd prices
@@ -50,7 +50,6 @@
 
 * [12/20] Code
   - [ ] show scale gradients
-  - [X] pie graphs in summaries
   - [ ] technologies NOT as array (initial NULL and ordering is a pain)
   - [ ] there seems to be a double call to the api
   - [ ] points: hydro
@@ -58,6 +57,7 @@
   - [ ] scenario: init from url params
   - [ ] $loading callbacks seem iffy...
   - [ ] background maps?
+  - [X] pie graphs in summaries
   - [X] $ grep -r TODO .
   - [X] summary: poulation => connected people
   - [X] coffeescript => ES6
@@ -75,20 +75,19 @@
   - [ ] Revision from Trello
 
 ** [3/7] Overall
-  - [X] High diesel price activated by default
   - [ ] ==== Diesel price button would be improve to make it clear that we can click on it
   - [ ] ==== Help mode enabled by default
-  - [X] Separate Scenarios and Underlying Data (maybe color coding?)
   - [ ] Make hovering more apparent, overall increase contrast of text, icons, etc.
   - [ ] Pop-up error messages to look a little snazzier and re-write the texts in it
+  - [X] High diesel price activated by default
+  - [X] Separate Scenarios and Underlying Data (maybe color coding?)
   - [X] Rework hierarchy between the summary and detailed data table to make it simpler, more logical and more interactive (ie. Expandable - click for more etc)
 
 ** [1/4] State
-  - [X] Truncate decimals from investments and capacity
+  - [ ] Load randomize results automatically
   - [ ] Prioritize graphically population and investments, with having 'areas' and 'capacity' accessible with clicking somewhere
   - [ ] Try to improve readability with increasing font and playing with colors in the result table
-  - [ ] Load randomize results automatically
-
+  - [X] Truncate decimals from investments and capacity
 
 * [0/4] Second Review
   - [ ] missing expenditures and other indicators

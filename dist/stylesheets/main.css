@@ -61,7 +61,7 @@ a:active, a.active {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.clickable:hover a {
+.clickable:hover > a {
   color: #f1f1f1;
 }
 

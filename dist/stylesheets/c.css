@@ -85,6 +85,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 #pies-table td {
   width: 25%;
+  padding: 5px 10px 0 10px;
 }
 
 #summary-info {
@@ -139,7 +140,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 #help-container {
   position: absolute;
-  top: 0 !important;
+  top: 4.2em !important;
   left: 0 !important;
   margin: 0 !important;
 
@@ -175,8 +176,6 @@ path.adm1:hover, path.adm2.hoverable:hover {
 
 #mode-selector li a {
   padding: 10px 0;
-
-  display: block;
 }
 
 #knobs-container {
@@ -243,9 +242,9 @@ path.adm1:hover, path.adm2.hoverable:hover {
 }
 
 .dropdown {
-  position: absolute;
+  position: relative;
 
-  top: 2.3em;
+  top: 0;
   width: 100%;
 
   display: none;
