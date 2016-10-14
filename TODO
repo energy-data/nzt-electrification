@@ -75,6 +75,7 @@
   - [ ] Revision from Trello
 
 ** [3/7] Overall
+  - [ ] index: insert area in km^2
   - [ ] ==== Diesel price button would be improve to make it clear that we can click on it
   - [ ] ==== Help mode enabled by default
   - [ ] Make hovering more apparent, overall increase contrast of text, icons, etc.
@@ -88,6 +89,7 @@
   - [ ] Prioritize graphically population and investments, with having 'areas' and 'capacity' accessible with clicking somewhere
   - [ ] Try to improve readability with increasing font and playing with colors in the result table
   - [X] Truncate decimals from investments and capacity
+
 
 * [0/4] Second Review
   - [ ] missing expenditures and other indicators
