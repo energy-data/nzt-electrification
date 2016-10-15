@@ -5,11 +5,8 @@ requirejs.config({
     'topojson':   "../lib/topojson",
     'jquery':     "../lib/jquery",
     'js-extras':  "../lib/js-extras",
-    'web-extras': "../lib/web-extras"
   },
   'shim': {
-    'web-extras': { 'deps': ['jquery'] },
-    'index':      { 'deps': ['web-extras'] },
     '_u':         { 'deps': ['js-extras', 'jquery'] }
   }
 });

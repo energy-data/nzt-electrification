@@ -50,15 +50,15 @@ define(['summary'], (summary) => {
     _d.place[adm] = undefined;
     _d.place[`${ adm }_name`] = undefined;
 
-    if (location.getQueryParam(adm))
-      history.pushState(null, null, location.updateQueryParam(adm, null));
+    if (_u.get_query_param(adm))
+      history.pushState(null, null, _u.set_query_param(adm, null));
   };
 
   var set = (adm, id, name, push) => {
     _d.place[adm]             = id;
     _d.place[`${ adm }_name`] = name;
 
-    if (push) history.pushState(null, null, location.updateQueryParam(adm, id));
+    if (push) history.pushState(null, null, _u.set_query_param(adm, id));
   };
 
   return {

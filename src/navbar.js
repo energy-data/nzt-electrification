@@ -12,7 +12,7 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
         place.nullify('adm1');
         place.nullify('adm2');
 
-        history.replaceState(null, null, location.updateQueryParam('load_points', false));
+        history.replaceState(null, null, _u.set_query_param('load_points', false));
 
         d3.selectAll('.adm2').style('display', 'none');
 

@@ -3,4 +3,3 @@ topojson.js	http://d3js.org/topojson.v1.min.js
 require.js	http://requirejs.org/docs/release/2.3.2/minified/require.js
 jquery.js	https://code.jquery.com/jquery-3.1.1.min.js
 js-extras.js	https://raw.githubusercontent.com/svexican/js-extras/master/dist/js-extras.min.js
-web-extras.js	https://raw.githubusercontent.com/svexican/web-extras/master/dist/web-extras.min.js

@@ -15,7 +15,7 @@ define(['knob', 'help'], (knob, help) => {
 
       let target = d3.select(`path#adm${ adm }-${ adm_v }`).node();
 
-      history.replaceState(null, null, location.updateQueryParam('load_points', true));
+      history.replaceState(null, null, _u.set_query_param('load_points', true));
 
       points.load({
         adm: [null, adm, _d.place[`adm${ adm }`]],

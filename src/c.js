@@ -4,13 +4,9 @@ requirejs.config({
     'd3':         "../lib/d3",
     'topojson':   "../lib/topojson",
     'jquery':     "../lib/jquery",
-    'js-extras':  "../lib/js-extras",
-    'web-extras': "../lib/web-extras"
+    'js-extras':  "../lib/js-extras"
   },
   'shim': {
-    'web-extras': { 'deps': ['jquery'] },
-    'points':     { 'deps': ['web-extras'] },
-    'map':        { 'deps': ['web-extras'] },
     '_u':         { 'deps': ['js-extras', 'jquery'] },
     'help':       { 'deps': ['jquery'] },
     'mode':       { 'deps': ['_u'] },
@@ -28,7 +24,7 @@ require([
 
   var rerun;
 
-  var iso3 = location.getQueryParam('iso3');
+  var iso3 = _u.get_query_param('iso3');
 
   var _svg = d3.select('svg#svg')
       .attr('width',  d3.select('html').node().clientWidth)
@@ -92,7 +88,7 @@ require([
 
     place.set('adm1', d['id'], d.properties['name'], true);
 
-    history.replaceState(null, null, location.updateQueryParam('load_points', false));
+    history.replaceState(null, null, _u.set_query_param('load_points', false));
 
     set_adm1_fills(d.id);
 
@@ -113,7 +109,7 @@ require([
 
     place.set('adm2', d['id'], d.properties['name'], true);
 
-    history.replaceState(null, null, location.updateQueryParam('load_points', true));
+    history.replaceState(null, null, _u.set_query_param('load_points', true));
 
     reset_adm2(it);
 
@@ -124,7 +120,7 @@ require([
     _d.place['adm1']      = admin1 || undefined;
     _d.place['adm1_name'] = d3.select(`#adm1-${ admin1 }`).datum().properties['name'] || undefined;
 
-    if (location.getQueryParam('load_points').toBoolean())
+    if (_u.get_query_param('load_points').toBoolean())
       points.load({
         adm: it.id.match(/adm(.*)-(\d*)?/),
         svg_box: it.getBBox()
@@ -148,7 +144,7 @@ require([
     d3.selectAll('path.adm2').classed('hoverable', true);
     locked_adm2 = null;
 
-    let a2 = parseInt(location.getQueryParam('adm2'));
+    let a2 = parseInt(_u.get_query_param('adm2'));
 
     let it = (target ?
               target :
@@ -168,9 +164,9 @@ require([
 
     // Params
     //
-    admin1 = parseInt(location.getQueryParam('adm1'));
-    admin2 = parseInt(location.getQueryParam('adm2'));
-    load_points = location.getQueryParam('load_points').toBoolean();
+    admin1 = parseInt(_u.get_query_param('adm1'));
+    admin2 = parseInt(_u.get_query_param('adm2'));
+    load_points = _u.get_query_param('load_points').toBoolean();
 
     // Place
     //

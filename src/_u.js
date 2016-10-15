@@ -1,4 +1,33 @@
 define([], () => {
+  var get_query_param = (param) => {
+    let p = param.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+
+    let regex = new RegExp("[\\?&]" + p + "=([^&#]*)");
+
+    let results = regex.exec(location.search);
+
+    return (results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " ")));
+  };
+
+  var set_query_param = (key,value) => {
+    let uri = location.search;
+
+    let re  = new RegExp("([?&])" + key + "=.*?(&|$)", 'i');
+
+    let separator = (uri.indexOf('?') !== -1 ? "&" : "?");
+
+    if (uri.match(re)) {
+      if (value === null)
+        return uri.replace(re, '$2');
+
+      else
+        return uri.replace(re, '$1' + key + "=" + value + '$2');
+    }
+
+    else
+      return uri + (value ? `${ separator }${ key }=${ value }` : "");
+  };
+
   var l_scale = (v, domain = [0, 100], range = [0, 1]) => {
     return v < domain[1] ?
       ((v / domain[1]) * (range[1] - range[0])) + range[0] :
@@ -49,6 +78,8 @@ define([], () => {
     check: check,
     tmpl: tmpl,
     dwnld: dwnld,
-    percent: percent
+    percent: percent,
+    get_query_param: get_query_param,
+    set_query_param: set_query_param
   });
 });
