@@ -138,7 +138,7 @@ path.adm1:hover, path.adm2.hoverable:hover {
   width: 250px;
 }
 
-#help-container {
+#messages-container {
   position: absolute;
   top: 4.2em !important;
   left: 0 !important;
@@ -150,20 +150,27 @@ path.adm1:hover, path.adm2.hoverable:hover {
   padding: 0;
 }
 
-#help {
+#help, #error {
   margin: 0 auto !important;
   width: 50%;
 
-  background-color: rgba(117, 135, 166, 1);
   color: white;
 
-  border: 1px solid #4C6082;
-  border-top: none;
   border-radius: 0 0 2px 2px;
 
   padding: 2em;
 
   z-index: 10500;
+}
+
+#help {
+  background-color: rgba(117, 135, 166, 1);
+  border: 1px solid #4C6082;
+}
+
+#error {
+  background-color: rgba(147, 51, 51, 1);
+  border: 1px solid rgba(70, 0, 0, 1);
 }
 
 .has-help * {

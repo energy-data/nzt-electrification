@@ -15,6 +15,33 @@ requirejs.config({
   }
 });
 
+onerror = function(msg, url, lineNo, columnNo, error) {
+  var string = msg.toLowerCase();
+
+  var substring = "script error";
+
+  if (msg.indexOf("Network error") > -1) return;
+
+  $('#messages-container').removeClass('hidden');
+  $('#error').removeClass('hidden');
+
+  if (string.indexOf(substring) > -1){
+    alert('Script Error: See Browser Console for Detail');
+
+  } else {
+    var x = url.split("/")
+
+    var message = [
+      'Error on our side. Please report a bug:',
+      'Script: &nbsp;&nbsp;' + x[x.length - 1].replace(".js", "") + ":" + lineNo + ":" + columnNo,
+    ].join('<br />');
+
+    document.getElementById('error').innerHTML = message;
+  }
+
+  return false;
+};
+
 require([
    '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', '_conf'
 ], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   navbar,   controls) => {

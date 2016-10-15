@@ -48,7 +48,7 @@ define([], () => {
     $('#help')
       .html(str);
 
-    $('#help, #help-container')
+    $('#help, #messages-container')
       .removeClass('hidden');
   };
 
@@ -63,7 +63,7 @@ To turn it off, just click on Help again.
 
   var disable = () => {
     document.removeEventListener('click', click_event, true);
-    $('#help, #help-container').addClass('hidden');
+    $('#help, #messages-container').addClass('hidden');
   };
 
   $('#toggle-help').on('click', (e) => {
@@ -76,7 +76,7 @@ To turn it off, just click on Help again.
     enabled ? enable() : disable();
   });
 
-  $('#help, #help-container').on('click', (e) => {
-    $('#help, #help-container').addClass('hidden');
+  $('#help, #messages-container').on('click', (e) => {
+    $('#help, #messages-container').addClass('hidden');
   });
 });
