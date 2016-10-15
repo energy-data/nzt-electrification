@@ -108,7 +108,11 @@ require([
 
       d3.queue()
         .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
-        .await((error, adm0) => load(iso3, adm0));
+        .await((error, adm0) => {
+          error ?
+            _u.network_error() :
+            load(iso3, adm0);
+        });
     };
 
     overview.init(indicators, countries);
@@ -132,6 +136,8 @@ require([
     .defer(d3.json, `/${ _g.assets }/countries.json`)
     .defer(d3.csv,  `/${ _g.assets }/indicators.csv`)
     .await(function (error, countries, indicators) {
-      error ? console.error(error) : run.apply(this, arguments);
+      error ?
+        _u.network_error() :
+        run.apply(this, arguments);
     });
 });

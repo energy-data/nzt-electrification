@@ -1,4 +1,13 @@
 define([], () => {
+  var network_error = () => {
+    document.getElementById('error').innerHTML = "There seems to be a <strong>network problem</strong>. Check your connection and refresh the tool, please.";
+
+    $('#messages-container').removeClass('hidden');
+    $('#error').removeClass('hidden');
+
+    throw Error("Network error.");
+  };
+
   var get_query_param = (param) => {
     let p = param.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 
@@ -79,6 +88,7 @@ define([], () => {
     tmpl: tmpl,
     dwnld: dwnld,
     percent: percent,
+    network_error: network_error,
     get_query_param: get_query_param,
     set_query_param: set_query_param
   });

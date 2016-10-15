@@ -22,7 +22,7 @@ define(['d3', 'pie'], (d3, pie) => {
              `&scn=eq.${ _d.scenario['scn'] }` +
              `&adm=eq.${ _d.place[adm] }`)
       .await((error, results) => {
-        if (error) console.log(error);
+        if (error) _u.network_error();
 
         let r = results.map((x) => x['results']).sort_p('tech', true);
 

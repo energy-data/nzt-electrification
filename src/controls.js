@@ -41,7 +41,9 @@ define(['knob', 'help'], (knob, help) => {
       d3.queue()
         .defer(d3.text(url).header("accept", "text/csv").get)
         .await((error, response) => {
-          _u.dwnld(response, `cells-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`)
+          error ?
+            _u.network_error() :
+            _u.dwnld(response, `cells-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }.csv`);
         });
     });
 

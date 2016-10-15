@@ -299,7 +299,7 @@ require([
     .defer(d3.json, `/${ _g.assets }/countries.json`)
 
     .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission, countries) {
-      if (error) console.error(error);
+      if (error) _u.network_error();
       else {
         let args = arguments;
         (rerun = function(load_controls) { run.call(this, ...args, load_controls) })(true);

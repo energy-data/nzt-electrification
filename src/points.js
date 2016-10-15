@@ -48,7 +48,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
       .await((error, points) => {
         error ?
-          console.log(error) :
+          _u.network_error() :
           (typeof o.callback === 'function') ? o.callback.call(null, points) : null;
       });
   };
