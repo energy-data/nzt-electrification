@@ -94,15 +94,20 @@
           <a data="adm2_name"></a>
         </div>
 
-        <div class="col c1">&nbsp;</div>
+        <div class="col c2">&nbsp;</div>
 
-        <div class="col c2">
+        <div class="col c1">
           <div class="export-summary clickable"><a href="#">export</a></div>
         </div>
 
-        <div class="col c2">
+        <div class="col c1">
           <div id="toggle-summary-charts"
                class="clickable"><a href="#">details</a></div>
+        </div>
+
+        <div class="col c1">
+          <div id="more-pies"
+               class="clickable"><a href="#">more</a></div>
         </div>
       </div>
 
@@ -271,8 +276,8 @@
     <tr class="center">
       <td>New Connections</td>
       <td>Investments</td>
-      <td>Cells</td>
-      <td>Capacity</td>
+      <td class="more-pies hidden">Cells</td>
+      <td class="more-pies hidden">Capacity</td>
     </tr>
   </script>
 
@@ -281,8 +286,8 @@
     <tr class="center">
       <td><span class="number">{1}</span>     </td>
       <td><span class="number">{3}</span> M USD</td>
-      <td><span class="number">{0}</span> km<sup>2</sup></td>
-      <td><span class="number">{2}</span> MWh</td>
+      <td class="more-pies hidden"><span class="number">{0}</span> km<sup>2</sup></td>
+      <td class="more-pies hidden"><span class="number">{2}</span> MWh</td>
     </tr>
   </script>
 
@@ -291,8 +296,8 @@
     <tr class="center">
       <td id="connections"></td>
       <td id="investments"></td>
-      <td id="pts"        ></td>
-      <td id="capacity"   ></td>
+      <td id="pts"      class="more-pies hidden"></td>
+      <td id="capacity" class="more-pies hidden"></td>
     </tr>
   </script>
 

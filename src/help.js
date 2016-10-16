@@ -20,7 +20,7 @@ define([], () => {
     adm1: `This is a <strong>state</strong> or <strong>province</strong>.<br />
            You can click on one of its district or click on the navbar for more actions.`,
     adm2: `This is a <strong>district</strong>.<br />
-           You can hover and select grids within it, change the scenario and mode on the controls...`
+           You can hover and select cells within it, change the scenario and mode on the controls...`
   };
 
   var click_event = (e) => {

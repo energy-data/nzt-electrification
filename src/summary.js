@@ -76,8 +76,7 @@ define(['d3', 'pie'], (d3, pie) => {
       var chart = pie.chart(
         `#${ k }`,
         obj.map((r) => { return [0,(r[k]/totals[k])*100] }),
-        ((['connections', 'investments'].indexOf(k) > -1) ? 50 : 30),
-        colors, " "
+        50, colors, " "
       );
 
       chart.change(1);
@@ -121,6 +120,10 @@ define(['d3', 'pie'], (d3, pie) => {
     show();
   };
 
+  var more_pies = () => {
+    $('.more-pies').toggleClass('hidden');
+  };
+
   var toggle = () => {
     $('#numbers').toggleClass('hidden');
     $('#pies').toggleClass('hidden');
@@ -153,6 +156,12 @@ define(['d3', 'pie'], (d3, pie) => {
       $(e.target).closest('.clickable').toggleClass('active');
 
       toggle();
+    });
+
+    $('#more-pies').on('click', (e) => {
+      e.preventDefault();
+      $(e.target).closest('.clickable').toggleClass('active');
+      more_pies();
     });
   };
 

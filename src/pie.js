@@ -1,5 +1,5 @@
 define(['d3'], (d3) => {
-  var chart = (container, data, radius, clrs, inner_text) => {
+  var chart = (container, data, radius, colors, inner_text) => {
     var width =  radius * 2,
         height = radius * 2;
 
@@ -22,7 +22,7 @@ define(['d3'], (d3) => {
         .selectAll("path")
         .data(pie)
         .enter().append("path")
-        .attr("fill", (d,i) => clrs[i])
+        .attr("fill", (d,i) => colors[i])
         .attr("d", arc)
         .each(function(d) { this._current = d });
 
