@@ -2,12 +2,12 @@ define(['d3', 'pie'], (d3, pie) => {
   var tech_colors = _g.technologies.map((t) => { if (t) return t['color'] });
 
   var fetch = () => {
-    let adm = (() => {
+    var adm = (() => {
       if (!_d.place['adm2']) return 'adm1';
       else return 'adm2';
     })();
 
-    let x = _d.place['adm2'] || _d.place['adm1'];
+    var x = _d.place['adm2'] || _d.place['adm1'];
 
     if (!x || !adm) {
       console.warn("Summary Fetch: Not enough arguments.");
@@ -24,7 +24,7 @@ define(['d3', 'pie'], (d3, pie) => {
       .await((error, results) => {
         if (error) _u.network_error();
 
-        let r = results.map((x) => x['results']).sort_p('tech', true);
+        var r = results.map((x) => x['results']).sort_p('tech', true);
 
         pies(r);
         numbers(r);
@@ -45,7 +45,7 @@ define(['d3', 'pie'], (d3, pie) => {
     $('#pies-table').html("");
     $('#techs-table').html("");
 
-    let totals = handle_totals(obj);
+    var totals = handle_totals(obj);
 
     _u.tmpl('#pies-header-template', '#pies-table');
 
@@ -56,10 +56,10 @@ define(['d3', 'pie'], (d3, pie) => {
             (totals['investments'] / 1000000).toFixed(2).toLocaleString()
            );
 
-    let colors = tech_colors.reduce(((x,c,i) => { if (obj.map((r) => r['tech']).indexOf(i) > -1) x.push(c); return x }), []);
+    var colors = tech_colors.reduce(((x,c,i) => { if (obj.map((r) => r['tech']).indexOf(i) > -1) x.push(c); return x }), []);
 
     _g.technologies.map((t,i) => {
-      let c = obj.find((x) => x['tech'] === i);
+      var c = obj.find((x) => x['tech'] === i);
 
       if (!c) return;
 
@@ -72,8 +72,8 @@ define(['d3', 'pie'], (d3, pie) => {
 
     _u.tmpl('#pies-graphs-template', '#pies-table');
 
-    for (let k of ['connections', 'investments', 'pts', 'capacity']) {
-      let chart = pie.chart(
+    ['connections', 'investments', 'pts', 'capacity'].forEach((k) => {
+      var chart = pie.chart(
         `#${ k }`,
         obj.map((r) => { return [0,(r[k]/totals[k])*100] }),
         ((['connections', 'investments'].indexOf(k) > -1) ? 50 : 30),
@@ -81,7 +81,7 @@ define(['d3', 'pie'], (d3, pie) => {
       );
 
       chart.change(1);
-    }
+    });
 
     show();
   };
@@ -89,7 +89,7 @@ define(['d3', 'pie'], (d3, pie) => {
   var numbers = (obj) => {
     $('#numbers').html("");
 
-    let totals = handle_totals(obj);
+    var totals = handle_totals(obj);
 
     _u.tmpl('#numbers-header-template', '#numbers');
 
@@ -103,7 +103,7 @@ define(['d3', 'pie'], (d3, pie) => {
     );
 
     _g.technologies.map((t,i) => {
-      let c = obj.find((x) => x['tech'] === i);
+      var c = obj.find((x) => x['tech'] === i);
 
       if (!c) return;
 
@@ -138,8 +138,8 @@ define(['d3', 'pie'], (d3, pie) => {
     $('.export-summary').on('click', (e) => {
       e.preventDefault();
 
-      let adm   = (_d.place['adm2'] ?            "2"              : "1");
-      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
+      var adm   = (_d.place['adm2'] ?            "2"              : "1");
+      var adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
 
       _u.dwnld(JSON.stringify({
         location: _d.place,

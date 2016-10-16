@@ -24,7 +24,7 @@ define(['d3'], (d3) => {
     full: "SA LCOE",
     icon: "local_gas_station",
     fill: (g) => {
-      let f = d3.scaleLinear()
+      var f = d3.scaleLinear()
           .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
           .range([0, 1]);
 
@@ -61,7 +61,7 @@ define(['d3'], (d3) => {
   var init = (points) => {
     load_selector();
 
-    let t = 'technology';
+    var t = 'technology';
 
     _d.mode['type'] = t;
     $(`${ mss } a[bind='${ t }']`).addClass('active');
@@ -84,18 +84,19 @@ define(['d3'], (d3) => {
   var load_selector = () => {
     clear_selector();
 
-    for (let m of modes)
+    modes.forEach((m) => {
       _u.tmpl('#mode-option-template',
               (['technology', 'lcsa'].indexOf(m['type']) > -1 ? mss : oms),
               m['type'], m['full'], m['icon'],
               (['technology', 'lcsa'].indexOf(m['type']) > -1 ? "c6" : "c6"));
+    });
 
-    let $mssa = $('.mode-selector-option');
+    var $mssa = $('.mode-selector-option');
 
     $mssa.on('click', (e) => {
       e.preventDefault();
 
-      let $this = $(e.target).closest('a');
+      var $this = $(e.target).closest('a');
 
       $mssa.removeClass('active');
 

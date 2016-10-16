@@ -6,21 +6,21 @@ define([], () => {
   };
 
   var get_query_param = (param) => {
-    let p = param.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var p = param.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 
-    let regex = new RegExp("[\\?&]" + p + "=([^&#]*)");
+    var regex = new RegExp("[\\?&]" + p + "=([^&#]*)");
 
-    let results = regex.exec(location.search);
+    var results = regex.exec(location.search);
 
     return (results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " ")));
   };
 
   var set_query_param = (key,value) => {
-    let uri = location.search;
+    var uri = location.search;
 
-    let re  = new RegExp("([?&])" + key + "=.*?(&|$)", 'i');
+    var re  = new RegExp("([?&])" + key + "=.*?(&|$)", 'i');
 
-    let separator = (uri.indexOf('?') !== -1 ? "&" : "?");
+    var separator = (uri.indexOf('?') !== -1 ? "&" : "?");
 
     if (uri.match(re)) {
       if (value === null)
@@ -52,7 +52,7 @@ define([], () => {
   var tmpl = (source, destination, ...args) => {
     check(source, args);
 
-    let r = String.prototype.format.call($(source).html(), ...args);
+    var r = String.prototype.format.call($(source).html(), ...args);
 
     if (destination) $(destination).append(r);
 
@@ -60,13 +60,13 @@ define([], () => {
   };
 
   var dwnld = (string, filename, datatype) => {
-    let a = document.createElement('a');
+    var a = document.createElement('a');
     document.body.appendChild(a);
 
     a.style = "display:none;";
 
-    let blob = new Blob([string], { type: (datatype || 'application/octet-stream') });
-    let url  = URL.createObjectURL(blob);
+    var blob = new Blob([string], { type: (datatype || 'application/octet-stream') });
+    var url  = URL.createObjectURL(blob);
 
     a.href     = url;
     a.download = filename || "RENAME_ME.dat";

@@ -12,7 +12,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
   var _container = (!_svg.empty() ? _svg.append('g').attr('id', 'container') : null);
 
   var to_bbox = (b) => {
-    let c = [
+    var c = [
       projection.invert([b['x']             , b['y']              ]),
       projection.invert([b['x'] + b['width'], b['y'] + b['height']])
     ];
@@ -21,37 +21,37 @@ define(['d3', 'topojson'], (d3, topojson) => {
   };
 
   var resize_to = function(o) {
-    let node      = o.node;
-    let svg       = o.svg      || _svg;
-    let parent    = o.parent   || _container;
-    let left      = o.left     || 0;
-    let padding   = o.padding  || 0.5;
-    let delay     = o.delay    || 300;
-    let duration  = o.duration || 0;
-    let callback  = o.callback;
-    let interact  = (o.interact !== false);
+    var node      = o.node;
+    var svg       = o.svg      || _svg;
+    var parent    = o.parent   || _container;
+    var left      = o.left     || 0;
+    var padding   = o.padding  || 0.5;
+    var delay     = o.delay    || 300;
+    var duration  = o.duration || 0;
+    var callback  = o.callback;
+    var interact  = (o.interact !== false);
 
     _u.check(node, parent, svg);
 
-    let box = node.getBBox();
+    var box = node.getBBox();
 
-    let w = box.width  + (padding * 2);
-    let h = box.height + (padding * 2);
+    var w = box.width  + (padding * 2);
+    var h = box.height + (padding * 2);
 
-    let cw = svg.attr('width');
-    let ch = svg.attr('height');
+    var cw = svg.attr('width');
+    var ch = svg.attr('height');
 
     factor = Math.min(cw/w, ch/h);
 
-    let x_shift = (-box.x + padding) * factor;
-    let y_shift = (-box.y + padding) * factor;
+    var x_shift = (-box.x + padding) * factor;
+    var y_shift = (-box.y + padding) * factor;
 
     if (! interact) {
       parent.attr('transform', `translate(${ x_shift }, ${ y_shift })scale(${ factor })`);
       return;
     }
 
-    let center = [
+    var center = [
       box['x'] + (box['width']  / 2),
       box['y'] + (box['height'] / 2)
     ];
@@ -71,20 +71,20 @@ define(['d3', 'topojson'], (d3, topojson) => {
   };
 
   var load_topo = function(o) {
-    let topo      = o.topo;
-    let pathname  = o.pathname;
-    let callback  = o.callback;
-    let labels    = o.labels || false;
-    let cls       = o.cls    || "path";
-    let stroke    = o.stroke || "#ccc";
-    let fill      = o.fill   || "none";
-    let parent    = o.parent || _container;
+    var topo      = o.topo;
+    var pathname  = o.pathname;
+    var callback  = o.callback;
+    var labels    = o.labels || false;
+    var cls       = o.cls    || "path";
+    var stroke    = o.stroke || "#ccc";
+    var fill      = o.fill   || "none";
+    var parent    = o.parent || _container;
 
     _u.check(topo, pathname, parent);
 
-    let features = topojson.feature(topo, topo.objects[pathname]).features;
+    var features = topojson.feature(topo, topo.objects[pathname]).features;
 
-    let path = parent.selectAll(`path.${ pathname }`)
+    var path = parent.selectAll(`path.${ pathname }`)
         .data(features)
         .enter().append('path')
         .attr('id', (d) => d.id ? `${ pathname }-${ d.id }` : null)

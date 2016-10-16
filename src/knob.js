@@ -26,15 +26,15 @@ define(['d3'], (d3) => {
   var range = [...Array(5)].map((_,i) => _u.l_scale(i, [0, steps-1], [min_angle, max_angle])).reverse();
 
   var repoint = (object) => {
-    let m = d3.mouse(object)
+    var m = d3.mouse(object)
     // translation to the center and make a decent coordinates system.
     pointer.x =   m[0] - center.x;
     pointer.y = -(m[1] - center.y);
   };
 
   var closest = (x, arr) => {
-    let diffs = arr.map((v) => Math.abs(v - x));
-    let i = diffs.indexOf(Math.min.apply(null, diffs));
+    var diffs = arr.map((v) => Math.abs(v - x));
+    var i = diffs.indexOf(Math.min.apply(null, diffs));
 
     return {
       v: arr[i],
@@ -59,13 +59,13 @@ define(['d3'], (d3) => {
   var rotate = (object, marker, knob) => {
     repoint(object);
 
-    let polar = cartesian_to_polar(pointer.x, pointer.y);
-    let pa    = polar.a;
+    var polar = cartesian_to_polar(pointer.x, pointer.y);
+    var pa    = polar.a;
 
     if (pa < 0) pa = pa + pi2;
 
-    let c = closest(pa, range);
-    let cart = polar_to_cartesian(knob0_radius - (width/13), c['v']);
+    var c = closest(pa, range);
+    var cart = polar_to_cartesian(knob0_radius - (width/13), c['v']);
 
     d3.selectAll(`${ marker } circle`)
       .attr('cx',  cart.x + center.x)
@@ -81,7 +81,7 @@ define(['d3'], (d3) => {
 
     kc = d3.select('#knobs-container');
 
-    let total_width = $('#controls')[0].clientWidth;
+    var total_width = $('#controls')[0].clientWidth;
 
     width  = total_width - 60;
     height = total_width;
@@ -102,9 +102,9 @@ define(['d3'], (d3) => {
 
     // definitions
     {
-      let defs = svg.append('svg:defs');
+      var defs = svg.append('svg:defs');
 
-      let gray = defs.append('linearGradient')
+      var gray = defs.append('linearGradient')
           .attr('id', 'gray')
           .attr('x1', 0)
           .attr('y1', 0)
@@ -119,7 +119,7 @@ define(['d3'], (d3) => {
         .attr('offset', 1)
         .attr('stop-color', '#bbbbbb');
 
-      let gray_up = defs.append('linearGradient')
+      var gray_up = defs.append('linearGradient')
           .attr('id', 'gray_up')
           .attr('x1', 0)
           .attr('y1', 0)
@@ -137,13 +137,13 @@ define(['d3'], (d3) => {
 
     // knobs
     {
-      let knobs = svg.append('g').attr('id', 'knobs');
+      var knobs = svg.append('g').attr('id', 'knobs');
 
-      let knob0 = knobs.append('g').attr('id', 'knob0');
+      var knob0 = knobs.append('g').attr('id', 'knob0');
 
-      let knob1 = knobs.append('g').attr('id', 'knob1');
+      var knob1 = knobs.append('g').attr('id', 'knob1');
 
-      let base0 = knob0.append('circle')
+      var base0 = knob0.append('circle')
           .attr('id', 'knob0')
           .attr('r', knob0_radius)
           .attr('cx', center.x)
@@ -152,7 +152,7 @@ define(['d3'], (d3) => {
           .attr('stroke-width', '0.06em')
           .attr('fill', 'url(#gray)');
 
-      let base1 = knob1.append('circle')
+      var base1 = knob1.append('circle')
           .attr('r', knob1_radius)
           .attr('cx', center.x)
           .attr('cy', center.y)
@@ -163,10 +163,10 @@ define(['d3'], (d3) => {
 
       // knob0 marker
       {
-        let t = range[tier - 1];
-        let pc = polar_to_cartesian(knob0_radius - (width/13), -t);
+        var t = range[tier - 1];
+        var pc = polar_to_cartesian(knob0_radius - (width/13), -t);
 
-        let marker0 = knob0.append('g').attr('id', 'marker0');
+        var marker0 = knob0.append('g').attr('id', 'marker0');
 
         marker0.append('circle')
           .attr('r', width / 20)
@@ -189,15 +189,15 @@ define(['d3'], (d3) => {
 
       // knob1 icon:
       {
-        let knob1_icon = knob1.append('text')
+        var knob1_icon = knob1.append('text')
             .attr('id', 'diesel_p')
             .attr('class', 'material-icons')
             .text("local_gas_station");
 
-        let box = knob1_icon.node().getBBox()
+        var box = knob1_icon.node().getBBox()
 
-        let x = (center.x - 12) - 2;
-        let y = (center.y + (box['height'] / 2)) - 20;
+        var x = (center.x - 12) - 2;
+        var y = (center.y + (box['height'] / 2)) - 20;
 
         knob1_icon
           .attr('transform', `translate(${ x }, ${ y })`);
@@ -205,7 +205,7 @@ define(['d3'], (d3) => {
 
       // knob1 text:
       {
-        let knob1_text = knob1.append('text')
+        var knob1_text = knob1.append('text')
             .attr('class', 'text');
 
         var toggle_nps = () => {
@@ -225,10 +225,10 @@ define(['d3'], (d3) => {
             p = 'l';
           }
 
-          let box = knob1_text.node().getBBox()
+          var box = knob1_text.node().getBBox()
 
-          let x = (center.x - (box['width']  / 2));
-          let y = (center.y + (box['height'] / 2)) + 12;
+          var x = (center.x - (box['width']  / 2));
+          var y = (center.y + (box['height'] / 2)) + 12;
 
           knob1_text
             .attr('transform', `translate(${ x }, ${ y })`);
@@ -244,12 +244,12 @@ define(['d3'], (d3) => {
 
     // icons
     {
-      for (let i = 0; i < steps; i++) {
-        let cart = polar_to_cartesian(knob0_radius + 19, range[i]);
+      for (var i = 0; i < steps; i++) {
+        var cart = polar_to_cartesian(knob0_radius + 19, range[i]);
 
-        let it = document.getElementById(`icon-${ i+1 }`).innerHTML;
+        var it = document.getElementById(`icon-${ i+1 }`).innerHTML;
 
-        let cont = svg.append('g')
+        var cont = svg.append('g')
             .attr('class', 'tier-label')
             .attr('id',  `tier-label-${ i+1 }`)
 

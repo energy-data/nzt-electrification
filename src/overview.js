@@ -16,8 +16,8 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     // population graph
     {
       population_graph = (i) => {
-        let p2015 = parseFloat(ind[i-1]['POP2015'] / 1000000).toFixed(2);
-        let p2030 = parseFloat(ind[i-1]['POP2030'] / 1000000).toFixed(2);
+        var p2015 = parseFloat(ind[i-1]['POP2015'] / 1000000).toFixed(2);
+        var p2030 = parseFloat(ind[i-1]['POP2030'] / 1000000).toFixed(2);
 
         $('#explore-link').html(`Explore ${ ind[i-1]['Country Name'] } &nbsp; <i class="material-icons float-right">arrow_forward</i>`);
         $('#explore-link').closest('a').attr('href', `/c.html?iso3=${ ind[i-1]['iso3'] }`);
@@ -53,10 +53,10 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
     // access graph
     {
-      let as = [[0], [0]];
+      var as = [[0], [0]];
 
       ind.map((x) => {
-        let a  = parseFloat(x['Access to electricity (% of population)_2012']);
+        var a  = parseFloat(x['Access to electricity (% of population)_2012']);
 
         as[0].push(a);
         as[1].push(100 - a);
@@ -67,10 +67,10 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
     // rural population graph
     {
-      let rs = [[0], [0]];
+      var rs = [[0], [0]];
 
       ind.map((x) => {
-        let r  = parseFloat(x['Rural population (% of total population)_2015']);
+        var r  = parseFloat(x['Rural population (% of total population)_2015']);
 
         rs[0].push(r);
         rs[1].push(100 - r);
@@ -81,10 +81,10 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
     // rural access graph
     {
-      let ras = [[0], [0]];
+      var ras = [[0], [0]];
 
       ind.map((x) => {
-        let ra = parseFloat(x['Access to electricity, rural (% of rural population)']);
+        var ra = parseFloat(x['Access to electricity, rural (% of rural population)']);
 
         ras[0].push(ra);
         ras[1].push(100 - ra);
@@ -95,7 +95,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   };
 
   var counter = (container, from, to, time, callback) => {
-    let i = from;
+    var i = from;
 
     if (ticker) {
       clearInterval(ticker);
@@ -118,7 +118,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   };
 
   var load = (iso3) => {
-    let i = _g.countries.indexOf_p('iso3', iso3) + 1;
+    var i = _g.countries.indexOf_p('iso3', iso3) + 1;
 
     population_graph(i);
     access_graph.change(i)

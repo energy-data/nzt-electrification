@@ -72,9 +72,9 @@ require([
   var load_adm = (topo, pathname, callback) => {
     _u.check(topo, pathname);
 
-    let all_paths = _container.append('g').attr('id', `paths-${ pathname }`);
+    var all_paths = _container.append('g').attr('id', `paths-${ pathname }`);
 
-    let path = map.load_topo({
+    var path = map.load_topo({
       topo: topo,
       pathname: pathname,
       cls: 'adm hoverable',
@@ -92,7 +92,7 @@ require([
 
   var set_adm1_fills = (id) => {
     d3.selectAll('.adm1').each(function(e) {
-      let elem = d3.select(this);
+      var elem = d3.select(this);
 
       if (e.id === id)
         elem.style('visibility', 'hidden');
@@ -171,9 +171,9 @@ require([
     d3.selectAll('path.adm2').classed('hoverable', true);
     locked_adm2 = null;
 
-    let a2 = parseInt(_u.get_query_param('adm2'));
+    var a2 = parseInt(_u.get_query_param('adm2'));
 
-    let it = (target ?
+    var it = (target ?
               target :
               (a2 ? `#adm2-${ a2 }` : null));
 
@@ -181,7 +181,7 @@ require([
   };
 
   var run = (...args) => {
-    let load_controls = args[7];
+    var load_controls = args[7];
 
     _g.countries = args[6];
 
@@ -241,7 +241,7 @@ require([
     mode.init(points);
     scenario.init(points);
 
-    let left = 0;
+    var left = 0;
 
     // Initialise adm regions
     //
@@ -328,7 +328,7 @@ require([
     .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission, countries) {
       if (error) _u.network_error();
       else {
-        let args = arguments;
+        var args = arguments;
         (rerun = function(load_controls) { run.call(this, ...args, load_controls) })(true);
       }
     });

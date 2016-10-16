@@ -39,7 +39,7 @@ define([], () => {
       return;
 
     } else {
-      let $target = $(e.target).closest('[help-data]');
+      var $target = $(e.target).closest('[help-data]');
       if ($target.length) load(dictionary[$target.attr('help-data')]);
     }
   };

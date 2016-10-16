@@ -72,8 +72,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
     locked = null;
 
-    let scn = _d.scenario['scn'];
-    let diesel_p = _d.scenario['diesel_p'];
+    var scn = _d.scenario['scn'];
+    var diesel_p = _d.scenario['diesel_p'];
 
     clear();
 
@@ -81,12 +81,12 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     stroke = mode.stroke();
     stroke_width = mode.stroke_width();
 
-    let circles = "";
+    var circles = "";
 
     // This is too much for D3, (check git history if curious)
     //
     collection.forEach((e,i) => {
-      let pp = map.projection([e.x, e.y]);
+      var pp = map.projection([e.x, e.y]);
 
       circles += `<circle class="point"
                           fill="${ fill(e,scn) }"
@@ -101,8 +101,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
     _points
       .on('click', () => {
-        let elem = d3.event.toElement;
-        let target = find(d3.event);
+        var elem = d3.event.toElement;
+        var target = find(d3.event);
 
         if (elem === locked) {
           reset_stroke(elem);
@@ -135,14 +135,14 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var find = (e) => {
-    let it = d3.select(e.toElement || e.target);
+    var it = d3.select(e.toElement || e.target);
 
-    let x = it.attr('cx');
-    let y = it.attr('cy');
+    var x = it.attr('cx');
+    var y = it.attr('cy');
 
-    let p = map.projection.invert([x,y]);
-    let px = p[0];
-    let py = p[1];
+    var p = map.projection.invert([x,y]);
+    var px = p[0];
+    var py = p[1];
 
     return _d.point_collection['points'].find((e) => {
       return (px < e['x'] + 0.007 && px > e['x'] - 0.007 &&
@@ -151,11 +151,11 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var load_info = (e, scn, diesel_p) => {
-    let tech = _g.technologies[e[scn]];
+    var tech = _g.technologies[e[scn]];
 
-    let p = _d.point;
+    var p = _d.point;
 
-    for (let k in e) p[k] = e[k].toLocaleString();
+    for (var k in e) p[k] = e[k].toLocaleString();
 
     p['long'] = e['x'];
     p['lat']  = e['y'];
@@ -174,10 +174,10 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var load = (o) => {
-    let adm       = o.adm;
-    let svg_box   = o.svg_box;
+    var adm       = o.adm;
+    var svg_box   = o.svg_box;
 
-    let points, c;
+    var points, c;
 
     _u.check(adm, svg_box, _container);
 

@@ -10,10 +10,10 @@ define(['knob', 'help'], (knob, help) => {
     $('.load-points').on('click', (e) => {
       e.preventDefault();
 
-      let adm   = (_d.place['adm2'] ?            2              :   1);
-      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
+      var adm   = (_d.place['adm2'] ?            2              :   1);
+      var adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
 
-      let target = d3.select(`path#adm${ adm }-${ adm_v }`).node();
+      var target = d3.select(`path#adm${ adm }-${ adm_v }`).node();
 
       history.replaceState(null, null, _u.set_query_param('load_points', true));
 
@@ -26,12 +26,12 @@ define(['knob', 'help'], (knob, help) => {
     $('.export-points').on('click', (e) => {
       e.preventDefault();
 
-      let adm   = (_d.place['adm2'] ?            "2"              : "1");
-      let adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
+      var adm   = (_d.place['adm2'] ?            "2"              : "1");
+      var adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
 
-      let box = map.to_bbox(d3.select(`path#adm${ adm }-${ adm_v }`).node().getBBox());
+      var box = map.to_bbox(d3.select(`path#adm${ adm }-${ adm_v }`).node().getBBox());
 
-      let url = `${ _conf['data_source'] }/points?` +
+      var url = `${ _conf['data_source'] }/points?` +
           `select=${ _g.point_attrs }` +
           `&x=gt.${ box[0] }&x=lt.${ box[2] }` +
           `&y=gt.${ box[1] }&y=lt.${ box[3] }` +

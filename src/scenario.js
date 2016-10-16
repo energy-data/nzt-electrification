@@ -9,7 +9,7 @@ define(['summary'], (summary) => {
     _d.scenario['callback'] = [
       'scn',
       (...args) => {
-        let t = args[2];
+        var t = args[2];
 
         if (_g.scenarios.indexOf(t) < 0)
           throw Error(`This scenario is dodgy: ${ t }`);
@@ -28,7 +28,7 @@ define(['summary'], (summary) => {
     _d.scenario['callback'] = [
       'tier',
       (...args) => {
-        let t = args[2];
+        var t = args[2];
 
         if ([...Array(5).keys()].indexOf(t-1) < 0)
           throw Error(`This tier is dodgy: ${ t }`);
@@ -41,7 +41,7 @@ define(['summary'], (summary) => {
     _d.scenario['callback'] = [
       'diesel_p',
       (...args) => {
-        let t = args[2];
+        var t = args[2];
 
         if (["l", "n"].indexOf(t) < 0)
           throw Error(`This diesel price is dodgy: ${ t }`);
@@ -59,26 +59,26 @@ define(['summary'], (summary) => {
   var expand = (t) => {
     _u.check(t[0], t[1]);
 
-    let str = "";
+    var str = "";
     str += (t[0] === "l" ? "Low" : "NPS") + " " + t[1];
   };
 
   var load_selector = () => {
     clear_selector();
 
-    let sss = '#scenario-selector select';
+    var sss = '#scenario-selector select';
 
-    for (let t of _g.scenarios) {
+    _g.scenarios.forEach((t) => {
       _u.tmpl(
         '#scenario-option-template',
         sss,
         t, expand(t)
       );
-    };
+    });
 
     $(sss).on('change', (e) => {
-      let v = $(e.target).val();
-      let ds = _d.scenario;
+      var v = $(e.target).val();
+      var ds = _d.scenario;
 
       ds['scn']      = v;
       ds['diesel_p'] = v[0];

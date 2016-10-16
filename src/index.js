@@ -21,8 +21,8 @@ require([
 ], (d3, topojson, map, overview) => {
   var width = $('body')[0].clientHeight / 3;
 
-  let flag_style = (svg, iso3) => {
-    let defs = svg.append('defs');
+  var flag_style = (svg, iso3) => {
+    var defs = svg.append('defs');
 
     defs.append('pattern')
       .attr('id', `flag-${ iso3 }`)
@@ -38,7 +38,7 @@ require([
       .attr('height', 30)
       .attr('preserveAspectRatio', `${ _g.aspect_ratios[iso3.toString()] } slice`);
 
-    let filter = defs.append('filter')
+    var filter = defs.append('filter')
         .attr('id', 'dropshadow')
         .attr('width', '130%')
         .attr('height', '130%');
@@ -61,15 +61,15 @@ require([
   };
 
   var load = (iso3, topo, callback) => {
-    let svg = d3.select(`svg#svg-${ iso3 }`)
+    var svg = d3.select(`svg#svg-${ iso3 }`)
         .attr('width',  width)
         .attr('height', width);
 
     flag_style(svg, iso3);
 
-    let container = svg.append('g').attr('id', 'container');
+    var container = svg.append('g').attr('id', 'container');
 
-    let path = map.load_topo({
+    var path = map.load_topo({
       topo: topo,
       cls: 'adm',
       pathname: 'adm0',
@@ -94,15 +94,15 @@ require([
   };
 
   var run = (...args) => {
-    let countries = _g.countries = args[1];
-    let indicators = args[2];
+    var countries = _g.countries = args[1];
+    var indicators = args[2];
 
-    let size = 12 / countries.length;
+    var size = 12 / countries.length;
 
-    for (let c of countries) {
-      let iso3 = c['iso3'];
+    countries.forEach((c) => {
+      var iso3 = c['iso3'];
 
-      let ind = indicators.find((x) => parseInt(x['Country Code']) === c['code']);
+      var ind = indicators.find((x) => parseInt(x['Country Code']) === c['code']);
 
       _u.tmpl('#li-template', '#country-list ul', ind['Country Name'], iso3);
 
@@ -113,7 +113,7 @@ require([
             _u.network_error() :
             load(iso3, adm0);
         });
-    };
+    });
 
     overview.init(indicators, countries);
 
@@ -124,7 +124,7 @@ require([
 
       $('#select-something').remove();
 
-      let i = $(e.target).closest('.country-item');
+      var i = $(e.target).closest('.country-item');
 
       i.addClass('active');
 

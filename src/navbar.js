@@ -28,7 +28,7 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
       $('[data="adm1_name"]').on('click', (e) => {
         e.preventDefault();
 
-        let target = d3.select(`path#adm1-${ _d.place['adm1'] }`);
+        var target = d3.select(`path#adm1-${ _d.place['adm1'] }`);
 
         load_adm1(target.node(), {
           id: _d.place['adm1'],
