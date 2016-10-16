@@ -151,7 +151,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var load_info = (e, scn, diesel_p) => {
-    var tech = _g.technologies[e[scn]];
+    var tech = _g.technologies.find((t) => t['tech'] === e[scn]);
 
     var p = _d.point;
 

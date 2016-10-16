@@ -1,6 +1,4 @@
 define(['d3'], (d3) => {
-  var tc = _g.technologies.map((t) => t ? t['color'] : null);
-
   var mss = '#mode-selector';
   var oms = '#other-mode-selector-menu';
 
@@ -18,7 +16,7 @@ define(['d3'], (d3) => {
     type: "technology",
     full: "Technology",
     icon: "blur_circular",
-    fill: (g, scn) => tc[g[scn]]
+    fill: (e, scn) => _g.technologies.find((t) => t['tech'] === e[scn])['color']
   }, {
     type: "lcsa",
     full: "SA LCOE",

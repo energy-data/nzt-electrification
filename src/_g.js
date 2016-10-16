@@ -1,30 +1,38 @@
 define([], () => {
+  // o.tech is NOT an index. It matches a scenario technology.
   _g = {
-    technologies: [ null, {
+    technologies: [{
+      tech: 1,
       id:   "grid",
       name: "Grid",
       color: "#528885"
     }, {
+      tech: 2,
       id:   "sa_diesel",
       name: "S.A. Diesel",
       color: "#FF7364"
     }, {
+      tech: 3,
       id:   "sa_pv",
       name: "S.A. Photo Voltaic",
       color: "#FFD38C"
     }, {
+      tech: 4,
       id:   "mg_diesel",
       name: "M.G. Diesel",
       color: "#D13A36"
     }, {
+      tech: 5,
       id:   "mg_pv",
       name: "M.G. Photo Voltaic",
       color: "#E6AF00"
     }, {
+      tech: 6,
       id:   "mg_wind",
       name: "M.G. Wind",
       color: "#8F77AD"
     }, {
+      tech: 7,
       id:   "mg_hydro",
       name: "M.G. Hydro",
       color: "#00518E"

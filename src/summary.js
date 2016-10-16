@@ -1,6 +1,4 @@
 define(['d3', 'pie'], (d3, pie) => {
-  var tech_colors = _g.technologies.map((t) => { if (t) return t['color'] });
-
   var fetch = () => {
     var adm = (() => {
       if (!_d.place['adm2']) return 'adm1';
@@ -56,18 +54,14 @@ define(['d3', 'pie'], (d3, pie) => {
             (totals['investments'] / 1000000).toFixed(2).toLocaleString()
            );
 
-    var colors = tech_colors.reduce(((x,c,i) => { if (obj.map((r) => r['tech']).indexOf(i) > -1) x.push(c); return x }), []);
+    var filtered_techs = _g.technologies.filter((c) => obj.find((x) => x['tech'] === c['tech']));
 
-    _g.technologies.map((t,i) => {
-      var c = obj.find((x) => x['tech'] === i);
-
-      if (!c) return;
-
+    filtered_techs.map((t) => {
       _u.tmpl(
         '#pies-tech-tr-template',
         '#techs-table',
         t['name'], t['color']
-      );
+      )
     });
 
     _u.tmpl('#pies-graphs-template', '#pies-table');
@@ -76,7 +70,7 @@ define(['d3', 'pie'], (d3, pie) => {
       var chart = pie.chart(
         `#${ k }`,
         obj.map((r) => { return [0,(r[k]/totals[k])*100] }),
-        50, colors, " "
+        50, filtered_techs.map((t) => t['color']), " "
       );
 
       chart.change(1);
@@ -101,21 +95,33 @@ define(['d3', 'pie'], (d3, pie) => {
       totals['investments'].toLocaleString()
     );
 
-    _g.technologies.map((t,i) => {
-      var c = obj.find((x) => x['tech'] === i);
+    _g.technologies
+      .map((t,i) => {
+        return obj.find((x) => {
+          var target = (x['tech'] === t['tech']);
 
-      if (!c) return;
+          if (target) {
+            x['name']  = t['name'];
+            x['color'] = t['color'];
+          }
 
-      _u.tmpl(
-        '#numbers-count-template',
-        '#numbers',
-        t['name'], t['color'],
-        c['pts'].toLocaleString(), _u.percent(c['pts'], totals['pts']),
-        c['connections'].toLocaleString(), _u.percent(c['connections'],totals['connections']),
-        c['capacity'].toLocaleString(), _u.percent(c['capacity'],totals['capacity']),
-        c['investments'].toLocaleString(), _u.percent(c['investments'],totals['investments'])
-      );
-    });
+          return target;
+        })
+      })
+      .sort_p('connections')
+      .forEach((c) => {
+        if (!c) return;
+
+        _u.tmpl(
+          '#numbers-count-template',
+          '#numbers',
+          c['name'], c['color'],
+          c['pts'].toLocaleString(), _u.percent(c['pts'], totals['pts']),
+          c['connections'].toLocaleString(), _u.percent(c['connections'],totals['connections']),
+          c['capacity'].toLocaleString(), _u.percent(c['capacity'],totals['capacity']),
+          c['investments'].toLocaleString(), _u.percent(c['investments'],totals['investments'])
+        );
+      });
 
     show();
   };

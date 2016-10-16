@@ -48,15 +48,15 @@
   - [X] knob: reflect <->
 
 
-* [12/20] Code
+* [13/20] Code
   - [ ] show scale gradients
-  - [ ] technologies NOT as array (initial NULL and ordering is a pain)
-  - [ ] there seems to be a double call to the api
+  - [ ] there seems to be a double call to the api on initial run
   - [ ] points: hydro
   - [ ] lcsa's colouring from min..max from the point collection
   - [ ] scenario: init from url params
   - [ ] $loading callbacks seem iffy...
   - [ ] background maps?
+  - [X] technologies NOT as array (initial NULL and ordering is a pain)
   - [X] pie graphs in summaries
   - [X] $ grep -r TODO .
   - [X] summary: poulation => connected people
