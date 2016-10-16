@@ -18,9 +18,7 @@ define(['summary'], (summary) => {
           summary.fetch();
 
           if (['technology', 'lcsa'].indexOf(_d.mode['type']) > -1)
-            $('.loading').fadeIn(() => {
-              points.draw(_d.point_collection['points']);
-            });
+            $('.loading').fadeIn(points.draw);
         }
       }
     ];

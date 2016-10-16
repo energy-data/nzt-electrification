@@ -84,8 +84,8 @@
   - [X] Separate Scenarios and Underlying Data (maybe color coding?)
   - [X] Rework hierarchy between the summary and detailed data table to make it simpler, more logical and more interactive (ie. Expandable - click for more etc)
 
-** [3/4] State
-  - [ ] Load randomize results automatically
+** [4/4] State
+  - [X] Load randomize results automatically
   - [X] Prioritize graphically population and investments, with having 'areas' and 'capacity' accessible with clicking somewhere
   - [X] Try to improve readability with increasing font and playing with colors in the result table
   - [X] Truncate decimals from investments and capacity

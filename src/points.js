@@ -64,7 +64,9 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
       .attr('stroke', stroke);
   };
 
-  var draw = (collection) => {
+  var draw = () => {
+    var collection = _d.point_collection['points'];
+
     if (! collection) {
       $('.loading').fadeOut()
       return;
@@ -83,6 +85,13 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
     var circles = "";
 
+    var radius = 0.012
+
+    var area = (_d.summary['results'].reduce((x,c) => { return x + c['pts'] }, 0));
+
+    if (area > count_threshold)
+      radius = radius * (area / count_threshold)
+
     // This is too much for D3, (check git history if curious)
     //
     collection.forEach((e,i) => {
@@ -94,7 +103,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
                           stroke-width="0.001"
                           cx=${ pp[0] }
                           cy=${ pp[1] }
-                          r="0.012"></circle>`;
+                          r=${ radius }></circle>`;
     });
 
     _points.node().innerHTML = circles;
@@ -187,13 +196,11 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
       callback: (points) => {
         if (points.length > count_threshold)
-          c = confirm(`Loading ${ points.length } will most likely make the webpage sluggish. Load all?`);
-
-        if (!c) points = points.sort(() => 0.5 - Math.random()).splice(0, count_threshold);
-
-        draw(points);
+          points = points.sort(() => 0.5 - Math.random()).splice(0, count_threshold);
 
         _d.point_collection['points'] = points;
+
+        draw();
 
         $('.loading').fadeOut();
       }

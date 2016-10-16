@@ -71,9 +71,7 @@ define(['d3'], (d3) => {
           throw Error(`This mode is dodgy ${ args[2] }`);
 
         else
-          $('.loading').fadeIn(() => {
-            points.draw(_d.point_collection['points']);
-          });
+          $('.loading').fadeIn(points.draw);
       }];
   };
 
