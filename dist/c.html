@@ -126,20 +126,21 @@
          help-data="point_info">
       <table class="info-table monospace">
         <tr>
-          <td colspan="2"
+          <td colspan="3"
               class="center">
             <span class="number" data="technology"></span>
           </td>
         </tr>
 
         <tr>
-          <td colspan="2"
+          <td colspan="3"
               class="center">
             long: <span class="number" data="long"></span>, lat: <span class="number" data="lat"></span>
           </td>
         </tr>
 
         <tr>
+          <td rowspan="3" class="number rotate270">Technology</td>
           <td>LCOE</td>
           <td class="right">
             <span class="number" data="lc"></span> USD/kWh
@@ -161,6 +162,8 @@
         </tr>
 
         <tr>
+          <td rowspan="2" class="number rotate270">Demographics</td>
+
           <td>Population 2030</td>
 
           <td class="right">
@@ -177,6 +180,8 @@
         </tr>
 
         <tr class="hideable hidden">
+          <td rowspan="3" class="number rotate270">Resources</td>
+
           <td>Wind Power Capacity Factor</td>
           <td class="right">
             <!-- formatted w_cf -->
@@ -199,6 +204,8 @@
         </tr>
 
         <tr class="hideable hidden">
+          <td rowspan="4" class="number rotate270">Insfrastructure</td>
+
           <td>Distance to current Transmission Network</td>
           <td class="right">
             <span class="number" data="gd_c"></span> km
