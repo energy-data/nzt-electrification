@@ -20,7 +20,9 @@ define([], () => {
     adm1: `This is a <strong>state</strong> or <strong>province</strong>.<br />
            You can click on one of its district or click on the navbar for more actions.`,
     adm2: `This is a <strong>district</strong>.<br />
-           You can hover and select cells within it, change the scenario and mode on the controls...`
+           You can hover and select cells within it, change the scenario and mode on the controls...`,
+    help: `Help mode enabled. I will tell you what everything is when you click on it.<br />
+           To turn it off, just click on Help again.`
   };
 
   var click_event = (e) => {
@@ -53,10 +55,7 @@ define([], () => {
   };
 
   var enable = () => {
-    alert(`
-Help mode enabled. I will tell you what everything is when you click on it.
-To turn it off, just click on Help again.
-`);
+    load(dictionary['help']);
 
     document.addEventListener('click', click_event, true);
   };
