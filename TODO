@@ -1,12 +1,13 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [39/44] UI/UX
+* [40/45] UI/UX
   - [ ] landing
+  - [ ] github link
   - [ ] points: technology colour palette (+ locked point)
   - [ ] help enabled by default
-  - [ ] sort summaries by population
   - [ ] population/lcoe colours
+  - [X] sort summaries by population
   - [X] contrast font color etc...
   - [X] try to make clear that this is a projection
   - [X] population and investments come first
@@ -48,7 +49,8 @@
   - [X] knob: reflect <->
 
 
-* [13/20] Code
+* [13/21] Code
+  - [ ] dump jsons
   - [ ] show scale gradients
   - [ ] there seems to be a double call to the api on initial run
   - [ ] points: hydro
@@ -74,11 +76,10 @@
 * Third Review (from Team)
   - [X] Revision from Trello
 
-** [4/8] Overall
+** [5/8] Overall
   - [ ] index: insert area in km^2
   - [ ] Make hovering more apparent, overall increase contrast of text, icons, etc.
   - [ ] Pop-up error messages to look a little snazzier and re-write the texts in it
-  - [ ] ==== Help mode enabled by default
   - [X] ==== Diesel price button would be improve to make it clear that we can click on it
   - [X] High diesel price activated by default
   - [X] Separate Scenarios and Underlying Data (maybe color coding?)

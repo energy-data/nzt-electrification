@@ -308,6 +308,7 @@ require([
         node: target.node(),
         duration: 0,
         left: left,
+        delay: 1,
         callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
       });
     }
