@@ -21,7 +21,7 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
 
         map.resize_to({
           node: d3.select('#paths-adm1').node(),
-          duration: 1000
+          duration: 600
         });
       });
 

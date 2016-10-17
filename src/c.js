@@ -121,7 +121,7 @@ require([
 
     map.resize_to({
       node: it,
-      duration: 600
+      duration: 300
     });
 
     d3.select('#text-labels-adm1').raise();
@@ -155,7 +155,7 @@ require([
 
     map.resize_to({
       node: it,
-      duration: 600
+      duration: 300
     });
   };
 
