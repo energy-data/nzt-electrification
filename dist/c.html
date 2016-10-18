@@ -54,26 +54,18 @@
            help-data="scenario"></div>
 
       <div id="mode-selector"
-           class="row">
-      </div>
+           class="row col"></div>
 
-      <div class="row center clickable with-dropdown">
-        <a id="other-mode-selector"
-           href="#">Datasets</a>
+      <div class="row col">
+        <div class="col c12 center clickable"
+             id="toggle-help">
+          <a href="#">Help</a>
+        </div>
 
-        <ul id="other-mode-selector-menu"
-            class="dropdown pane">
-        </ul>
-      </div>
-
-      <div class="row center clickable"
-           id="toggle-help">
-        <a href="#">Help</a>
-      </div>
-
-      <div class="row center clickable"
-           id="home">
-        <a href="/">Back to countries</a>
+        <div class="col c12 center clickable"
+             id="home">
+          <a href="/">Back to countries</a>
+        </div>
       </div>
     </div>
 
@@ -358,6 +350,17 @@
       <td style="background-color: {1};">&nbsp;</td>
       <td>&nbsp;{0}</td>
     </tr>
+  </script>
+
+  <script type="text/template"
+          id="mode-group-template">
+    <div id="{0}-mode-selector"
+         class="row center clickable with-dropdown">
+      <a class="mode-selector-menu"
+         href="#">{1}</a>
+
+      <ul class="dropdown pane"></ul>
+    </div>
   </script>
 
   <script type="text/template"

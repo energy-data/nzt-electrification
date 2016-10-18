@@ -1,6 +1,5 @@
 define(['d3'], (d3) => {
   var mss = '#mode-selector';
-  var oms = '#other-mode-selector-menu';
 
   var fill         = () => tm()['fill'];
   var stroke       = () => tm()['stroke'];
@@ -16,11 +15,13 @@ define(['d3'], (d3) => {
     type: "technology",
     full: "Technology",
     icon: "blur_circular",
+    group: "technology",
     fill: (e, scn) => _g.technologies.find((t) => t['tech'] === e[scn])['color']
   }, {
     type: "lcsa",
     full: "SA LCOE",
     icon: "local_gas_station",
+    group: "infrastructure",
     fill: (g) => {
       var f = d3.scaleLinear()
           .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
@@ -34,6 +35,7 @@ define(['d3'], (d3) => {
     type: "population",
     full: "Population",
     icon: "people",
+    group: "demographics",
     fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['p_2030'], [0, 1000]) })`,
     stroke: "lightgray",
     stroke_width: 0.001
@@ -41,6 +43,7 @@ define(['d3'], (d3) => {
     type: "w_cf",
     full: "Wind",
     icon: "cloud",
+    group: "resources",
     fill: (g) => `rgba(0, 80, 255, ${ _u.l_scale(g['w_cf'], [0, 0.4]) })`,
     stroke: "rgba(0, 80, 255, 0.4)",
     stroke_width: 0.001
@@ -48,11 +51,13 @@ define(['d3'], (d3) => {
     type: "ghi",
     full: "GHI",
     icon: "wb_sunny",
+    group: "resources",
     fill: (g) => ghi_scale(g['ghi'])
   }, {
     type: "hp",
     full: "Hydro",
     icon: "opacity",
+    group: "resources",
     fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['hp'], [0, 10000000]) })`
   }];
 
@@ -75,16 +80,27 @@ define(['d3'], (d3) => {
       }];
   };
 
-  var clear_selector = () => $(mss,oms).html('<ul></ul>');
+  var clear_selector = () => {
+    $(mss).html('');
+  };
 
   var load_selector = () => {
     clear_selector();
 
-    modes.forEach((m) => {
-      _u.tmpl('#mode-option-template',
-              (['technology', 'lcsa'].indexOf(m['type']) > -1 ? mss : oms),
-              m['type'], m['full'], m['icon'],
-              (['technology', 'lcsa'].indexOf(m['type']) > -1 ? "c6" : "c6"));
+    var groups = modes.group_p('group');
+
+    Object.keys(groups).forEach((k) => {
+      _u.tmpl('#mode-group-template',
+              `#mode-selector`,
+              k, k.capitalise());
+
+      groups[k].forEach((m) => {
+        console.log(groups[k].length);
+        _u.tmpl('#mode-option-template',
+                `#${ k }-mode-selector ul`,
+                m['type'], m['full'], m['icon'],
+                `c${ 12/groups[k].length }`);
+      });
     });
 
     var $mssa = $('.mode-selector-option');
