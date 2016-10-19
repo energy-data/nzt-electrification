@@ -50,14 +50,18 @@ define(['d3'], (d3) => {
       else
         text.text(data[0][v].toFixed(2));
 
-      var box = text.node().getBBox();
+      try {
+        var box = text.node().getBBox();
 
-      var x = ( - (box['width']  / 2));
-      var y = ( + (box['height'] / 10));
+        var x = ( - (box['width']  / 2));
+        var y = ( + (box['height'] / 10));
 
-      text
-        .attr('transform', `translate(${ x }, ${ y })`);
-
+        text
+          .attr('transform', `translate(${ x }, ${ y })`);
+      } catch (e) {
+        console.log('due to a bug in FF... return.')
+        return;
+      }
     }
 
     function tween(a) {
