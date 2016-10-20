@@ -18,6 +18,14 @@ define(['d3'], (d3) => {
     group: "technology",
     fill: (e, scn) => _g.technologies.find((t) => t['tech'] === e[scn])['color']
   }, {
+    type: "population",
+    full: "Population",
+    icon: "people",
+    group: "demographics",
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['p_2030'], [0, 1000]) })`,
+    stroke: "lightgray",
+    stroke_width: 0.001
+  }, {
     type: "lcsa",
     full: "SA LCOE",
     icon: "local_gas_station",
@@ -32,13 +40,11 @@ define(['d3'], (d3) => {
     stroke: "rgba(105, 70 ,50, 0.2)",
     stroke_width: 0.001
   }, {
-    type: "population",
-    full: "Population",
-    icon: "people",
-    group: "demographics",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['p_2030'], [0, 1000]) })`,
-    stroke: "lightgray",
-    stroke_width: 0.001
+    type: "ghi",
+    full: "GHI",
+    icon: "wb_sunny",
+    group: "resources",
+    fill: (g) => ghi_scale(g['ghi'])
   }, {
     type: "w_cf",
     full: "Wind",
@@ -47,12 +53,6 @@ define(['d3'], (d3) => {
     fill: (g) => `rgba(0, 80, 255, ${ _u.l_scale(g['w_cf'], [0, 0.4]) })`,
     stroke: "rgba(0, 80, 255, 0.4)",
     stroke_width: 0.001
-  }, {
-    type: "ghi",
-    full: "GHI",
-    icon: "wb_sunny",
-    group: "resources",
-    fill: (g) => ghi_scale(g['ghi'])
   }, {
     type: "hp",
     full: "Hydro",
