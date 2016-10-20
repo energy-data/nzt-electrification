@@ -1,5 +1,5 @@
 define(['d3'], (d3) => {
-  var chart = (container, data, radius, colors, inner_text) => {
+  var chart = (container, data, radius, colors, inner_text, create = true) => {
     var width =  radius * 2,
         height = radius * 2;
 
@@ -11,13 +11,32 @@ define(['d3'], (d3) => {
         .innerRadius(radius - (radius/4.5))
         .outerRadius(radius - (radius/15));
 
-    var svg = d3.select(container).append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${ radius }, ${ radius })`);
+    var container = d3.select(container);
 
-    var path = svg
+    var svg = null;
+
+    if (create) {
+      svg = container.append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    }
+
+    else
+      svg = container.select('svg');
+
+    var g = null;
+
+    if (! create) {
+      g = svg.append("g")
+        .attr("transform", `translate(${ svg.attr('width') / 2 }, ${ svg.attr('height') / 2 })`);
+    }
+
+    else {
+      g = svg.append("g")
+        .attr("transform", `translate(${ radius }, ${ radius })`);
+    }
+
+    var path = g
         .datum(data)
         .selectAll("path")
         .data(pie)
