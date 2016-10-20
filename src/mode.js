@@ -26,6 +26,12 @@ define(['d3'], (d3) => {
     stroke: "lightgray",
     stroke_width: 0.001
   }, {
+    type: "urban-rural",
+    full: "Urban/Rural",
+    icon: "nature_people",
+    group: "demographics",
+    fill: (e) => e['u'] ? '#F69C55' : '#B4EEB4'
+  }, {
     type: "lcsa",
     full: "SA LCOE",
     icon: "local_gas_station",

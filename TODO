@@ -1,10 +1,10 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [0/10] UI/UX
+* [1/11] UI/UX
   - [ ] landing
   - [ ] github link
-  - [ ] sort mode groups
+  - [X] sort mode groups
   - [ ] points: technology colour palette (+ locked point)
   - [ ] help enabled by default
   - [ ] population/lcoe colours
@@ -15,8 +15,9 @@
   - [ ] contrast of text, icons, hovering
 
 
-* [0/8] Code
+* [0/9] Code
   - [ ] dump jsons
+  - [ ] cleanup this indicators/breakdown looping
   - [ ] show scale gradients
   - [ ] there seems to be a double call to the api on initial run
   - [ ] lcsa's colouring from min..max from the point collection
