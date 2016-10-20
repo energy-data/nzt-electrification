@@ -95,7 +95,6 @@ define(['d3'], (d3) => {
               k, k.capitalise());
 
       groups[k].forEach((m) => {
-        console.log(groups[k].length);
         _u.tmpl('#mode-option-template',
                 `#${ k }-mode-selector ul`,
                 m['type'], m['full'], m['icon'],

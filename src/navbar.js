@@ -59,8 +59,6 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
       $('.with-dropdown').on('mouseleave', (e) => {
         $(e.target).closest('.with-dropdown').find('.dropdown').hide();
       });
-
-      $('.dropdown').on('mouseleave', (e) => $(e.target).closest('.dropdown').hide());
     }
   };
 
