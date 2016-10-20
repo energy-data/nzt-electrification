@@ -1,38 +1,42 @@
 define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
-  var indicators;
 
   var ticker;
 
   var population_graph;
+
+  var projection_access_graph;
+  var projection_urban_rural_graph;
+
   var access_graph;
-  var rural_access_graph;
-  var rural_population_graph;
+  var urban_rural_graph;
 
   var init = (ind, countries) => {
     ind.forEach((i) => { i['iso3'] = countries.find((x) => x['code'] === parseInt(i['Country Code']))['iso3'] });
 
-    indicators = ind;
 
-    // population graph
+    ind = indicators;
+
+    // population ticker
+    //
     {
       population_graph = (i) => {
-        var p2015 = parseFloat(ind[i-1]['POP2015'] / 1000000).toFixed(2);
-        var p2030 = parseFloat(ind[i-1]['POP2030'] / 1000000).toFixed(2);
+        var p2015 = parseFloat(ind[i-1]['population_2015'] / 1000000).toFixed(2);
+        var p2030 = parseFloat(ind[i-1]['population_2030'] / 1000000).toFixed(2);
 
         $('#explore-link').html(`Explore ${ ind[i-1]['Country Name'] } &nbsp; <i class="material-icons float-right">arrow_forward</i>`);
         $('#explore-link').closest('a').attr('href', `/c.html?iso3=${ ind[i-1]['iso3'] }`);
 
         $('#population-counter').css({
           'font-size': '1em',
-          'left': '16%'
+          'left': '20%'
         });
 
-        $('.population-final').hide();
+        // $('.population-final').hide();
         $('#population-counter').show()
 
         $('#population-counter').animate({
           'font-size': '2em',
-          'left': '66%'
+          'left': '70%'
         }, 1000);
 
         counter(
@@ -51,46 +55,88 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
       }
     }
 
-    // access graph
+    /////////////////////
+    // current graphs: //
+    /////////////////////
+
+    // access graph: it will "hug" the urban/rural population  graph
+    //
     {
-      var as = [[0], [0]];
+      var as = [[0], [0], [0], [0]];
 
       ind.map((x) => {
-        var a  = parseFloat(x['Access to electricity (% of population)_2012']);
+        var rp = +x['population_rural_current'];
+        var ra = rp * (x['electricity_access_rural'] / 100); // rural electricity access from total
 
-        as[0].push(a);
-        as[1].push(100 - a);
+        as[0].push(ra);
+        as[1].push(x['population_rural_current'] - ra);
+
+        var up = 100 - rp; // urban population
+
+        var ua = (up) * (x['electricity_access_urban'] / 100); // urban electricity access from total
+
+        as[2].push(ua);
+        as[3].push((up) - ua);
       });
 
-      access_graph = pie.chart("#access-graph", as, 90, ['#7587A6', '#424242']);
+      access_graph = pie.chart("#urban-rural-current-graph", as, 100, ['#7587A6', '#424242', '#7587A6', '#424242'], " ", true);
     }
 
-    // rural population graph
+    // rural/urban population graph
+    //
     {
       var rs = [[0], [0]];
 
       ind.map((x) => {
-        var r  = parseFloat(x['Rural population (% of total population)_2015']);
+        var r  = parseFloat(x['population_rural_current']);
 
-        rs[0].push(r);
-        rs[1].push(100 - r);
+        rs[0].push(r);        // rural population
+        rs[1].push(100 - r);  // urban population
       });
 
-      rural_population_graph = pie.chart("#rural-graph", rs, 90, ['#7587A6', '#424242']);
+      urban_rural_population_graph = pie.chart("#urban-rural-current-graph", rs, 75, ['#7587A6', '#424242'], " ", false);
     }
 
-    // rural access graph
+    ////////////////////////
+    // projection graphs: //
+    ////////////////////////
+
+    // access graph: it will "hug" the urban/rural population  graph
+    //
     {
-      var ras = [[0], [0]];
+      var as = [[0], [0], [0], [0]];
 
       ind.map((x) => {
-        var ra = parseFloat(x['Access to electricity, rural (% of rural population)']);
+        var rp = +x['population_rural_2030'];
+        var ra = rp * (1); // rural electricity access from total
 
-        ras[0].push(ra);
-        ras[1].push(100 - ra);
+        as[0].push(ra);
+        as[1].push(x['population_rural_2030'] - ra);
+
+        var up = 100 - rp; // urban population
+
+        var ua = (up) * (1); // urban electricity access from total
+
+        as[2].push(ua);
+        as[3].push((up) - ua);
       });
 
-      rural_access_graph = pie.chart("#rural-access-graph", ras, 75, ['#7587A6', '#424242']);
+      projection_access_graph = pie.chart("#urban-rural-projection-graph", as, 100, ['#7587A6', '#424242', '#7587A6', '#424242'], " ", true);
+    }
+
+    // rural/urban population graph
+    //
+    {
+      var rs = [[0], [0]];
+
+      ind.map((x) => {
+        var r  = parseFloat(x['population_rural_2030']);
+
+        rs[0].push(r);        // rural population
+        rs[1].push(100 - r);  // urban population
+      });
+
+      projection_urban_rural_population_graph = pie.chart("#urban-rural-projection-graph", rs, 75, ['#7587A6', '#424242'], " ", false);
     }
   };
 
@@ -121,9 +167,12 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     var i = _g.countries.indexOf_p('iso3', iso3) + 1;
 
     population_graph(i);
-    access_graph.change(i)
-    rural_population_graph.change(i)
-    rural_access_graph.change(i)
+
+    access_graph.change(i);
+    urban_rural_population_graph.change(i);
+
+    projection_access_graph.change(i);
+    projection_urban_rural_population_graph.change(i);
   };
 
   return {

@@ -1,4 +1,4 @@
-Country Name,Country Code,POP2015,POP2030,GDP per capita (current US$)_2015,GDP (current billion US$),Access to electricity (% of population)_2012,Rural population (% of total population)_2015,"Access to electricity, rural (% of rural population)",Expenditures_2015_est_in billion USD
-Nigeria,566,182201962,262599110,2640.290739,481.0661529,55.6,52.224,34.4,21.29
-Tanzania,834,53470420,82927170,864.8575023,44.89539208,15.3,68.392,3.6,8.431
-Zambia,894,16211767,25312540,1307.788611,21.20156425,22.06256,59.078,5.7546,5.189
+Country Name,Country Code,population_2015,population_2030,gdp_ppp_per_capita_current,gdp_ppp_current,gdp_ppp_2030,electricity_access_2012,population_rural_current,population_rural_2030,electricity_access_rural,expenditures_2015,electricity_access_urban,electricity_access_2030,area
+Nigeria,566,182201962,262599110,5991.7,1091.69777,1192.728,55.6,52.224,41.696,34.4,21.29,83.6,100,910768
+Tanzania,834,53470420,82927170,2667.3,138.46103,213.831,15.3,68.392,58.091,3.6,8.431,46.4,100,885800
+Zambia,894,16211767,25312540,3852.7,62.45841,69.835,22.06256,59.078,51.774,5.7546,5.189,46.9,100,743398
