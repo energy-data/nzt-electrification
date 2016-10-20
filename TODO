@@ -1,12 +1,56 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [40/45] UI/UX
+* [0/10] UI/UX
   - [ ] landing
   - [ ] github link
+  - [ ] sort mode groups
   - [ ] points: technology colour palette (+ locked point)
   - [ ] help enabled by default
   - [ ] population/lcoe colours
+  - [ ] bind drag and zoom to screen
+  - [ ] tweak adm-label sizes
+  - [ ] bold selected adm-labels
+  - [ ] index: insert area in km^2
+  - [ ] contrast of text, icons, hovering
+
+
+* [0/8] Code
+  - [ ] dump jsons
+  - [ ] show scale gradients
+  - [ ] there seems to be a double call to the api on initial run
+  - [ ] lcsa's colouring from min..max from the point collection
+  - [ ] points: hydro
+  - [ ] scenario: init from url params (shareable links)
+  - [ ] $loading callbacks seem iffy...
+  - [ ] background maps?
+
+
+* [0/4] Second Review
+  - [ ] index: expenditures and other indicators
+  - [ ] index: inserting a poverty map jpeg?
+  - [ ] index: projected increase in demand
+  - [ ] index: access rate (world bank != internal inteligence)
+
+
+* DONE Archive
+** Code
+  - [X] technologies NOT as array (initial NULL and ordering is a pain)
+  - [X] pie graphs in summaries
+  - [X] $ grep -r TODO .
+  - [X] summary: poulation => connected people
+  - [X] coffeescript => ES6
+  - [X] KW => kW
+  - [X] choose data-source
+  - [X] map: add names to states and municipalities
+  - [X] exports: review...
+  - [X] exports: improve filenames
+  - [X] c: cleanup
+  - [X] knob: do not reload if not "technology mode"
+  - [X] global-things to _things
+
+
+** UI/UX
   - [X] sort summaries by population
   - [X] contrast font color etc...
   - [X] try to make clear that this is a projection
@@ -49,54 +93,22 @@
   - [X] knob: reflect <->
 
 
-* [13/21] Code
-  - [ ] dump jsons
-  - [ ] show scale gradients
-  - [ ] there seems to be a double call to the api on initial run
-  - [ ] points: hydro
-  - [ ] lcsa's colouring from min..max from the point collection
-  - [ ] scenario: init from url params
-  - [ ] $loading callbacks seem iffy...
-  - [ ] background maps?
-  - [X] technologies NOT as array (initial NULL and ordering is a pain)
-  - [X] pie graphs in summaries
-  - [X] $ grep -r TODO .
-  - [X] summary: poulation => connected people
-  - [X] coffeescript => ES6
-  - [X] KW => kW
-  - [X] choose data-source
-  - [X] map: add names to states and municipalities
-  - [X] exports: review...
-  - [X] exports: improve filenames
-  - [X] c: cleanup
-  - [X] knob: do not reload if not "technology mode"
-  - [X] global-things to _things
-
-
-* Third Review (from Team)
+* DONE Third Review (from Team)
   - [X] Revision from Trello
 
-** [5/8] Overall
-  - [ ] index: insert area in km^2
-  - [ ] Make hovering more apparent, overall increase contrast of text, icons, etc.
-  - [ ] Pop-up error messages to look a little snazzier and re-write the texts in it
+** [5/5] Overall
+  - [X] Pop-up error messages to look a little snazzier and re-write the texts in it
   - [X] ==== Diesel price button would be improve to make it clear that we can click on it
   - [X] High diesel price activated by default
   - [X] Separate Scenarios and Underlying Data (maybe color coding?)
   - [X] Rework hierarchy between the summary and detailed data table to make it simpler, more logical and more interactive (ie. Expandable - click for more etc)
+
 
 ** [4/4] State
   - [X] Load randomize results automatically
   - [X] Prioritize graphically population and investments, with having 'areas' and 'capacity' accessible with clicking somewhere
   - [X] Try to improve readability with increasing font and playing with colors in the result table
   - [X] Truncate decimals from investments and capacity
-
-
-* [0/4] Second Review
-  - [ ] missing expenditures and other indicators
-  - [ ] wait: index: inserting a poverty map jpeg?
-  - [ ] wait: index: projected increase in demand
-  - [ ] wait: index: access rate (world bank != internal inteligence)
 
 
 * [9/9] First Review
