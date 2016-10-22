@@ -147,7 +147,7 @@ require([
     _d.place['adm1']      = admin1 || undefined;
     _d.place['adm1_name'] = d3.select(`#adm1-${ admin1 }`).datum().properties['name'] || undefined;
 
-    if (_u.get_query_param('load_points').toBoolean())
+    if (_u.get_query_param('load_points').to_boolean())
       points.load({
         adm: it.id.match(/adm(.*)-(\d*)?/),
         svg_box: it.getBBox()
@@ -185,7 +185,7 @@ require([
 
     _g.countries = args[6];
 
-    _country = _g.countries.find((c) => c['iso3'] === iso3);
+    _country = _g.countries.find_p('iso3', iso3);
 
     document.getElementsByTagName('title')[0].text = `${ _country['name'] } - Electrification`;
 
@@ -193,7 +193,7 @@ require([
     //
     admin1 = parseInt(_u.get_query_param('adm1'));
     admin2 = parseInt(_u.get_query_param('adm2'));
-    load_points = _u.get_query_param('load_points').toBoolean();
+    load_points = _u.get_query_param('load_points').to_boolean();
 
     // Place
     //

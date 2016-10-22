@@ -54,7 +54,7 @@ define(['d3', 'pie'], (d3, pie) => {
             (totals['investments'] / 1000000).toFixed(2).toLocaleString()
            );
 
-    var filtered_techs = _g.technologies.filter((c) => obj.find((x) => x['tech'] === c['tech']));
+    var filtered_techs = _g.technologies.filter((c) => obj.find_p('tech', c['tech']));
 
     filtered_techs.map((t) => {
       _u.tmpl(

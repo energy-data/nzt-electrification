@@ -164,7 +164,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   };
 
   var load = (iso3) => {
-    var i = _g.countries.indexOf_p('iso3', iso3) + 1;
+    var _i = _g.countries.indexof_p('iso3', iso3) + 1;
 
     population_graph(i);
 

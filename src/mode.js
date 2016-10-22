@@ -5,7 +5,7 @@ define(['d3'], (d3) => {
   var stroke       = () => tm()['stroke'];
   var stroke_width = () => tm()['stroke_width'];
 
-  var tm = () => modes.find((m) => m['type'] === _d.mode['type']);
+  var tm = () => modes.find_p('type', _d.mode['type']);
 
   var ghi_scale = d3.scaleLinear()
       .domain([1979, 2500])
@@ -16,7 +16,7 @@ define(['d3'], (d3) => {
     full: "Technology",
     icon: "blur_circular",
     group: "technology",
-    fill: (e, scn) => _g.technologies.find((t) => t['tech'] === e[scn])['color']
+    fill: (e, scn) => _g.technologies.find_p('tech', e[scn])['color']
   }, {
     type: "population",
     full: "Population",

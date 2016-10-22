@@ -160,7 +160,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   };
 
   var load_info = (e, scn, diesel_p) => {
-    var tech = _g.technologies.find((t) => t['tech'] === e[scn]);
+    var tech = _g.technologies.find_p('tech', e[scn]);
 
     var p = _d.point;
 
@@ -196,7 +196,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
       callback: (points) => {
         if (points.length > count_threshold)
-          points = points.sort(() => 0.5 - Math.random()).splice(0, count_threshold);
+          points = points.sample(count_threshold);
 
         _d.point_collection['points'] = points;
 
