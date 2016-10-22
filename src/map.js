@@ -98,8 +98,10 @@ define(['d3', 'topojson'], (d3, topojson) => {
         .selectAll(`text.adm-label.${ pathname }`)
         .data(features)
         .enter().append('text')
+        .attr('id', (d) => `${ pathname }-label-${ d.id }`)
         .attr('class', `adm-label ${ pathname }`)
         .attr('transform', (d) => `translate(${ geo_path.centroid(d) })`)
+        .attr('font-weight', 'normal')
         .attr('font-size', `${ 1/ 25 }em`) // TOOD: I don't know...
         .text((d) => d.properties['name']);
     }
@@ -112,13 +114,16 @@ define(['d3', 'topojson'], (d3, topojson) => {
   var zoom = d3.zoom()
     .scaleExtent([20, 1000]) // these are decided empirically
     .on("zoom", () => {
-      _container.selectAll('path').style("stroke-width", 1.2 / d3.event.transform['k']);
+      var k = d3.event.transform['k'];
+      _container.selectAll('path').style("stroke-width", 1.2 / k);
 
       d3.selectAll("text.adm-label")
         .attr('font-size', (d) => {
+          if (k < 50 && d.properties['adm1']) return 0;
+
           return d.properties['adm1'] ?
-            `${ 1 / d3.event.transform['k'] }em` :
-            `${ 1.1 / d3.event.transform['k'] }em`
+            `${ 0.9 / d3.event.transform['k'] }em` :
+            `${ 1 / d3.event.transform['k'] }em`
         });
 
       _container.attr("transform", d3.event.transform);

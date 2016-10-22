@@ -87,7 +87,7 @@ require([
       return callback.call(this, path);
 
     else
-      return path
+      return path;
   };
 
   var set_adm1_fills = (id) => {
@@ -131,6 +131,9 @@ require([
 
   var load_adm2 = (it, d) => {
     if (locked_adm2 === d['id']) return;
+
+    d3.selectAll('.adm-label').attr('font-weight', 'normal');
+    d3.select(`#adm2-label-${ d['id'] }`).attr('font-weight', 'bold');
 
     points.hide_info();
 
