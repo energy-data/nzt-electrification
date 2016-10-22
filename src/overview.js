@@ -1,4 +1,5 @@
 define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
+  var overviews = {};
 
   var ticker;
 
@@ -10,11 +11,15 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var access_graph;
   var urban_rural_graph;
 
-  var init = (ind, countries) => {
-    ind.forEach((i) => { i['iso3'] = countries.find((x) => x['code'] === parseInt(i['Country Code']))['iso3'] });
 
+  var init = (indicators, countries) => {
+    indicators.forEach((indicator, i) => {
+      var iso3 = countries.find_p('code', parseInt(indicator['Country Code']))['iso3'];
 
-    ind = indicators;
+      overviews[iso3] = {
+        'indicators': indicators[i],
+      };
+    });
 
     // population ticker
     //
@@ -64,7 +69,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     {
       var as = [[0], [0], [0], [0]];
 
-      ind.map((x) => {
+      indicators.map((x) => {
         var rp = +x['population_rural_current'];
         var ra = rp * (x['electricity_access_rural'] / 100); // rural electricity access from total
 
@@ -87,7 +92,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     {
       var rs = [[0], [0]];
 
-      ind.map((x) => {
+      indicators.map((x) => {
         var r  = parseFloat(x['population_rural_current']);
 
         rs[0].push(r);        // rural population
@@ -95,6 +100,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
       });
 
       urban_rural_population_graph = pie.chart("#urban-rural-current-graph", rs, 75, ['#7587A6', '#424242'], " ", false);
+    }
     }
 
     ////////////////////////
@@ -106,7 +112,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     {
       var as = [[0], [0], [0], [0]];
 
-      ind.map((x) => {
+      indicators.map((x) => {
         var rp = +x['population_rural_2030'];
         var ra = rp * (1); // rural electricity access from total
 
@@ -129,7 +135,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     {
       var rs = [[0], [0]];
 
-      ind.map((x) => {
+      indicators.map((x) => {
         var r  = parseFloat(x['population_rural_2030']);
 
         rs[0].push(r);        // rural population
