@@ -72,11 +72,12 @@ define(['d3'], (d3) => {
       try {
         var box = text.node().getBBox();
 
-        var x = ( - (box['width']  / 2));
-        var y = ( + (box['height'] / 10));
+        var x = (radius - (box['width']  / 2));
+        var y = (radius + (box['height'] / 10));
 
         text
           .attr('transform', `translate(${ x }, ${ y })`);
+
       } catch (e) {
         console.log('due to a bug in FF... return.')
         return;
