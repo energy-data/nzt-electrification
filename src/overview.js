@@ -39,11 +39,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     );
   };
 
-  var projection_access_graph;
-  var projection_urban_rural_graph;
 
-  var access_graph;
-  var urban_rural_graph;
 
 
   var init = (indicators, countries) => {
@@ -167,14 +163,18 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
   var load = (iso3) => {
     var _i = _g.countries.indexof_p('iso3', iso3) + 1;
+    var name = _g.countries.find_p('iso3', iso3)['name'];
+
+    $('#explore-link').html(`Explore ${ name } &nbsp; <i class="material-icons float-right">arrow_forward</i>`);
+    $('#explore-link').closest('a').attr('href', `/c.html?iso3=${ iso3 }`);
 
     population_graph(iso3);
 
-    access_graph.change(i);
-    urban_rural_population_graph.change(i);
+    access_graph.change(_i);
+    urban_rural_population_graph.change(_i);
 
-    projection_access_graph.change(i);
-    projection_urban_rural_population_graph.change(i);
+    projection_access_graph.change(_i);
+    projection_urban_rural_population_graph.change(_i);
   };
 
   return {

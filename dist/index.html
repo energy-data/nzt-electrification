@@ -16,46 +16,34 @@
   </head>
 
   <body class="row">
-    <div id="country-list"
-         class="pane col c6">
-      <ul style="margin: 0px !important;"></ul>
-    </div>
+    <div class="row col c3">
+      <div id="country-list"
+           class="pane row">
+        <ul style="margin: 0px !important;"></ul>
+      </div>
 
-    <div id="overview"
-         class="row col c6">
       <div class="row center">
         <a href="#">
           <h1 id="explore-link"></h1>
         </a>
       </div>
+    </div>
 
-      <hr />
-
-      <div class="row">
-        <div class="col c6 center">
-          <h4>2015</h4>
-        </div>
-
-        <div class="col c6 center">
-          <h4>2030</h4>
-        </div>
-      </div>
-
-      <hr />
-
-      <div class="row population center">
-        <div class="col c12"
+    <div id="overview"
+         class="row col c9 relative">
+      <div class="col c4 population center">
+        <div class="row col c12"
              style="position: relative;">
           <div id="population-counter"></div>
 
-          <div class="row">
-            <div class="col c6 center population-final">
+          <div class="col c4">
+            <div class="row center population-final">
               <span class="monospace"
                     style="font-size: 2em;"
                     id="p2015">&nbsp;</span> million
             </div>
 
-            <div class="col c6 center population-final">
+            <div class="row center population-final">
               <span class="monospace"
                     style="font-size: 2em;"
                     id="p2030">&nbsp;</span> million
@@ -64,17 +52,43 @@
         </div>
       </div>
 
-      <div class="row center">
-        <div class="col c6">
+      <div class="row col">
+        <div class="col c2 center"><h2></h2></div>
+
+        <div class="col c5 center"><h2>Population</h2></div>
+
+        <div class="col c5 center"><h2>Technology breakdown</h2></div>
+      </div>
+
+      <!-- Current -->
+      <div class="row col">
+        <div class="col c2 center">
+          <h1>2015</h1>
+        </div>
+
+        <div class="col c5 center relative">
           <div id="urban-rural-current-graph"></div>
         </div>
 
-        <div class="col c6">
-          <div id="urban-rural-projection-graph"></div>
+        <div class="col c5 center relative">
+          <div id="current-breakdown-graph"></div>
         </div>
       </div>
 
-      <hr />
+      <!-- Projection -->
+      <div class="row">
+        <div class="col c2 center">
+          <h1>2030</h1>
+        </div>
+
+        <div class="col c5 center relative">
+          <div id="urban-rural-projection-graph"></div>
+        </div>
+
+        <div class="col c5 center relative">
+          <div id="projection-breakdown-graph"></div>
+        </div>
+      </div>
 
       <div id="select-something">
         Select a country...
@@ -89,15 +103,15 @@
 
   <script id="li-template"
           type="text/template">
-    <li class="country-item row clickable"
+    <li class="country-item row col c12 clickable"
         iso3="{1}">
-      <div class="col c6 number no-mobile country-name">
-        <h2 href="#">{0}</h2>
+      <div class="number no-mobile country-name">
+        <a href="#">
+          <h2>{0}</h2>
+        </a>
       </div>
 
-      <div class="col c6">
-        <svg id="svg-{1}"></svg>
-      </div>
+      <svg id="svg-{1}"></svg>
     </li>
   </script>
 

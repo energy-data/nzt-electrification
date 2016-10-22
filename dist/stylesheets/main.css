@@ -74,6 +74,14 @@ a:active, a.active {
   color: #f1f1f1;
 }
 
+.relative {
+  position: relative;
+}
+
+.left {
+  text-align: left;
+}
+
 .right {
   text-align: right;
 }

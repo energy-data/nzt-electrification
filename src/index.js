@@ -19,7 +19,7 @@ require([
   '_u',
   '_g'
 ], (d3, topojson, map, overview) => {
-  var width = $('body')[0].clientHeight / 3;
+  var width = $('body')[0].clientHeight / 6;
 
   var flag_style = (svg, iso3) => {
     var defs = svg.append('defs');
