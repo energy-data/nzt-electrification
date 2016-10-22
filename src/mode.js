@@ -32,20 +32,6 @@ define(['d3'], (d3) => {
     group: "demographics",
     fill: (e) => e['u'] ? '#F69C55' : '#B4EEB4'
   }, {
-    type: "lcsa",
-    full: "SA LCOE",
-    icon: "local_gas_station",
-    group: "infrastructure",
-    fill: (g) => {
-      var f = d3.scaleLinear()
-          .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
-          .range([0, 1]);
-
-      return `rgba(105, 70 ,50, ${ f(g['lcsa_' + _d.scenario['diesel_p']]) })`;
-    },
-    stroke: "rgba(105, 70 ,50, 0.2)",
-    stroke_width: 0.001
-  }, {
     type: "ghi",
     full: "GHI",
     icon: "wb_sunny",
@@ -65,6 +51,20 @@ define(['d3'], (d3) => {
     icon: "opacity",
     group: "resources",
     fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['hp'], [0, 10000000]) })`
+  }, {
+    type: "lcsa",
+    full: "SA LCOE",
+    icon: "local_gas_station",
+    group: "infrastructure",
+    fill: (g) => {
+      var f = d3.scaleLinear()
+          .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
+          .range([0, 1]);
+
+      return `rgba(105, 70 ,50, ${ f(g['lcsa_' + _d.scenario['diesel_p']]) })`;
+    },
+    stroke: "rgba(105, 70 ,50, 0.2)",
+    stroke_width: 0.001
   }];
 
   var init = (points) => {
