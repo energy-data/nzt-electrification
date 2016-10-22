@@ -109,18 +109,20 @@ define(['d3', 'topojson'], (d3, topojson) => {
       path;
   };
 
-  var zoom = d3.zoom().on("zoom", () => {
-    _container.selectAll('path').style("stroke-width", 1.2 / d3.event.transform['k']);
+  var zoom = d3.zoom()
+    .scaleExtent([20, 1000]) // these are decided empirically
+    .on("zoom", () => {
+      _container.selectAll('path').style("stroke-width", 1.2 / d3.event.transform['k']);
 
-    d3.selectAll("text.adm-label")
-      .attr('font-size', (d) => {
-        return d.properties['adm1'] ?
-          `${ 1 / d3.event.transform['k'] }em` :
-          `${ 1.1 / d3.event.transform['k'] }em`
-      });
+      d3.selectAll("text.adm-label")
+        .attr('font-size', (d) => {
+          return d.properties['adm1'] ?
+            `${ 1 / d3.event.transform['k'] }em` :
+            `${ 1.1 / d3.event.transform['k'] }em`
+        });
 
-    _container.attr("transform", d3.event.transform);
-  });
+      _container.attr("transform", d3.event.transform);
+    });
 
   var setup_drag = () => {
     _svg.call(zoom)

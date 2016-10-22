@@ -1,14 +1,14 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [1/11] UI/UX
+* [3/11] UI/UX
   - [ ] landing
-  - [ ] github link
+  - [X] github link
   - [X] sort mode groups
   - [ ] points: technology colour palette (+ locked point)
   - [ ] help enabled by default
   - [ ] population/lcoe colours
-  - [ ] bind drag and zoom to screen
+  - [X] bind drag and zoom to screen
   - [ ] tweak adm-label sizes
   - [ ] bold selected adm-labels
   - [ ] index: insert area in km^2
