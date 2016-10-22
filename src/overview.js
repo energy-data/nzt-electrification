@@ -4,6 +4,40 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var ticker;
 
   var population_graph;
+  var population_graph = (iso3) => {
+    $('.population-final').css('opacity', 0);
+
+    var o = overviews[iso3]['indicators'];
+
+    var p2015 = (+o['population_2015'] / 1000000).toFixed(2);
+    var p2030 = (+o['population_2030'] / 1000000).toFixed(2);
+
+    $('#population-counter').css({
+      'font-size': '1em',
+      'left': '20%'
+    });
+
+    $('#population-counter').show()
+
+    $('#population-counter').animate({
+      'font-size': '2em',
+      'left': '70%'
+    }, 1000);
+
+    counter(
+      '#population-counter',
+      parseInt(p2015),
+      parseInt(p2030),
+      1000,
+      () => {
+        $('#p2015').text(p2015);
+        $('#p2030').text(p2030);
+
+        $('.population-final').css('opacity', 1);
+        $('#population-counter').fadeOut()
+      }
+    );
+  };
 
   var projection_access_graph;
   var projection_urban_rural_graph;
@@ -21,44 +55,6 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
       };
     });
 
-    // population ticker
-    //
-    {
-      population_graph = (i) => {
-        var p2015 = parseFloat(ind[i-1]['population_2015'] / 1000000).toFixed(2);
-        var p2030 = parseFloat(ind[i-1]['population_2030'] / 1000000).toFixed(2);
-
-        $('#explore-link').html(`Explore ${ ind[i-1]['Country Name'] } &nbsp; <i class="material-icons float-right">arrow_forward</i>`);
-        $('#explore-link').closest('a').attr('href', `/c.html?iso3=${ ind[i-1]['iso3'] }`);
-
-        $('#population-counter').css({
-          'font-size': '1em',
-          'left': '20%'
-        });
-
-        // $('.population-final').hide();
-        $('#population-counter').show()
-
-        $('#population-counter').animate({
-          'font-size': '2em',
-          'left': '70%'
-        }, 1000);
-
-        counter(
-          '#population-counter',
-          parseInt(p2015),
-          parseInt(p2030),
-          1000,
-          () => {
-            $('#p2015').text(p2015);
-            $('#p2030').text(p2030);
-
-            $('.population-final').fadeIn();
-            $('#population-counter').fadeOut()
-          }
-        );
-      }
-    }
 
     /////////////////////
     // current graphs: //
@@ -172,7 +168,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var load = (iso3) => {
     var _i = _g.countries.indexof_p('iso3', iso3) + 1;
 
-    population_graph(i);
+    population_graph(iso3);
 
     access_graph.change(i);
     urban_rural_population_graph.change(i);
