@@ -64,6 +64,22 @@ h2, h3, h4 {
   display: block;
 }
 
+table.tech-labels {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+table.population-labels {
+  position: absolute;
+  left: 1em;
+}
+
+table.urban-rural-labels {
+  position: relative;
+  left: 50%;
+}
+
 @media only screen and (max-width: 768px) {
   #overview {
     position: absolute;

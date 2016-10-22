@@ -1,9 +1,66 @@
 define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var overviews = {};
 
+  var current_breakdowns;
+  var projection_breakdowns;
+
   var ticker;
 
-  var population_graph;
+  var urban_rural_colours = ['#B4EEB4', '#F69C55'];
+  var electrified_colours = ['#7587A6', '#424242'];
+
+  var techs = [{
+    id: 'coal',
+    colour: '#7587A6',
+    name: 'Coal'
+  }, {
+    id: 'natural_gas',
+    colour: '#424242',
+    name: "Natural Gas"
+  }, {
+    id: 'hydroelectric',
+    colour: 'red',
+    name: "Hydroelectric"
+  }, {
+    id: 'biomass',
+    colour: 'green',
+    name: "Bio-mass"
+  }, {
+    id: 'diesel',
+    colour: 'blue',
+    name: "Diesel"
+  }, {
+    id: 'solar_pv',
+    colour: 'yellow',
+    name: "Solar Photo Voltaic"
+  }, {
+    id: 'solar_csp',
+    colour: 'brown',
+    name: "Concentrated Solar Power"
+  }, {
+    id: 'wind',
+    colour: 'black',
+    name: "Wind"
+  }, {
+    id: 'geothermal',
+    colour: 'magenta',
+    name: "Geothermal"
+  }, {
+    id: 'oil',
+    colour: "orange",
+    name: "Oil"
+  }].sort_p('id');
+
+  var tech_colours = techs.pluck_p('colour');
+
+  var population_graph,
+      access_graph,
+      urban_rural_population_graph,
+      current_breakdown_graph,
+      projection_access_graph,
+      projection_urban_rural_population_graph,
+      projection_breakdown_graph;
+
   var population_graph = (iso3) => {
     $('.population-final').css('opacity', 0);
 
@@ -39,18 +96,32 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     );
   };
 
+  var add_labels = (div, cls, colours, keys, id = "hack") => {
+    $(div).append(`<table id="${ id }" class="small ${ cls }"></table>`);
 
+    var table = $(`${ div } table#${ id }`);
 
+    colours.forEach((c,i) => {
+      if (keys[i])
+        table.append(`<tr><td style="background-color:${ c }">&nbsp;</td><td class="left">${ keys[i] }</td></tr>`);
+    });
+  };
 
-  var init = (indicators, countries) => {
+  var init = (indicators, countries, current_breakdowns, projection_breakdowns) => {
     indicators.forEach((indicator, i) => {
       var iso3 = countries.find_p('code', parseInt(indicator['Country Code']))['iso3'];
 
       overviews[iso3] = {
         'indicators': indicators[i],
+        'current':    current_breakdowns[i],
+        'projection': projection_breakdowns[i]
       };
     });
 
+    techs.forEach((t) => {
+      t['current']    = Object.keys(current_breakdowns[0]).contains(t['id']);
+      t['projection'] = Object.keys(projection_breakdowns[0]).contains(t['id']);
+    });
 
     /////////////////////
     // current graphs: //
@@ -76,7 +147,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         as[3].push((up) - ua);
       });
 
-      access_graph = pie.chart("#urban-rural-current-graph", as, 100, ['#7587A6', '#424242', '#7587A6', '#424242'], " ", true);
+      access_graph = pie.chart("#urban-rural-current-graph", as, 100, [electrified_colours, electrified_colours].flatten(), " ", true);
     }
 
     // rural/urban population graph
@@ -91,8 +162,27 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         rs[1].push(100 - r);  // urban population
       });
 
-      urban_rural_population_graph = pie.chart("#urban-rural-current-graph", rs, 75, ['#7587A6', '#424242'], " ", false);
+      urban_rural_population_graph = pie.chart("#urban-rural-current-graph", rs, 85, urban_rural_colours, " ", false);
     }
+
+    // technology breakdown
+    //
+    {
+      var current_techs = techs.filter_p('current', true);
+      var ts = Array(current_techs.length).fill(0).map((x,i) => [0]);
+
+      current_breakdowns.map((x) => {
+        keys = current_techs.pluck_p('id');
+        var k,i;
+
+        for (i = 0; i < keys.length; i++) {
+          k = keys[i];
+
+          ts[i].push(+x[k]);
+        }
+      });
+
+      current_breakdown_graph = pie.chart("#current-breakdown-graph", ts, 100, current_techs.pluck_p('colour'), " ", true);
     }
 
     ////////////////////////
@@ -119,6 +209,9 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         as[3].push((up) - ua);
       });
 
+      add_labels("#urban-rural-projection-graph", "population-labels",  electrified_colours, ['Electrified', 'Unelectrified']);
+      add_labels("#urban-rural-projection-graph", "urban-rural-labels", urban_rural_colours, ['Rural', 'Urban'], 'stop');
+
       projection_access_graph = pie.chart("#urban-rural-projection-graph", as, 100, ['#7587A6', '#424242', '#7587A6', '#424242'], " ", true);
     }
 
@@ -134,7 +227,29 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         rs[1].push(100 - r);  // urban population
       });
 
-      projection_urban_rural_population_graph = pie.chart("#urban-rural-projection-graph", rs, 75, ['#7587A6', '#424242'], " ", false);
+      projection_urban_rural_population_graph = pie.chart("#urban-rural-projection-graph", rs, 85, urban_rural_colours, " ", false);
+    }
+
+    // technology breakdown
+    //
+    {
+      var projection_techs = techs.filter_p('projection', true);
+      var ts = Array(projection_techs.length).fill(0).map((x,i) => [0]);
+
+      projection_breakdowns.map((x) => {
+        keys = projection_techs.pluck_p('id');
+
+        var k,i;
+
+        for (i = 0; i < keys.length; i++) {
+          k = keys[i];
+          ts[i].push(+x[k]);
+        }
+      });
+
+      projection_breakdown_graph = pie.chart("#projection-breakdown-graph", ts, 100, projection_techs.pluck_p('colour'), " ", true);
+
+      add_labels("#projection-breakdown-graph", "tech-labels", tech_colours, techs.pluck_p('name'));
     }
   };
 
@@ -172,9 +287,11 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
     access_graph.change(_i);
     urban_rural_population_graph.change(_i);
+    current_breakdown_graph.change(_i);
 
     projection_access_graph.change(_i);
     projection_urban_rural_population_graph.change(_i);
+    projection_breakdown_graph.change(_i);
   };
 
   return {

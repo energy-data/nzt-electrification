@@ -97,6 +97,9 @@ require([
     var countries = _g.countries = args[1];
     var indicators = args[2];
 
+    var current_breakdowns    = args[3];
+    var projection_breakdowns = args[4];
+
     var size = 12 / countries.length;
 
     countries.forEach((c) => {
@@ -115,7 +118,7 @@ require([
         });
     });
 
-    overview.init(indicators, countries);
+    overview.init(indicators, countries, current_breakdowns, projection_breakdowns);
 
     $('li.country-item').on('click', (e) => {
       e.preventDefault();
@@ -135,7 +138,9 @@ require([
   d3.queue()
     .defer(d3.json, `/${ _g.assets }/countries.json`)
     .defer(d3.csv,  `/${ _g.assets }/indicators.csv`)
-    .await(function (error, countries, indicators) {
+    .defer(d3.csv,  `/${ _g.assets }/current_electricity_breakdown.csv`)
+    .defer(d3.csv,  `/${ _g.assets }/projection_electricity_breakdown.csv`)
+    .await(function (error, countries, indicators, current_breakdown, projection_breakdown) {
       error ?
         _u.network_error() :
         run.apply(this, arguments);
