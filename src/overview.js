@@ -19,35 +19,35 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     name: "Natural Gas"
   }, {
     id: 'hydroelectric',
-    colour: 'red',
+    colour: '#1544C4',
     name: "Hydroelectric"
   }, {
     id: 'biomass',
-    colour: 'green',
+    colour: '#30A34E',
     name: "Bio-mass"
   }, {
     id: 'diesel',
-    colour: 'blue',
+    colour: '#694632',
     name: "Diesel"
   }, {
     id: 'solar_pv',
-    colour: 'yellow',
+    colour: '#D6D754',
     name: "Solar Photo Voltaic"
   }, {
     id: 'solar_csp',
-    colour: 'brown',
+    colour: '#DA3A3A',
     name: "Concentrated Solar Power"
   }, {
     id: 'wind',
-    colour: 'black',
+    colour: '#00C9C4',
     name: "Wind"
   }, {
     id: 'geothermal',
-    colour: 'magenta',
+    colour: 'brown',
     name: "Geothermal"
   }, {
     id: 'oil',
-    colour: "orange",
+    colour: "black",
     name: "Oil"
   }].sort_p('id');
 
