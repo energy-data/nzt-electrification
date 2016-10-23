@@ -5,6 +5,10 @@ body {
   color: #737373;
 }
 
+.tall {
+  height: 100%;
+}
+
 h2, h3, h4 {
   padding: 10px !important;
   margin: 0 !important;
@@ -21,6 +25,7 @@ h2, h3, h4 {
   position: relative;
   font-size: 0.8em;
   padding: 0 !important;
+  height: 100%;
 }
 
 .country-item {
@@ -29,9 +34,8 @@ h2, h3, h4 {
   cursor: pointer;
   margin: 0 !important;
   display: inline-block;
+  height: 33%;
 }
-
-.country-name {}
 
 #select-something {
   position: absolute;
@@ -57,27 +61,10 @@ h2, h3, h4 {
 #population-counter {
   position: absolute;
   top: 0.5em;
-  font-family: monospace;
 }
 
 .population-final {
   display: block;
-}
-
-table.tech-labels {
-  position: absolute;
-  top: 1em;
-  left: 1em;
-}
-
-table.population-labels {
-  position: absolute;
-  left: 1em;
-}
-
-table.urban-rural-labels {
-  position: relative;
-  left: 50%;
 }
 
 @media only screen and (max-width: 768px) {
