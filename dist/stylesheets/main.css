@@ -19,6 +19,10 @@
   src: local('Open Sans'), local('OpenSans'), url(/fonts/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans';
   margin: 0 !important;
