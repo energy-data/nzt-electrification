@@ -60,9 +60,9 @@ demand, and afford, a relatively small quantity of electricity. Therefore, grid 
 might not be the optimal electrification option for low income – low consumption population
 in rural areas and particularly in remote areas of developing countries.
 
-<div style="text-align: center;">
-<img src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology\_Grid.jpg" />
-</div>
+<p align="center">
+<img src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology_Grid.jpg" />
+</p>
 
 <hr />
 
@@ -76,8 +76,7 @@ renewable sources have usually high upfront costs but no operational (fuel) cost
 other hand, diesel generators (gensets) are a mature, low cost technology subjected however
 to operational costs depending on diesel pump price fluctuation.
 
-<img width="48%" src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology\_Mini\_Grid\_vertical.png" />
-<img width="48%" src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology\_Mini\_Grid_panels.png" />
+<img width="48%" src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology_Mini_Grid_vertical.png" /><img width="48%" src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology_Mini_Grid_panels.png" />
 
 <hr />
 
@@ -89,9 +88,9 @@ subjected however to operational costs depending on diesel pump price fluctuatio
 systems are a good electrification option for remote, low populated areas with limited electricity
 consumption needs.
 
-<div style="text-align: center;">
-<img src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology\_Stand\_Alone.PNG" />
-</div>
+<p align="center">
+<img src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology_Stand_Alone.PNG" />
+</p>
 
 ## Scenarios
 
