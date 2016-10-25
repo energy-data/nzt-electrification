@@ -14,43 +14,43 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
   var techs = [{
     id: 'coal',
-    colour: '#7587A6',
+    colour: '#000000',
     name: 'Coal'
   }, {
     id: 'natural_gas',
-    colour: '#424242',
+    colour: '#566C8C',
     name: "Natural Gas"
   }, {
     id: 'hydroelectric',
-    colour: '#1544C4',
+    colour: '#00518E',
     name: "Hydroelectric"
   }, {
     id: 'biomass',
-    colour: '#30A34E',
+    colour: '#79C777',
     name: "Bio-mass"
   }, {
     id: 'diesel',
-    colour: '#694632',
+    colour: '#FF0000',
     name: "Diesel"
   }, {
     id: 'solar_pv',
-    colour: '#D6D754',
+    colour: '#E6AF00',
     name: "Solar Photo Voltaic"
   }, {
     id: 'solar_csp',
-    colour: '#DA3A3A',
+    colour: '#EA4300',
     name: "Concentrated Solar Power"
   }, {
     id: 'wind',
-    colour: '#00C9C4',
+    colour: '#8F77AD',
     name: "Wind"
   }, {
     id: 'geothermal',
-    colour: 'brown',
+    colour: '#C0504D',
     name: "Geothermal"
   }, {
     id: 'oil',
-    colour: "black",
+    colour: "#792B29",
     name: "Oil"
   }].sort_p('id');
 
