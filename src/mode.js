@@ -18,6 +18,28 @@ define(['d3'], (d3) => {
     group: "technology",
     fill: (e, scn) => _g.technologies.find_p('tech', e[scn])['color']
   }, {
+    type: "lcoe",
+    full: "Levelised Cost",
+    icon: "attach_money",
+    group: "technology",
+    fill: (g) => {
+      return `rgba(105, 70 ,50, ${ _u.l_scale(g['lc_' + _d.scenario['scn']], [0, 1.15]) })`;
+    },
+  }, {
+    type: "ic",
+    full: "Investment Cost",
+    icon: "attach_money",
+    group: "technology",
+    fill: (g) => {
+      return `rgba(105, 70 ,50, ${ _u.l_scale(g['ic_' + _d.scenario['scn']], [0, 100000]) })`;
+    },
+  }, {
+    type: "nc",
+    full: "Added Capacity",
+    icon: "lightbulb_outline",
+    group: "technology",
+    fill: (g) => `rgba(0, 80, 255, ${ _u.l_scale(g['nc'], [0, 1000]) })`,
+  }, {
     type: "population",
     full: "Population",
     icon: "people",
@@ -51,6 +73,24 @@ define(['d3'], (d3) => {
     icon: "opacity",
     group: "resources",
     fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['hp'], [0, 10000000]) })`
+  }, {
+    type: "rd",
+    full: "Road Distance",
+    icon: "directions_car",
+    group: "infrastructure",
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['rd'], [0, 200]) })`
+  }, {
+    type: "gd_c",
+    full: "Current GD",
+    icon: "timeline",
+    group: "infrastructure",
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['gd_c'], [0, 450]) })`
+  }, {
+    type: "gd_p",
+    full: "Planned GD",
+    icon: "timeline",
+    group: "infrastructure",
+    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['gd_p'], [0, 450]) })`
   }, {
     type: "lcsa",
     full: "SA LCOE",
@@ -103,8 +143,8 @@ define(['d3'], (d3) => {
       groups[k].forEach((m) => {
         _u.tmpl('#mode-option-template',
                 `#${ k }-mode-selector ul`,
-                m['type'], m['full'], m['icon'],
-                `c${ 12/groups[k].length }`);
+                m['type'], m['full'], m['icon'], `c6`);
+
       });
     });
 
