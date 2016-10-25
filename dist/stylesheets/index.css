@@ -34,7 +34,12 @@ h2, h3, h4 {
   cursor: pointer;
   margin: 0 !important;
   display: inline-block;
+  border-bottom: 1px solid #333333;
   height: 33%;
+}
+
+.country-item:last-child {
+  border-bottom: none;
 }
 
 #select-something {
@@ -65,6 +70,11 @@ h2, h3, h4 {
 
 .population-final {
   display: block;
+}
+
+.labels-table {
+  position: relative;
+  top: 1.5em;
 }
 
 @media only screen and (max-width: 768px) {

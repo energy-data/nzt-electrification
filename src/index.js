@@ -107,7 +107,7 @@ require([
 
       var ind = indicators.find((x) => parseInt(x['Country Code']) === c['code']);
 
-      _u.tmpl('#li-template', '#country-list ul', ind['Country Name'], iso3);
+      _u.tmpl('#li-template', '#country-list ul', ind['Country Name'], iso3, parseFloat(ind['area'].toString()).toLocaleString());
 
       d3.queue()
         .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)

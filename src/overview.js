@@ -71,12 +71,6 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     $('#explore-link').closest('a').attr('href', `/c.html?iso3=${ iso3 }`);
   };
 
-  var area_marker = (iso3) => {
-    var a = overviews[iso3]['indicators']['area'];
-
-    $('#area-marker').text(parseFloat(a.toString()).toLocaleString());
-  };
-
   var population_graph = (iso3) => {
     var o = overviews[iso3]['indicators'];
 
@@ -268,7 +262,6 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
     explore_link(iso3);
 
-    area_marker(iso3);
     population_graph(iso3);
 
     access_graph.change(_i);

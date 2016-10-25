@@ -40,75 +40,60 @@
         </a>
       </div>
 
-      <!-- Current -->
+      <!-- Population -->
       <div class="row col">
-        <div class="col c5 center relative">
+        <div class="col c4 center relative">
           <div id="urban-rural-current-graph"></div>
         </div>
 
-        <div class="col c2 center relative">
-          <div class="row center population-final">
-            <i class="material-icons">group</i>
+        <div class="col c4 center relative">
+          <span class="monospace">
+            <i class="material-icons">group</i> million
+          </span>
 
-            &nbsp;
+          <br />
+
+          <div class="row center population-final">
+            <span class="monospace"
+                  style="font-size: 1.2em;"
+                  id="p2015">&nbsp;</span>
+
+            <i class="material-icons">arrow_right</i>
 
             <span class="monospace"
-                  style="font-size: 1.7em;"
-                  id="p2015">&nbsp;</span> million
+                  style="font-size: 1.5em;"
+                  id="p2030">&nbsp;</span>
           </div>
-        </div>
 
-        <div class="col c5 center relative">
-          <div id="current-breakdown-graph"></div>
-        </div>
-      </div>
-
-      <!-- Labels -->
-      <div class="row col"
-           style="padding: 20px 0;">
-        <div class="col c5 center relative">
           <div class="row col">
-
-            <div class="col c4">&nbsp;</div>
-            <div id="population-labels" class="col c4" style="position:relative; top:1.5em;"></div>
-            <div id="population-labels2" class="col c4" style="position:relative; top:1.5em;"></div>
+            <div id="population-labels" class="col c6 labels-table"></div>
+            <div id="population-labels2" class="col c6 labels-table"></div>
           </div>
         </div>
 
-        <div class="col c2 center relative">
-          <div class="monospace">
-            Area: <span id="area-marker"></span>&nbsp;km<sup>2</sup>
-          </div>
-        </div>
-
-        <div class="col c5 center relative">
-          <div class="row col">
-            <div class="col c3">&nbsp;</div>
-            <div id="tech-labels" class="col c4"></div>
-            <div id="tech-labels2" class="col c4"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projection -->
-      <div class="row">
-        <div class="col c5 center relative">
+        <div class="col c4 center relative">
           <div id="urban-rural-projection-graph"></div>
         </div>
+      </div>
 
-        <div class="col c2 center relative">
-          <div class="row center population-final">
-            <i class="material-icons">group_add</i>
+      <!-- Spacing -->
+      <div class="row col"
+           style="padding: 20px 0;"></div>
 
-            &nbsp;
+      <!-- Technology -->
+      <div class="row">
+        <div class="col c4 center relative">
+          <div id="current-breakdown-graph"></div>
+        </div>
 
-            <span class="monospace"
-                  style="font-size: 1.7em;"
-                  id="p2030">&nbsp;</span> million
+        <div class="col c4 relative">
+          <div class="row col">
+            <div id="tech-labels" class="col c6 labels-table"></div>
+            <div id="tech-labels2" class="col c6 labels-table"></div>
           </div>
         </div>
 
-        <div class="col c5 center relative">
+        <div class="col c4 center relative">
           <div id="projection-breakdown-graph"></div>
         </div>
       </div>
@@ -128,13 +113,17 @@
           type="text/template">
     <li class="country-item row col c12 clickable"
         iso3="{1}">
-      <div class="number no-mobile country-name">
+      <div class="number country-name">
         <a href="#">
           <h2>{0}</h2>
         </a>
       </div>
 
       <svg id="svg-{1}"></svg>
+
+      <div class="monospace small">
+        <span class="area-marker">{2}</span>&nbsp;km<sup>2</sup>
+      </div>
     </li>
   </script>
 
