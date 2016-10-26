@@ -83,6 +83,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     stroke = mode.stroke();
     stroke_width = mode.stroke_width();
 
+    mode.scale();
+
     var circles = "";
 
     var radius = 0.012

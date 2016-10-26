@@ -1,15 +1,16 @@
 define(['d3'], (d3) => {
   var mss = '#mode-selector';
 
-  var fill         = () => tm()['fill'];
+  var fill = () => {
+    return (e, scn) => {
+      var m = tm();
+      return m['fill'].call(null, e, scn, m['param'], m['scale']);
+    }
+  };
   var stroke       = () => tm()['stroke'];
   var stroke_width = () => tm()['stroke_width'];
 
   var tm = () => modes.find_p('type', _d.mode['type']);
-
-  var ghi_scale = d3.scaleLinear()
-      .domain([1979, 2500])
-      .range(["yellow", "red"]);
 
   var modes = [{
     type: "technology",
@@ -22,29 +23,37 @@ define(['d3'], (d3) => {
     full: "Levelised Cost",
     icon: "attach_money",
     group: "technology",
-    fill: (g) => {
-      return `rgba(105, 70 ,50, ${ _u.l_scale(g['lc_' + _d.scenario['scn']], [0, 1.15]) })`;
+    param: 'lc_',
+    scale: [0, 1.15],
+    fill: (g, scn, param, scale) => {
+      return `rgba(105, 70 ,50, ${ _u.l_scale(g[param + scn], scale) })`;
     },
   }, {
     type: "ic",
     full: "Investment Cost",
     icon: "attach_money",
     group: "technology",
-    fill: (g) => {
-      return `rgba(105, 70 ,50, ${ _u.l_scale(g['ic_' + _d.scenario['scn']], [0, 100000]) })`;
+    param: 'ic_',
+    scale: [0, 100000],
+    fill: (g, scn, param, scale) => {
+      return `rgba(105, 70 ,50, ${ _u.l_scale(g[param + scn], scale) })`;
     },
   }, {
     type: "nc",
     full: "Added Capacity",
     icon: "lightbulb_outline",
     group: "technology",
-    fill: (g) => `rgba(0, 80, 255, ${ _u.l_scale(g['nc'], [0, 1000]) })`,
+    param: 'nc',
+    scale: [0, 1000],
+    fill: (g, scn, param, scale) => `rgba(0, 80, 255, ${ _u.l_scale(g[param], scale) })`,
   }, {
     type: "population",
     full: "Population",
     icon: "people",
     group: "demographics",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['p_2030'], [0, 1000]) })`,
+    param: 'p_2030',
+    scale: [0, 1000],
+    fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`,
     stroke: "lightgray",
     stroke_width: 0.001
   }, {
@@ -58,13 +67,21 @@ define(['d3'], (d3) => {
     full: "GHI",
     icon: "wb_sunny",
     group: "resources",
-    fill: (g) => ghi_scale(g['ghi'])
+    param: 'ghi',
+    scale: [1979, 2500],
+    fill: (g, scn, param, scale) => {
+      return d3.scaleLinear()
+        .domain(scale)
+        .range(["yellow", "red"])(g[param])
+    }
   }, {
     type: "w_cf",
     full: "Wind",
     icon: "cloud",
     group: "resources",
-    fill: (g) => `rgba(0, 80, 255, ${ _u.l_scale(g['w_cf'], [0, 0.4]) })`,
+    param: 'w_cf',
+    scale: [0, 0.4],
+    fill: (g, scn, param, scale) => `rgba(0, 80, 255, ${ _u.l_scale(g[param], scale) })`,
     stroke: "rgba(0, 80, 255, 0.4)",
     stroke_width: 0.001
   }, {
@@ -72,30 +89,40 @@ define(['d3'], (d3) => {
     full: "Hydro",
     icon: "opacity",
     group: "resources",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['hp'], [0, 10000000]) })`
+    param: 'hp',
+    scale: [0, 10000000],
+    fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
   }, {
     type: "rd",
     full: "Road Distance",
     icon: "directions_car",
     group: "infrastructure",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['rd'], [0, 200]) })`
+    param: 'rd',
+    scale: [0, 200],
+    fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
   }, {
     type: "gd_c",
     full: "Current GD",
     icon: "timeline",
     group: "infrastructure",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['gd_c'], [0, 450]) })`
+    param: 'gd_c',
+    scale: [0, 450],
+    fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
   }, {
     type: "gd_p",
     full: "Planned GD",
     icon: "timeline",
     group: "infrastructure",
-    fill: (g) => `rgba(0, 0, 0, ${ _u.l_scale(g['gd_p'], [0, 450]) })`
+    param: 'gd_p',
+    scale: [0, 450],
+    fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
   }, {
     type: "lcsa",
     full: "SA LCOE",
     icon: "local_gas_station",
     group: "infrastructure",
+    param: 'lcsa_',
+    scale: [0.35, 1.85],
     fill: (g) => {
       var f = d3.scaleLinear()
           .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
@@ -106,6 +133,55 @@ define(['d3'], (d3) => {
     stroke: "rgba(105, 70 ,50, 0.2)",
     stroke_width: 0.001
   }];
+
+  var scale = () => {
+    var m = modes.find_p('type', _d.mode['type']);
+
+    var container = d3.select('#scale-container');
+    container.html("");
+
+    if (['technology', 'urban-rural'].contains(m['type'])) return;
+
+    var width = $('#scale-container').width();
+
+    var svg = container.append('svg')
+        .attr('width', width);
+
+    var dummy  = {};
+    dummy[m['param']] = m['scale'][0];
+    dummy[m['param'] + _d.scenario['scn']] = m['scale'][0];
+    dummy[m['param'] + _d.scenario['diesel_p']] = m['scale'][0];
+
+    var dummy2 = {};
+    dummy2[m['param']] = m['scale'][1];
+    dummy2[m['param'] + _d.scenario['scn']] = m['scale'][1];
+    dummy2[m['param'] + _d.scenario['diesel_p']] = m['scale'][1];
+
+    var min = (m['fill'](dummy, _d.scenario['scn'], m['param'], m['scale']));
+    var max = (m['fill'](dummy2, _d.scenario['scn'], m['param'], m['scale']));
+
+    var defs = svg.append('defs');
+
+    var grad = defs.append("svg:linearGradient")
+      .attr('id', 'gradient' + m['type'])
+      .attr('x1', '0%')
+      .attr('x2', '100%')
+      .attr('y1', '0%')
+      .attr('y2', '0%');
+
+    grad.append('stop')
+      .attr('offset', '0')
+      .attr('stop-color', min);
+
+    grad.append('stop')
+      .attr('offset', '1')
+      .attr('stop-color', max);
+
+    var rect = svg.append("rect")
+        .attr('width', width)
+        .attr('height', 20)
+        .style("fill", `url(#gradient${ m['type'] })`);
+  };
 
   var init = (points) => {
     load_selector();
@@ -166,6 +242,7 @@ define(['d3'], (d3) => {
   return {
     init: init,
     modes: modes,
+    scale: scale,
     fill: fill,
     stroke: stroke,
     stroke_width: stroke_width
