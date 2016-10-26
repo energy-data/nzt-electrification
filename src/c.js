@@ -244,8 +244,6 @@ require([
     mode.init(points);
     scenario.init(points);
 
-    var left = 0;
-
     // Initialise adm regions
     //
     {
@@ -256,10 +254,8 @@ require([
         else if (admin2 > -1)
           return `#adm2-${ admin2 }`;
 
-        else {
-          left = 5;
+        else
           return '#paths-adm1';
-        }
       })());
 
       if (admin2 > -1) {
@@ -310,7 +306,6 @@ require([
       map.resize_to({
         node: target.node(),
         duration: 0,
-        left: left,
         delay: 1,
         callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
       });

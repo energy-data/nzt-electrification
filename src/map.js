@@ -24,7 +24,6 @@ define(['d3', 'topojson'], (d3, topojson) => {
     var node      = o.node;
     var svg       = o.svg      || _svg;
     var parent    = o.parent   || _container;
-    var left      = o.left     || 0;
     var padding   = o.padding  || 0.5;
     var delay     = o.delay    || 300;
     var duration  = o.duration || 0;
@@ -65,7 +64,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
               svg.node().parentNode.clientHeight / 2
             )
             .scale(factor)
-            .translate(-center[0] + left, -center[1]));
+            .translate(-center[0], -center[1]));
 
     (typeof callback === 'function') ? callback.apply(null, arguments) : null;
   };
