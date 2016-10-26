@@ -11,16 +11,16 @@ define([], () => {
                the <strong>diesel price</strong>. <br />
                This tool only has effect if the mode is set to <strong>'Technology'</strong> or <strong>'SA LCOE'</strong>.`,
     mode: "A <strong>mode</strong> represents on of several datasets in this model. The main one is technology. Every cell will represent it's data based on this mode.",
-    Technology: "<strong>Technology</strong> represents the least cost electrification option at each geographic cell for the selected scenario.
+    technology: "<strong>Technology</strong> represents the least cost electrification option at each geographic cell for the selected scenario.
                  This is the default mode.",
-    Population: "This mode represents the projected population in 2030.",
-    Urban/Rural: "This mode represents whether a geographic location is considered urban or rural.",
-    GHI: "This mode represents the Global Horizontal Irradiance.", 
-    Wind: "This mode represents the Wind power capacity factor.",
-    Hydro: "This mode represents the mini and small hydro power potential.", 
-    SA LCOE: "This mode represents the cost of generating electricity using diesel generators.", 
-    Road network: "The existing road network can be found [here] (https://ifc.ds.io/)",
-    Tranmission network: "This mode represents the existing and the planned transmission network.
+    population: "This mode represents the projected population in 2030.",
+    urban_Rural: "This mode represents whether a geographic location is considered urban or rural.",
+    ghi: "This mode represents the Global Horizontal Irradiance.", 
+    wind: "This mode represents the Wind power capacity factor.",
+    hydro: "This mode represents the mini and small hydro power potential.", 
+    sa_lcoe: "This mode represents the cost of generating electricity using diesel generators.", 
+    road_network: "The existing road network can be found [here] (https://ifc.ds.io/)",
+    tranmission_network: "This mode represents the existing and the planned transmission network.
                           The dataset can be found [here] (https://ifc.ds.io/).",
     summary: `This pane shows the <strong>summary</strong> of the current loaded cells. <br />
               It changes constantly depending on which administrative region is loaded each time.`,
