@@ -2,6 +2,9 @@ define([], () => {
   var network_error = () => {
     document.getElementById('error').innerHTML = "There seems to be a <strong>network problem</strong>. Check your connection and refresh the tool, please.";
 
+    $('#messages-container').removeClass('hidden');
+    $('#error').removeClass('hidden');
+
     throw Error("Network error.");
   };
 

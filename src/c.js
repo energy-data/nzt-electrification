@@ -18,9 +18,9 @@ requirejs.config({
 onerror = function(msg, url, lineNo, columnNo, error) {
   var string = msg.toLowerCase();
 
-  var substring = "script error";
+  if (msg.indexOf("Network error") > -1) _u.network_error();
 
-  if (msg.indexOf("Network error") > -1) return;
+  var substring = "script error";
 
   $('#messages-container').removeClass('hidden');
   $('#error').removeClass('hidden');
