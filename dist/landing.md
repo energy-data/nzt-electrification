@@ -1,4 +1,4 @@
-# Electrification pathways for Nigeria, Tanzania and Zambia.
+# Electrification pathways for Nigeria, Tanzania and Zambia
 
 Geospatial analysis is an effective tool supporting the planning,
 implementation and monitoring of basic services delivery in developing
