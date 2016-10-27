@@ -35,8 +35,8 @@ This electrification planning toolkit is a complementary approach to already
 existing energy planning models that do not consider geospatial attributes related
 to energy. It can be used as a screening tool to inform decision making in the
 energy field and to bridge science, technology and policy at different levels.
-The underlying methodology can be found [\[1\]](http://www.sciencedirect.com/science/article/pii/S0143622816300522)
-and the underlying assumptions [\[2\]](http://www.sciencedirect.com/science/article/pii/S0973082615000952).
+The underlying methodology can be found [\[1\]](http://www.sciencedirect.com/science/article/pii/S0143622816300522), [\[2\]](http://www.sciencedirect.com/science/article/pii/S0973082615000952)
+and the underlying assumptions.
 
 ## Technologies
 
