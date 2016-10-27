@@ -1,31 +1,30 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [5/11] UI/UX
+* [8/11] UI/UX
   - [ ] landing
   - [X] github link
   - [X] sort mode groups
-  - [ ] points: technology colour palette (+ locked point)
+  - [X] points: technology colour palette (+ locked point)
   - [ ] help enabled by default
   - [ ] population/lcoe colours
   - [X] bind drag and zoom to screen
   - [X] tweak adm-label sizes
   - [X] bold selected adm-labels
-  - [ ] index: insert area in km^2
-  - [ ] contrast of text, icons, hovering
+  - [X] index: insert area in km^2
+  - [X] contrast of text, icons, hovering
 
 
-* [0/10] Code
+* [4/9] Code
   - [ ] dump jsons
-  - [ ] cleanup this indicators/breakdown looping
-  - [ ] show scale gradients
+  - [X] cleanup this indicators/breakdown looping
+  - [X] show scale gradients
   - [ ] there seems to be a double call to the api on initial run
   - [ ] lcsa's colouring from min..max from the point collection
   - [ ] points: hydro
-  - [ ] finish up colouring modes
+  - [X] finish up colouring modes
   - [ ] scenario: init from url params (shareable links)
-  - [ ] $loading callbacks seem iffy...
-  - [ ] background maps?
+  - [X] $loading callbacks seem iffy...
 
 
 * [0/4] Second Review

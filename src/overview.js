@@ -1,8 +1,8 @@
 define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var overviews = {};
 
-  var population_pies_radiuses = [90, 80]
-  var population_growth_factor = 1.5;
+  var population_pies_radiuses = [70, 70]
+  var population_growth_factor = 1;
 
   var current_breakdowns;
   var projection_breakdowns;
@@ -10,7 +10,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
   var ticker;
 
   var urban_rural_colours = ['#B4EEB4', '#F69C55'];
-  var electrified_colours = ['#7587A6', '#424242'];
+  var electrified_colours = ['#B4EEB4', '#214421', '#F69C55', '#624127'];
 
   var techs = [{
     id: 'coal',
@@ -58,6 +58,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
   var population_graph,
       access_graph,
+      gdps_graph,
       urban_rural_population_graph,
       current_breakdown_graph,
       projection_access_graph,
@@ -79,6 +80,16 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
 
     $('#p2015').text(p2015);
     $('#p2030').text(p2030);
+  };
+
+  var gdps_graph = (iso3) => {
+    var o = overviews[iso3]['indicators'];
+
+    var gdp_curr = (+o['gdp_current']).toFixed(2);
+    var gdp_2030 = (+o['gdp_2030']).toFixed(2);
+
+    $('#gdp_curr').text(gdp_curr);
+    $('#gdp_2030').text(gdp_2030);
   };
 
   var add_labels = (div, cls, colours, keys, id = "hack") => {
@@ -114,21 +125,22 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
       var as = [[0], [0], [0], [0]];
 
       indicators.map((x) => {
-        var rp = +x['population_rural_current'];
-        var ra = rp * (x['electricity_access_rural'] / 100); // rural electricity access from total
+        var rp = +x['population_rural_current'];               // rural total
 
+        var ra = rp * (x['electricity_access_rural'] / 100);   // rural electrified
         as[0].push(ra);
-        as[1].push(x['population_rural_current'] - ra);
 
-        var up = 100 - rp; // urban population
+        var up = 100 - rp;                                     // urban total
 
-        var ua = (up) * (x['electricity_access_urban'] / 100); // urban electricity access from total
+        as[1].push(rp - ra);                                   // rural unelectrified
 
+        var ua = (up) * (x['electricity_access_urban'] / 100); // urban electrified
         as[2].push(ua);
-        as[3].push((up) - ua);
+
+        as[3].push((up - ua));                                 // urban unelectrified
       });
 
-      access_graph = pie.chart("#urban-rural-current-graph", as, population_pies_radiuses[0], [electrified_colours, electrified_colours].flatten(), "2015", true);
+      access_graph = pie.chart("#urban-rural-current-access-graph", as, population_pies_radiuses[0], electrified_colours, " ", true);
     }
 
     // current rural/urban population graph
@@ -143,7 +155,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         rs[1].push(100 - r);  // urban population
       });
 
-      urban_rural_population_graph = pie.chart("#urban-rural-current-graph", rs, population_pies_radiuses[1], urban_rural_colours, " ", false);
+      urban_rural_population_graph = pie.chart("#urban-rural-current-graph", rs, population_pies_radiuses[1], urban_rural_colours, " ", true);
     }
 
     // current technology breakdown
@@ -189,10 +201,10 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         as[3].push((up) - ua);
       });
 
-      add_labels("#population-labels", "population-labels",  electrified_colours, ['Electrified', 'Unelectrified']);
+      add_labels("#population-labels", "population-labels",  electrified_colours, ['Rural Electrified', 'Rural Unelectrified', 'Urban Electrified', 'Urban Unelectrified']);
       add_labels("#population-labels2", "urban-rural-labels", urban_rural_colours, ['Rural', 'Urban'], 'stop');
 
-      projection_access_graph = pie.chart("#urban-rural-projection-graph", as, (population_pies_radiuses[0]) * (population_growth_factor), ['#7587A6', '#424242', '#7587A6', '#424242'], "2030", true);
+      projection_access_graph = pie.chart("#urban-rural-projection-access-graph", as, (population_pies_radiuses[0]) * (population_growth_factor), ['#7587A6', '#424242', '#7587A6', '#424242'], " ", true);
     }
 
     // projection rural/urban population graph
@@ -207,7 +219,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
         rs[1].push(100 - r);  // urban population
       });
 
-      projection_urban_rural_population_graph = pie.chart("#urban-rural-projection-graph", rs, (population_pies_radiuses[1]) * (population_growth_factor), urban_rural_colours, " ", false);
+      projection_urban_rural_population_graph = pie.chart("#urban-rural-projection-graph", rs, (population_pies_radiuses[1]) * (population_growth_factor), urban_rural_colours, " ", true);
     }
 
     // projection technology breakdown
@@ -263,6 +275,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
     explore_link(iso3);
 
     population_graph(iso3);
+    gdps_graph(iso3);
 
     access_graph.change(_i);
     urban_rural_population_graph.change(_i);

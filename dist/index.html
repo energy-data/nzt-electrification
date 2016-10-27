@@ -41,32 +41,56 @@
       </div>
 
       <!-- Population -->
-      <div class="row col">
+      <div class="row col"
+           style="font-size: 0.8em">
         <div class="col c4 center relative">
           <div id="urban-rural-current-graph"></div>
         </div>
 
         <div class="col c4 center relative">
-          <span class="monospace">
-            <i class="material-icons">group</i> million
-          </span>
+          <div class="row center">
+            <div class="col c4 center">
+              Currently
+            </div>
 
-          <br />
+            <div class="col c4">&nbsp;</div>
 
-          <div class="row center population-final">
-            <span class="monospace"
-                  style="font-size: 1.2em;"
-                  id="p2015">&nbsp;</span>
-
-            <i class="material-icons">arrow_right</i>
-
-            <span class="monospace"
-                  style="font-size: 1.5em;"
-                  id="p2030">&nbsp;</span>
+            <div class="col c4 center number">
+              2030
+            </div>
           </div>
 
+          <hr />
+
+          <div class="row center">
+            <div class="col c4 number">
+              <span id="p2015">&nbsp;</span> M
+            </div>
+
+            <div class="col c4"><i class="material-icons">group</i></div>
+
+            <div class="col c4 number">
+              <span id="p2030">&nbsp;</span> M
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="row center">
+            <div class="col c4 center number">
+              <span id="gdp_curr" class="number"></span> M USD
+            </div>
+
+            <div class="col c4">GDP</div>
+
+            <div class="col c4 center number">
+              <span id="gdp_2030"></span> M USD
+            </div>
+          </div>
+
+          <hr />
+
           <div class="row col">
-            <div id="population-labels" class="col c6 labels-table"></div>
             <div id="population-labels2" class="col c6 labels-table"></div>
           </div>
         </div>
@@ -76,9 +100,30 @@
         </div>
       </div>
 
-      <!-- Spacing -->
+      <!-- Economy -->
       <div class="row col"
-           style="padding: 20px 0;"></div>
+           style="padding: 20px 0;">
+
+
+      </div>
+
+      <!-- Access -->
+      <div class="row col"
+           style="padding: 20px 0;">
+        <div class="col c4 center relative">
+          <div id="urban-rural-current-access-graph"></div>
+        </div>
+
+        <div class="col c4 center relative">
+          <h4>Access to Electricity</h4>
+
+          <div id="population-labels" class="col c6 labels-table"></div>
+        </div>
+
+        <div class="col c4 center relative">
+          <div id="urban-rural-projection-access-graph"></div>
+        </div>
+      </div>
 
       <!-- Technology -->
       <div class="row">
@@ -86,7 +131,9 @@
           <div id="current-breakdown-graph"></div>
         </div>
 
-        <div class="col c4 relative">
+        <div class="col c4 center relative">
+          <h4>Electricity Generation TWh</h4>
+
           <div class="row col">
             <div id="tech-labels" class="col c6 labels-table"></div>
             <div id="tech-labels2" class="col c6 labels-table"></div>
@@ -113,7 +160,7 @@
           type="text/template">
     <li class="country-item row col c12 clickable"
         iso3="{1}">
-      <div class="number country-name">
+      <div class="country-name">
         <a href="#">
           <h2>{0}</h2>
         </a>

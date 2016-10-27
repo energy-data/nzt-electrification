@@ -1,6 +1,10 @@
 /* .row .row { margin:  0 -1.5em; } */
 /* .col      { padding: 0  1.5em; } */
 
+.row {
+  width: 100%;
+}
+
 .row:after {
   content: "";
   clear: both;
@@ -10,8 +14,13 @@
 .col {
   float: left;
   box-sizing: border-box;
+}
 
+.col-flex {
+  box-sizing: border-box;
   width: 100%;
+  display: table-cell;
+  vertical-align: top;
 }
 
 

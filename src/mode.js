@@ -145,7 +145,8 @@ define(['d3'], (d3) => {
     var width = $('#scale-container').width();
 
     var svg = container.append('svg')
-        .attr('width', width);
+        .attr('width', width)
+        .attr('height', 30);
 
     var dummy  = {};
     dummy[m['param']] = m['scale'][0];
@@ -222,6 +223,11 @@ define(['d3'], (d3) => {
                 m['type'], m['full'], m['icon'], `c6`);
 
       });
+    });
+
+    $('.mode-selector-menu').on('click', (e) => {
+      e.preventDefault();
+      $(e.target).closest('.with-dropdown').find('ul.dropdown').toggle();
     });
 
     var $mssa = $('.mode-selector-option');

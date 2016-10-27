@@ -82,7 +82,7 @@ define([], () => {
     e.preventDefault();
 
     enabled = !enabled;
-    $(e.target).toggleClass('active');
+    $(e.target).closest('.clickable').toggleClass('active');
     $('[help-data]').toggleClass('has-help');
 
     enabled ? enable() : disable();

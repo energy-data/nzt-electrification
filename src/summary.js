@@ -69,8 +69,8 @@ define(['d3', 'pie'], (d3, pie) => {
     ['connections', 'investments', 'pts', 'capacity'].forEach((k) => {
       var chart = pie.chart(
         `#${ k }`,
-        obj.map((r) => { return [0,(r[k]/totals[k])*100] }),
-        50, filtered_techs.map((t) => t['color']), " "
+        obj.map((r) => { return [0, (r[k]/totals[k]) * 100] }),
+        50, filtered_techs.map((t) => t['color']).reverse(), " "
       );
 
       chart.change(1);
@@ -126,13 +126,8 @@ define(['d3', 'pie'], (d3, pie) => {
     show();
   };
 
-  var more_pies = () => {
-    $('.more-pies').toggleClass('hidden');
-  };
-
   var toggle = () => {
-    $('#numbers').toggleClass('hidden');
-    $('#pies').toggleClass('hidden');
+    $('#details-modal').toggle()
   };
 
   var show = () => {
@@ -157,17 +152,9 @@ define(['d3', 'pie'], (d3, pie) => {
       }), `summary-${ _d.place['adm0_code'] }-adm${ adm }-${ adm_v }-${ _d.scenario['scn'] }.json`);
     });
 
-    $('#toggle-summary-charts').on('click', (e) => {
+    $('.toggle-summary-charts').on('click', (e) => {
       e.preventDefault();
-      $(e.target).closest('.clickable').toggleClass('active');
-
       toggle();
-    });
-
-    $('#more-pies').on('click', (e) => {
-      e.preventDefault();
-      $(e.target).closest('.clickable').toggleClass('active');
-      more_pies();
     });
   };
 

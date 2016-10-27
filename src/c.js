@@ -53,9 +53,7 @@ require([
 
   var iso3 = _u.get_query_param('iso3');
 
-  var _svg = d3.select('svg#svg')
-      .attr('width',  d3.select('html').node().clientWidth)
-      .attr('height', d3.select('html').node().clientHeight);
+  var _svg = d3.select('svg#svg');
 
   var _container = d3.select('#container');
 
@@ -100,7 +98,7 @@ require([
       else
         elem
         .style('visibility', 'visible')
-        .attr('fill', '#eee')
+        .attr('fill', '#CDE6CD')
         .attr('stroke', '#ccc');
     });
   };
@@ -201,6 +199,14 @@ require([
     // Place
     //
     place.init(_country);
+
+    var height = window.innerHeight -
+        (d3.select('#summary-info').node().clientHeight +
+         d3.select('#navbar').node().clientHeight);
+
+    _svg
+      .attr('width',  d3.select('#map-container').node().clientWidth)
+      .attr('height', height);
 
     // Map drawing
     //
@@ -307,7 +313,7 @@ require([
         node: target.node(),
         duration: 0,
         delay: 1,
-        callback: () => $('.loading').css('background-color', 'rgba(255,255,255, 0.2)')
+        callback: () => $('.loading').css('background-color', 'rgba(0,0,0,0.1)')
       });
     }
 

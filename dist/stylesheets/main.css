@@ -30,7 +30,7 @@ body {
 }
 
 hr {
-  border: solid #555555 1px;
+  border: solid #eaeaea 1px;
   border-top: none !important;
   color: transparent;
 }
@@ -47,17 +47,17 @@ td {
 
 a {
   display: block !important;
-  color: #7587A6;
+  color: #4d4d4d;
   text-decoration: none;
 }
 
 a:hover {
-  color: #7587A6;
+  color: #4d4d4d;
   text-decoration: none;
 }
 
 a:active, a.active {
-  color: white;
+  color: #4d4d4d;
 }
 
 .clickable {
@@ -70,11 +70,7 @@ a:active, a.active {
   text-align: center;
 }
 
-.clickable:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.clickable:hover > a {
+.clickable.active a {
   color: #f1f1f1;
 }
 
@@ -107,17 +103,21 @@ a:active, a.active {
 }
 
 .pane {
-  color: #cacaca;
-  background-color: rgba(0,0,0,0.7);
+  color: #4d4d4d;
+  background-color: white;
   transition: all .3s ease !important;
+}
+
+.strong {
+  font-weight: bold;
 }
 
 .hidden {
   display: none;
 }
 
-.monospace {
-  font-family: Monaco, Consolas, Courier New, monospace;
+.monospace, .number {
+  font-family: Monaco, Consolas, monospace;
 }
 
 .loading {
@@ -156,14 +156,14 @@ a:active, a.active {
   animation: spin 2s linear infinite;
 }
 
-[data], .number {
-  color: #7587A6;
+[data] {
+  color: #4d4d4d;
   font-weight: bold;
 }
 
 .active {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #cacaca;
+  background-color: #7587A6;
+  color: #f1f1f1 !important;
 }
 
 .small {

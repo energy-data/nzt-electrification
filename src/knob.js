@@ -81,7 +81,7 @@ define(['d3'], (d3) => {
 
     kc = d3.select('#knobs-container');
 
-    var total_width = $('#controls')[0].clientWidth;
+    var total_width = 250;
 
     width  = total_width - 60;
     height = total_width;
@@ -113,11 +113,11 @@ define(['d3'], (d3) => {
 
       gray.append('stop')
         .attr('offset', 0)
-        .attr('stop-color', '#e2e2e2');
+        .attr('stop-color', '#eeeeee');
 
       gray.append('stop')
         .attr('offset', 1)
-        .attr('stop-color', '#bbbbbb');
+        .attr('stop-color', '#dddddd');
 
       var gray_up = defs.append('linearGradient')
           .attr('id', 'gray_up')
@@ -128,11 +128,11 @@ define(['d3'], (d3) => {
 
       gray_up.append('stop')
         .attr('offset', 0)
-        .attr('stop-color', '#b6b6b6');
+        .attr('stop-color', '#dddddd');
 
       gray_up.append('stop')
         .attr('offset', 1)
-        .attr('stop-color', '#e2e2e2');
+        .attr('stop-color', '#eeeeee');
     }
 
     // knobs

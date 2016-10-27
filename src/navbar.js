@@ -47,19 +47,6 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
         });
       });
     }
-
-    // dropdowns
-    //
-    {
-      $('.with-dropdown').on('click', (e) => {
-        e.preventDefault();
-        $(e.target).closest('.with-dropdown').find('ul.dropdown').toggle();
-      });
-
-      $('.with-dropdown').on('mouseleave', (e) => {
-        $(e.target).closest('.with-dropdown').find('.dropdown').hide();
-      });
-    }
   };
 
   return {

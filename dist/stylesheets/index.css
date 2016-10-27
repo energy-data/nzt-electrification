@@ -14,11 +14,8 @@ h2, h3, h4 {
   margin: 0 !important;
 }
 
-.overview {
-  visibility: hidden;
-  position: absolute;
-
-  padding: 2em;
+#overview svg {
+  margin-top: 20px;
 }
 
 #country-list {
@@ -34,8 +31,8 @@ h2, h3, h4 {
   cursor: pointer;
   margin: 0 !important;
   display: inline-block;
-  border-bottom: 1px solid #333333;
-  height: 33%;
+  border-bottom: 1px solid #eaeaea;
+  height: 33.33%;
 }
 
 .country-item:last-child {
