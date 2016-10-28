@@ -6,46 +6,51 @@ countries, as reflected by an increase in use in a number of
 geographies and sectors. Within the energy sector, the use of GIS data
 and associated analytical tools can be beneficial in conducting
 strategic planning as well as prioritizing and rationalizing energy
-infrastructure related investments. The World Bank and
+infrastructure related investments. [World Bank ESMAP] (http://www.worldbank.org/) and
 [KTH Division of Energy Systems Analysis](https://www.kth.se/en/itm/inst/energiteknik/forskning/desa/welcome-to-the-unit-of-energy-systems-analysis-kth-desa-1.197296)
 have developed National High Resolution Dynamic Least Cost Options Plan for
 Universal Access to Electricity in Nigeria, Tanzania and Zambia.
 The web-based open source application presented here allows the users to select
-among various scenarios regarding levels of electricity consumption
-(Tiers of access) and spatially explicit fuel costs and identify the
-least cost electrification technology for each 1km by 1km block in the
-selected countries.
+scenarios based on electricity consumption targeted 
+(Tiers of access) and spatially related fuel costs towards identifying the
+least cost electrification technology for every settlement at a 1 by 1 km resolution.
 
 ## Electrification planning using open geospatial data
 
 This GIS based application allows users to navigate through the least
-cost electrification options for each locality of 1 by 1 km
-(hereinafter settlement) in Nigeria, Tanzania, Zambia. The technology
-decision depends on several [spatial parameters](https://ifc.ds.io/).
+cost electrification options for each settlement of 1 by 1 km
+in Nigeria, Tanzania and Zambia. The technology
+decision depends on several spatial parameters available for download on [energydata.info] (https://ifc.ds.io/).
 These include population density, distance from existing and planned transmission
 infrastructure, proximity to road network, night-time light, as well
 as energy resource availability. For each location, seven
 electrification technologies are compared and the least cost system is
-selected. In other words, the technology offering the lowest levelized
+selected depending on the tiers of access aimed for. In other words, the technology offering the lowest levelized
 cost of electricity generated throughout its lifetime, is considered
 as the best electrification solution. Results are available for each
-settlement. Summaries are provided in state and district level.
+settlement. Summaries are provided in national, state and district level.
 
-This electrification planning toolkit is a complementary approach to already
+This electrification planning toolk is a complementary approach to already
 existing energy planning models that do not consider geospatial attributes related
 to energy. It can be used as a screening tool to inform decision making in the
 energy field and to bridge science, technology and policy at different levels.
-The underlying methodology can be found [\[1\]](http://www.sciencedirect.com/science/article/pii/S0143622816300522), [\[2\]](http://www.sciencedirect.com/science/article/pii/S0973082615000952)
-and the underlying assumptions.
+The peer-reviewed underlying methodology can be found [\[1\]](http://www.sciencedirect.com/science/article/pii/S0143622816300522), [\[2\]](http://www.sciencedirect.com/science/article/pii/S0973082615000952)
+and the underlying assumptions the model uses are available here.
+
+The quality of the tool's results is directly correlated to the quality of data inputs.
+It is important to note that the tool has been developed with using best available open data. 
+Data gaps and data quality issues, particularly in regards to electricity grid location and electricity
+use significantly affect the model’s outputs. As such, the tool should be seen as a demonstration project
+providing results of strategic value, rather than an investment planning tool. 
 
 ## Technologies
 
-Covering future electricity demand requires investments in new generating capacity
-and here there are two options to be considered. On the one hand new capacity can be
+Covering future electricity demand requires investments in new generating capacity,
+with two main options to be considered. On the one hand new capacity can be
 added to the national electricity grid which will then electrify un-served areas through
 an extended T&D network spanning throughout the country. On the other hand, new off-grid
 capacity can be added, operating either in a form of mini-grids or stand-alone systems
-covering the demand in each location based on the local available energy resources.
+covering the demand in each location based on the locally available energy resources.
 
 **Grid** electricity is generated in a centralized manner, usually from large power
 plants, which due to economies of scale are able to offer low generating costs.
@@ -71,9 +76,9 @@ is generated in a decentralized manner, usually from power plants with generatin
 of few MW. Mini grids are usually deployed based on locally available energy resources such
 as solar, hydro, wind or can be based on commonly available fuels like diesel. Requiring no
 transmission and modest distribution costs mini grids can provide affordable electricity to
-rural and remote areas with low-medium electricity consumption habits. Mini grids based on
-renewable sources have usually high upfront costs but no operational (fuel) costs. On the
-other hand, diesel generators (gensets) are a mature, low cost technology subjected however
+rural, remote and usually densely populated areas with low-medium electricity consumption habits. 
+Mini grids based on renewable sources have usually high upfront costs but limited operational costs (i.e. fuel).
+On the other hand, diesel generators (gensets) are a mature, low cost technology subjected however
 to operational costs depending on diesel pump price fluctuation.
 
 <img width="48%" src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology_Mini_Grid_vertical.png" /><img width="48%" src="https://github.com/svexican/nzt-electrification/raw/master/dist/images/Technology_Mini_Grid_panels.png" />
@@ -96,15 +101,16 @@ consumption needs.
 
 The electrification planning exercise is carried out for 10
 alternative scenarios defined by 5 indicative quantities of
-electricity consumption (Tiers of access) and two diesel prices.
+electricity consumption [(Tiers of access)] (http://trackingenergy4all.worldbank.org/~/media/GIAWB/GTF/Documents/GTF-2105-Full-Report.pdf) and two diesel prices.
 
 ### Tiers of Access:
 
 Each tier represents different levels of electricity services provided starting
 from basic lighting and recharging a cell phone or a radio (Tier 1) to services that
-provide comfort, such as general lighting and continuous use of heavy appliances,
-such as refrigeration, air conditioning and eventually cooking. (see Table).
-From first to fifth, scenarios increase available amounts of electricity incrementally.
+provide comfort and productivity, as for example general lighting and continuous use of heavy appliances,
+such as refrigeration, agricultural processing appliances and eventually cooking. (see Table).
+From first to fifth, scenarios increase based on the quality and the quantity of the electricity delivered
+to the end consumer.
 
 ## Mapping of tiers of electricity for indicative services
 
@@ -118,4 +124,4 @@ From first to fifth, scenarios increase available amounts of electricity increme
 The model assumes two international diesel prices, **0.34** US$ per
 liter (current international diesel price) and **0.82** US$ per liter
 (projected international diesel price), used to calculate diesel costs
-in different localities.
+in different localities [\[3\]] (http://www.worldenergyoutlook.org/weo2015/).
