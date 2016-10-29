@@ -45,7 +45,7 @@ onerror = function(msg, url, lineNo, columnNo, error) {
 require([
   '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', '_conf'
 ], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   navbar,  controls,  knob) => {
-  var adm0, adm1, adm2;
+  var adm0_boundaries, adm1_boundaries, adm2_boundaries;
 
   var locked_adm2;
 
@@ -54,11 +54,9 @@ require([
   var iso3 = _u.get_query_param('iso3');
 
   var _svg = d3.select('svg#svg');
-
   var _container = d3.select('#container');
 
   var _transmission_lines = _container.append('g').attr('id', 'transmission-lines');
-
   var _text_labels_adm1 = _container.append('g').attr('id', 'text-labels-adm1');
   var _text_labels_adm2 = _container.append('g').attr('id', 'text-labels-adm2');
 
@@ -112,7 +110,6 @@ require([
     place.nullify('adm2');
 
     place.set('adm1', d['id'], d.properties['name'], true);
-
     history.replaceState(null, null, _u.set_query_param('load_points', false));
 
     set_adm1_fills(d.id);
@@ -208,17 +205,17 @@ require([
 
     // Map drawing
     //
-    adm0 = args[1];
-    adm1 = args[2];
-    adm2 = args[3];
+    adm0_boundaries = args[1];
+    adm1_boundaries = args[2];
+    adm2_boundaries = args[3];
 
     existing_transmission = args[4];
     planned_transmission  = args[5];
 
-    load_adm(adm1, 'adm1')
+    load_adm(adm1_boundaries, 'adm1')
       .on('click', function(d) { load_adm1(this, d) });
 
-    load_adm(adm2, 'adm2')
+    load_adm(adm2_boundaries, 'adm2')
       .on('click', function(d) { load_adm2(this, d) });
 
     points.init()

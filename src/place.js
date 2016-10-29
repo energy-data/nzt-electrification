@@ -9,7 +9,7 @@ define(['summary'], (summary) => {
         }
 
         else {
-          console.info(`This adm1 is dodgy: ${ args[2] }. Assuming adm0...`);
+          console.info(`adm1: ${ args[2] }`);
         }
       }
     ];
@@ -22,7 +22,7 @@ define(['summary'], (summary) => {
         }
 
         else {
-          console.info(`This adm2 is dodgy: ${ args[2] }. Assuming adm1...`);
+          console.info(`adm2: ${ args[2] }`);
         }
       }
     ];
