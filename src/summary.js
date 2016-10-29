@@ -1,24 +1,25 @@
 define(['d3', 'pie'], (d3, pie) => {
   var fetch = () => {
-    var adm = (() => {
-      if (!_d.place['adm2']) return 'adm1';
-      else return 'adm2';
+    var adm_type = (() => {
+      if (_u.get_query_param('adm2')) return 'adm2';
+      else if (_u.get_query_param('adm1')) return 'adm1';
+      else return 'adm0';
     })();
 
-    var x = _d.place['adm2'] || _d.place['adm1'];
-
-    if (!x || !adm) {
+    if (!adm_type || !_u.get_query_param('iso3') || !_d.scenario['scn']) {
       console.warn("Summary Fetch: Not enough arguments.");
       return false;
     }
 
+    var url = `${ _conf['data_source'] }/${ adm_type }_records?` +
+        `select=results` +
+        `&cc=eq.${ _d.place['adm0_code'] }` +
+        `&scn=eq.${ _d.scenario['scn'] }`;
+
+    if (adm_type != 'adm0') url += `&adm=eq.${ _u.get_query_param(adm_type) }`;
+
     d3.queue()
-      .defer(d3.json,
-             `${ _conf['data_source'] }/${ adm }_records?` +
-             `select=results` +
-             `&cc=eq.${ _d.place['adm0_code'] }` +
-             `&scn=eq.${ _d.scenario['scn'] }` +
-             `&adm=eq.${ _d.place[adm] }`)
+      .defer(d3.json, url)
       .await((error, results) => {
         if (error) _u.network_error();
 

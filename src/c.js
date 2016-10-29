@@ -183,17 +183,13 @@ require([
 
     mode.init();
     scenario.init();
+    place.init(args[6], iso3);
 
     // Params
     //
     admin1 = parseInt(_u.get_query_param('adm1'));
     admin2 = parseInt(_u.get_query_param('adm2'));
     load_points = _u.get_query_param('load_points').to_boolean();
-
-    // Place
-    //
-    place.setup();
-    place.init(args[6], iso3);
 
     var height = window.innerHeight -
         (d3.select('#summary-info').node().clientHeight +
@@ -218,6 +214,7 @@ require([
     load_adm(adm2_boundaries, 'adm2')
       .on('click', function(d) { load_adm2(this, d) });
 
+    summary.fetch();
     points.init()
 
     map.load_topo({
@@ -274,6 +271,10 @@ require([
 
       set_adm1_fills(admin1);
     }
+
+    // Place
+    //
+    place.setup();
 
     // Controls
     //

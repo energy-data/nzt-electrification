@@ -15,11 +15,11 @@
   - [X] contrast of text, icons, hovering
 
 
-* [4/9] Code
+* [5/9] Code
   - [ ] dump jsons
   - [X] cleanup this indicators/breakdown looping
   - [X] show scale gradients
-  - [ ] there seems to be a double call to the api on initial run
+  - [X] there seems to be a double call to the api on initial run
   - [ ] lcsa's colouring from min..max from the point collection
   - [ ] points: hydro
   - [X] finish up colouring modes

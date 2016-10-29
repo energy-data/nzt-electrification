@@ -4,12 +4,13 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
       e.preventDefault();
 
       points.hide_info();
-      summary.hide();
 
       place.nullify('adm1');
       place.nullify('adm2');
 
       history.replaceState(null, null, _u.set_query_param('load_points', false));
+
+      summary.fetch();
 
       d3.selectAll('.adm2').style('display', 'none');
 
