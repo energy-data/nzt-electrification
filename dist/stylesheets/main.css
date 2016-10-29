@@ -46,9 +46,13 @@ td {
 }
 
 a {
-  display: block !important;
+  display: block;
   color: #4d4d4d;
   text-decoration: none;
+}
+
+p a {
+  display: initial !important;
 }
 
 a:hover {

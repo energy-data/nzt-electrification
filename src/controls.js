@@ -1,4 +1,4 @@
-define(['help'], (help) => {
+define(['help', 'd3', 'map'], (help, d3, map) => {
   var init = () => {
     $('#controls-control').on('click', (e) => {
       e.preventDefault();
