@@ -23,7 +23,7 @@ define(['d3', 'pie'], (d3, pie) => {
       .await((error, results) => {
         if (error) _u.network_error();
 
-        var r = results.map((x) => x['results']).sort_p('tech', true);
+        var r = results[0]['results'].sort_p('tech', true);
 
         pies(r);
         numbers(r);
