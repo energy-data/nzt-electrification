@@ -1,11 +1,5 @@
 define(['summary'], (summary) => {
-  var init = (points) => {
-    load_selector();
-
-    _d.scenario['scn'] = 'n1';
-    _d.scenario['tier'] = 1;
-    _d.scenario['diesel_p'] = 'n';
-
+  var setup = (points) => {
     _d.scenario['callback'] = [
       'scn',
       (...args) => {
@@ -48,6 +42,14 @@ define(['summary'], (summary) => {
           _d.scenario['scn'] = `${ t }${ _d.scenario['tier'] }`;
       }
     ];
+
+    load_selector();
+  };
+
+  var init = () => {
+    _d.scenario['scn'] = 'n1';
+    _d.scenario['diesel_p'] = 'n';
+    _d.scenario['tier'] = 1;
   };
 
   var clear_selector = () => {
@@ -87,6 +89,7 @@ define(['summary'], (summary) => {
   };
 
   return {
+    setup: setup,
     init: init
   };
 });

@@ -1,4 +1,4 @@
-define(['knob', 'help'], (knob, help) => {
+define(['help'], (help) => {
   var init = () => {
     $('#controls-control').on('click', (e) => {
       e.preventDefault();
@@ -50,8 +50,6 @@ define(['knob', 'help'], (knob, help) => {
     $('#other-mode-selector').on('click', (e) => {
       e.preventDefault();
     });
-
-    knob.init();
   };
 
   return {

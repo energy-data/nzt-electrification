@@ -138,7 +138,7 @@ define(['d3', 'pie'], (d3, pie) => {
     $('#summary-info').addClass('hidden');
   };
 
-  var init = () => {
+  var setup = () => {
     $('.export-summary').on('click', (e) => {
       e.preventDefault();
 
@@ -159,7 +159,7 @@ define(['d3', 'pie'], (d3, pie) => {
   };
 
   return {
-    init: init,
+    setup: setup,
     fetch: fetch,
     show: show,
     hide: hide

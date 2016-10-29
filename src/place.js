@@ -1,8 +1,5 @@
 define(['summary'], (summary) => {
-  var init = (country) => {
-    _d.place['adm0']      = country['iso3'];
-    _d.place['adm0_name'] = country['name'];
-    _d.place['adm0_code'] = country['code'];
+  var setup = () => {
 
     _d.place['callback'] = [
       'adm1',
@@ -54,6 +51,16 @@ define(['summary'], (summary) => {
       history.pushState(null, null, _u.set_query_param(adm, null));
   };
 
+  var init = (countries, iso3) => {
+    var c = countries.find_p('iso3', iso3);
+
+    _d.place['adm0']      = c['iso3'];
+    _d.place['adm0_name'] = c['name'];
+    _d.place['adm0_code'] = c['code'];
+
+    document.getElementsByTagName('title')[0].text = `${ c['name'] } - Electrification`;
+  };
+
   var set = (adm, id, name, push) => {
     _d.place[adm]             = id;
     _d.place[`${ adm }_name`] = name;
@@ -63,6 +70,7 @@ define(['summary'], (summary) => {
 
   return {
     set: set,
+    setup: setup,
     init: init,
     nullify: nullify
   };

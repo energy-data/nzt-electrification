@@ -43,8 +43,8 @@ onerror = function(msg, url, lineNo, columnNo, error) {
 };
 
 require([
-   '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   navbar,   controls) => {
+  '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   navbar,  controls,  knob) => {
   var adm0, adm1, adm2;
 
   var locked_adm2;
@@ -184,11 +184,8 @@ require([
   var run = (...args) => {
     var load_controls = args[7];
 
-    _g.countries = args[6];
-
-    _country = _g.countries.find_p('iso3', iso3);
-
-    document.getElementsByTagName('title')[0].text = `${ _country['name'] } - Electrification`;
+    mode.init();
+    scenario.init();
 
     // Params
     //
@@ -198,7 +195,8 @@ require([
 
     // Place
     //
-    place.init(_country);
+    place.setup();
+    place.init(args[6], iso3);
 
     var height = window.innerHeight -
         (d3.select('#summary-info').node().clientHeight +
@@ -247,8 +245,8 @@ require([
 
     // Mode and scenario
     //
-    mode.init(points);
-    scenario.init(points);
+    mode.setup(points);
+    scenario.setup(points);
 
     // Initialise adm regions
     //
@@ -290,8 +288,9 @@ require([
       window.set_adm1_fills = set_adm1_fills;
 
       controls.init();
+      knob.init();
       navbar.init();
-      summary.init();
+      summary.setup();
     }
 
     // Focus target adm

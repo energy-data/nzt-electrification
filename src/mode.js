@@ -184,13 +184,14 @@ define(['d3'], (d3) => {
         .style("fill", `url(#gradient${ m['type'] })`);
   };
 
-  var init = (points) => {
+  var init = () => {
+    _d.mode['type'] = 'technology';
+  };
+
+  var setup = (points) => {
     load_selector();
 
-    var t = 'technology';
-
-    _d.mode['type'] = t;
-    $(`${ mss } a[bind='${ t }']`).addClass('active');
+    $(`${ mss } a[bind='${ _d.mode['type'] }']`).addClass('active');
 
     _d.mode['callback'] = [
       'type',
@@ -247,6 +248,7 @@ define(['d3'], (d3) => {
 
   return {
     init: init,
+    setup: setup,
     modes: modes,
     scale: scale,
     fill: fill,
