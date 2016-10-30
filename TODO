@@ -1,13 +1,12 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [8/11] UI/UX
+* [8/10] UI/UX
   - [ ] landing
+  - [ ] population/lcoe colours
   - [X] github link
   - [X] sort mode groups
   - [X] points: technology colour palette (+ locked point)
-  - [ ] help enabled by default
-  - [ ] population/lcoe colours
   - [X] bind drag and zoom to screen
   - [X] tweak adm-label sizes
   - [X] bold selected adm-labels
@@ -17,21 +16,40 @@
 
 * [5/9] Code
   - [ ] dump jsons
+  - [ ] lcsa's colouring from min..max from the point collection
+  - [ ] points: hydro
+  - [ ] scenario: init from url params (shareable links)
   - [X] cleanup this indicators/breakdown looping
   - [X] show scale gradients
   - [X] there seems to be a double call to the api on initial run
-  - [ ] lcsa's colouring from min..max from the point collection
-  - [ ] points: hydro
   - [X] finish up colouring modes
-  - [ ] scenario: init from url params (shareable links)
   - [X] $loading callbacks seem iffy...
 
 
-* [0/4] Second Review
-  - [ ] index: expenditures and other indicators
-  - [ ] index: inserting a poverty map jpeg?
-  - [ ] index: projected increase in demand
-  - [ ] index: access rate (world bank != internal inteligence)
+* [4/10] Model
+  - [ ] fix helps to match modes
+  - [ ] make clear that they need to click on something
+  - [ ] clearer state boundaries
+  - [ ] load state cells button
+  - [ ] thicker doughnuts
+  - [ ] Dimitrios: Dataset =>
+  - [X] zoom in/out levels
+  - [X] country summary
+  - [X] details/export buttons inside doughnuts pane
+  - [X] leave 2 last dataset options open
+
+
+* [0/10] Index
+  - [ ] percentages
+  - [ ] fork me smaller
+  - [ ] larger font
+  - [ ] explore Nigeria MORE clickable (bottom and "explore model")
+  - [ ] replace access to electricity pies with numbers
+  - [ ] clearer legends of current - 2030
+  - [ ] headers... headers everywhere
+  - [ ] pluck-out ceros from electricity generation
+  - [ ] projection without the model?
+  - [ ] country/energy-sector division
 
 
 * DONE Archive

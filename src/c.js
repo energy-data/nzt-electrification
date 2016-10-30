@@ -235,7 +235,7 @@ require([
       fill: 'none'
     });
 
-    map.setup_drag();
+    map.behaviour();
 
     // Mode and scenario
     //

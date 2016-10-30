@@ -128,9 +128,12 @@ define(['d3', 'topojson'], (d3, topojson) => {
       _container.attr("transform", d3.event.transform);
     });
 
-  var setup_drag = () => {
+  var behaviour = () => {
     _svg.call(zoom)
       .on("dblclick.zoom", null);
+
+    d3.select('#zoom-in').on('click', () => zoom.scaleBy(_svg, 2));
+    d3.select('#zoom-out').on('click', () => zoom.scaleBy(_svg, 0.5));
   };
 
   return {
@@ -142,6 +145,6 @@ define(['d3', 'topojson'], (d3, topojson) => {
     to_bbox: to_bbox,
 
     resize_to: resize_to,
-    setup_drag: setup_drag
+    behaviour: behaviour
   };
 });
