@@ -145,7 +145,6 @@ define(['d3', 'map', 'points', 'place'], (d3, map, points, place) => {
   };
 
   return {
-    show_adm2: show_adm2,
     reset_adm2: reset_adm2,
     set_adm1_fills: set_adm1_fills,
     setup: setup,

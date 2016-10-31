@@ -65,7 +65,6 @@ require([
     var load_controls = args[7];
 
     mode.init();
-    points.init();
     scenario.init();
     place.init(args[6], iso3);
 
@@ -75,6 +74,8 @@ require([
       args[2], // adm1 boundaries
       args[3]  // adm2 boundaries
     );
+
+    points.init(); // this should be after adm.setup so it stays on top of it.
 
     // Params
     //
