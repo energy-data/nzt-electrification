@@ -1,4 +1,4 @@
-define(['mode', 'd3', 'map'], (mode, d3, map) => {
+define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
   //
   // Variables:
   //
@@ -184,6 +184,8 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
 
     p['urban'] = (e['u'] ? "Urban" : "Rural");
     p['wind']  = _u.percent(e['w_cf'], 1);
+
+    nanny.hush();
   };
 
   var load = (o) => {

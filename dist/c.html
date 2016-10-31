@@ -115,132 +115,136 @@
             </div>
           </div>
 
-          <div id="point-info"
-               class="pane col-flex"
-               help-data="point_info">
-            <table class="info-table monospace">
-              <tr>
-                <td colspan="3"
-                    class="center">
-                  <span class="number" data="technology">&nbsp;</span>
-                </td>
-              </tr>
+          <div class="pane col-flex">
+            <div class="row relative">
+              <div id="nanny-says">Now do...</div>
 
-              <tr>
-                <td colspan="3"
-                    class="center">
-                  long: <span class="number" data="long"></span>, lat: <span class="number" data="lat"></span>
-                </td>
-              </tr>
+              <table id="point-info"
+                     class="info-table monospace"
+                     help-data="point_info">
+                <tr>
+                  <td colspan="3"
+                      class="center">
+                    <span class="number" data="technology">&nbsp;</span>
+                  </td>
+                </tr>
 
-              <tr>
-                <td rowspan="3" class="strong">Technology</td>
-                <td>LCOE</td>
-                <td class="right">
-                  <span class="number" data="lc"></span> USD/kWh
-                </td>
-              </tr>
+                <tr>
+                  <td colspan="3"
+                      class="center">
+                    long: <span class="number" data="long"></span>, lat: <span class="number" data="lat"></span>
+                  </td>
+                </tr>
 
-              <tr>
-                <td>Investment Cost</td>
-                <td class="right">
-                  <span class="number" data="ic"></span> USD
-                </td>
-              </tr>
+                <tr>
+                  <td rowspan="3" class="strong">Technology</td>
+                  <td>LCOE</td>
+                  <td class="right">
+                    <span class="number" data="lc"></span> USD/kWh
+                  </td>
+                </tr>
 
-              <tr>
-                <td>Added capacity</td>
-                <td class="right">
-                  <span class="number" data="cap"></span> W
-                </td>
-              </tr>
+                <tr>
+                  <td>Investment Cost</td>
+                  <td class="right">
+                    <span class="number" data="ic"></span> USD
+                  </td>
+                </tr>
 
-              <tr>
-                <td rowspan="2" class="strong">Demographics</td>
+                <tr>
+                  <td>Added capacity</td>
+                  <td class="right">
+                    <span class="number" data="cap"></span> W
+                  </td>
+                </tr>
 
-                <td>Population 2030</td>
+                <tr>
+                  <td rowspan="2" class="strong">Demographics</td>
 
-                <td class="right">
-                  <span class="number" data="p_2030"></span>
-                </td>
-              </tr>
+                  <td>Population 2030</td>
 
-              <tr>
-                <td>Urban/Rural</td>
-                <td class="right">
-                  <!-- formatted u -->
-                  <span class="number" data="urban"></span>
-                </td>
-              </tr>
+                  <td class="right">
+                    <span class="number" data="p_2030"></span>
+                  </td>
+                </tr>
 
-              <tr>
-                <td rowspan="3" class="strong">Resources</td>
+                <tr>
+                  <td>Urban/Rural</td>
+                  <td class="right">
+                    <!-- formatted u -->
+                    <span class="number" data="urban"></span>
+                  </td>
+                </tr>
 
-                <td>Wind Power Capacity Factor</td>
-                <td class="right">
-                  <!-- formatted w_cf -->
-                  <span class="number" data="wind"></span> %
-                </td>
-              </tr>
+                <tr>
+                  <td rowspan="3" class="strong">Resources</td>
 
-              <tr>
-                <td>Global Horizontal Irradiance</td>
-                <td class="right">
-                  <span class="number" data="ghi"></span> kWh/m<sup>2</sup>
-                </td>
-              </tr>
+                  <td>Wind Power Capacity Factor</td>
+                  <td class="right">
+                    <!-- formatted w_cf -->
+                    <span class="number" data="wind"></span> %
+                  </td>
+                </tr>
 
-              <tr>
-                <td>Distance to Hydropower Potencial</td>
-                <td class="right">
-                  <span class="number" data="hp_d"></span> km
-                </td>
-              </tr>
+                <tr>
+                  <td>Global Horizontal Irradiance</td>
+                  <td class="right">
+                    <span class="number" data="ghi"></span> kWh/m<sup>2</sup>
+                  </td>
+                </tr>
 
-              <tr>
-                <td rowspan="4" class="strong">Insfrastructure</td>
+                <tr>
+                  <td>Distance to Hydropower Potencial</td>
+                  <td class="right">
+                    <span class="number" data="hp_d"></span> km
+                  </td>
+                </tr>
 
-                <td>Distance to current Transmission Network</td>
-                <td class="right">
-                  <span class="number" data="gd_c"></span> km
-                </td>
-              </tr>
+                <tr>
+                  <td rowspan="4" class="strong">Insfrastructure</td>
 
-              <tr>
-                <td>Distance to planned Transmission Network</td>
-                <td class="right">
-                  <span class="number" data="gd_p"></span> km
-                </td>
-              </tr>
+                  <td>Distance to current Transmission Network</td>
+                  <td class="right">
+                    <span class="number" data="gd_c"></span> km
+                  </td>
+                </tr>
 
-              <tr>
-                <td>Road Distance</td>
-                <td class="right">
-                  <span class="number" data="rd"></span> km
-                </td>
-              </tr>
+                <tr>
+                  <td>Distance to planned Transmission Network</td>
+                  <td class="right">
+                    <span class="number" data="gd_p"></span> km
+                  </td>
+                </tr>
 
-              <tr>
-                <td>Levelised Cost of Diesel</td>
-                <td class="right">
-                  <span class="number" data="lcsa"></span> USD/kWh
-                </td>
-              </tr>
+                <tr>
+                  <td>Road Distance</td>
+                  <td class="right">
+                    <span class="number" data="rd"></span> km
+                  </td>
+                </tr>
 
-              <!-- <tr> -->
-              <!--   <td>New Connections</td> -->
-              <!--   <td class="right"> -->
-              <!--     <span class="number" data="nc"></span> -->
-              <!--   </td> -->
-              <!-- </tr> -->
+                <tr>
+                  <td>Levelised Cost of Diesel</td>
+                  <td class="right">
+                    <span class="number" data="lcsa"></span> USD/kWh
+                  </td>
+                </tr>
 
-              <!-- <tr> -->
-              <!--   <td>Potential small and mini Hydropower</td> -->
-              <!--   <td class="right"> -->
-              <!--     <span class="number" data="hp"></span> -->
-              <!--   </td> -->
-              <!-- </tr> -->
-            </table>
+                <!-- <tr> -->
+                <!--   <td>New Connections</td> -->
+                <!--   <td class="right"> -->
+                <!--     <span class="number" data="nc"></span> -->
+                <!--   </td> -->
+                <!-- </tr> -->
+
+                <!-- <tr> -->
+                <!--   <td>Potential small and mini Hydropower</td> -->
+                <!--   <td class="right"> -->
+                <!--     <span class="number" data="hp"></span> -->
+                <!--   </td> -->
+                <!-- </tr> -->
+              </table>
+            </div>
 
             <hr />
 

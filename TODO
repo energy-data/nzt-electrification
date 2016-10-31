@@ -16,8 +16,8 @@
 
 * [5/9] Code
   - [ ] dump jsons
-  - [ ] lcsa's colouring from min..max from the point collection
   - [ ] points: hydro
+  - [ ] lcsa's colouring from min..max from the point collection
   - [ ] scenario: init from url params (shareable links)
   - [X] cleanup this indicators/breakdown looping
   - [X] show scale gradients
@@ -26,9 +26,9 @@
   - [X] $loading callbacks seem iffy...
 
 
-* [4/10] Model
-  - [ ] fix helps to match modes
-  - [ ] make clear that they need to click on something
+* [6/10] Model
+  - [X] fix helps to match modes
+  - [X] make clear that they need to click on something
   - [ ] clearer state boundaries
   - [ ] load state cells button
   - [ ] thicker doughnuts

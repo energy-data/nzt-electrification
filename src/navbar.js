@@ -1,15 +1,14 @@
-define(['d3', 'map', 'adm', 'points', 'summary', 'place'], (d3, map, adm, points, summary, place) => {
+define(['d3', 'map', 'adm', 'points', 'summary', 'place', 'nanny'], (d3, map, adm, points, summary, place, nanny) => {
   var init = () => {
     $('[data="adm0_name"]').on('click', (e) => {
       e.preventDefault();
-
-      points.hide_info();
 
       place.nullify('adm1');
       place.nullify('adm2');
 
       history.replaceState(null, null, _u.set_query_param('load_points', false));
 
+      nanny.tell();
       summary.fetch();
 
       d3.selectAll('.adm2').style('display', 'none');
