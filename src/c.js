@@ -43,12 +43,8 @@ onerror = function(msg, url, lineNo, columnNo, error) {
 };
 
 require([
-  '_u', '_g', '_d', 'scenario', 'd3', 'map', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,   points,   summary,   place,   mode,   navbar,  controls,  knob) => {
-  var adm0_boundaries, adm1_boundaries, adm2_boundaries;
-
-  var locked_adm2;
-
+   '_u', '_g', '_d', 'scenario', 'd3', 'map',  'adm', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,    adm,   points,   summary,   place,   mode,   navbar,   controls,   knob) => {
   var rerun;
 
   var iso3 = _u.get_query_param('iso3');
@@ -65,132 +61,29 @@ require([
     rerun(false);
   };
 
-  var load_adm = (topo, pathname, callback) => {
-    _u.check(topo, pathname);
-
-    var all_paths = _container.append('g').attr('id', `paths-${ pathname }`);
-
-    var path = map.load_topo({
-      topo: topo,
-      pathname: pathname,
-      cls: 'adm hoverable',
-      fill: 'white',
-      labels: true,
-      parent: all_paths
-    });
-
-    if (typeof callback === 'function')
-      return callback.call(this, path);
-
-    else
-      return path;
-  };
-
-  var set_adm1_fills = (id) => {
-    d3.selectAll('.adm1').each(function(e) {
-      var elem = d3.select(this);
-
-      if (e.id === id)
-        elem.style('visibility', 'hidden');
-
-      else
-        elem
-        .style('visibility', 'visible')
-        .attr('fill', '#CDE6CD')
-        .attr('stroke', '#ccc');
-    });
-  };
-
-  var load_adm1 = (it, d) => {
-    points.hide_info();
-
-    points.clear(true);
-    reset_adm2(null);
-
-    place.nullify('adm2');
-
-    place.set('adm1', d['id'], d.properties['name'], true);
-    history.replaceState(null, null, _u.set_query_param('load_points', false));
-
-    set_adm1_fills(d.id);
-
-    map.resize_to({
-      node: it,
-      duration: 300
-    });
-
-    d3.select('#text-labels-adm1').raise();
-
-    show_adm2(d.id);
-  };
-
-  var load_adm2 = (it, d) => {
-    if (locked_adm2 === d['id']) return;
-
-    d3.selectAll('.adm-label').attr('font-weight', 'normal');
-    d3.select(`#adm2-label-${ d['id'] }`).attr('font-weight', 'bold');
-
-    points.hide_info();
-
-    place.set('adm2', d['id'], d.properties['name'], true);
-
-    history.replaceState(null, null, _u.set_query_param('load_points', true));
-
-    reset_adm2(it);
-
-    locked_adm2 = d['id'];
-
-    admin1 = d.properties['adm1'];
-
-    _d.place['adm1']      = admin1 || undefined;
-    _d.place['adm1_name'] = d3.select(`#adm1-${ admin1 }`).datum().properties['name'] || undefined;
-
-    if (_u.get_query_param('load_points').to_boolean())
-      points.load({
-        adm: it.id.match(/adm(.*)-(\d*)?/),
-        svg_box: it.getBBox()
-      });
-
-    map.resize_to({
-      node: it,
-      duration: 300
-    });
-  };
-
-  var show_adm2 = (adm1_id) => {
-    _u.check(adm1_id);
-
-    d3.selectAll('.adm2').each(function(e) {
-      d3.select(this).style('display', ((e.properties.adm1 === adm1_id) ? 'block' : 'none'));
-    });
-  };
-
-  var reset_adm2 = (target) => {
-    d3.selectAll('path.adm2').classed('hoverable', true);
-    locked_adm2 = null;
-
-    var a2 = parseInt(_u.get_query_param('adm2'));
-
-    var it = (target ?
-              target :
-              (a2 ? `#adm2-${ a2 }` : null));
-
-    if (it) d3.select(it).classed('hoverable', false);
-  };
-
   var run = (...args) => {
     var load_controls = args[7];
 
     mode.init();
+    points.init();
     scenario.init();
     place.init(args[6], iso3);
 
+    adm.setup(
+      _container,
+      args[1], // adm0 boundaries
+      args[2], // adm1 boundaries
+      args[3]  // adm2 boundaries
+    );
+
     // Params
     //
-    admin1 = parseInt(_u.get_query_param('adm1'));
-    admin2 = parseInt(_u.get_query_param('adm2'));
-    load_points = _u.get_query_param('load_points').to_boolean();
+    var admin1 = parseInt(_u.get_query_param('adm1'));
+    var admin2 = parseInt(_u.get_query_param('adm2'));
+    var load_points = _u.get_query_param('load_points').to_boolean();
 
+    // setup UI elements
+    //
     var height = window.innerHeight -
         (d3.select('#summary-info').node().clientHeight +
          d3.select('#navbar').node().clientHeight);
@@ -199,27 +92,45 @@ require([
       .attr('width',  d3.select('#map-container').node().clientWidth)
       .attr('height', height);
 
-    // Map drawing
+    // Setup modules:
     //
-    adm0_boundaries = args[1];
-    adm1_boundaries = args[2];
-    adm2_boundaries = args[3];
-
-    existing_transmission = args[4];
-    planned_transmission  = args[5];
-
-    load_adm(adm1_boundaries, 'adm1')
-      .on('click', function(d) { load_adm1(this, d) });
-
-    load_adm(adm2_boundaries, 'adm2')
-      .on('click', function(d) { load_adm2(this, d) });
-
+    place.setup();
+    mode.setup(points);
+    scenario.setup(points);
     summary.fetch();
-    points.init()
+    points.setup()
 
+    // These we do not want to rerun:
+    //
+    if (load_controls) {
+      controls.init();
+      knob.init();
+      navbar.init();
+      summary.setup();
+    }
+
+    // Initialise adm regions
+    //
+    var target = adm.target(admin1, admin2);
+
+    if (admin2 > -1) {
+      admin1 = target.datum().properties['adm1']
+
+      place.set('adm2', admin2, target.datum().properties['name'], false);
+      place.set('adm1', admin1, d3.select(`#adm1-${ admin1 }`).datum().properties['name'], false);
+    }
+
+    else if (admin1 > -1) {
+      place.set('adm1', admin1, target.datum().properties['name'], false)
+    }
+
+    adm.init(admin1, admin2);
+
+    // Load the map
+    //
     map.load_topo({
       parent: _transmission_lines,
-      topo: existing_transmission,
+      topo: args[4], // existing transmission lines
       cls: 'line',
       pathname: 'existing',
       stroke: '#7587A6',
@@ -228,95 +139,34 @@ require([
 
     map.load_topo({
       parent: _transmission_lines,
-      topo: planned_transmission,
+      topo: args[5], // planned transmission lines
       cls: 'line',
       pathname: 'planned',
       stroke: '#7587A6',
       fill: 'none'
     });
 
-    map.behaviour();
-
-    // Mode and scenario
-    //
-    mode.setup(points);
-    scenario.setup(points);
-
-    // Initialise adm regions
-    //
-    {
-      target = d3.select((() => {
-        if (admin1 > -1 && isNaN(admin2))
-          return `#adm1-${ admin1 }`;
-
-        else if (admin2 > -1)
-          return `#adm2-${ admin2 }`;
-
-        else
-          return '#paths-adm1';
-      })());
-
-      if (admin2 > -1) {
-        admin1 = target.datum().properties['adm1']
-
-        place.set('adm2', admin2, target.datum().properties['name'], false);
-        place.set('adm1', admin1, d3.select(`#adm1-${ admin1 }`).datum().properties['name'], false);
-      }
-
-      else if (admin1 > -1) {
-        place.set('adm1', admin1, target.datum().properties['name'], false)
-      }
-
-      show_adm2(admin1);
-
-      set_adm1_fills(admin1);
-    }
-
-    // Place
-    //
-    place.setup();
-
-    // Controls
-    //
-    if (load_controls) {
-      // used in navbar (better than circular dependencies!)
-      //
-      window.load_adm1 = load_adm1;
-      window.load_adm2 = load_adm2;
-      window.set_adm1_fills = set_adm1_fills;
-
-      controls.init();
-      knob.init();
-      navbar.init();
-      summary.setup();
-    }
-
-    // Focus target adm
-    //
-    {
-      if (admin2) {
-        reset_adm2(`#adm2-${ admin2 }`);
-        locked_adm2 = admin2;
-      };
-
-      if (load_points && (admin1 || admin2)) {
-        points.load({
-          adm: target.node().id.match(/adm(.*)-(\d*)?/),
-          svg_box: target.node().getBBox()
-        });
-      } else $('.loading').fadeOut();
-
-      map.resize_to({
-        node: target.node(),
-        duration: 0,
-        delay: 1,
-        callback: () => $('.loading').css('background-color', 'rgba(0,0,0,0.1)')
-      });
-    }
-
     _transmission_lines.raise();
     _text_labels_adm1.raise();
     _text_labels_adm2.raise();
+
+    // Focus target adm
+    //
+    if (load_points && (admin1 || admin2)) {
+      points.load({
+        adm: target.node().id.match(/adm(.*)-(\d*)?/),
+        svg_box: target.node().getBBox()
+      });
+    } else $('.loading').fadeOut();
+
+    map.resize_to({
+      node: target.node(),
+      duration: 0,
+      delay: 1,
+      callback: () => $('.loading').css('background-color', 'rgba(0,0,0,0.1)')
+    });
+
+    map.behaviour();
   };
 
   d3.queue(5)

@@ -1,4 +1,4 @@
-define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, place) => {
+define(['d3', 'map', 'adm', 'points', 'summary', 'place'], (d3, map, adm, points, summary, place) => {
   var init = () => {
     $('[data="adm0_name"]').on('click', (e) => {
       e.preventDefault();
@@ -15,7 +15,7 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
       d3.selectAll('.adm2').style('display', 'none');
 
       points.clear(true);
-      set_adm1_fills(0);
+      adm.set_adm1_fills(0);
 
       map.resize_to({
         node: d3.select('#paths-adm1').node(),
@@ -28,7 +28,7 @@ define(['d3', 'map', 'points', 'summary', 'place'], (d3, map, points, summary, p
 
       var target = d3.select(`path#adm1-${ _d.place['adm1'] }`);
 
-      load_adm1(target.node(), {
+      adm.load_adm1(target.node(), {
         id: _d.place['adm1'],
         properties: {
           name: _d.place['adm1_name']

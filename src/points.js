@@ -18,7 +18,9 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
   var init = () => {
     _container = d3.select('#container');
     _points = _container.append('g').attr('id', 'points');
+  };
 
+  var setup = () => {
     $('#toggle-point-details').on('click', (e) => {
       e.preventDefault();
       $(e.target).closest('.clickable').toggleClass('active');
@@ -224,6 +226,7 @@ define(['mode', 'd3', 'map'], (mode, d3, map) => {
     load: load,
     clear: clear,
     init: init,
+    setup: setup,
     show_info: show_info,
     hide_info: hide_info
   };
