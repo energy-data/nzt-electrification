@@ -13,16 +13,19 @@ define([], () => {
     'mode': `A <strong>mode</strong> represents on of several datasets in this model. The main one is technology. Every cell will represent it's data based on this mode.`,
     'technology': `<strong>Technology</strong> represents the least cost electrification option at each geographic cell for the selected scenario. <br />
                    This is the default mode.`,
+    'levelized_cost': `This mode represents the lowest levelized cost of generating electricity at each geographic cell for the selected scenario.`
+    'investment_cost': `This mode represents the investment needs in power capacity at each geographic cell for the selected scenario.`
+    'added_capacity': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario.`
     'population': `This mode represents the projected population in 2030.`,
     'urban-rural': `This mode represents whether a geographic location is considered urban or rural.`,
     'ghi': `This mode represents the Global Horizontal Irradiance.`,
     'w_cf': `This mode represents the Wind power capacity factor.`,
     'hp': `This mode represents the mini and small hydro power potential.`,
     'lcsa': `This mode represents the cost of generating electricity using diesel generators.`,
-    'rd': `The existing road network can be found <a href="https://ifc.ds.io/">here</a>.`,
-    'gd_c': `This mode represents the existing transmission network. <br />
+    'rd': `This mode represents the distance to the existing road network. The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
+    'gd_c': `This mode represents the distance to the existing transmission network. <br />
              The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
-    'gd_p': `This mode represents the planned transmission network. <br />
+    'gd_p': `This mode represents the distance to the existing planned transmission network. <br />
              The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
     'summary': `This pane shows the <strong>summary</strong> of the current loaded cells. <br />
                 It changes constantly depending on which administrative region is loaded each time.`,
