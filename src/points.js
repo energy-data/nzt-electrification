@@ -94,7 +94,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
     var area = (_d.summary['results'].reduce((x,c) => { return x + c['pts'] }, 0));
 
     if (area > count_threshold)
-      radius = radius * (area / count_threshold)
+      radius = radius * (area / count_threshold);
 
     // This is too much for D3, (check git history if curious)
     //

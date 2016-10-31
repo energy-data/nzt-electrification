@@ -4,7 +4,7 @@ html {
 
 svg#svg {
   width: 100%;
-  background-color: #E2ECFF;
+  background-color: #d7d5d5;
 }
 
 #home {
@@ -23,7 +23,7 @@ path.adm {
 }
 
 .adm-label.adm1 {
-  fill: #333333;
+  fill: #666666;
 }
 
 .adm-label.adm2 {
@@ -34,8 +34,17 @@ path.adm {
   stroke-dasharray: 0.07;
 }
 
+path.adm1 {
+  fill: #e1e1e1;
+}
+
+path.adm2 {
+  stroke: #ACBDD9;
+  fill: white;
+}
+
 path.adm1:hover, path.adm2.hoverable:hover {
-  fill: steelblue;
+  fill: #7587A6;
 }
 
 #nanny-says {

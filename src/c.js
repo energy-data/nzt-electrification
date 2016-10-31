@@ -99,7 +99,7 @@ require([
     mode.setup(points);
     scenario.setup(points);
     summary.fetch();
-    points.setup()
+    points.setup();
 
     // These we do not want to rerun:
     //

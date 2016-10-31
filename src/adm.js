@@ -74,10 +74,12 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
 
     locked_adm2 = d['id'];
 
-    admin1 = d.properties['adm1'];
+    var admin1 = d.properties['adm1'];
 
-    _d.place['adm1']      = admin1 || undefined;
-    _d.place['adm1_name'] = d3.select(`#adm1-${ admin1 }`).datum().properties['name'] || undefined;
+    if (admin1)
+      place.set('adm1', admin1, d3.select(`#adm1-${ admin1 }`).datum().properties['name'], false)
+    else
+      plase.nullify('adm1');
 
     if (_u.get_query_param('load_points').to_boolean())
       points.load({
