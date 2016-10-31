@@ -89,10 +89,10 @@ define(['summary', 'nanny'], (summary, nanny) => {
   var set = (adm, id, name, push) => {
     if (push) history.pushState(null, null, _u.set_query_param(adm, id));
 
-    nanny.tell();
-
     _d.place[adm]             = id;
     _d.place[`${ adm }_name`] = name;
+
+    nanny.tell();
   };
 
   return {

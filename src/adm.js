@@ -1,4 +1,4 @@
-define(['d3', 'map', 'points', 'place'], (d3, map, points, place) => {
+define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny) => {
   var _container;
   var locked_adm2;
 
@@ -47,6 +47,8 @@ define(['d3', 'map', 'points', 'place'], (d3, map, points, place) => {
     place.set('adm1', d['id'], d.properties['name'], true);
     history.replaceState(null, null, _u.set_query_param('load_points', false));
 
+    nanny.tell();
+
     set_adm1_fills(d.id);
 
     map.resize_to({
@@ -66,7 +68,6 @@ define(['d3', 'map', 'points', 'place'], (d3, map, points, place) => {
     d3.select(`#adm2-label-${ d['id'] }`).attr('font-weight', 'bold');
 
     place.set('adm2', d['id'], d.properties['name'], true);
-
     history.replaceState(null, null, _u.set_query_param('load_points', true));
 
     reset_adm2(it);

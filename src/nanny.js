@@ -2,20 +2,25 @@ define(['jquery'], ($) => {
   var div = $('#nanny-says');
 
   var tell = () => {
-    var text;
+    var str;
 
     div.show();
 
     if (_u.get_query_param('adm2'))
-      text = "You can hover an area to see the details.";
+      str = `<p>You can hover an area to see the details.</p>`;
 
-    else if (_u.get_query_param('adm1'))
-      text = "Select a district by clicking on it on the map.";
+    else if (_u.get_query_param('adm1')) {
+      str = `<p>Select a district by clicking on it on the map.</p>`;
+
+      if (!_u.get_query_param('load_points').to_boolean())
+        str += `<br><a href="${ location.pathname }${ _u.set_query_param('load_points', true) }">Load all state's cells</a>`;
+
+    }
 
     else if (_u.get_query_param('iso3'))
-      text = "Select a state by clicking on it on the map.";
+      str = `<p>Select a state by clicking on it on the map.</p>`;
 
-    div.text(text);
+    div.html(str);
   };
 
   var hush = () => {

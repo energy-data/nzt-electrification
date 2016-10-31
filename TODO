@@ -26,13 +26,13 @@
   - [X] $loading callbacks seem iffy...
 
 
-* [6/10] Model
-  - [X] fix helps to match modes
-  - [X] make clear that they need to click on something
+* [7/10] Model
   - [ ] clearer state boundaries
-  - [ ] load state cells button
   - [ ] thicker doughnuts
   - [ ] Dimitrios: Dataset =>
+  - [X] load state cells button
+  - [X] fix helps to match modes
+  - [X] make clear that they need to click on something
   - [X] zoom in/out levels
   - [X] country summary
   - [X] details/export buttons inside doughnuts pane
