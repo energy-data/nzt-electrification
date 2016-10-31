@@ -1,6 +1,8 @@
 define(['d3'], (d3) => {
   var mss = '#mode-selector';
 
+  var previous_menu = null;
+
   var fill = () => {
     return (e, scn) => {
       var m = tm();
@@ -228,7 +230,26 @@ define(['d3'], (d3) => {
 
     $('.mode-selector-menu').on('click', (e) => {
       e.preventDefault();
-      $(e.target).closest('.with-dropdown').find('ul.dropdown').toggle();
+
+      var $target = $(e.target).closest('.with-dropdown');
+
+      $('.mode-selector-menu').each(function(i,e) {
+        var $e = $(e).closest('.with-dropdown');
+        var eid = $e.attr('id');
+
+        if (eid === $target.attr('id') ||
+            eid === previous_menu) return;
+
+        if (eid !== previous_menu)
+          $e.find('ul.dropdown').hide();
+
+        else
+          $e.find('ul.dropdown').show();
+      });
+
+      previous_menu = $target.attr('id');
+
+      $target.find('ul.dropdown').toggle();
     });
 
     var $mssa = $('.mode-selector-option');
