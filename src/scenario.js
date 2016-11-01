@@ -49,11 +49,12 @@ define(['summary'], (summary) => {
   };
 
   var init = () => {
-    var scn = _u.get_query_param('scenario') || 'n1';
+    var s = (_g.scenarios.contains(_u.get_query_param('scenario'))) ?
+        _u.get_query_param('scenario') : 'n1';
 
-    _d.scenario['scn'] = scn;
-    _d.scenario['diesel_p'] = scn[0];
-    _d.scenario['tier'] = scn[1];
+    _d.scenario['scn'] = s;
+    _d.scenario['diesel_p'] = s[0];
+    _d.scenario['tier'] = s[1];
   };
 
   var clear_selector = () => {

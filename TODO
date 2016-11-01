@@ -15,11 +15,11 @@
   - [X] contrast of text, icons, hovering
 
 
-* [5/9] Code
+* [6/9] Code
   - [ ] dump jsons
   - [ ] points: hydro
   - [ ] lcsa's colouring from min..max from the point collection
-  - [ ] scenario: init from url params (shareable links)
+  - [X] scenario: init from url params (shareable links)
   - [X] cleanup this indicators/breakdown looping
   - [X] show scale gradients
   - [X] there seems to be a double call to the api on initial run
