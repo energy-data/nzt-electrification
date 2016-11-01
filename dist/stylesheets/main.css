@@ -48,6 +48,7 @@ td {
 a {
   cursor: pointer;
   display: block;
+  /* color: #7587A6; */
   color: #4d4d4d;
   text-decoration: none;
 }
@@ -83,12 +84,20 @@ a:active, a.active {
   position: relative;
 }
 
+.tall {
+  height: 100%;
+}
+
 .left {
   text-align: left;
 }
 
 .right {
   text-align: right;
+}
+
+.float-left {
+  float: left;
 }
 
 .float-right {

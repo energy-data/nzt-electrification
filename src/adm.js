@@ -43,7 +43,6 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     reset_adm2(null);
 
     place.nullify('adm2');
-
     place.set('adm1', d['id'], d.properties['name'], true);
     history.replaceState(null, null, _u.set_query_param('load_points', false));
 

@@ -89,8 +89,12 @@ require([
         (d3.select('#summary-info').node().clientHeight +
          d3.select('#navbar').node().clientHeight);
 
+    var width = window.innerWidth -
+        (knob.total_width +
+         d3.select('#point-info').node().clientWidth);
+
     _svg
-      .attr('width',  d3.select('#map-container').node().clientWidth)
+      .attr('width',  width)
       .attr('height', height);
 
     // Setup modules:

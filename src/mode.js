@@ -25,10 +25,10 @@ define(['d3'], (d3) => {
     $container.html("");
 
     if (['technology', 'urban-rural'].contains(m['type'])) {
-      $container.hide();
+      $container.addClass('hidden');
       return;
     } else
-      $container.show();
+      $container.removeClass('hidden');
 
     console.log(m);
 

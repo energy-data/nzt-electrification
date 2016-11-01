@@ -19,22 +19,20 @@ html {
 }
 
 #navbar {
+  color: #f1f1f1;
   background-color: #222222;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)!important;
   display: inline-block;
-
+  padding: 10px;
   z-index: 1000;
-
-  color: #f1f1f1;
 }
 
-#navbar .col > a {
-  padding: 1em 0;
-  font-size: 1em;
+#adm-names a {
+  padding: 10px 0 15px 0;
 }
 
 #point-info {
-  width: 47em !important;
+  width: 50em !important;
 
   font-size: 0.6em;
   padding: 10px;
@@ -87,13 +85,6 @@ html {
 
   padding: 10px;
   font-size: 0.6em;
-}
-
-#summary-info a[data="adm1_name"],
-#summary-info a[data="adm2_name"] {
-  font-size: 1.3em !important;
-  cursor: pointer;
-  padding: 10px;
 }
 
 #controls {

@@ -27,21 +27,9 @@
   - [X] $loading callbacks seem iffy...
 
 
-* [8/9] Model
-  - [ ] thicker doughnuts
-  - [X] clearer state boundaries
-  - [X] load state cells button
-  - [X] fix helps to match modes
-  - [X] make clear that they need to click on something
-  - [X] zoom in/out levels
-  - [X] country summary
-  - [X] details/export buttons inside doughnuts pane
-  - [X] leave 2 last dataset options open
-
-
-* [0/10] Index
+* [1/10] Index
   - [ ] percentages
-  - [ ] fork me smaller
+  - [X] github fork me smaller
   - [ ] larger font
   - [ ] explore Nigeria MORE clickable (bottom and "explore model")
   - [ ] replace access to electricity pies with numbers
@@ -50,6 +38,18 @@
   - [ ] pluck-out ceros from electricity generation
   - [ ] projection without the model?
   - [ ] country/energy-sector division
+
+
+* [9/9] Model
+  - [X] thicker doughnuts
+  - [X] clearer state boundaries
+  - [X] load state cells button
+  - [X] fix helps to match modes
+  - [X] make clear that they need to click on something
+  - [X] zoom in/out levels
+  - [X] country summary
+  - [X] details/export buttons inside doughnuts pane
+  - [X] leave 2 last dataset options open
 
 
 * DONE Archive

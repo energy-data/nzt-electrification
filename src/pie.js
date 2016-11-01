@@ -8,7 +8,7 @@ define(['d3'], (d3) => {
         .sort(null);
 
     var arc = d3.arc()
-        .innerRadius(radius - (radius/4.5))
+        .innerRadius(radius - (radius/4))
         .outerRadius(radius - (radius/15));
 
     var container = d3.select(container);

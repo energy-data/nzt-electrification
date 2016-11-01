@@ -3,6 +3,8 @@ define(['d3'], (d3) => {
 
   var svg = null;
 
+  var total_width = 250;
+
   var width = 0;
   var height = 0;
 
@@ -80,8 +82,6 @@ define(['d3'], (d3) => {
     tier = _d.scenario['tier'];
 
     kc = d3.select('#knobs-container');
-
-    var total_width = 250;
 
     width  = total_width - 60;
     height = total_width;
@@ -293,6 +293,7 @@ define(['d3'], (d3) => {
   };
 
   return {
-    init: init
+    init: init,
+    total_width: total_width
   };
 });

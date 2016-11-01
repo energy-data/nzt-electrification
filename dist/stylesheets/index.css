@@ -5,8 +5,20 @@ body {
   color: #737373;
 }
 
-.tall {
-  height: 100%;
+#explore-link { }
+
+#explore-link a {
+  float: right;
+  margin-right: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #4C5D7B;
+  color: white;
+  background-color: #7587A6 !important;
+}
+
+#explore-link a:hover {
+  background-color: #677794 !important;
 }
 
 h2, h3, h4 {

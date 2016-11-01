@@ -21,17 +21,9 @@
   <body>
     <div id="navbar"
          class="pane row center">
-      <div class="col c3 clickable">
-        <a href="/">Back to countries</a>
+      <div class="row col c12 clickable center">
+        Universal Access to Electricity
       </div>
-
-      <div class="col c6 clickable"
-           help-data="adm0_name">
-        Universal Access to Electricity - <a style="display: inline-block !important"
-                                             data="adm0_name" href="#"></a>
-      </div>
-
-      <div class="col c3">&nbsp;</div>
     </div>
 
     <div class="row">
@@ -57,12 +49,17 @@
       <div class="non-controls col-flex">
         <div class="row col">
           <div class="col-flex">
-            <div class="row">
-              <div class="col c6 clickable">
+            <div id="adm-names"
+                 class="row">
+              <div class="col c4 clickable">
+                <a data="adm0_name">&nbsp;</a>
+              </div>
+
+              <div class="col c4 clickable">
                 <a data="adm1_name">&nbsp;</a>
               </div>
 
-              <div class="col c6 clickable">
+              <div class="col c4 clickable">
                 <a data="adm2_name">&nbsp;</a>
               </div>
             </div>
@@ -79,7 +76,8 @@
                 </a>
               </div>
 
-              <div id="scale-container"></div>
+              <div id="scale-container"
+                   class="hidden"></div>
 
               <svg id="svg"></svg>
             </div>
@@ -119,6 +117,30 @@
           </div>
 
           <div class="pane col-flex">
+            <div class="row center">
+              <div class="col c3">
+                <div id="toggle-help" class="clickable">
+                  <a>
+                    <i class="material-icons">help_outline</i>
+                    <br />
+                    <span>help</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col c3">
+                <div class="export-points clickable">
+                  <a>
+                    <i class="material-icons">location_searching</i>
+                    <br />
+                    <span>export</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
             <div class="row relative">
               <div id="nanny-says">Now do...</div>
 
@@ -247,30 +269,6 @@
                 <!--   </td> -->
                 <!-- </tr> -->
               </table>
-            </div>
-
-            <hr />
-
-            <div class="row center">
-              <div class="col c3">
-                <div id="toggle-help" class="clickable">
-                  <a>
-                    <i class="material-icons">help_outline</i>
-                    <br />
-                    <span>help</span>
-                  </a>
-                </div>
-              </div>
-
-              <div class="col c3">
-                <div class="export-points clickable">
-                  <a>
-                    <i class="material-icons">location_searching</i>
-                    <br />
-                    <span>export</span>
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -66,10 +66,7 @@ define(['_d', 'd3', 'pie'], (_d, d3, pie) => {
       projection_breakdown_graph;
 
   var explore_link = (iso3) => {
-    var name = overviews[iso3]['indicators']['Country Name'];
-
-    $('#explore-link').html(`Explore ${ name } &nbsp; <i class="material-icons">arrow_forward</i>`);
-    $('#explore-link').closest('a').attr('href', `/c.html?iso3=${ iso3 }`);
+    $('#explore-link').find('a').attr('href', `/c.html?iso3=${ iso3 }`);
   };
 
   var population_graph = (iso3) => {
