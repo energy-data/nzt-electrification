@@ -2,49 +2,8 @@ html {
   overflow: hidden;
 }
 
-svg#svg {
-  width: 100%;
-  background-color: #d7d5d5;
-}
-
 #home {
   font-size: x-large;
-}
-
-path.adm {
-  stroke-width: 0.01;
-  transition: fill .4s ease, opacity .4s ease;
-}
-
-.adm-label {
-  text-anchor: middle;
-  pointer-events: none;
-  stroke: none;
-}
-
-.adm-label.adm1 {
-  fill: #666666;
-}
-
-.adm-label.adm2 {
-  fill: #424242;
-}
-
-.planned {
-  stroke-dasharray: 0.07;
-}
-
-path.adm1 {
-  fill: #e1e1e1;
-}
-
-path.adm2 {
-  stroke: #ACBDD9;
-  fill: white;
-}
-
-path.adm1:hover, path.adm2.hoverable:hover {
-  fill: #7587A6;
 }
 
 #nanny-says {

@@ -1,8 +1,9 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [8/10] UI/UX
+* [8/11] UI/UX
   - [ ] landing
+  - [ ] Dimitrios: Dataset =>
   - [ ] population/lcoe colours
   - [X] github link
   - [X] sort mode groups
@@ -26,10 +27,9 @@
   - [X] $loading callbacks seem iffy...
 
 
-* [7/10] Model
-  - [ ] clearer state boundaries
+* [8/9] Model
   - [ ] thicker doughnuts
-  - [ ] Dimitrios: Dataset =>
+  - [X] clearer state boundaries
   - [X] load state cells button
   - [X] fix helps to match modes
   - [X] make clear that they need to click on something

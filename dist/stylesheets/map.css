@@ -1,0 +1,41 @@
+svg#svg {
+  width: 100%;
+  background-color: #d7d5d5;
+}
+
+path.adm {
+  stroke-width: 0.01;
+  transition: fill .4s ease, opacity .4s ease;
+}
+
+path.adm1 {
+  fill: #e1e1e1;
+}
+
+path.adm2 {
+  stroke: #ACBDD9;
+  fill: white;
+}
+
+path.adm1:hover,
+path.adm2.hoverable:hover {
+  fill: #7587A6;
+}
+
+.adm-label {
+  text-anchor: middle;
+  pointer-events: none;
+  text-shadow: -1px 0 #f1f1f1, 0 1px #f1f1f1, 1px 0 #f1f1f1, 0 -1px #f1f1f1;
+  stroke: none;
+  fill: #595454;
+}
+
+.adm-label.adm1 {
+  font-weight: bold;
+}
+
+.adm-label.adm2 { }
+
+.planned {
+  stroke-dasharray: 0.07;
+}
