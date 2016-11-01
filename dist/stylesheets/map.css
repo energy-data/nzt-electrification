@@ -56,7 +56,7 @@ path.adm2.hoverable:hover {
 #scale-container {
   box-sizing: content-box;
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   color: white;
   font-size: xx-small;
   right: 0;

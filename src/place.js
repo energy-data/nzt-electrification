@@ -6,10 +6,6 @@ define(['summary', 'nanny'], (summary, nanny) => {
         if (typeof args[2] === 'number') {
           if (!_d.place['adm1'] && !_d.place['adm2']) summary.fetch();
         }
-
-        else {
-          console.info(`adm0: ${ args[2] }...`);
-        }
       }
     ];
 
@@ -20,9 +16,6 @@ define(['summary', 'nanny'], (summary, nanny) => {
           if (!_d.place['adm2']) summary.fetch();
         }
 
-        else {
-          console.info(`adm1: ${ args[2] }`);
-        }
       }
     ];
 
@@ -33,39 +26,8 @@ define(['summary', 'nanny'], (summary, nanny) => {
           summary.fetch();
         }
 
-        else {
-          console.info(`adm2: ${ args[2] }`);
-        }
       }
     ];
-
-    _d.place['callback'] = [
-      'adm2_name',
-      (...args) => {
-        if (args[2] == false || args[2] == null || args[2] == undefined) {
-          $('#adm2-arrow').html("&nbsp;");
-        }
-
-        else {
-          $('#adm2-arrow').html("&rarr;");
-        }
-      }
-    ];
-
-    _d.place['callback'] = [
-      'adm1_name',
-      (...args) => {
-        if (args[2] == false || args[2] == null || args[2] == undefined) {
-          $('#adm2-arrow').html("&nbsp;");
-        }
-
-        else {
-          $('#adm2-arrow').html("&rarr;");
-        }
-      }
-    ];
-
-    _d.place['adm2_name'] = null;
   };
 
   var nullify = (adm) => {
