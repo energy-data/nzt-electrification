@@ -9,6 +9,8 @@ define(['summary'], (summary) => {
           throw Error(`This scenario is dodgy: ${ t }`);
 
         else {
+          history.pushState(null, null, _u.set_query_param('scenario', t));
+
           summary.fetch();
 
           if (['technology', 'lcsa'].indexOf(_d.mode['type']) > -1)
@@ -47,9 +49,11 @@ define(['summary'], (summary) => {
   };
 
   var init = () => {
-    _d.scenario['scn'] = 'n1';
-    _d.scenario['diesel_p'] = 'n';
-    _d.scenario['tier'] = 1;
+    var scn = _u.get_query_param('scenario') || 'n1';
+
+    _d.scenario['scn'] = scn;
+    _d.scenario['diesel_p'] = scn[0];
+    _d.scenario['tier'] = scn[1];
   };
 
   var clear_selector = () => {
