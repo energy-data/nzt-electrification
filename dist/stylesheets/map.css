@@ -39,3 +39,32 @@ path.adm2.hoverable:hover {
 .planned {
   stroke-dasharray: 0.07;
 }
+
+#zoom-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+}
+
+#zoom-buttons a {
+  padding: 10px;
+  line-height: 0;
+  color: white;
+}
+
+#scale-container {
+  box-sizing: content-box;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  font-size: xx-small;
+  right: 0;
+  width: 300px;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.7);
+}
+
+#scale {
+  background-color: white;
+}

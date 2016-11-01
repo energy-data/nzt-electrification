@@ -219,19 +219,6 @@ html {
   font-size: 1.3em;
 }
 
-#zoom-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.7);
-}
-
-#zoom-buttons a {
-  padding: 10px;
-  line-height: 0;
-  color: white;
-}
-
 .tier-label {
   cursor: pointer;
 }

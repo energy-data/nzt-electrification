@@ -19,16 +19,27 @@ define(['d3'], (d3) => {
   var scale = () => {
     var m = modes.find_p('type', _d.mode['type']);
 
-    var container = d3.select('#scale-container');
-    container.html("");
+    var container  = d3.select('#scale-container');
+    var $container = $('#scale-container');
 
-    if (['technology', 'urban-rural'].contains(m['type'])) return;
+    $container.html("");
 
-    var width = $('#scale-container').width();
+    if (['technology', 'urban-rural'].contains(m['type'])) {
+      $container.hide();
+      return;
+    } else
+      $container.show();
+
+    console.log(m);
+
+    _u.tmpl('#scale-min-max', '#scale-container', m['scale'][0], m['scale'][1], m['full']);
+
+    var width = $container.width();
 
     var svg = container.append('svg')
+        .attr('id', 'scale')
         .attr('width', width)
-        .attr('height', 30);
+        .attr('height', 7);
 
     var dummy  = {};
     dummy[m['param']] = m['scale'][0];
