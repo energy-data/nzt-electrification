@@ -13,9 +13,9 @@ define([], () => {
     'mode': `A <strong>mode</strong> represents on of several datasets in this model. The main one is technology. Every cell will represent it's data based on this mode.`,
     'technology': `<strong>Technology</strong> represents the least cost electrification option at each geographic cell for the selected scenario. <br />
                    This is the default mode.`,
-    'levelized_cost': `This mode represents the lowest levelized cost of generating electricity at each geographic cell for the selected scenario.`
-    'investment_cost': `This mode represents the investment needs in power capacity at each geographic cell for the selected scenario.`
-    'added_capacity': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario.`
+    'lcoe': `This mode represents the lowest levelized cost of generating electricity at each geographic cell for the selected scenario.`,
+    'ic': `This mode represents the investment needs in power capacity at each geographic cell for the selected scenario.`,
+    'nc': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario.`,
     'population': `This mode represents the projected population in 2030.`,
     'urban-rural': `This mode represents whether a geographic location is considered urban or rural.`,
     'ghi': `This mode represents the Global Horizontal Irradiance.`,
