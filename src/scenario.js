@@ -11,7 +11,7 @@ define(['summary'], (summary) => {
         else {
           history.pushState(null, null, _u.set_query_param('scenario', t));
 
-          summary.fetch();
+          summary.fetch({ adm1: _u.get_query_param('adm1'), adm2: _u.get_query_param('adm2') });
 
           if (['technology', 'lcsa'].indexOf(_d.mode['type']) > -1)
             $('.loading').fadeIn(points.draw);

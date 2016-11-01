@@ -3,29 +3,28 @@ define(['summary', 'nanny'], (summary, nanny) => {
     _d.place['callback'] = [
       'adm0_code',
       (...args) => {
-        if (typeof args[2] === 'number') {
-          if (!_d.place['adm1'] && !_d.place['adm2']) summary.fetch();
-        }
+        if (typeof args[2] === 'number')
+          if (!_d.place['adm1'] && !_d.place['adm2']) summary.fetch({ });
       }
     ];
 
     _d.place['callback'] = [
       'adm1',
       (...args) => {
-        if (typeof args[2] === 'number') {
-          if (!_d.place['adm2']) summary.fetch();
-        }
+        var t = args[2];
 
+        if (typeof t === 'number')
+          if (!_u.get_query_param('adm2')) summary.fetch({ adm1: t });
       }
     ];
 
     _d.place['callback'] = [
       'adm2',
       (...args) => {
-        if (typeof args[2] === 'number') {
-          summary.fetch();
-        }
+        var t = args[2];
 
+        if (typeof t === 'number')
+          summary.fetch({ adm2: t });
       }
     ];
   };

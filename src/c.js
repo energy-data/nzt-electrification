@@ -102,7 +102,7 @@ require([
     place.setup();
     mode.setup(points);
     scenario.setup(points);
-    summary.fetch();
+    summary.fetch({ adm1: admin1, adm2: admin2 });
     points.setup();
 
     // These we do not want to rerun:

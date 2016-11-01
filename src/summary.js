@@ -1,8 +1,8 @@
 define(['d3', 'pie'], (d3, pie) => {
-  var fetch = () => {
+  var fetch = (o) => {
     var adm_type = (() => {
-      if (_u.get_query_param('adm2')) return 'adm2';
-      else if (_u.get_query_param('adm1')) return 'adm1';
+      if (o['adm2']) return 'adm2';
+      else if (o['adm1']) return 'adm1';
       else return 'adm0';
     })();
 
@@ -16,7 +16,7 @@ define(['d3', 'pie'], (d3, pie) => {
         `&cc=eq.${ _d.place['adm0_code'] }` +
         `&scn=eq.${ _d.scenario['scn'] }`;
 
-    if (adm_type != 'adm0') url += `&adm=eq.${ _u.get_query_param(adm_type) }`;
+    if (adm_type != 'adm0') url += `&adm=eq.${ o[adm_type] }`;
 
     d3.queue()
       .defer(d3.json, url)

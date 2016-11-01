@@ -9,7 +9,7 @@ define(['d3', 'map', 'adm', 'points', 'summary', 'place', 'nanny'], (d3, map, ad
       history.replaceState(null, null, _u.set_query_param('load_points', false));
 
       nanny.tell();
-      summary.fetch();
+      summary.fetch({ });
 
       d3.selectAll('.adm2').style('display', 'none');
 
