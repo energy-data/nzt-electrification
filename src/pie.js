@@ -64,10 +64,14 @@ define(['d3'], (d3) => {
         .duration(750)
         .attrTween("d", tween);
 
-      if (inner_text)
+      if (typeof inner_text === "string")
         text.text(inner_text);
+
+      else if (typeof inner_text === "function")
+        text.text(inner_text(data, v));
+
       else
-        text.text(data[0][v].toFixed(2));
+        text.text("");
 
       try {
         var box = text.node().getBBox();
