@@ -43,8 +43,8 @@ onerror = function(msg, url, lineNo, columnNo, error) {
 };
 
 require([
-  '_u', '_g', '_d', 'scenario', 'd3', 'map',  'adm', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', 'nanny', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,    adm,   points,   summary,   place,   mode,   navbar,   controls,   knob,  nanny) => {
+   '_u', '_g', '_d', 'scenario', 'd3', 'map',  'adm', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', 'nanny', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,    adm,   points,   summary,   place,   mode,   navbar,   controls,   knob,   nanny) => {
   var rerun;
 
   var iso3 = _u.get_query_param('iso3');

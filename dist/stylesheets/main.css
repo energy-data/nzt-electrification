@@ -122,7 +122,7 @@ a:active, a.active {
   transition: all .3s ease !important;
 }
 
-.strong {
+.strong, .bold {
   font-weight: bold;
 }
 
@@ -130,7 +130,7 @@ a:active, a.active {
   display: none;
 }
 
-.monospace, .number {
+.monospace {
   font-family: Monaco, Consolas, monospace;
 }
 
@@ -170,11 +170,6 @@ a:active, a.active {
   animation: spin 2s linear infinite;
 }
 
-[data] {
-  color: #4d4d4d;
-  font-weight: bold;
-}
-
 .active {
   background-color: #7587A6;
   color: #f1f1f1 !important;
@@ -183,6 +178,7 @@ a:active, a.active {
 .small {
   font-size: smaller !important;
 }
+
 
 @media only screen and (max-width: 768px) {
   .no-mobile {
