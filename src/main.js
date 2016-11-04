@@ -49,6 +49,8 @@ require([
 
   var iso3 = _u.get_query_param('iso3');
 
+  if (!_g.countries.pluck_p('iso3').contains(iso3)) window.location.href = '/landing';
+
   var _svg = d3.select('svg#svg');
   var _container = d3.select('#container');
 
@@ -62,11 +64,11 @@ require([
   };
 
   var run = (...args) => {
-    var load_controls = args[7];
+    var load_controls = args[6];
 
     mode.init();
     scenario.init();
-    place.init(args[6], iso3);
+    place.init(iso3);
 
     adm.setup(
       _container,
@@ -174,18 +176,18 @@ require([
     map.behaviour();
   };
 
-  d3.queue(5)
+  d3.queue(6)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm1.json`)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm2.json`)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-existing-transmission-lines.json`)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-planned-transmission-lines.json`)
-    .defer(d3.json, `/${ _g.assets }/countries.json`)
 
-    .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission, countries) {
+    .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission) {
       if (error) _u.network_error();
       else {
         var args = arguments;
+
         (rerun = function(load_controls) { run.call(this, ...args, load_controls) })(true);
       }
     });

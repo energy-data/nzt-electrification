@@ -37,8 +37,8 @@ define(['summary', 'nanny'], (summary, nanny) => {
       history.pushState(null, null, _u.set_query_param(adm, null));
   };
 
-  var init = (countries, iso3) => {
-    var c = countries.find_p('iso3', iso3);
+  var init = (iso3) => {
+    var c = _g.countries.find_p('iso3', iso3);
 
     _d.place['adm0']      = c['iso3'];
     _d.place['adm0_name'] = c['name'];
