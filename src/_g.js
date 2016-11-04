@@ -54,7 +54,9 @@ define(['d3'], (d3) => {
       param: 'lc_',
       scale: [0, 1.15],
       fill: (g, scn, param, scale) => {
-        return `rgba(105, 70 ,50, ${ _u.l_scale(g[param + scn], scale) })`;
+        return d3.scaleLinear()
+          .domain(scale)
+          .range(["#006100", "#FF2200"])(g[param + scn])
       },
     }, {
       type: "ic",
@@ -64,7 +66,9 @@ define(['d3'], (d3) => {
       param: 'ic_',
       scale: [0, 100000],
       fill: (g, scn, param, scale) => {
-        return `rgba(105, 70 ,50, ${ _u.l_scale(g[param + scn], scale) })`;
+        return d3.scaleLinear()
+          .domain(scale)
+          .range(["#FAE9D4", "#AB4124"])(g[param + scn])
       },
     }, {
       type: "nc",
@@ -73,7 +77,11 @@ define(['d3'], (d3) => {
       group: "technology",
       param: 'nc',
       scale: [0, 1000],
-      fill: (g, scn, param, scale) => `rgba(0, 80, 255, ${ _u.l_scale(g[param], scale) })`,
+      fill: (g, scn, param, scale) => {
+        return d3.scaleLinear()
+          .domain(scale)
+          .range(["#FAE9D4", "#AB4124"])(g[param])
+      }
     }, {
       type: "population",
       full: "Population",
@@ -81,7 +89,11 @@ define(['d3'], (d3) => {
       group: "demographics",
       param: 'p_2030',
       scale: [0, 1000],
-      fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`,
+      fill: (g, scn, param, scale) => {
+        return d3.scaleLinear()
+          .domain(scale)
+          .range(["#D8F2ED", "#154F4A"])(g[param])
+      },
       stroke: "lightgray",
       stroke_width: 0.001
     }, {
@@ -119,7 +131,11 @@ define(['d3'], (d3) => {
       group: "resources",
       param: 'hp',
       scale: [0, 10000000],
-      fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
+      fill: (g, scn, param, scale) => {
+        return d3.scaleLinear()
+          .domain(scale)
+          .range(["#B6EDF0", "#090991"])(g[param])
+      }
     }, {
       type: "rd",
       full: "Road Distance",
@@ -127,14 +143,18 @@ define(['d3'], (d3) => {
       group: "infrastructure",
       param: 'rd',
       scale: [0, 200],
-      fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
+      fill: (g, scn, param, scale) => {
+        return d3.scaleLinear()
+          .domain(scale)
+          .range(["#006100", "#FF2200"])(g[param])
+      },
     }, {
       type: "gd_c",
       full: "Current GD",
       icon: "timeline",
       group: "infrastructure",
       param: 'gd_c',
-      scale: [0, 450],
+      scale: [0, 100],
       fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
     }, {
       type: "gd_p",
@@ -142,7 +162,7 @@ define(['d3'], (d3) => {
       icon: "timeline",
       group: "infrastructure",
       param: 'gd_p',
-      scale: [0, 450],
+      scale: [0, 100],
       fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
     }, {
       type: "lcsa",
@@ -152,11 +172,9 @@ define(['d3'], (d3) => {
       param: 'lcsa_',
       scale: [0.35, 1.85],
       fill: (g) => {
-        var f = d3.scaleLinear()
-            .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
-            .range([0, 1]);
-
-        return `rgba(105, 70 ,50, ${ f(g['lcsa_' + _d.scenario['diesel_p']]) })`;
+        return d3.scaleLinear()
+          .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
+          .range(["#006100", "#FF2200"])(g['lcsa_' + _d.scenario['diesel_p']]);
       },
       stroke: "rgba(105, 70 ,50, 0.2)",
       stroke_width: 0.001
