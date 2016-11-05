@@ -1,10 +1,10 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [8/11] UI/UX
+* [9/11] UI/UX
   - [ ] landing
   - [ ] Dimitrios: Dataset =>
-  - [ ] population/lcoe colours
+  - [X] population/lcoe colours
   - [X] github link
   - [X] sort mode groups
   - [X] points: technology colour palette (+ locked point)
@@ -15,10 +15,10 @@
   - [X] contrast of text, icons, hovering
 
 
-* [6/9] Code
+* [7/9] Code
   - [ ] dump jsons
   - [ ] points: hydro
-  - [ ] lcsa's colouring from min..max from the point collection
+  - [X] lcsa's colouring from min..max from the point collection
   - [X] scenario: init from url params (shareable links)
   - [X] cleanup this indicators/breakdown looping
   - [X] show scale gradients
@@ -27,17 +27,17 @@
   - [X] $loading callbacks seem iffy...
 
 
-* [1/10] Index
-  - [ ] percentages
+* [10/10] Index
+  - [X] percentages
   - [X] github fork me smaller
-  - [ ] larger font
-  - [ ] explore Nigeria MORE clickable (bottom and "explore model")
-  - [ ] replace access to electricity pies with numbers
-  - [ ] clearer legends of current - 2030
-  - [ ] headers... headers everywhere
-  - [ ] pluck-out ceros from electricity generation
-  - [ ] projection without the model?
-  - [ ] country/energy-sector division
+  - [X] larger font
+  - [X] explore Nigeria MORE clickable (bottom and "explore model")
+  - [X] replace access to electricity pies with numbers
+  - [X] clearer legends of current - 2030
+  - [X] headers... headers everywhere
+  - [X] pluck-out ceros from electricity generation
+  - [X] projection without the model?
+  - [X] country/energy-sector division
 
 
 * [9/9] Model

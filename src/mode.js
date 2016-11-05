@@ -30,8 +30,6 @@ define(['d3'], (d3) => {
     } else
       $container.removeClass('hidden');
 
-    console.log(m);
-
     _u.tmpl('#scale-min-max', '#scale-container', m['scale'][0], m['scale'][1], m['full']);
 
     var width = $container.width();
@@ -82,12 +80,12 @@ define(['d3'], (d3) => {
         _u.get_query_param('mode') : 'technology';
 
     _d.mode['type'] = m;
+
+    $(`${ mss } a[bind='${ _d.mode['type'] }']`).addClass('active');
   };
 
   var setup = (points) => {
     load_selector();
-
-    $(`${ mss } a[bind='${ _d.mode['type'] }']`).addClass('active');
 
     _d.mode['callback'] = [
       'type',

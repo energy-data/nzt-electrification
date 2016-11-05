@@ -74,6 +74,8 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
       return;
     }
 
+    adm.reset_adm2();
+
     locked = null;
 
     var scn = _d.scenario['scn'];
@@ -85,11 +87,9 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
     stroke = mode.stroke();
     stroke_width = mode.stroke_width();
 
-    mode.scale();
-
     var circles = "";
 
-    var radius = 0.012
+    var radius = 0.012;
 
     var area = (_d.summary['results'].reduce((x,c) => { return x + c['pts'] }, 0));
 

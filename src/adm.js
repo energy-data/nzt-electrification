@@ -33,7 +33,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
       else
         elem
         .style('visibility', 'visible')
-        .attr('fill', 'white')
+        .attr('fill', '#e1e1e1')
         .attr('stroke', '#ccc');
     });
   };
@@ -80,11 +80,12 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     else
       plase.nullify('adm1');
 
-    if (_u.get_query_param('load_points').to_boolean())
+    if (_u.get_query_param('load_points').to_boolean()) {
       points.load({
         adm: it.id.match(/adm(.*)-(\d*)?/),
         svg_box: it.getBBox()
       });
+    }
 
     map.resize_to({
       node: it,
@@ -101,7 +102,10 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
   };
 
   var reset_adm2 = (target) => {
-    d3.selectAll('path.adm2').classed('hoverable', true);
+    d3.selectAll('path.adm2')
+      .classed('hoverable', true)
+      .attr('fill', 'white');
+
     locked_adm2 = null;
 
     var a2 = parseInt(_u.get_query_param('adm2'));

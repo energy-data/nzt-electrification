@@ -66,7 +66,6 @@ require([
   var run = (...args) => {
     var load_controls = args[6];
 
-    mode.init();
     scenario.init();
     place.init(iso3);
 
@@ -106,6 +105,8 @@ require([
     scenario.setup(points);
     summary.fetch({ adm1: admin1, adm2: admin2 });
     points.setup();
+
+    mode.init();
 
     // These we do not want to rerun:
     //

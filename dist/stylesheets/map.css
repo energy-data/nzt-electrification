@@ -8,13 +8,8 @@ path.adm {
   transition: fill .4s ease, opacity .4s ease;
 }
 
-path.adm1 {
-  fill: #e1e1e1;
-}
-
 path.adm2 {
   stroke: #ACBDD9;
-  fill: white;
 }
 
 path.adm1:hover,

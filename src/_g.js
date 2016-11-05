@@ -183,19 +183,19 @@ define(['d3'], (d3) => {
     bound_objects: [{
       name: 'place',
       scope: null
-    } , {
+    }, {
       name: 'point',
       scope: 'point-info'
-    } , {
+    }, {
       name: 'scenario',
       scope: null
-    } , {
+    }, {
       name: 'summary',
       scope: 'summary-info'
-    } , {
+    }, {
       name: 'point_collection',
       scope: null
-    } , {
+    }, {
       name: 'mode',
       scope: null
     }, {
