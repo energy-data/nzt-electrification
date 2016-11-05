@@ -64,7 +64,13 @@ require([
   };
 
   var run = (...args) => {
-    var load_controls = args[6];
+    var poverty_data  = args[6];
+    var load_controls = args[7];
+
+    // TODO: window... :(
+    //
+    window.poverty_data = poverty_data;
+    window.adm = adm;
 
     scenario.init();
     place.init(iso3);
@@ -160,12 +166,19 @@ require([
 
     // Focus target adm
     //
-    if (load_points && (admin1 || admin2)) {
+    if (load_points && _d.mode['points'] && (admin1 || admin2)) {
       points.load({
         adm: target.node().id.match(/adm(.*)-(\d*)?/),
         svg_box: target.node().getBBox()
       });
-    } else $('.loading').fadeOut();
+    }
+    else if (!load_points && !_d.mode['points']) {
+      _d.mode['draw'](adm, poverty_data);
+      $('.loading').fadeOut();
+    }
+    else {
+      $('.loading').fadeOut();
+    }
 
     map.resize_to({
       node: target.node(),
@@ -183,8 +196,9 @@ require([
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm2.json`)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-existing-transmission-lines.json`)
     .defer(d3.json, `/${ _g.assets }/${ iso3 }-planned-transmission-lines.json`)
+    .defer(d3.json, `/${ _g.assets }/${ iso3 }-poverty.json`)
 
-    .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission) {
+    .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission, poverty_data) {
       if (error) _u.network_error();
       else {
         var args = arguments;

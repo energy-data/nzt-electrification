@@ -12,7 +12,7 @@ define(['jquery'], ($) => {
     else if (_u.get_query_param('adm1')) {
       str = `<p>Select a district by clicking on it on the map.</p>`;
 
-      if (!_u.get_query_param('load_points').to_boolean())
+      if (_d.mode['points'])
         str += `<br><a style="color: #7587A6;" href="${ location.pathname }${ _u.set_query_param('load_points', true) }">Load all state's cells</a>`;
 
     }

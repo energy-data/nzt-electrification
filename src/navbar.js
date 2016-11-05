@@ -16,6 +16,9 @@ define(['d3', 'map', 'adm', 'points', 'summary', 'place', 'nanny'], (d3, map, ad
       points.clear(true);
       adm.set_adm1_fills(0);
 
+      if (!_d.mode['points'])
+        _d.mode['draw'](window.adm, window.poverty_data);
+
       map.resize_to({
         node: d3.select('#paths-adm1').node(),
         duration: 600

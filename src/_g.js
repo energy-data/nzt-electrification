@@ -45,6 +45,7 @@ define(['d3'], (d3) => {
       full: "Technology",
       icon: "blur_circular",
       group: "technology",
+      points: true,
       fill: (e, scn) => _g.technologies.find_p('tech', e[scn])['color']
     }, {
       type: "lcoe",
@@ -53,6 +54,7 @@ define(['d3'], (d3) => {
       group: "technology",
       param: 'lc_',
       scale: [0, 1.15],
+      points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
@@ -65,6 +67,7 @@ define(['d3'], (d3) => {
       group: "technology",
       param: 'ic_',
       scale: [0, 100000],
+      points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
@@ -77,6 +80,7 @@ define(['d3'], (d3) => {
       group: "technology",
       param: 'nc',
       scale: [0, 1000],
+      points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
@@ -88,6 +92,7 @@ define(['d3'], (d3) => {
       icon: "people",
       group: "demographics",
       param: 'p_2030',
+      points: true,
       scale: [0, 1000],
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
@@ -101,7 +106,44 @@ define(['d3'], (d3) => {
       full: "Urban/Rural",
       icon: "nature_people",
       group: "demographics",
+      points: true,
       fill: (e) => e['u'] ? '#F69C55' : '#B4EEB4'
+    }, {
+      type: "poverty",
+      full: "Poverty",
+      icon: "report_problem",
+      group: "demographics",
+      param: 'poverty',
+      scale: [0, 1],
+      points: false,
+      draw: () => {
+        if (_u.get_query_param('adm1'))
+          adm.set_adm_fills(poverty_data.filter_p('adm1', +_u.get_query_param('adm1')), 'adm2', 'poverty');
+
+        if (!_u.get_query_param('adm1') && !_u.get_query_param('adm2')) {
+          var group = poverty_data.group_p('adm1');
+          var keys = Object.keys(group);
+          var i;
+
+          adm0_data = [];
+
+          for (i = 0; i < keys.length; i++) {
+            adm0_data.push({
+              adm1: +keys[i],
+              poverty: group[keys[i]].reduce((a,b) => { return b['poverty'] + a }, 0) / group[keys[i]].length
+            });
+          }
+
+          adm.set_adm_fills(adm0_data, 'adm1', 'poverty');
+        }
+
+        $('.loading').fadeOut();
+      },
+      fill: (e, scn, param, scale) => {
+        return d3.scaleLinear()
+          .domain([0, 1])
+          .range(["yellow", "red"])(e[param])
+      }
     }, {
       type: "ghi",
       full: "GHI",
@@ -109,6 +151,7 @@ define(['d3'], (d3) => {
       group: "resources",
       param: 'ghi',
       scale: [1979, 2500],
+      points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
@@ -121,6 +164,7 @@ define(['d3'], (d3) => {
       group: "resources",
       param: 'w_cf',
       scale: [0, 0.4],
+      points: true,
       fill: (g, scn, param, scale) => `rgba(0, 80, 255, ${ _u.l_scale(g[param], scale) })`,
       stroke: "rgba(0, 80, 255, 0.4)",
       stroke_width: 0.001
@@ -131,6 +175,7 @@ define(['d3'], (d3) => {
       group: "resources",
       param: 'hp',
       scale: [0, 10000000],
+      points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
@@ -143,6 +188,7 @@ define(['d3'], (d3) => {
       group: "infrastructure",
       param: 'rd',
       scale: [0, 200],
+      points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
@@ -155,6 +201,7 @@ define(['d3'], (d3) => {
       group: "infrastructure",
       param: 'gd_c',
       scale: [0, 100],
+      points: true,
       fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
     }, {
       type: "gd_p",
@@ -163,6 +210,7 @@ define(['d3'], (d3) => {
       group: "infrastructure",
       param: 'gd_p',
       scale: [0, 100],
+      points: true,
       fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
     }, {
       type: "lcsa",
@@ -171,6 +219,7 @@ define(['d3'], (d3) => {
       group: "infrastructure",
       param: 'lcsa_',
       scale: [0.35, 1.85],
+      points: true,
       fill: (g) => {
         return d3.scaleLinear()
           .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])

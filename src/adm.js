@@ -38,6 +38,24 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     });
   };
 
+  var set_adm_fills = (data, a, value) => {
+    var fill = _g.modes.find_p('type', value)['fill'];
+
+    d3.selectAll(`path.${ a }`).each(function(e) {
+      var elem = d3.select(this);
+      var target = data.find_p(a, e.id);
+
+      if (target)
+        elem
+          .style('visibility', 'visible')
+          .attr('fill', (d) => fill(target, null, value, null))
+          .attr('stroke', '#ccc');
+
+      else
+        return;
+    });
+  };
+
   var load_adm1 = (it, d) => {
     points.clear(true);
     reset_adm2(null);
@@ -49,6 +67,9 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     nanny.tell();
 
     set_adm1_fills(d.id);
+
+    if (!_d.mode['points'])
+      _d.mode['draw'](window.adm, window.poverty_data);
 
     map.resize_to({
       node: it,
@@ -67,9 +88,11 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     d3.select(`#adm2-label-${ d['id'] }`).attr('font-weight', 'bold');
 
     place.set('adm2', d['id'], d.properties['name'], true);
-    history.replaceState(null, null, _u.set_query_param('load_points', true));
 
-    reset_adm2(it);
+    if (_d.mode['points']) {
+      history.replaceState(null, null, _u.set_query_param('load_points', true));
+      reset_adm2(it);
+    }
 
     locked_adm2 = d['id'];
 
@@ -153,11 +176,13 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
   return {
     reset_adm2: reset_adm2,
     set_adm1_fills: set_adm1_fills,
+    set_adm_fills: set_adm_fills,
     setup: setup,
     init: init,
     target: target,
     load_adm: load_adm,
     load_adm1: load_adm1,
+    reset_adm2: reset_adm2,
     load_adm2: load_adm2
   }
 });

@@ -76,10 +76,11 @@ define(['d3'], (d3) => {
   };
 
   var init = () => {
-    var m = (_g.modes.pluck_p('type').contains(_u.get_query_param('mode'))) ?
-        _u.get_query_param('mode') : 'technology';
+    var m = _g.modes.find_p('type', _u.get_query_param('mode'));
 
-    _d.mode['type'] = m;
+    if (!m) m = _g.modes.find_p('type', 'technology');
+
+    _d.mode.merge_with(m);
 
     $(`${ mss } a[bind='${ _d.mode['type'] }']`).addClass('active');
   };
@@ -91,14 +92,29 @@ define(['d3'], (d3) => {
       'type',
       (...args) => {
         var t = args[2];
+        var m = modes.find_p('type', t);
 
-        if (modes.map((m) => m['type']).indexOf(t) < 0)
+        var callback;
+
+        if (!m)
           throw Error(`This mode is dodgy ${ t }`);
 
         else {
           history.pushState(null, null, _u.set_query_param('mode', t));
 
-          $('.loading').fadeIn(points.draw);
+          if (m['points']) {
+            callback = points.draw;
+
+          } else {
+            history.pushState(null, null, _u.set_query_param('load_points', false));
+            points.clear(true);
+
+            callback = () => m['draw']();
+          }
+
+          scale();
+
+          $('.loading').fadeIn(callback);
         }
       }];
   };
@@ -158,7 +174,7 @@ define(['d3'], (d3) => {
 
       $mssa.removeClass('active');
 
-      _d.mode['type'] = $this.attr('bind');
+      _d.mode.merge_with(_g.modes.find_p('type', $this.attr('bind')));
 
       $this.addClass('active');
     });
