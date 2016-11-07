@@ -130,7 +130,8 @@ define(['d3'], (d3) => {
           for (i = 0; i < keys.length; i++) {
             adm0_data.push({
               adm1: +keys[i],
-              poverty: group[keys[i]].reduce((a,b) => { return b['poverty'] + a }, 0) / group[keys[i]].length
+              poverty: group[keys[i]].reduce((a,b) => { return (b['poverty'] * b['population']) + a }, 0) /
+                group[keys[i]].reduce((a,b) => { return b['population'] + a }, 0)
             });
           }
 
