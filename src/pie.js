@@ -1,15 +1,15 @@
 define(['d3'], (d3) => {
-  var chart = (container, data, radius, colors, inner_text, create = true) => {
-    var width =  radius * 2,
-        height = radius * 2;
+  var chart = (container, data, outer, inner, colors, inner_text, create = true) => {
+    var width =  outer * 2,
+        height = outer * 2;
 
     var pie = d3.pie()
         .value((d) => d[0])
         .sort(null);
 
     var arc = d3.arc()
-        .innerRadius(radius - (radius/4))
-        .outerRadius(radius - (radius/15));
+        .innerRadius(((inner === null || inner === undefined || inner === false) ? outer - (outer/4) : inner))
+        .outerRadius(outer - (outer/15));
 
     var container = d3.select(container);
 
@@ -33,7 +33,7 @@ define(['d3'], (d3) => {
 
     else {
       g = svg.append("g")
-        .attr("transform", `translate(${ radius }, ${ radius })`);
+        .attr("transform", `translate(${ outer }, ${ outer })`);
     }
 
     var path = g
@@ -47,9 +47,8 @@ define(['d3'], (d3) => {
 
     var text = svg.append("text")
         .attr("dy", ".35em")
-        .attr("font-size", `${ radius / 47 }em`)
-        .attr("fill", "#424242")
-        .attr("class", "monospace")
+        .attr("font-size", `${ outer / 47 }em`)
+        .attr("class", "monospace pie-center")
 
     function change(v) {
       var t = "";
@@ -76,8 +75,8 @@ define(['d3'], (d3) => {
       try {
         var box = text.node().getBBox();
 
-        var x = (radius - (box['width']  / 2));
-        var y = (radius + (box['height'] / 10));
+        var x = (outer - (box['width']  / 2));
+        var y = (outer + (box['height'] / 10));
 
         text
           .attr('transform', `translate(${ x }, ${ y })`);

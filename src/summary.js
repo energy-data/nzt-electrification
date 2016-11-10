@@ -71,7 +71,7 @@ define(['d3', 'pie'], (d3, pie) => {
       var chart = pie.chart(
         `#${ k }`,
         obj.map((r) => { return [0, (r[k]/totals[k]) * 100] }),
-        50, filtered_techs.map((t) => t['color']).reverse(), " "
+        50, null, filtered_techs.map((t) => t['color']).reverse(), " "
       );
 
       chart.change(1);
