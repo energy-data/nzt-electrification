@@ -27,15 +27,26 @@ html {
   z-index: 1000;
 }
 
-#adm-names a {
-  padding: 10px 0 15px 0;
+#navbar i {
+  font-size: 22px;
+  margin-right: 7px;
+}
+
+#navbar a {
+  color: #f1f1f1 !important;
+  display: inline-block;
+  margin: auto 20px;
 }
 
 #point-info {
-  width: 50em !important;
+  width: 38em !important;
 
-  font-size: 0.6em;
-  padding: 10px;
+  font-size: 0.8em;
+  padding: 0 10px;
+}
+
+#point-info table {
+  font-size: 0.8em;
 }
 
 #point-info td:first-child {
