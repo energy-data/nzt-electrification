@@ -1,4 +1,4 @@
-define(['d3'], (d3) => {
+define(['d3', 'nanny'], (d3, nanny) => {
   var modes = _g.modes;
 
   var mss = '#mode-selector';
@@ -112,9 +112,7 @@ define(['d3'], (d3) => {
             callback = () => m['draw']();
           }
 
-          scale();
-
-          $('.loading').fadeIn(callback);
+          $('.loading').fadeIn(() => { callback(); nanny.tell(); scale(); });
         }
       }];
   };

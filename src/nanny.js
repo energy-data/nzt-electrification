@@ -6,11 +6,16 @@ define(['jquery'], ($) => {
 
     div.show();
 
-    if (_u.get_query_param('adm2'))
-      str = `<p>You can hover an area to see the details.</p>`;
+    if (_u.get_query_param('adm2')) {
+      if (_d.mode['points'])
+        str = `You can hover an area to see the details.`;
+
+      else
+        str = `You can select another colouring dataset/mode.`;
+    }
 
     else if (_u.get_query_param('adm1')) {
-      str = `<p>Select a district by clicking on it on the map.</p>`;
+      str = `Select a district by clicking on it on the map.`;
 
       if (_d.mode['points'])
         str += `<br><a style="color: #7587A6;" href="${ location.pathname }${ _u.set_query_param('load_points', true) }">Load all state's cells</a>`;
@@ -18,9 +23,9 @@ define(['jquery'], ($) => {
     }
 
     else if (_u.get_query_param('iso3'))
-      str = `<p>Select a state by clicking on it on the map.</p>`;
+      str = `Select a state by clicking on it on the map.`;
 
-    div.html(str);
+    div.html(`<p>${ str }</p>`);
   };
 
   var hush = () => {
