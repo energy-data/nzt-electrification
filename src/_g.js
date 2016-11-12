@@ -111,7 +111,7 @@ define(['d3'], (d3) => {
     }, {
       type: "poverty",
       full: "Poverty",
-      icon: "report_problem",
+      icon: "money_off", // pan_tool, report_problem, language, remove_circle_outline
       group: "demographics",
       param: 'poverty',
       scale: [0, 1],

@@ -3,6 +3,7 @@
 
 .row {
   width: 100%;
+  display: flex;
 }
 
 .row:after {
@@ -19,7 +20,7 @@
 .col-flex {
   box-sizing: border-box;
   width: 100%;
-  display: table-cell;
+  flex: auto;
   vertical-align: top;
 }
 
@@ -46,4 +47,6 @@
   .col.c10 { width: 83.33%; }
 
   .col.c11 { width: 91.66%; }
+
+  .col.c12 { width: 100%; }
 }

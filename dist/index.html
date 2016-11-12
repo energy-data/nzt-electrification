@@ -21,15 +21,15 @@
   <body>
     <div id="navbar"
          class="row">
-      <div class="col c3">
+      <div class="col center c3">
         <a class="bold" data="adm0_name">&nbsp;</a>
       </div>
 
-      <div class="col c3">
+      <div class="col center c3">
         <a class="bold" data="adm1_name">&nbsp;</a>
       </div>
 
-      <div class="col c3">
+      <div class="col center c3">
         <a class="bold" data="adm2_name">&nbsp;</a>
       </div>
 
@@ -44,223 +44,207 @@
       </div>
     </div>
 
-    <div class="row">
+    <div id="content"
+         class="row">
       <div id="controls"
-           class="pane col-flex">
-        <div class="row">
-          <h3 class="center">Scenario</h3>
-          <div id="knobs-container"
-               class="row col c12"
-               style="margin: auto;"
-               help-data="scenario"></div>
+           class="pane">
+        <h3 class="center">Scenario</h3>
 
-          <br />
+        <div id="knobs-container"
+             style="margin: auto;"
+             help-data="scenario"></div>
+
+        <h3 class="center">Datasets</h3>
+
+        <div id="mode-selector"></div>
+      </div>
+
+      <div id="non-controls"
+           class="col-flex">
+        <div id="map-container"
+             class="row relative">
+          <div id="zoom-buttons">
+            <a id="zoom-in">
+              <i class="material-icons">add</i>
+            </a>
+
+            <a id="zoom-out">
+              <i class="material-icons">remove</i>
+            </a>
+          </div>
+
+          <div id="scale-container"
+               class="hidden"></div>
+
+          <svg id="svg"></svg>
         </div>
 
-        <div class="row">
-          <h3 class="center">Datasets</h3>
-          <div id="mode-selector"
-               class="row col"></div>
+        <div id="summary-info"
+             class="pane row"
+             help-data="summary">
+          <div class="col-flex">
+            <table id="pies-table"></table>
+          </div>
+
+          <div class="col c2"
+               style="font-size: 0.7vw">
+            <table id="techs-table"></table>
+          </div>
+
+          <div class="col c1">
+            <div class="toggle-summary-charts clickable">
+              <a title="summary details table">
+                <i class="material-icons">list</i>
+              </a>
+            </div>
+
+            <div class="export-summary clickable">
+              <a title="export summary data">
+                <i class="material-icons">file_download</i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="non-controls col-flex">
-        <div class="row col">
-          <div class="col-flex">
-            <div id="map-container"
-                 class="row relative">
-              <div id="zoom-buttons">
-                <a id="zoom-in">
-                  <i class="material-icons">add</i>
-                </a>
+      <div class="pane relative">
+        <div id="nanny-says">You can click the regions on the map.</div>
 
-                <a id="zoom-out">
-                  <i class="material-icons">remove</i>
+        <div id="point-info">
+          <table class="info-table monospace"
+                 help-data="point_info">
+            <tr colspan="3">
+              <div class="export-points small float-right">
+                <a title="export cells data">
+                  <i class="material-icons">file_download</i>
                 </a>
               </div>
 
-              <div id="scale-container"
-                   class="hidden"></div>
+              <h3 class="center">Area Details</h3>
+            </tr>
 
-              <svg id="svg"></svg>
-            </div>
+            <tr>
+              <td colspan="3"
+                  class="center">
+                <span class="monospace bold" data="technology">&nbsp;</span>
+              </td>
+            </tr>
 
-            <div id="summary-info"
-                 class="pane row"
-                 help-data="summary">
-              <div id="pies"
-                   class="row">
-                <div class="col c2 monospace">
-                  <table id="techs-table"></table>
-                </div>
+            <tr>
+              <td colspan="3"
+                  class="center">
+                long: <span class="monospace bold" data="long"></span>, lat: <span class="monospace bold" data="lat"></span>
+              </td>
+            </tr>
 
-                <div class="col c9 monospace">
-                  <table id="pies-table"></table>
-                </div>
+            <tr>
+              <td rowspan="3" class="bold">Technology</td>
+              <td>LCOE</td>
+              <td class="right">
+                <span class="monospace bold" data="lc"></span> USD/kWh
+              </td>
+            </tr>
 
-                <div class="col c1">
-                  <div class="toggle-summary-charts clickable row col">
-                    <a title="summary details table">
-                      <i class="material-icons">list</i>
-                      <br />
-                      <span>details</span>
-                    </a>
-                  </div>
+            <tr>
+              <td>Investment Cost</td>
+              <td class="right">
+                <span class="monospace bold" data="ic"></span> USD
+              </td>
+            </tr>
 
-                  <div class="export-summary clickable">
-                    <a title="export summary data">
-                      <i class="material-icons">file_download</i>
-                      <br />
-                      <span>export</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <tr>
+              <td>Added capacity</td>
+              <td class="right">
+                <span class="monospace bold" data="cap"></span> W
+              </td>
+            </tr>
 
-          <div class="pane col-flex">
-            <div class="row relative">
-              <div id="nanny-says">You can click the regions on the map.</div>
+            <tr>
+              <td rowspan="2" class="bold">Demographics</td>
 
-              <div id="point-info">
-                <table class="info-table monospace"
-                       help-data="point_info">
-                  <tr colspan="3">
-                    <div class="export-points small float-right">
-                      <a title="export cells data">
-                        <i class="material-icons">file_download</i>
-                      </a>
-                    </div>
+              <td>Population 2030</td>
 
-                    <h3 class="center">Area Details</h3>
-                  </tr>
+              <td class="right">
+                <span class="monospace bold" data="p_2030"></span>
+              </td>
+            </tr>
 
-                  <tr>
-                    <td colspan="3"
-                        class="center">
-                      <span class="monospace bold" data="technology">&nbsp;</span>
-                    </td>
-                  </tr>
+            <tr>
+              <td>Urban/Rural</td>
+              <td class="right">
+                <!-- formatted u -->
+                <span class="monospace bold" data="urban"></span>
+              </td>
+            </tr>
 
-                  <tr>
-                    <td colspan="3"
-                        class="center">
-                      long: <span class="monospace bold" data="long"></span>, lat: <span class="monospace bold" data="lat"></span>
-                    </td>
-                  </tr>
+            <tr>
+              <td rowspan="3" class="bold">Resources</td>
 
-                  <tr>
-                    <td rowspan="3" class="bold">Technology</td>
-                    <td>LCOE</td>
-                    <td class="right">
-                      <span class="monospace bold" data="lc"></span> USD/kWh
-                    </td>
-                  </tr>
+              <td>Wind Power Capacity Factor</td>
+              <td class="right">
+                <!-- formatted w_cf -->
+                <span class="monospace bold" data="wind"></span> %
+              </td>
+            </tr>
 
-                  <tr>
-                    <td>Investment Cost</td>
-                    <td class="right">
-                      <span class="monospace bold" data="ic"></span> USD
-                    </td>
-                  </tr>
+            <tr>
+              <td>Global Horizontal Irradiance</td>
+              <td class="right">
+                <span class="monospace bold" data="ghi"></span> kWh/m<sup>2</sup>
+              </td>
+            </tr>
 
-                  <tr>
-                    <td>Added capacity</td>
-                    <td class="right">
-                      <span class="monospace bold" data="cap"></span> W
-                    </td>
-                  </tr>
+            <tr>
+              <td>Distance to Hydropower Potencial</td>
+              <td class="right">
+                <span class="monospace bold" data="hp_d"></span> km
+              </td>
+            </tr>
 
-                  <tr>
-                    <td rowspan="2" class="bold">Demographics</td>
+            <tr>
+              <td rowspan="4" class="bold">Insfrastructure</td>
 
-                    <td>Population 2030</td>
+              <td>Distance to current Transmission Network</td>
+              <td class="right">
+                <span class="monospace bold" data="gd_c"></span> km
+              </td>
+            </tr>
 
-                    <td class="right">
-                      <span class="monospace bold" data="p_2030"></span>
-                    </td>
-                  </tr>
+            <tr>
+              <td>Distance to planned Transmission Network</td>
+              <td class="right">
+                <span class="monospace bold" data="gd_p"></span> km
+              </td>
+            </tr>
 
-                  <tr>
-                    <td>Urban/Rural</td>
-                    <td class="right">
-                      <!-- formatted u -->
-                      <span class="monospace bold" data="urban"></span>
-                    </td>
-                  </tr>
+            <tr>
+              <td>Road Distance</td>
+              <td class="right">
+                <span class="monospace bold" data="rd"></span> km
+              </td>
+            </tr>
 
-                  <tr>
-                    <td rowspan="3" class="bold">Resources</td>
+            <tr>
+              <td>Levelised Cost of Diesel</td>
+              <td class="right">
+                <span class="monospace bold" data="lcsa"></span> USD/kWh
+              </td>
+            </tr>
 
-                    <td>Wind Power Capacity Factor</td>
-                    <td class="right">
-                      <!-- formatted w_cf -->
-                      <span class="monospace bold" data="wind"></span> %
-                    </td>
-                  </tr>
+            <!-- <tr> -->
+            <!--   <td>New Connections</td> -->
+            <!--   <td class="right"> -->
+            <!--     <span class="monospace bold" data="nc"></span> -->
+            <!--   </td> -->
+            <!-- </tr> -->
 
-                  <tr>
-                    <td>Global Horizontal Irradiance</td>
-                    <td class="right">
-                      <span class="monospace bold" data="ghi"></span> kWh/m<sup>2</sup>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Distance to Hydropower Potencial</td>
-                    <td class="right">
-                      <span class="monospace bold" data="hp_d"></span> km
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td rowspan="4" class="bold">Insfrastructure</td>
-
-                    <td>Distance to current Transmission Network</td>
-                    <td class="right">
-                      <span class="monospace bold" data="gd_c"></span> km
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Distance to planned Transmission Network</td>
-                    <td class="right">
-                      <span class="monospace bold" data="gd_p"></span> km
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Road Distance</td>
-                    <td class="right">
-                      <span class="monospace bold" data="rd"></span> km
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Levelised Cost of Diesel</td>
-                    <td class="right">
-                      <span class="monospace bold" data="lcsa"></span> USD/kWh
-                    </td>
-                  </tr>
-
-                  <!-- <tr> -->
-                  <!--   <td>New Connections</td> -->
-                  <!--   <td class="right"> -->
-                  <!--     <span class="monospace bold" data="nc"></span> -->
-                  <!--   </td> -->
-                  <!-- </tr> -->
-
-                  <!-- <tr> -->
-                  <!--   <td>Potential small and mini Hydropower</td> -->
-                  <!--   <td class="right"> -->
-                  <!--     <span class="monospace bold" data="hp"></span> -->
-                  <!--   </td> -->
-                  <!-- </tr> -->
-                </table>
-              </div>
-            </div>
-          </div>
+            <!-- <tr> -->
+            <!--   <td>Potential small and mini Hydropower</td> -->
+            <!--   <td class="right"> -->
+            <!--     <span class="monospace bold" data="hp"></span> -->
+            <!--   </td> -->
+            <!-- </tr> -->
+          </table>
         </div>
       </div>
     </div>
@@ -290,7 +274,7 @@
         </div>
 
         <table id="numbers"
-               class="info-table monospace"></table>
+               class="info-table"></table>
       </div>
     </div>
 
@@ -303,7 +287,7 @@
 
   <script type="text/template"
           id="pies-header-template">
-    <tr class="center bold">
+    <tr class="center" style="font-size: 0.9vw">
       <td>New Connections</td>
       <td>Investments</td>
       <td>Area</td>
@@ -314,7 +298,7 @@
   <script type="text/template"
           id="pies-subheader-template">
     <tr class="center">
-      <td><span class="monospace bold">{1}</span>     </td>
+      <td><span class="monospace bold">{1}</span> </td>
       <td><span class="monospace bold">{3}</span> M USD</td>
       <td><span class="monospace bold">{0}</span> km<sup>2</sup></td>
       <td><span class="monospace bold">{2}</span> MW</td>
@@ -328,6 +312,21 @@
       <td id="investments"></td>
       <td id="pts"></td>
       <td id="capacity"></td>
+    </tr>
+  </script>
+
+  <script type="text/template"
+          id="tech-header-template">
+    <tr class="center">
+      <td colspan="2" >Technologies used</td>
+    </tr>
+  </script>
+
+  <script type="text/template"
+          id="tech-tr-template">
+    <tr class="left">
+      <td style="background-color: {1};">&nbsp;</td>
+      <td>&nbsp;{0}</td>
     </tr>
   </script>
 
@@ -378,17 +377,9 @@
   </script>
 
   <script type="text/template"
-          id="pies-tech-tr-template">
-    <tr>
-      <td style="background-color: {1};">&nbsp;</td>
-      <td>&nbsp;{0}</td>
-    </tr>
-  </script>
-
-  <script type="text/template"
           id="mode-group-template">
     <div id="{0}-mode-selector"
-         class="row center clickable with-dropdown">
+         class="center clickable with-dropdown">
       <a class="mode-selector-menu">{1}</a>
       <ul class="dropdown pane"></ul>
     </div>

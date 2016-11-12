@@ -46,8 +46,6 @@ define(['d3', 'pie'], (d3, pie) => {
 
     var totals = handle_totals(obj);
 
-    _u.tmpl('#pies-header-template', '#pies-table');
-
     _u.tmpl('#pies-subheader-template', '#pies-table',
             totals['pts'].toLocaleString(),
             totals['connections'].toLocaleString(),
@@ -55,11 +53,13 @@ define(['d3', 'pie'], (d3, pie) => {
             (totals['investments'] / 1000000).toFixed(2).toLocaleString()
            );
 
+    _u.tmpl('#tech-header-template', '#techs-table');
+
     var filtered_techs = _g.technologies.filter((c) => obj.find_p('tech', c['tech']));
 
     filtered_techs.map((t) => {
       _u.tmpl(
-        '#pies-tech-tr-template',
+        '#tech-tr-template',
         '#techs-table',
         t['name'], t['color']
       )
@@ -67,17 +67,19 @@ define(['d3', 'pie'], (d3, pie) => {
 
     _u.tmpl('#pies-graphs-template', '#pies-table');
 
+    var radius = Math.min.apply(null, [$('#pies-table td').width(), 120]) /2;
+
     ['connections', 'investments', 'pts', 'capacity'].forEach((k) => {
       var chart = pie.chart(
         `#${ k }`,
         obj.map((r) => { return [0, (r[k]/totals[k]) * 100] }),
-        50, null, filtered_techs.map((t) => t['color']).reverse(), " "
+        radius, 0, filtered_techs.map((t) => t['color']).reverse(), " "
       );
 
       chart.change(1);
     });
 
-    show();
+    _u.tmpl('#pies-header-template', '#pies-table');
   };
 
   var numbers = (obj) => {
