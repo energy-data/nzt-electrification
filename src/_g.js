@@ -75,7 +75,7 @@ define(['d3'], (d3) => {
       },
     }, {
       type: "need",
-      full: "Investment Need per Capita",
+      full: "Investment Needs per Capita",
       icon: "attach_money",
       group: "technology",
       param: 'poverty',
@@ -132,7 +132,7 @@ define(['d3'], (d3) => {
       fill: (e, scn, param, scale) => {
         return d3.scaleLinear()
           .domain([500, 3000])
-          .range(["yellow", "red"])(e[param])
+          .range(["#FAE9D4", "#AB4124"])(e[param])
       }
     }, {
       type: "nc",
