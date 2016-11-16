@@ -11,7 +11,7 @@ define(['jquery'], ($) => {
         str = `You can hover an area to see the details.`;
 
       else
-        str = `You can select another colouring dataset/mode.`;
+        str = `Select another dataset for more detailed visualization.`;
     }
 
     else if (_u.get_query_param('adm1')) {
