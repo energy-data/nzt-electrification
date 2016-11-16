@@ -102,6 +102,8 @@ define(['d3'], (d3) => {
             `&cc=eq.${ _d.place['adm0_code'] }` +
             `&adm=in.${ regions.toString() }` +
             `&scn=eq.${ _d.scenario['scn'] }`;
+
+          adm_type = 'adm1';
         }
 
         else return;
