@@ -13,6 +13,9 @@ define(['summary'], (summary) => {
 
           summary.fetch({ adm1: _u.get_query_param('adm1'), adm2: _u.get_query_param('adm2') });
 
+          if (['need'].contains(_d.mode['type']))
+            _d.mode['draw']();
+
           if (['technology', 'lcsa'].indexOf(_d.mode['type']) > -1)
             $('.loading').fadeIn(points.draw);
         }

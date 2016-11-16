@@ -74,6 +74,65 @@ define(['d3'], (d3) => {
           .range(["#FAE9D4", "#AB4124"])(g[param + scn])
       },
     }, {
+      type: "need",
+      full: "Investment Need per Capita",
+      icon: "attach_money",
+      group: "technology",
+      param: 'poverty',
+      scale: [500, 3000],
+      points: false,
+      draw: () => {
+        var adm_type, regions, url;
+
+        if (_u.get_query_param('adm1')) {
+          regions = poverty_data.filter_p('adm1', +_u.get_query_param('adm1')).pluck_p('adm2');
+
+          url = `${ _conf['data_source'] }/adm2_records?` +
+            `&cc=eq.${ _d.place['adm0_code'] }` +
+            `&adm=in.${ regions.toString() }` +
+            `&scn=eq.${ _d.scenario['scn'] }`;
+
+          adm_type = 'adm2';
+        }
+
+        else if (!_u.get_query_param('adm1') && !_u.get_query_param('adm2')) {
+          regions = poverty_data.pluck_p('adm1').unique();
+
+          url = `${ _conf['data_source'] }/adm1_records?` +
+            `&cc=eq.${ _d.place['adm0_code'] }` +
+            `&adm=in.${ regions.toString() }` +
+            `&scn=eq.${ _d.scenario['scn'] }`;
+        }
+
+        else return;
+
+        d3.queue()
+          .defer(d3.json, url)
+          .await((err, response) => {
+            var needs_data = response.map((e) => {
+              var o = {};
+              var connections = e['results'].reduce((a,b) => a + b['connections'], 0);
+              var investments = e['results'].reduce((a,b) => a + b['investments'], 0);
+
+              o[adm_type]      = e['adm'];
+              o['connections'] = connections;
+              o['investments'] = investments;
+              o['need']        = investments/connections;
+
+              return o;
+            });
+
+            adm.set_adm_fills(needs_data, adm_type, 'need');
+          });
+
+        $('.loading').fadeOut();
+      },
+      fill: (e, scn, param, scale) => {
+        return d3.scaleLinear()
+          .domain([500, 3000])
+          .range(["yellow", "red"])(e[param])
+      }
+    }, {
       type: "nc",
       full: "Added Capacity",
       icon: "lightbulb_outline",
