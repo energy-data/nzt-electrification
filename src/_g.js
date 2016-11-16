@@ -235,7 +235,17 @@ define(['d3'], (d3) => {
       group: "resources",
       param: 'hp',
       scale: [0, 10000000],
-      points: true,
+      points: false, // we do draw points but it's another dataset, so no.
+      draw: () => {
+        points.fetch({
+          box: map.to_bbox(d3.select('#paths-adm1').node().getBBox()),
+          adm: "",
+          callback: (col) => {
+            _d.point_collection['points'] = col;
+            points.draw('hp');
+          }
+        });
+      },
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)

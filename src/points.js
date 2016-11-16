@@ -39,14 +39,20 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
   var fetch = (o) => {
     $('.loading').fadeIn()
 
+    var origin = `${ _conf['data_source'] }/points?` +
+        `select=${ _g.point_attrs }` +
+        `&x=gt.${ o.box[0] }&x=lt.${ o.box[2] }` +
+        `&y=gt.${ o.box[1] }&y=lt.${ o.box[3] }` +
+        `&adm${ o.adm[1] }=eq.${ o.adm[2] }` +
+        `&cc=eq.${ _d.place['adm0_code'] }`;
+
+    if (_d.mode['type'] === 'hp')
+      origin = `${ _conf['data_source'] }/hydro_points?` +
+      `&x=gt.${ o.box[0] }&x=lt.${ o.box[2] }` +
+      `&y=gt.${ o.box[1] }&y=lt.${ o.box[3] }`
+
     d3.queue()
-      .defer(d3.json,
-             `${ _conf['data_source'] }/points?` +
-             `select=${ _g.point_attrs }` +
-             `&x=gt.${ o.box[0] }&x=lt.${ o.box[2] }` +
-             `&y=gt.${ o.box[1] }&y=lt.${ o.box[3] }` +
-             `&adm${ o.adm[1] }=eq.${ o.adm[2] }` +
-             `&cc=eq.${ _d.place['adm0_code'] }`)
+      .defer(d3.json, origin)
 
       .await((error, points) => {
         error ?
@@ -66,7 +72,9 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
       .attr('stroke', stroke);
   };
 
-  var draw = () => {
+  var draw = (mode_type) => {
+    var m = mode_type ? _g.modes.find_p('type', mode_type) : _d.mode;
+
     var collection = _d.point_collection['points'];
 
     if (! collection) {
@@ -96,6 +104,9 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
     if (area > count_threshold)
       radius = radius * (area / count_threshold);
 
+    if (m['type'] === 'hp')
+      radius = 0.060;
+
     // This is too much for D3, (check git history if curious)
     //
     collection.forEach((e,i) => {
@@ -114,6 +125,8 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
     _points
       .on('click', () => {
+        if (m['type'] === 'hp') return;
+
         var elem = d3.event.toElement;
         var target = find(d3.event);
 
@@ -138,6 +151,8 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
       })
 
       .on('mousemove', function() {
+        if (m['type'] === 'hp') return;
+
         if (locked !== null) return;
 
         load_info(find(d3.event), scn, diesel_p);
@@ -226,6 +241,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
   return {
     draw: draw,
     load: load,
+    fetch: fetch,
     clear: clear,
     init: init,
     setup: setup,

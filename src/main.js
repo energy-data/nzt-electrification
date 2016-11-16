@@ -71,6 +71,8 @@ require([
     //
     window.poverty_data = poverty_data;
     window.adm = adm;
+    window.points = points;
+    window.map = map;
 
     scenario.init();
     place.init(iso3);

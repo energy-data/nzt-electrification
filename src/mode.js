@@ -121,6 +121,16 @@ define(['d3', 'nanny'], (d3, nanny) => {
     $(mss).html('');
   };
 
+  var set = (t) => {
+    var m = _g.modes.find_p('type', t);
+
+    if ((m['type'] !== _d.mode['type']) &&
+        (m['type'] === 'hp' || _d.mode['type'] === 'hp'))
+      points.clear(true);
+
+    _d.mode.merge_with(m);
+  };
+
   var load_selector = () => {
     clear_selector();
 
@@ -172,7 +182,7 @@ define(['d3', 'nanny'], (d3, nanny) => {
 
       $mssa.removeClass('active');
 
-      _d.mode.merge_with(_g.modes.find_p('type', $this.attr('bind')));
+      set($this.attr('bind'));
 
       $this.addClass('active');
     });
