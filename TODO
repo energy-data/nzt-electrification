@@ -1,9 +1,9 @@
 # -*- mode: org; -*-
 #+STARTUP: hidestars showall
 
-* [9/11] UI/UX
-  - [ ] landing
-  - [ ] Dimitrios: Dataset =>
+* [11/11] UI/UX
+  - [X] landing
+  - [X] Dimitrios: Dataset =>
   - [X] population/lcoe colours
   - [X] github link
   - [X] sort mode groups
@@ -15,9 +15,9 @@
   - [X] contrast of text, icons, hovering
 
 
-* [7/9] Code
+* [8/9] Code
   - [ ] dump jsons
-  - [ ] points: hydro
+  - [X] points: hydro
   - [X] lcsa's colouring from min..max from the point collection
   - [X] scenario: init from url params (shareable links)
   - [X] cleanup this indicators/breakdown looping
