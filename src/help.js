@@ -20,7 +20,7 @@ define([], () => {
     'population': `This mode represents the projected population in 2030.`,
     'poverty': `This mode represents the poverty rate in state and district level.`,
     'urban-rural': `This mode represents whether a geographic location is considered urban or rural.`,
-    'ghi': `This mode represents the Global Horizontal Irradiance (in kWh/m2).`,
+    'ghi': `This mode represents the Global Horizontal Irradiance (in kWh/m<sup>2</sup>).`,
     'w_cf': `This mode represents the Wind power capacity factor.`,
     'hp': `This mode represents the mini and small hydro power potential (in W).`,
     'lcsa': `This mode represents the cost of generating electricity using diesel generators (in USD/kWh).`,
