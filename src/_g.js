@@ -135,17 +135,17 @@ define(['d3'], (d3) => {
           .range(["#FAE9D4", "#AB4124"])(e[param])
       }
     }, {
-      type: "nc",
+      type: "ac",
       full: "Added Capacity",
       icon: "lightbulb_outline",
       group: "technology",
-      param: 'nc',
-      scale: [0, 1000],
+      param: 'c_',
+      scale: [0, 100000],
       points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
-          .range(["#FAE9D4", "#AB4124"])(g[param])
+          .range(["#FAE9D4", "#AB4124"])(g[param + scn])
       }
     }, {
       type: "population",

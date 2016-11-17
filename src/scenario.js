@@ -16,7 +16,7 @@ define(['summary'], (summary) => {
           if (['need'].contains(_d.mode['type']))
             _d.mode['draw']();
 
-          if (['technology', 'lcoe', 'ic', 'nc', 'lcsa'].contains(_d.mode['type']))
+          if (['technology', 'lcoe', 'ic', 'ac', 'lcsa'].contains(_d.mode['type']))
             $('.loading').fadeIn(points.draw);
         }
       }
