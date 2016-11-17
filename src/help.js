@@ -16,7 +16,7 @@ define([], () => {
     'lcoe': `This mode represents the lowest levelized cost of generating electricity at each geographic cell for the selected scenario.`,
     'ic': `This mode represents the investment needs in power capacity at each geographic cell for the selected scenario (in USD).`,
     'in': `This mode represents the investment needs in power capacity per new connections at state and district level (in USD).`,
-    'nc': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario (in W).`,
+    'ac': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario (in W).`,
     'population': `This mode represents the projected population in 2030.`,
     'poverty': `This mode represents the poverty rate in state and district level.`,
     'urban-rural': `This mode represents whether a geographic location is considered urban or rural.`,
