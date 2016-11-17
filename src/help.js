@@ -14,20 +14,20 @@ define([], () => {
     'technology': `<strong>Technology</strong> represents the least cost electrification option at each geographic cell for the selected scenario. <br />
                    This is the default mode.`,
     'lcoe': `This mode represents the lowest levelized cost of generating electricity at each geographic cell for the selected scenario.`,
-    'ic': `This mode represents the investment needs in power capacity at each geographic cell for the selected scenario.`,
-    'in': `This mode represents the investment needs in power capacity per new connections at state and district level.`,
-    'nc': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario.`,
+    'ic': `This mode represents the investment needs in power capacity at each geographic cell for the selected scenario (in USD).`,
+    'in': `This mode represents the investment needs in power capacity per new connections at state and district level (in USD).`,
+    'nc': `This mode represents the additional power capacity needs at each geographic cell for the selected scenario (in W).`,
     'population': `This mode represents the projected population in 2030.`,
     'poverty': `This mode represents the poverty rate in state and district level.`,
     'urban-rural': `This mode represents whether a geographic location is considered urban or rural.`,
-    'ghi': `This mode represents the Global Horizontal Irradiance.`,
+    'ghi': `This mode represents the Global Horizontal Irradiance (in kWh/m2).`,
     'w_cf': `This mode represents the Wind power capacity factor.`,
-    'hp': `This mode represents the mini and small hydro power potential.`,
-    'lcsa': `This mode represents the cost of generating electricity using diesel generators.`,
-    'rd': `This mode represents the distance to the existing road network. The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
-    'gd_c': `This mode represents the distance to the existing transmission network. <br />
+    'hp': `This mode represents the mini and small hydro power potential (in W).`,
+    'lcsa': `This mode represents the cost of generating electricity using diesel generators (in USD/kWh).`,
+    'rd': `This mode represents the distance to the existing road network (in km). The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
+    'gd_c': `This mode represents the distance to the existing transmission network (in km). <br />
              The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
-    'gd_p': `This mode represents the distance to the existing planned transmission network. <br />
+    'gd_p': `This mode represents the distance to the existing planned transmission network (in km). <br />
              The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
     'summary': `This pane shows the <strong>summary</strong> of the current loaded cells. <br />
                 It changes constantly depending on which administrative region is loaded each time.`,
