@@ -24,11 +24,11 @@ define([], () => {
     'w_cf': `This mode represents the Wind power capacity factor.`,
     'hp': `This mode represents the mini and small hydro power potential (in W).`,
     'lcsa': `This mode represents the cost of generating electricity using diesel generators (in USD/kWh).`,
-    'rd': `This mode represents the distance to the existing road network (in km). The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
+    'rd': `This mode represents the distance to the existing road network (in km). The dataset can be found <a href="https://energydata.info/">here</a>.`,
     'gd_c': `This mode represents the distance to the existing transmission network (in km). <br />
-             The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
+             The dataset can be found <a href="https://energydata.info/">here</a>.`,
     'gd_p': `This mode represents the distance to the existing planned transmission network (in km). <br />
-             The dataset can be found <a href="https://ifc.ds.io/">here</a>.`,
+             The dataset can be found <a href="https://energydata.info/">here</a>.`,
     'summary': `This pane shows the <strong>summary</strong> of the current loaded cells. <br />
                 It changes constantly depending on which administrative region is loaded each time.`,
     'point': `A <strong>cell</strong> is the main object of this model. <br />
