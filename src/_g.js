@@ -58,7 +58,7 @@ define(['d3'], (d3) => {
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
-          .range(["#006100", "#FF2200"])(g[param + scn])
+          .range(["#00ff00", "#FF0000"])(g[param + scn])
       },
     }, {
       type: "ic",
@@ -295,7 +295,7 @@ define(['d3'], (d3) => {
       fill: (g) => {
         return d3.scaleLinear()
           .domain(_d.scenario['diesel_p'] === 'l' ? [0.35, 0.89] : [0.63, 1.85])
-          .range(["#006100", "#FF2200"])(g['lcsa_' + _d.scenario['diesel_p']]);
+          .range(["#FFFFFF", "#FF0000"])(g['lcsa_' + _d.scenario['diesel_p']]);
       },
       stroke: "rgba(105, 70 ,50, 0.2)",
       stroke_width: 0.001
