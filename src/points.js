@@ -78,7 +78,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
     var collection = _d.point_collection['points'];
 
     if (! collection) {
-      $('.loading').fadeOut()
+      $('.loading').fadeOut();
       return;
     }
 

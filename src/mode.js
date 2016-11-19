@@ -107,7 +107,7 @@ define(['d3', 'nanny'], (d3, nanny) => {
 
           } else {
             history.pushState(null, null, _u.set_query_param('load_points', false));
-            points.clear(true);
+            points.clear();
 
             callback = () => m['draw']();
           }

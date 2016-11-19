@@ -268,7 +268,7 @@ define(['d3'], (d3) => {
       },
     }, {
       type: "gd_c",
-      full: "Current GD",
+      full: "Current Grid Distance",
       icon: "timeline",
       group: "infrastructure",
       param: 'gd_c',
@@ -277,7 +277,7 @@ define(['d3'], (d3) => {
       fill: (g, scn, param, scale) => `rgba(0, 0, 0, ${ _u.l_scale(g[param], scale) })`
     }, {
       type: "gd_p",
-      full: "Planned GD",
+      full: "Planned Grid Distance",
       icon: "timeline",
       group: "infrastructure",
       param: 'gd_p',
