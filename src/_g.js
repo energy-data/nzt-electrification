@@ -95,7 +95,7 @@ define(['d3'], (d3) => {
           adm_type = 'adm2';
         }
 
-        else if (!_u.get_query_param('adm1') && !_u.get_query_param('adm2')) {
+        else {
           regions = poverty_data.pluck_p('adm1').unique();
 
           url = `${ _conf['data_source'] }/adm1_records?` +
@@ -105,8 +105,6 @@ define(['d3'], (d3) => {
 
           adm_type = 'adm1';
         }
-
-        else return;
 
         d3.queue()
           .defer(d3.json, url)
@@ -181,7 +179,7 @@ define(['d3'], (d3) => {
         if (_u.get_query_param('adm1'))
           adm.set_adm_fills(poverty_data.filter_p('adm1', +_u.get_query_param('adm1')), 'adm2', 'poverty');
 
-        if (!_u.get_query_param('adm1') && !_u.get_query_param('adm2')) {
+        else {
           var group = poverty_data.group_p('adm1');
           var keys = Object.keys(group);
           var i;

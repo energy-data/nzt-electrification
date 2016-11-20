@@ -101,7 +101,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     if (admin1)
       place.set('adm1', admin1, d3.select(`#adm1-${ admin1 }`).datum().properties['name'], false)
     else
-      plase.nullify('adm1');
+      place.nullify('adm1');
 
     if (_u.get_query_param('load_points').to_boolean()) {
       points.load({
