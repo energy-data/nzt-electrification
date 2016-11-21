@@ -168,12 +168,9 @@ require([
 
     // Focus target adm
     //
-    if (load_points && _d.mode['points'] && (admin1 || admin2)) {
-      points.load({
-        adm: target.node().id.match(/adm(.*)-(\d*)?/),
-        svg_box: target.node().getBBox()
-      });
-    }
+    if (load_points && _d.mode['points'] && (admin1 || admin2))
+      points.load(target);
+
     else if (!load_points && !_d.mode['points']) {
       _d.mode['draw'](adm, poverty_data);
       $('.loading').fadeOut();

@@ -103,17 +103,20 @@ define(['d3', 'nanny'], (d3, nanny) => {
           history.pushState(null, null, _u.set_query_param('mode', t));
 
           if (m['points']) {
-            if (!_u.get_query_param('load_points').to_boolean())
+            var load_points = _u.get_query_param('load_points').to_boolean();
+
+            if (!load_points && _u.get_query_param('adm2')) {
               history.pushState(null, null, _u.set_query_param('load_points', true));
+              load_points = true;
+            }
 
             var target = adm.target(parseInt(_u.get_query_param('adm1')), parseInt(_u.get_query_param('adm2')));
 
-            callback = () => {
-              points.load({
-                adm: target.node().id.match(/adm(.*)-(\d*)?/),
-                svg_box: target.node().getBBox()
-              });
-            };
+            if (load_points)
+              callback = () => points.load(target);
+
+            else
+              callback = () => $('.loading').fadeOut();
 
           } else {
             history.pushState(null, null, _u.set_query_param('load_points', false));

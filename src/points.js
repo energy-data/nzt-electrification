@@ -82,7 +82,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
       return;
     }
 
-    adm.reset_adm2();
+    adm.reset_adm2(null);
 
     locked = null;
 
@@ -203,16 +203,14 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
     nanny.hush();
   };
 
-  var load = (o) => {
-    var adm       = o.adm;
-    var svg_box   = o.svg_box;
+  var load = (target) => {
+    var admin   = target.node().id.match(/adm(.*)-(\d*)?/);
+    var svg_box = target.node().getBBox();
 
-    var points, c;
-
-    _u.check(adm, svg_box, _container);
+    _u.check(admin, svg_box, _container);
 
     fetch({
-      adm: adm,
+      adm: admin,
       box: map.to_bbox(svg_box),
 
       callback: (points) => {

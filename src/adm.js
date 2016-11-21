@@ -103,12 +103,8 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     else
       place.nullify('adm1');
 
-    if (_u.get_query_param('load_points').to_boolean()) {
-      points.load({
-        adm: it.id.match(/adm(.*)-(\d*)?/),
-        svg_box: it.getBBox()
-      });
-    }
+    if (_u.get_query_param('load_points').to_boolean())
+      points.load(d3.select(it));
 
     map.resize_to({
       node: it,

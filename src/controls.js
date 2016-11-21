@@ -7,22 +7,6 @@ define(['help', 'd3', 'map'], (help, d3, map) => {
       $(e.target).closest('.col').toggleClass('active');
     });
 
-    $('.load-points').on('click', (e) => {
-      e.preventDefault();
-
-      var adm   = (_d.place['adm2'] ?            2              :   1);
-      var adm_v = (_d.place['adm2'] ? _d.place['adm2'] : _d.place['adm1']);
-
-      var target = d3.select(`path#adm${ adm }-${ adm_v }`).node();
-
-      history.replaceState(null, null, _u.set_query_param('load_points', true));
-
-      points.load({
-        adm: [null, adm, _d.place[`adm${ adm }`]],
-        svg_box: target.getBBox()
-      });
-    });
-
     $('.export-points').on('click', (e) => {
       e.preventDefault();
 
