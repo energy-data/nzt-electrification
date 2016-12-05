@@ -109,7 +109,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
     // This is too much for D3, (check git history if curious)
     //
-    collection.forEach((e,i) => {
+    collection.forEach((e) => {
       var pp = map.projection([e.x, e.y]);
 
       circles += `<circle class="point"

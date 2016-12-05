@@ -69,6 +69,8 @@ define(['summary'], (summary) => {
 
     var str = "";
     str += (t[0] === "l" ? "Low" : "NPS") + " " + t[1];
+
+    return str;
   };
 
   var load_selector = () => {

@@ -48,7 +48,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
       if (target)
         elem
           .style('visibility', 'visible')
-          .attr('fill', (d) => fill(target, null, value, null))
+          .attr('fill', () => fill(target, null, value, null))
           .attr('stroke', '#ccc');
 
       else

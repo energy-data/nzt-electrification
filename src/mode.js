@@ -69,10 +69,10 @@ define(['d3', 'nanny'], (d3, nanny) => {
       .attr('offset', '1')
       .attr('stop-color', max);
 
-    var rect = svg.append("rect")
-        .attr('width', width)
-        .attr('height', 20)
-        .style("fill", `url(#gradient${ m['type'] })`);
+    svg.append("rect")
+      .attr('width', width)
+      .attr('height', 20)
+      .style("fill", `url(#gradient${ m['type'] })`);
   };
 
   var init = () => {

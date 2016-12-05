@@ -53,7 +53,7 @@ define(['d3'], (d3) => {
       icon: "attach_money",
       group: "technology",
       param: 'lc_',
-      scale: [0, 1.15],
+      scale: [0, 0.4],
       points: true,
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
@@ -262,7 +262,7 @@ define(['d3'], (d3) => {
       fill: (g, scn, param, scale) => {
         return d3.scaleLinear()
           .domain(scale)
-          .range(["#006100", "#FF2200"])(g[param])
+          .range(["white", "black"])(g[param])
       },
     }, {
       type: "gd_c",

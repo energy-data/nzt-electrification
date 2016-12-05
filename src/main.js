@@ -49,7 +49,7 @@ require([
 
   var iso3 = _u.get_query_param('iso3');
 
-  if (!_g.countries.pluck_p('iso3').contains(iso3)) window.location.href = '/landing';
+  if (!_g.countries.pluck_p('iso3').contains(iso3)) window.location.href = '/presentation';
 
   var _svg = d3.select('svg#svg');
   var _container = d3.select('#container');
