@@ -7,20 +7,15 @@ define(['d3'], (d3) => {
       name: "Grid",
       color: "#528885"
     }, {
-      tech: 2,
-      id:   "sa_diesel",
-      name: "S.A. Diesel",
-      color: "#FF7364"
-    }, {
       tech: 3,
       id:   "sa_pv",
       name: "S.A. Photo Voltaic",
       color: "#FFD38C"
     }, {
-      tech: 4,
-      id:   "mg_diesel",
-      name: "M.G. Diesel",
-      color: "#D13A36"
+      tech: 2,
+      id:   "sa_diesel",
+      name: "S.A. Diesel",
+      color: "#FF7364"
     }, {
       tech: 5,
       id:   "mg_pv",
@@ -36,6 +31,11 @@ define(['d3'], (d3) => {
       id:   "mg_hydro",
       name: "M.G. Hydro",
       color: "#00518E"
+    }, {
+      tech: 4,
+      id:   "mg_diesel",
+      name: "M.G. Diesel",
+      color: "#D13A36"
     }],
 
     scenarios: ['l1', 'l2', 'l3', 'l4', 'l5', 'n1', 'n2', 'n3', 'n4', 'n5'],

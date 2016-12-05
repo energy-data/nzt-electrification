@@ -73,7 +73,7 @@ define(['d3', 'pie'], (d3, pie) => {
       var chart = pie.chart(
         `#${ k }`,
         obj.map((r) => { return [0, (r[k]/totals[k]) * 100] }),
-        radius, 0, filtered_techs.map((t) => t['color']).reverse(), " "
+        radius, 0, filtered_techs.sort_p('tech').map((t) => t['color']).reverse(), " "
       );
 
       chart.change(1);
@@ -111,7 +111,7 @@ define(['d3', 'pie'], (d3, pie) => {
           return target;
         })
       })
-      .sort_p('connections')
+      .sort_p('connections', true)
       .forEach((c) => {
         if (!c) return;
 
