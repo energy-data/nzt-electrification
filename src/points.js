@@ -199,8 +199,6 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
     p['urban'] = (e['u'] ? "Urban" : "Rural");
     p['wind']  = _u.percent(e['w_cf'], 1);
-
-    nanny.hush();
   };
 
   var load = (target) => {
@@ -228,6 +226,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
   var show_info = () => {
     $('#point-info').removeClass('hidden');
+    nanny.hush();
     $('#points-info-control').closest('.col').addClass('active');
   };
 

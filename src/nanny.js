@@ -14,7 +14,7 @@ define(['jquery'], ($) => {
         str = `Select another dataset for more detailed visualization.`;
     }
 
-    else if (_u.get_query_param('adm1')) {
+    else if (_u.get_query_param('adm1') && !_u.get_query_param('load_points').to_boolean()) {
       str = `Select a district by clicking on it on the map.`;
 
       if (_d.mode['points'])
@@ -22,10 +22,10 @@ define(['jquery'], ($) => {
 
     }
 
-    else if (_u.get_query_param('iso3'))
+    else if (_u.get_query_param('iso3') && !_u.get_query_param('load_points').to_boolean())
       str = `Select a state by clicking on it on the map.`;
 
-    div.html(`<p>${ str }</p>`);
+    if (str) div.html(`<p>${ str }</p>`);
   };
 
   var hush = () => {
