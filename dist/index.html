@@ -60,9 +60,13 @@
       </div>
 
       <div id="non-controls"
-           class="col-flex">
+           class="col-flex relative">
         <div id="map-container"
              class="row relative">
+          <div id="nanny-says">
+            <p>You can click the regions on the map.</p>
+          </div>
+
           <div id="zoom-buttons">
             <a id="zoom-in">
               <i class="material-icons">add</i>
@@ -77,6 +81,138 @@
                class="hidden"></div>
 
           <svg id="svg"></svg>
+
+          <div id="point-info"
+               class="hidden">
+            <table class="info-table monospace"
+                   help-data="point_info">
+              <tr>
+                <td colspan="2"
+                    class="center">
+                  <span class="monospace bold" data="technology">&nbsp;</span>
+                </td>
+
+                <td class="export-points center">
+                  <a title="export cells data" style="color: white;"><i class="material-icons">file_download</i></a>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3"
+                    class="center">
+                  long: <span class="monospace bold" data="long"></span>, lat: <span class="monospace bold" data="lat"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="3" class="bold">Technology</td>
+                <td>LCOE</td>
+                <td class="right">
+                  <span class="monospace bold" data="lc"></span> USD/kWh
+                </td>
+              </tr>
+
+              <tr>
+                <td>Investment Cost</td>
+                <td class="right">
+                  <span class="monospace bold" data="ic"></span> USD
+                </td>
+              </tr>
+
+              <tr>
+                <td>Added capacity</td>
+                <td class="right">
+                  <span class="monospace bold" data="cap"></span> W
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="2" class="bold">Demographics</td>
+
+                <td>Population 2030</td>
+
+                <td class="right">
+                  <span class="monospace bold" data="p_2030"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Urban/Rural</td>
+                <td class="right">
+                  <!-- formatted u -->
+                  <span class="monospace bold" data="urban"></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="3" class="bold">Resources</td>
+
+                <td>Wind Power Capacity Factor</td>
+                <td class="right">
+                  <!-- formatted w_cf -->
+                  <span class="monospace bold" data="wind"></span> %
+                </td>
+              </tr>
+
+              <tr>
+                <td>Global Horizontal Irradiance</td>
+                <td class="right">
+                  <span class="monospace bold" data="ghi"></span> kWh/m<sup>2</sup>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Distance to Hydropower Potencial</td>
+                <td class="right">
+                  <span class="monospace bold" data="hp_d"></span> km
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="4" class="bold">Insfrastructure</td>
+
+                <td>Distance to current Transmission Network</td>
+                <td class="right">
+                  <span class="monospace bold" data="gd_c"></span> km
+                </td>
+              </tr>
+
+              <tr>
+                <td>Distance to planned Transmission Network</td>
+                <td class="right">
+                  <span class="monospace bold" data="gd_p"></span> km
+                </td>
+              </tr>
+
+              <tr>
+                <td>Road Distance</td>
+                <td class="right">
+                  <span class="monospace bold" data="rd"></span> km
+                </td>
+              </tr>
+
+              <tr>
+                <td>Levelised Cost of Diesel</td>
+                <td class="right">
+                  <span class="monospace bold" data="lcsa"></span> USD/kWh
+                </td>
+              </tr>
+
+              <!-- <tr> -->
+              <!--   <td>New Connections</td> -->
+              <!--   <td class="right"> -->
+              <!--     <span class="monospace bold" data="nc"></span> -->
+              <!--   </td> -->
+              <!-- </tr> -->
+
+              <!-- <tr> -->
+              <!--   <td>Potential small and mini Hydropower</td> -->
+              <!--   <td class="right"> -->
+              <!--     <span class="monospace bold" data="hp"></span> -->
+              <!--   </td> -->
+              <!-- </tr> -->
+            </table>
+          </div>
         </div>
 
         <div id="summary-info"
@@ -107,146 +243,6 @@
         </div>
       </div>
 
-      <div class="pane relative">
-        <div id="nanny-says">You can click the regions on the map.</div>
-
-        <div id="point-info">
-          <table class="info-table monospace"
-                 help-data="point_info">
-            <tr colspan="3">
-              <div class="export-points small float-right">
-                <a title="export cells data">
-                  <i class="material-icons">file_download</i>
-                </a>
-              </div>
-
-              <h3 class="center">Area Details</h3>
-            </tr>
-
-            <tr>
-              <td colspan="3"
-                  class="center">
-                <span class="monospace bold" data="technology">&nbsp;</span>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="3"
-                  class="center">
-                long: <span class="monospace bold" data="long"></span>, lat: <span class="monospace bold" data="lat"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td rowspan="3" class="bold">Technology</td>
-              <td>LCOE</td>
-              <td class="right">
-                <span class="monospace bold" data="lc"></span> USD/kWh
-              </td>
-            </tr>
-
-            <tr>
-              <td>Investment Cost</td>
-              <td class="right">
-                <span class="monospace bold" data="ic"></span> USD
-              </td>
-            </tr>
-
-            <tr>
-              <td>Added capacity</td>
-              <td class="right">
-                <span class="monospace bold" data="cap"></span> W
-              </td>
-            </tr>
-
-            <tr>
-              <td rowspan="2" class="bold">Demographics</td>
-
-              <td>Population 2030</td>
-
-              <td class="right">
-                <span class="monospace bold" data="p_2030"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Urban/Rural</td>
-              <td class="right">
-                <!-- formatted u -->
-                <span class="monospace bold" data="urban"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td rowspan="3" class="bold">Resources</td>
-
-              <td>Wind Power Capacity Factor</td>
-              <td class="right">
-                <!-- formatted w_cf -->
-                <span class="monospace bold" data="wind"></span> %
-              </td>
-            </tr>
-
-            <tr>
-              <td>Global Horizontal Irradiance</td>
-              <td class="right">
-                <span class="monospace bold" data="ghi"></span> kWh/m<sup>2</sup>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Distance to Hydropower Potencial</td>
-              <td class="right">
-                <span class="monospace bold" data="hp_d"></span> km
-              </td>
-            </tr>
-
-            <tr>
-              <td rowspan="4" class="bold">Insfrastructure</td>
-
-              <td>Distance to current Transmission Network</td>
-              <td class="right">
-                <span class="monospace bold" data="gd_c"></span> km
-              </td>
-            </tr>
-
-            <tr>
-              <td>Distance to planned Transmission Network</td>
-              <td class="right">
-                <span class="monospace bold" data="gd_p"></span> km
-              </td>
-            </tr>
-
-            <tr>
-              <td>Road Distance</td>
-              <td class="right">
-                <span class="monospace bold" data="rd"></span> km
-              </td>
-            </tr>
-
-            <tr>
-              <td>Levelised Cost of Diesel</td>
-              <td class="right">
-                <span class="monospace bold" data="lcsa"></span> USD/kWh
-              </td>
-            </tr>
-
-            <!-- <tr> -->
-            <!--   <td>New Connections</td> -->
-            <!--   <td class="right"> -->
-            <!--     <span class="monospace bold" data="nc"></span> -->
-            <!--   </td> -->
-            <!-- </tr> -->
-
-            <!-- <tr> -->
-            <!--   <td>Potential small and mini Hydropower</td> -->
-            <!--   <td class="right"> -->
-            <!--     <span class="monospace bold" data="hp"></span> -->
-            <!--   </td> -->
-            <!-- </tr> -->
-          </table>
-        </div>
-      </div>
     </div>
 
     <div id="messages-container"

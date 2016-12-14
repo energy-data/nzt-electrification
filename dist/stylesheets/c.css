@@ -23,7 +23,14 @@ html {
 }
 
 #point-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
   width: 38em !important;
+
+  background-color: rgba(0,0,0,0.7);
+  color: #f1f1f1;
 
   font-size: 0.8em;
   padding: 0 10px;
@@ -34,7 +41,7 @@ html {
 }
 
 #point-info td:first-child {
-  border-right: #eaeaea solid 1px !important;
+  border-right: #666666 solid 1px !important;
 }
 
 #point-info td:last-child {
@@ -47,8 +54,8 @@ html {
 }
 
 .info-table td {
-  border-top: #eaeaea solid 1px;
-  border-right: #eaeaea solid 1px;
+  border-top: #666666 solid 1px;
+  border-right: #666666 solid 1px;
   margin: 0 !important;
   padding: 7px 12px;
 }
@@ -95,6 +102,8 @@ html {
 
 #controls {
   position: relative;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.12) !important;
 
   font-size: 0.8em;
   height: 100%;
