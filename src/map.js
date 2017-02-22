@@ -32,7 +32,24 @@ define(['d3', 'topojson'], (d3, topojson) => {
 
     _u.check(node, parent, svg);
 
-    var box = node.getBBox();
+    // var box = node.getBBox();
+    var box;
+
+    try {
+      box = node.getBBox();
+    }
+
+    // FF doesn't seem to like node.getBBox() these values are merely
+    // empirical:
+    //
+    catch (e) {
+      box = {
+        x: 487.1874694824219,
+        y: 212.54867553710938,
+        width: 31.918975830078125,
+        height: 26.03460693359375
+      }
+    }
 
     var w = box.width  + (padding * 2);
     var h = box.height + (padding * 2);

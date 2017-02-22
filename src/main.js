@@ -25,7 +25,7 @@ onerror = function(msg, url, lineNo, columnNo, error) {
   $('#messages-container').removeClass('hidden');
   $('#error').removeClass('hidden');
 
-  if (string.indexOf(substring) > -1){
+  if (string.indexOf(substring) > -1) {
     alert('Script Error: See Browser Console for Detail');
 
   } else {
@@ -175,6 +175,7 @@ require([
       _d.mode['draw'](adm, poverty_data);
       $('.loading').fadeOut();
     }
+
     else {
       $('.loading').fadeOut();
     }
