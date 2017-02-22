@@ -24,13 +24,22 @@ define(['d3', 'nanny'], (d3, nanny) => {
 
     $container.html("");
 
-    if (['technology', 'urban-rural'].contains(m['type'])) {
+    if (m['type'] === 'technology') {
       $container.addClass('hidden');
       return;
-    } else
-      $container.removeClass('hidden');
+    }
 
-    _u.tmpl('#scale-min-max', '#scale-container', m['scale'][0], m['scale'][1], m['full']);
+    else if (m['type'] === 'urban-rural') {
+      var urf = _g.modes.find((e) => e['type'] === 'urban-rural').fill;
+
+      _u.tmpl('#scale-urban-rural', '#scale-container', urf({ u: true }), urf({ u: false }));
+      return;
+    }
+
+    else {
+      $container.removeClass('hidden');
+      _u.tmpl('#scale-min-max', '#scale-container', m['scale'][0], m['scale'][1], m['full']);
+    }
 
     var width = $container.width();
 
