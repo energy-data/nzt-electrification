@@ -169,7 +169,7 @@ html {
   cursor: help !important;
 }
 
-#details-modal {
+#details-modal, #overview-modal {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -187,7 +187,7 @@ html {
   z-index: 1001;
 }
 
-#summary-details-content {
+#summary-details-content, #overview-content {
   font-size: 0.6em;
 
   padding: 20px;
@@ -200,10 +200,76 @@ html {
   min-width: 500px;
 }
 
+#overview-content svg {
+  display: inline-block;
+}
+
+#overview-content {
+  font-size: 1em;
+  padding: 0 0 20px 0 !important;
+  font-family: Anaheim;
+  min-width: 900px;
+}
+
+#overview-content .highlight svg {
+  filter: drop-shadow(0px 0px 1px #000);
+}
+
+#continue-button {
+  margin-bottom: 20px;
+  width: 50%;
+  margin: auto;
+  padding: 10px 25px;
+  border: 1px solid #4C5D7B;
+  color: white;
+  background-color: #7587A6 !important;
+}
+
+#sources {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.highlight {
+  color: #333333;
+
+  padding: 1em;
+  background-color: #F2F2F2;
+
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2) !important;
+}
+
 .mode-selector-menu {
   background-color: #f1f1f1;
   margin-top: 5px;
   clear: both;
+}
+
+.axis line {
+  stroke: #cccccc;
+}
+
+.axis text {
+  font-size: 1.6em;
+  font-family: Anaheim;
+  fill: #111111;
+}
+
+.axis .domain {
+  stroke: none;
+}
+
+.tick text {
+  font-size: 1.2em;
 }
 
 #knobs-container {

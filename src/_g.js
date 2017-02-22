@@ -300,6 +300,9 @@ define(['d3'], (d3) => {
     }],
 
     bound_objects: [{
+      name: 'indicators',
+      scope: 'overview-modal'
+    }, {
       name: 'place',
       scope: null
     }, {

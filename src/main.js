@@ -43,8 +43,8 @@ onerror = function(msg, url, lineNo, columnNo, error) {
 };
 
 require([
-   '_u', '_g', '_d', 'scenario', 'd3', 'map',  'adm', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', 'nanny', '_conf'
-], (_u,   _g,   _d,   scenario,   d3,   map,    adm,   points,   summary,   place,   mode,   navbar,   controls,   knob,   nanny) => {
+   '_u', '_g', '_d', 'scenario', 'd3', 'map',  'adm', 'points', 'summary', 'place', 'mode', 'navbar', 'controls', 'knob', 'nanny', 'overview', '_conf'
+], (_u,   _g,   _d,   scenario,   d3,   map,    adm,   points,   summary,   place,   mode,   navbar,   controls,   knob,   nanny,   overview) => {
   var rerun;
 
   var iso3 = _u.get_query_param('iso3');
@@ -186,6 +186,9 @@ require([
       delay: 1,
       callback: () => $('.loading').css('background-color', 'rgba(0,0,0,0.1)')
     });
+
+    if (target.node() && target.node().id === "paths-adm1")
+      $('#overview-modal').show();
 
     map.behaviour();
   };

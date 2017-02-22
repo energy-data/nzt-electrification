@@ -274,12 +274,85 @@
       </div>
     </div>
 
+    <div id="overview-modal">
+      <div id="overview-content"
+           style="position: relative;">
+
+        <div class="row highlight">
+          <div class="col c4 right">
+            <br />
+            <span class="large">
+              Population: <span data="population-total" class="bold"></span>M <br />
+            </span>
+
+            Urban: <span data="population-urban" class="bold"></span>% <br />
+            Rural: <span data="population-rural" class="bold"></span>% <br />
+          </div>
+
+          <div class="col c4">
+            <br />
+            <br />
+            Area: <span data="area" class="bold"></span>km<sup>2</sup><br />
+            GDP: <span data="gdp" class="bold"></span>B USD<br />
+          </div>
+
+          <div id="flag-container" class="col c4"></div>
+        </div>
+
+        <div class="row"
+             style="padding: 20px 40px;">
+          <div class="col c6">
+            <div class="row">
+              <h3 class="center">Population with Access to Electricity</h3>
+            </div>
+
+            <div class="col c12 left">
+              <div id="urban-rural-current-access-graph" style="display: inline-block;"></div>
+              <div id="other-urban-rural-current-access-graph" style="display: inline-block;"></div>
+            </div>
+          </div>
+
+          <div class="col c6">
+            <div class="row">
+              <h3 class="center">Electricity Generation</h3>
+            </div>
+
+            <div id="breakdown-chart" class=""></div>
+          </div>
+        </div>
+
+        <div id="sources"
+             class="small right">
+          <p>
+            Data sources: <a href="https://goo.gl/zvVRMP">[1]</a>
+            <a href="https://goo.gl/dm4zH">[2]</a>
+            <a href="https://esa.un.org/unpd/wpp/">[3]</a>
+            <a href="http://data.worldbank.org/indicator/NY.GDP.MKTP.PP.CD">[4]</a>
+            <a href="https://tntcat.iiasa.ac.at/SspDb/dsd?Action=htmlpage&page=about">[5]</a>
+          </p>
+        </div>
+
+        <div class="center">
+          <h2 id="continue-button"
+              class="pointer"
+              onclick="$('#overview-modal').fadeOut()">
+            Explore the model
+          </h2>
+        </div>
+      </div>
+    </div>
+
     <div class="loading">
       <div class="spinner"></div>
 
       Loading...
     </div>
   </body>
+
+  <script id="svg-template"
+          type="text/template">
+    <svg id="svg-flagged-{0}"></svg>
+  </script>
 
   <script type="text/template"
           id="pies-header-template">

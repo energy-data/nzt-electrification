@@ -19,6 +19,13 @@
   src: local('Open Sans'), local('OpenSans'), url(/fonts/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Anaheim';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Anaheim'), local('Anaheim-Regular'), url(/fonts/Cvwn58PR0rYLGpoTMF4KMA.ttf) format('truetype');
+}
+
 * {
   box-sizing: border-box;
 }
