@@ -7,7 +7,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
   var count_threshold = 20000;
 
-  var locked;
+  var locked = null;
 
   var fill, stroke, stroke_width;
 
@@ -84,7 +84,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
     adm.reset_adm2(null);
 
-    locked = null;
+    window.locked_point = locked = null;
 
     var scn = _d.scenario['scn'];
     var diesel_p = _d.scenario['diesel_p'];
@@ -132,7 +132,7 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
         if (elem === locked) {
           reset_stroke(elem);
-          locked = null;
+          window.locked_point = locked = null;
 
         } else {
           reset_stroke(locked);
@@ -144,18 +144,21 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
           load_info(target, scn, diesel_p);
 
-          locked = elem;
+          window.locked_point = locked = elem;
 
           show_info();
         }
       })
 
       .on('mousemove', function() {
-        if (m['type'] === 'hp') return;
-
-        if (locked !== null) return;
+        if (_d.mode['type'] !== 'technology'
+            || m['type'] === 'hp'
+            || locked !== null)
+          return;
 
         load_info(find(d3.event), scn, diesel_p);
+
+        show_info();
       });
 
     d3.selectAll('#transmission-lines, #text-labels-adm2').raise();
@@ -225,19 +228,24 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
   };
 
   var show_info = () => {
-    $('#point-info').removeClass('hidden');
     nanny.hush();
+    $('#point-info').fadeIn();
     $('#points-info-control').closest('.col').addClass('active');
   };
 
-  var hide_info = () => {
-    $('#point-info').addClass('hidden');
+  var hide_info = (a) => {
+    var under = d3.select(a);
+
+    if (a && under.classed('adm2') && under.attr('id') === "adm2-${ _u.get_query_param('adm2') }") return;
+
+    $('#point-info').fadeOut(200);
     $('#points-info-control').closest('.col').removeClass('active');
   };
 
   return {
     draw: draw,
     load: load,
+    locked: locked,
     fetch: fetch,
     clear: clear,
     init: init,

@@ -38,6 +38,7 @@ html {
 
 #point-info table {
   font-size: 0.8em;
+  pointer-events: none;
 }
 
 #point-info td:first-child {

@@ -65,6 +65,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     history.replaceState(null, null, _u.set_query_param('load_points', false));
 
     nanny.tell();
+    points.hide_info();
 
     set_adm1_fills(d.id);
 
@@ -88,6 +89,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     d3.select(`#adm2-label-${ d['id'] }`).attr('font-weight', 'bold');
 
     place.set('adm2', d['id'], d.properties['name'], true);
+    points.hide_info();
 
     if (_d.mode['points']) {
       history.replaceState(null, null, _u.set_query_param('load_points', true));
@@ -123,7 +125,13 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
   var reset_adm2 = (target) => {
     d3.selectAll('path.adm2')
       .classed('hoverable', true)
-      .attr('fill', 'white');
+      .attr('fill', 'white')
+      .on('mouseover', function() {
+        if (window.locked_point) return;
+
+        if (d3.select(this).classed('hoverable'))
+          points.hide_info(this);
+      });
 
     locked_adm2 = null;
 
@@ -163,6 +171,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     _container = container;
 
     load_adm(adm1_boundaries, 'adm1')
+      .on('mouseover', function() { points.hide_info(this) })
       .on('click', function(d) { load_adm1(this, d) });
 
     load_adm(adm2_boundaries, 'adm2')
