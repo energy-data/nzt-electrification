@@ -7,8 +7,11 @@ define(['jquery'], ($) => {
     div.show();
 
     if (_u.get_query_param('adm2')) {
-      if (_d.mode['points'])
+      if (_d.mode['type'] === 'technology')
         str = `You can hover an area to see the details.`;
+
+      else if (_d.mode['points'])
+        hush();
 
       else
         str = `Select another dataset for more detailed visualization.`;
