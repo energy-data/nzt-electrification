@@ -6,7 +6,7 @@ countries, as reflected by an increase in use in a number of
 geographies and sectors. Within the energy sector, the use of GIS data
 and associated analytical tools can be beneficial in conducting
 strategic planning as well as prioritizing and rationalizing energy
-infrastructure related investments. [World Bank ESMAP] (http://www.worldbank.org/) and
+infrastructure related investments. [The World Bank ESMAP] (http://www.worldbank.org/) and
 [KTH Division of Energy Systems Analysis](https://www.kth.se/en/itm/inst/energiteknik/forskning/desa/welcome-to-the-unit-of-energy-systems-analysis-kth-desa-1.197296)
 have developed National High Resolution Dynamic Least Cost Options Plan for
 Universal Access to Electricity in Nigeria, Tanzania and Zambia.
