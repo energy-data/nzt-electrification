@@ -82,28 +82,54 @@ define(['d3'], (d3) => {
       scale: [500, 3000],
       points: false,
       draw: () => {
-        var adm_type, regions, url;
+        var adm_type, regions;
+        var url = _conf['data_source'];
 
         if (_u.get_query_param('adm1')) {
-          regions = poverty_data.filter_p('adm1', +_u.get_query_param('adm1')).pluck_p('adm2');
-
-          url = `${ _conf['data_source'] }/adm2_records?` +
-            `&cc=eq.${ _d.place['adm0_code'] }` +
-            `&adm=in.${ regions.toString() }` +
-            `&scn=eq.${ _d.scenario['scn'] }`;
-
           adm_type = 'adm2';
+          regions = poverty_data
+            .filter_p('adm1', +_u.get_query_param('adm1'))
+            .pluck_p('adm2')
+            .unique()
+            .sort((a,b) => a - b);
+
+          if (_conf['source_type'] === 'api') {
+            url += `/adm2_records?` +
+              `&cc=eq.${ _d.place['adm0_code'] }` +
+              `&adm=in.${ regions.toString() }` +
+              `&scn=eq.${ _d.scenario['scn'] }`;
+          }
+
+          else if (_conf['source_type'] === 'static') {
+            url += `/summaries/` +
+              adm_type +
+              `-${ _d.place['adm0_code'] }` +
+              `-${ _d.scenario['scn'] }` +
+              `--${ regions.join('-') }.json`;
+          }
         }
 
         else {
-          regions = poverty_data.pluck_p('adm1').unique();
-
-          url = `${ _conf['data_source'] }/adm1_records?` +
-            `&cc=eq.${ _d.place['adm0_code'] }` +
-            `&adm=in.${ regions.toString() }` +
-            `&scn=eq.${ _d.scenario['scn'] }`;
-
           adm_type = 'adm1';
+          regions = poverty_data
+            .pluck_p('adm1')
+            .unique()
+            .sort((a,b) => a - b);
+
+          if (_conf['source_type'] === 'api') {
+            url += `adm1_records?` +
+              `&cc=eq.${ _d.place['adm0_code'] }` +
+              `&adm=in.${ regions.toString() }` +
+              `&scn=eq.${ _d.scenario['scn'] }`;
+          }
+
+          else if (_conf['source_type'] === 'static') {
+            url += `/summaries/` +
+              adm_type +
+              `-${ _d.place['adm0_code'] }` +
+              `-${ _d.scenario['scn'] }` +
+              `--${ regions.join('-') }.json`;
+          }
         }
 
         d3.queue()

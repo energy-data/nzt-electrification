@@ -2,7 +2,7 @@
 #
 source $(git root)/_
 
-ln -sf ../nzt-conf.js $DIST/javascripts/_conf.js
+# ln -sf ../nzt-conf.js $DIST/javascripts/_conf.js
 
 rsync -OPrv --copy-links $DIST/ \
       $SRV_USER@$SRV_SERVER:$SRV_DEST \
@@ -14,4 +14,4 @@ rsync -OPrv --copy-links $DIST/ \
 # --exclude=.git
 # --exclude=run
 
-ln -sf ../localhost-conf.js $DIST/javascripts/_conf.js
+# ln -sf ../localhost-conf.js $DIST/javascripts/_conf.js

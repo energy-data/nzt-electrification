@@ -11,12 +11,27 @@ define(['d3', 'pie'], (d3, pie) => {
       return false;
     }
 
-    var url = `${ _conf['data_source'] }/${ adm_type }_records?` +
+    var url = _conf['data_source'];
+
+    if (_conf['source_type'] === 'static') {
+      url += `/summaries/` +
+        `${ adm_type }` +
+        `-${ _d.place['adm0_code'] }` +
+        `-${ _d.scenario['scn'] }`;
+
+      if (adm_type != 'adm0') url += `-${ o[adm_type] }`;
+
+      url += '.json';
+    }
+
+    else if (_conf['source_type'] === 'api') {
+      url += `/${ adm_type }_records?` +
         `select=results` +
         `&cc=eq.${ _d.place['adm0_code'] }` +
         `&scn=eq.${ _d.scenario['scn'] }`;
 
-    if (adm_type != 'adm0') url += `&adm=eq.${ o[adm_type] }`;
+      if (adm_type != 'adm0') url += `&adm=eq.${ o[adm_type] }`;
+    }
 
     d3.queue()
       .defer(d3.json, url)

@@ -37,23 +37,27 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
   };
 
   var fetch = (o) => {
-    $('.loading').fadeIn()
+    $('.loading').fadeIn();
 
-    var origin = `${ _conf['data_source'] }/points?` +
+    var url = _conf['data_source'];
+
+    if (_conf['source_type'] === 'static')
+      url += `/points/${ _d.place['adm0_code'] }-${ _u.get_query_param('adm1') }-${ o.adm[2] }.json`;
+
+    else if (_conf['source_type'] === 'api') {
+      url += `/points?` +
         `select=${ _g.point_attrs }` +
         `&x=gt.${ o.box[0] }&x=lt.${ o.box[2] }` +
         `&y=gt.${ o.box[1] }&y=lt.${ o.box[3] }` +
         `&adm${ o.adm[1] }=eq.${ o.adm[2] }` +
         `&cc=eq.${ _d.place['adm0_code'] }`;
+    }
 
     if (_d.mode['type'] === 'hp')
-      origin = `${ _conf['data_source'] }/hydro_points?` +
-      `&x=gt.${ o.box[0] }&x=lt.${ o.box[2] }` +
-      `&y=gt.${ o.box[1] }&y=lt.${ o.box[3] }`
+      url = `${ _conf['data_source'] }/hydro_points`;
 
     d3.queue()
-      .defer(d3.json, origin)
-
+      .defer(d3.json, url)
       .await((error, points) => {
         error ?
           _u.network_error() :
