@@ -189,5 +189,5 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
     load_adm1: load_adm1,
     reset_adm2: reset_adm2,
     load_adm2: load_adm2
-  }
+  };
 });

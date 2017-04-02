@@ -1,7 +1,7 @@
 define(['d3', 'topojson'], (d3, topojson) => {
   var projection = d3.geoMercator();
 
-  var geo_path = d3.geoPath()
+  var geopath = d3.geoPath()
       .projection(projection)
       .pointRadius(0.01);
 
@@ -43,6 +43,8 @@ define(['d3', 'topojson'], (d3, topojson) => {
     // empirical:
     //
     catch (e) {
+      console.log("Could not getBBox... hacking...");
+
       box = {
         x: 487.1874694824219,
         y: 212.54867553710938,
@@ -107,7 +109,7 @@ define(['d3', 'topojson'], (d3, topojson) => {
         .attr('class', `${ cls } ${ pathname }`)
         .attr('stroke', stroke)
         .attr('fill', fill)
-        .attr('d', geo_path);
+        .attr('d', geopath);
 
     if (labels) {
       d3.select(`#text-labels-${ pathname }`)
@@ -116,9 +118,9 @@ define(['d3', 'topojson'], (d3, topojson) => {
         .enter().append('text')
         .attr('id', (d) => `${ pathname }-label-${ d.id }`)
         .attr('class', `adm-label ${ pathname }`)
-        .attr('transform', (d) => `translate(${ geo_path.centroid(d) })`)
+        .attr('transform', (d) => `translate(${ geopath.centroid(d) })`)
         .attr('font-weight', 'normal')
-        .attr('font-size', `${ 1/ 25 }em`) // TOOD: I don't know...
+        .attr('font-size', `${ 1/25 }em`) // TOOD: I don't know...
         .text((d) => d.properties['name']);
     }
 
@@ -130,7 +132,8 @@ define(['d3', 'topojson'], (d3, topojson) => {
   var zoom = d3.zoom()
     .scaleExtent([20, 1000]) // these are decided empirically
     .on("zoom", () => {
-      var k = d3.event.transform['k'];
+      var t = d3.event.transform;
+      var k = t['k'];
       _container.selectAll('path').style("stroke-width", 1.2 / k);
 
       d3.selectAll("text.adm-label")
@@ -138,8 +141,8 @@ define(['d3', 'topojson'], (d3, topojson) => {
           if (k < 50 && d.properties['adm1']) return 0;
 
           return d.properties['adm1'] ?
-            `${ 0.9 / d3.event.transform['k'] }em` :
-            `${ 1 / d3.event.transform['k'] }em`
+            `${ 0.9 / k }em` :
+            `${ 1 / k }em`
         });
 
       _container.attr("transform", d3.event.transform);
@@ -150,13 +153,13 @@ define(['d3', 'topojson'], (d3, topojson) => {
       .on("dblclick.zoom", null);
 
     d3.select('#zoom-in').on('click', () => zoom.scaleBy(_svg, 2));
-    d3.select('#zoom-out').on('click', () => zoom.scaleBy(_svg, 0.5));
+    d3.select('#zoom-out').on('click', () => zoom.scaleBy(_svg, 1/2));
   };
 
   return {
     load_topo: load_topo,
 
-    geo_path: geo_path,
+    geopath: geopath,
     projection: projection,
 
     to_bbox: to_bbox,
