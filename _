@@ -4,7 +4,7 @@
 
 export PROJECT=$(git root)
 export PID_FILE=$PROJECT/server.pid
-export DIST=$PROJECT/dist
+export DIST=$PROJECT
 export WEB_PORT=
 
 export SRV_USER=

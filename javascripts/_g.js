@@ -351,7 +351,7 @@ define(['d3'], (d3) => {
       scope: null
     }],
 
-    assets: 'assets',
+    assets: '../assets',
 
     aspect_ratios: {
       NGA: 'xMidYMid',
