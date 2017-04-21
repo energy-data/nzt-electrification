@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+
+    <title>Electrification Paths for Nigeria, Tanzania and Zambia</title>
+
+    <!-- JAVASCRIPT -->
+    <script src="./lib/jquery-2.1.4.min.js"></script>
+    <script src="./lib/jquery.fullPage.min.js"></script>
+    <script src="./lib/bootstrap.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./lib/jquery.fullPage.css">
+    <link rel="stylesheet" type="text/css" href="./style/main.css">
+    <link rel="stylesheet" type="text/css" href="./style/landing.css">
+    <link rel="stylesheet" type="text/css" href="./style/roboto.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/animate.css">
+  </head>
+
+  <body>
+    <div id="buttonHolder" class="row">
+      <div id="landingButton">
+        <a href="/select" class="dashboard-button">Explore the Model</a>
+      </div>
+
+      <div id="scrollText" onclick="downArrow()">
+        <a onclick="downArrow()" class="guide-button">Start Guide</a>
+      </div>
+
+      <div id="sourcecode">
+        <a href="https://github.com/energy-data/nzt-electrification" class="guide-button">
+          <img src="img/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png" style="width: 24px; margin-top: -2px;"/> &nbsp;
+          Source code
+        </a>
+      </div>
+    </div>
+
+    <div id="topArrow" class="arrow-up" style="display: none;">
+      <div class="imgsContainer">
+        <button id="arrowUp" onclick="upArrow()"><i class="fa fa-chevron-up"></i></button>
+      </div>
+    </div>
+
+    <div id="bottomArrow" class="arrow-down" style="display: none;">
+      <div class="imgsContainer">
+        <button id="arrowDown" onclick="downArrow()"><i class="fa fa-chevron-down"></i></button>
+      </div>
+    </div>
+
+    <div id="staticButton" style="display: none;">
+      <a href="/select" class="dashboard-button">Explore the Model</a>
+    </div>
+
+    <div id="fullpage">
+      <div class="section" id="section0">
+        <div id="section-heading0" class="container">
+          <h2 class="title">Electrification pathways for Nigeria, Tanzania and Zambia</h2>
+
+          <p class="landing-text splash">
+            Geospatial analysis is an effective tool supporting the
+            planning, implementation and monitoring of basic services
+            delivery in developing countries, as reflected by an
+            increase in use in a number of geographies and
+            sectors. Within the energy sector, the use of GIS data and
+            associated analytical tools can be beneficial in conducting
+            strategic planning as well as prioritizing and rationalizing
+            energy infrastructure related investments.
+            <a href="http://www.worldbank.org/">The World Bank</a>,
+            <a href="https://www.esmap.org/">ESMAP</a> and
+            <a href="https://www.kth.se/en/itm/inst/energiteknik/forskning/desa/welcome-to-the-unit-of-energy-systems-analysis-kth-desa-1.197296">KTH Division of Energy Systems Analysis</a>
+            have developed National High Resolution Dynamic Least Cost
+            Options Plan for Universal Access to Electricity in Nigeria,
+            Tanzania and Zambia.  The web-based open source application
+            presented here allows the users to select scenarios based on
+            electricity consumption targeted (Tiers of access) and
+            spatially related fuel costs towards identifying the least
+            cost electrification technology for every settlement at a 1
+            by 1 km resolution.
+          </p>
+        </div>
+      </div>
+
+      <div class="section" id="section1">
+        <div id="section-heading3" class="container">
+          <div class="row">
+            <h1 class="section-heading">Electrification planning using open geospatial data</h1>
+            <div class="col-md-12">
+              <br>
+              <p class="landing-text">This GIS based application allows
+                users to navigate through the least cost electrification
+                options for each settlement of 1 by 1 km in Nigeria,
+                Tanzania and Zambia. The technology decision depends on
+                several spatial parameters available for download on
+                <a href="https://energydata.info">energydata.info</a>.
+              </p>
+              <p class="landing-text">These include population density,
+                distance from existing and planned transmission
+                infrastructure, proximity to road network, night-time
+                light, as well as energy resource availability. For each
+                location, seven electrification technologies are
+                compared and the least cost system is selected depending
+                on the tiers of access aimed for. In other words, the
+                technology offering the lowest levelized cost of
+                electricity generated throughout its lifetime, is
+                considered as the best electrification solution. Results
+                are available for each settlement. Summaries are
+                provided in national, state and district level.</p>
+            </div>
+
+            <!-- <div class="col-md-6 image-container"> -->
+            <!--   <img class="side-image" onclick="window.open(this.src)" src="img/aorsietn.jpg" /> -->
+            <!--   <div class="image-caption">Something here...</div> -->
+            <!--   <div class="image-caption">Click to enlarge the picture.</div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section2">
+        <div id="section-heading2" class="container">
+          <h1 class="section-heading">Universal Access</h1>
+
+          <div class="row">
+            <div class="col-md-6">
+
+              <p class="landing-text">This electrification planning
+                toolkit is a complementary approach to already existing
+                energy planning models that do not consider geospatial
+                attributes related to energy. It can be used as a
+                screening tool to inform decision making in the energy
+                field and to bridge science, technology and policy at
+                different levels.  The peer-reviewed underlying
+                methodology can be found
+                <a href="http://www.sciencedirect.com/science/article/pii/S0143622816300522">[1]</a>,
+                <a href="http://www.sciencedirect.com/science/article/pii/S0973082615000952">[2]</a>
+                and the underlying assumptions the model uses are
+                available <a href="https://github.com/energy-data/nzt-electrification/tree/master/Annex-documents">here</a>.
+              </p>
+
+              <p class="landing-text">
+                The quality of the tool's results is directly correlated
+                to the quality of data inputs.  It is important to note
+                that the tool has been developed using best
+                available open data.
+
+                Data gaps and data quality issues, particularly in
+                regards to electricity grid location and electricity use
+                significantly affect the model’s outputs. As such, the
+                tool should be seen as a demonstration project providing
+                results of strategic value, rather than an investment
+                planning tool.
+              </p>
+            </div>
+
+            <div class="col-md-6 image-container">
+              <img src="img/Flow Chart - upsidedown.jpg" onclick="window.open(this.src)" class="side-image" />
+
+              <div class="image-caption">Framework of the applied GIS methodology and principal data sources</div>
+              <div class="image-caption">Click to enlarge the picture.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section3">
+        <div class="container">
+          <div class="row">
+            <h1 class="section-heading">Technologies (1/3)</h1>
+
+            <p class="landing-text">
+              Covering future electricity demand requires investments
+              in new generating capacity, with two main options to be
+              considered. On the one hand new capacity can be added to
+              the national electricity grid which will then electrify
+              un-served areas through an extended T&D network spanning
+              throughout the country. On the other hand, new off-grid
+              capacity can be added, operating either in a form of
+              mini-grids or stand-alone systems covering the demand in
+              each location based on the locally available energy
+              resources.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <p class="access-text">
+                <strong>Grid</strong> electricity is generated in a
+                centralized manner, usually from large power plants,
+                which due to economies of scale are able to offer low
+                generating costs.  Electricity then reaches households
+                through the Transmission and Distribution network in
+                relatively low costs (if the T&D network is well
+                developed e.g. developed countries).  However, the
+                expansion of the electricity grid infrastructure in a
+                country, is a capital intensive and time demanding
+                process, which requires long term planning and large
+                investments.  A reasonable investment recovery time
+                horizon of such investments requires in turn a
+                population with high purchasing power and
+                sophisticated consumption patterns. It might not be
+                economically feasible to extend the central grid if
+                the population to be served will only demand, and
+                afford, a relatively small quantity of
+                electricity. Therefore, grid extension might not be
+                the optimal electrification option for low income –
+                low consumption population in rural areas and
+                particularly in remote areas of developing countries.
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <div class="access-image access-grid"
+                   style="background-repeat: no-repeat; background-size: cover">
+                <h3 class="access-title">Grid</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <h1 class="section-heading">Technologies (2/3)</h1>
+
+                <p class="access-text">
+                  A <strong>mini grid</strong> is an important
+                  alternative to grid extension. In this case
+                  electricity is generated in a decentralized manner,
+                  usually from power plants with generating capacity
+                  of few MW. Mini grids are usually deployed based on
+                  locally available energy resources such as solar,
+                  hydro, wind or can be based on commonly available
+                  fuels like diesel. Requiring no transmission and
+                  modest distribution costs mini grids can provide
+                  affordable electricity to rural, remote and usually
+                  densely populated areas with low-medium electricity
+                  consumption habits.  Mini grids based on renewable
+                  sources have usually high upfront costs but limited
+                  operational costs (i.e. fuel).  On the other hand,
+                  diesel generators (gensets) are a mature, low cost
+                  technology subjected however to operational costs
+                  depending on diesel pump price fluctuation.
+                </p>
+              </div>
+
+              <div class="col-md-1">&nbsp;</div>
+
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="access-image access-minigrid"
+                       style="background-repeat: no-repeat; background-size: cover;
+                              width: 400px; height: 400px;">
+                    <h3 class="access-title" style="height: 400px;">Mini Grid</h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-1">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="section-heading">Technologies (3/3)</h1>
+
+              <p class="access-text">
+                <strong>Stand-alone</strong> systems are usually based
+                on local energy resources in order to produce few kWh
+                per day, able to cover the electricity demand of a
+                single household. These systems do not require T&D
+                network; therefore, their capital cost depends only on
+                their size. Batteries may increase the upfront cost
+                for PV systems while diesel gensets are a mature, low
+                cost technology subjected however to operational costs
+                depending on diesel pump price
+                fluctuation. Stand-alone systems are a good
+                electrification option for remote, low populated areas
+                with limited electricity consumption needs.
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <div class="access-image access-standalone">
+                <h3 class="access-title">Stand alone</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section6">
+        <div id="section-heading3" class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="section-heading">Scenarios</h1>
+              <p class="access-text">
+                The electrification planning exercise is carried out for
+                10 alternative scenarios defined by 5 indicative
+                quantities of electricity consumption
+                <a href="http://trackingenergy4all.worldbank.org/~/media/GIAWB/GTF/Documents/GTF-2105-Full-Report.pdf">(Tiers of access)</a>
+                and two diesel prices.
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8">
+              <p class="access-text">
+                Each tier represents different levels of electricity
+                services provided starting from basic lighting and
+                recharging a cell phone or a radio (Tier 1) to services
+                that provide comfort and productivity, as for example
+                general lighting and continuous use of heavy appliances,
+                such as refrigeration, agricultural processing
+                appliances and eventually cooking. (see Table).  From
+                first to fifth, scenarios increase based on the quality
+                and the quantity of the electricity delivered to the end
+                consumer.
+              </p>
+
+              <table id="tiers" class="table table-hover">
+                <thead>
+                  <tr>
+                    <th style="text-align: center !important;">Level of access</th>
+                    <th style="text-align: center !important;">Tier-0</th>
+                    <th style="text-align: center !important;">Tier-1</th>
+                    <th style="text-align: center !important;">Tier-2</th>
+                    <th style="text-align: center !important;">Tier-3</th>
+                    <th style="text-align: center !important;">Tier-4</th>
+                    <th style="text-align: center !important;">Tier-5</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Indicative appliances powered</td>
+                    <td>Torch and Radio</td>
+                    <td>Task lightning <br>+<br> Phone charging or Radio</td>
+                    <td>General lightning <br>+<br> Air circulation <br>+<br> Television</td>
+                    <td>Tier 2 <br>+<br> Light appliances <br> (i.e. general food processing and washing machine)</td>
+                    <td>Tier 3 <br>+<br> Medium or continuous appliances <br> (i.e. water heating, ironing, water pumping rice cooking, refrigeration, microwave)</td>
+                    <td>Tier 4 <br>+<br> Heavy or continuous appliances <br> (i.e. air conditioning)</td>
+                  </tr>
+
+                  <tr>
+                    <td>Consumption per <br> household and year (kWh)</td>
+                    <td>-</td>
+
+                    <td class="tier-td">
+                      <div class="tier-bar"
+                           style="height: 2%;"></div>
+                      <p>22</p>
+                    </td>
+
+                    <td class="tier-td">
+                      <div class="tier-bar"
+                           style="height: 10%;"></div>
+                      <p>224</p>
+                    </td>
+
+                    <td class="tier-td">
+                      <div class="tier-bar"
+                           style="height: 30%;"></div>
+                      <p>695</p>
+                    </td>
+
+                    <td class="tier-td">
+                      <div class="tier-bar"
+                           style="height: 60%;"></div>
+                      <p>1800</p>
+                    </td>
+
+                    <td class="tier-td">
+                      <div class="tier-bar"
+                           style="height: 90%;"></div>
+                      <p>2195</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="col-md-4">
+              <p class="access-text">
+                The model assumes two international diesel prices,
+                <strong>0.34</strong> US$ per liter (current
+                international diesel price) and <strong>0.82</strong>
+                US$ per liter (projected international diesel price),
+                used to calculate diesel costs in different localities
+                <a href="http://www.worldenergyoutlook.org/weo2015/">[3]</a>
+              </p>
+              <table id="tiers" class="table table-hover">
+                <thead>
+                  <tr class="tier-title">
+                    <th>Diesel Level</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="warning">High</td>
+                    <td>0.82 US$/liter</td>
+                  </tr>
+                  <tr>
+                    <td class="warning">Low</td>
+                    <td>0.34 US$/liter</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section7">
+        <div id="section-heading3" class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="section-heading">How to Use this Tool</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <p class="access-text">
+                The tool allows the selection of the three studied
+                countries. Once in a country page, a brief overview of
+                the country’s status in terms of demographics, economy
+                and electricity access is provided.
+              </p>
+
+              <p class="access-text">
+                These data include:
+                <ul>
+                  <li>Population</li>
+                  <li>Gross Domestic Product at Purchasing Power Parity (GDP PPP)</li>
+                  <li>Access to electricity</li>
+                  <li>Current electricity generation</li>
+                </ul>
+              </p>
+            </div>
+
+            <div class="col-md-8">
+              <img src="img/indicators.png" class="main-image" />
+              <img src="img/indicators-overlay.png" id="selector-overlay" class="main-image overlay" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section8">
+        <div id="section-heading3" class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="section-heading">How to Use this Tool</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <p class="access-text">
+                The visualization displays buttons to select one of the two diesel prices and one of the electricity consumption levels
+                or tiers. It shows a map of the selected country. On the bottom of the page, a summary of the model results is presented.
+                This includes - for the selected scenario - the share of each electrification technology for new connections, investment
+                needs, area and added capacity.
+              </p>
+              <p class="access-text">
+                You can further select a state and a district and select among several datasets to be visualized. The default dataset
+                is the least cost electrification technology. Datasets are grouped in 4 categories:
+                <ul>
+                  <li>Technology (Least Cost Technology, Levelized cost of generating electricity, Investment cost, Investments needs per capita, Added capacity)</li>
+                  <li>Demographics (Population density, Urban/Rural, Poverty rate )</li>
+                  <li>Resources (Solar irradiance, Wind power capacity factor, Hydropower potential)</li>
+                  <li>Infrastructure (Distance to Road and Transmission Grid Network, Cost of generating electricity using
+                    diesel gensets)</li>
+                </ul>
+              </p>
+            </div>
+            <div class="col-md-8">
+              <img src="img/tool.png" class="main-image" />
+              <img src="img/tool-overlay.png" class="main-image overlay" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="section9">
+        <div id="section-heading3" class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="section-heading">How to Use this Tool</h1>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <p class="access-text">Once in a district (or local government area), you can click to select a specific location.
+                A summary of the results for the selected location is provided on the top right hand side of the page. On the bottom
+                of the page, results are summarized for the considered district.
+              </p>
+            </div>
+
+            <div class="col-md-8">
+              <img src="img/tool1.png" class="main-image" />
+              <img src="img/tool1-overlay.png" class="main-image overlay" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function endGuide() {
+      $(document).ready(function() {
+      $.fn.fullpage.moveTo(6);
+      });
+      }
+
+      function upArrow() {
+      $(document).ready(function() {
+      $.fn.fullpage.moveSectionUp();
+      });
+      }
+
+      function downArrow() {
+      $(document).ready(function() {
+      $.fn.fullpage.moveSectionDown();
+      });
+      }
+    </script>
+
+    <script type="text/javascript" src="./js/landing.js"></script>
+
+  </body>
+</html>
