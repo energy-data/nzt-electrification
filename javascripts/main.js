@@ -1,10 +1,10 @@
 requirejs.config({
-  'baseUrl': './javascripts',
+  'baseUrl': '/javascripts',
   'paths': {
-    'd3':         "../lib/d3",
-    'topojson':   "../lib/topojson",
-    'jquery':     "../lib/jquery",
-    'js-extras':  "../lib/js-extras"
+    'd3':         "/lib/d3",
+    'topojson':   "/lib/topojson",
+    'jquery':     "/lib/jquery",
+    'js-extras':  "/lib/js-extras"
   },
   'shim': {
     '_u':         { 'deps': ['js-extras', 'jquery'] },
@@ -194,12 +194,12 @@ require([
   };
 
   d3.queue(6)
-    .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm0.json`)
-    .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm1.json`)
-    .defer(d3.json, `/${ _g.assets }/${ iso3 }-adm2.json`)
-    .defer(d3.json, `/${ _g.assets }/${ iso3 }-existing-transmission-lines.json`)
-    .defer(d3.json, `/${ _g.assets }/${ iso3 }-planned-transmission-lines.json`)
-    .defer(d3.json, `/${ _g.assets }/${ iso3 }-poverty.json`)
+    .defer(d3.json, `${ _g.assets }/${ iso3 }-adm0.json`)
+    .defer(d3.json, `${ _g.assets }/${ iso3 }-adm1.json`)
+    .defer(d3.json, `${ _g.assets }/${ iso3 }-adm2.json`)
+    .defer(d3.json, `${ _g.assets }/${ iso3 }-existing-transmission-lines.json`)
+    .defer(d3.json, `${ _g.assets }/${ iso3 }-planned-transmission-lines.json`)
+    .defer(d3.json, `${ _g.assets }/${ iso3 }-poverty.json`)
 
     .await(function(error, adm0, adm1, adm2, existing_transmission, planned_transmission, poverty_data) {
       if (error) _u.network_error();

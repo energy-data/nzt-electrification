@@ -353,6 +353,12 @@ define(['d3'], (d3) => {
 
     assets: 'assets',
 
+    aspect_ratios: {
+      NGA: 'xMidYMid',
+      TZA: 'xMaxYMin',
+      ZMB: 'xMaxYMin'
+    },
+
     countries: [{
       "name": "Nigeria",
       "code":  566,
