@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/grid.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/select.css" />
+
+    <title>NZT Electrification</title>
+  </head>
+
+  <body>
+    <div id="navbar"
+         class="row">
+      <div class="col center c3">
+        <a class="bold" data="adm0_name">&nbsp;</a>
+      </div>
+
+      <div class="col center c3">
+        <a class="bold" data="adm1_name">&nbsp;</a>
+      </div>
+
+      <div class="col center c3">
+        <a class="bold" data="adm2_name">&nbsp;</a>
+      </div>
+
+      <div class="col c3 right">
+        <a href="/">
+          <i class="material-icons">help_outline</i><span style="vertical-align: top;">Presentation</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="country-list"
+         class="pane">
+      <ul style="margin: 0px !important;"></ul>
+    </div>
+  </body>
+
+  <script id="li-template"
+          type="text/template">
+    <li class="country-item clickable"
+        iso3="{1}">
+      <div class="country-name">
+        <a href="#">
+          <h2>{0}</h2>
+        </a>
+      </div>
+
+      <svg id="svg-{1}"></svg>
+    </li>
+  </script>
+
+  <script data-main="/javascripts/select"
+          src="/lib/require.js"></script>
+</html>
