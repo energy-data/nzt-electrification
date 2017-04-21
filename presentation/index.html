@@ -23,21 +23,13 @@
   </head>
 
   <body>
-    <div id="buttonHolder" class="row">
-      <div id="landingButton">
-        <a href="/select" class="dashboard-button">Explore the Model</a>
-      </div>
-
-      <div id="scrollText" onclick="downArrow()">
-        <a onclick="downArrow()" class="guide-button">Start Guide</a>
-      </div>
-
-      <div id="sourcecode">
-        <a href="https://github.com/energy-data/nzt-electrification" class="guide-button">
-          <img src="img/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png" style="width: 24px; margin-top: -2px;"/> &nbsp;
-          Source code
-        </a>
-      </div>
+    <div id="buttonHolder">
+      <a href="/select" id="landingButton" class="dashboard-button">Explore the Model</a>
+      <a href="#" id="scrollText" onclick="downArrow()" class="guide-button">Start Guide</a>
+      <a href="https://github.com/energy-data/nzt-electrification" id="sourcecode" class="guide-button">
+        <img src="img/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png" style="width: 24px; margin-top: -2px;"/> &nbsp;
+        Source code
+      </a>
     </div>
 
     <div id="topArrow" class="arrow-up" style="display: none;">
