@@ -109,13 +109,13 @@ define(['d3', 'nanny'], (d3, nanny) => {
           throw Error(`This mode is dodgy ${ t }`);
 
         else {
-          history.pushState(null, null, _u.set_query_param('mode', t));
+          history.replaceState(null, null, _u.set_query_param('mode', t));
 
           if (m['points']) {
             var load_points = _u.get_query_param('load_points').to_boolean();
 
             if (!load_points && _u.get_query_param('adm2')) {
-              history.pushState(null, null, _u.set_query_param('load_points', true));
+              history.replaceState(null, null, _u.set_query_param('load_points', true));
               load_points = true;
             }
 
@@ -128,7 +128,7 @@ define(['d3', 'nanny'], (d3, nanny) => {
               callback = () => $('.loading').fadeOut();
 
           } else {
-            history.pushState(null, null, _u.set_query_param('load_points', false));
+            history.replaceState(null, null, _u.set_query_param('load_points', false));
             points.clear();
 
             callback = () => m['draw']();

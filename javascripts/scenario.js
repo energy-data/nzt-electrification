@@ -9,7 +9,7 @@ define(['summary'], (summary) => {
           throw Error(`This scenario is dodgy: ${ t }`);
 
         else {
-          history.pushState(null, null, _u.set_query_param('scenario', t));
+          history.replaceState(null, null, _u.set_query_param('scenario', t));
 
           summary.fetch({ adm1: _u.get_query_param('adm1'), adm2: _u.get_query_param('adm2') });
 

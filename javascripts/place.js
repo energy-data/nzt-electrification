@@ -34,7 +34,7 @@ define(['summary', 'nanny'], (summary, nanny) => {
     _d.place[`${ adm }_name`] = undefined;
 
     if (_u.get_query_param(adm))
-      history.pushState(null, null, _u.set_query_param(adm, null));
+      history.replaceState(null, null, _u.set_query_param(adm, null));
   };
 
   var init = (iso3) => {
@@ -51,7 +51,7 @@ define(['summary', 'nanny'], (summary, nanny) => {
     _d.place[adm]             = id;
     _d.place[`${ adm }_name`] = name;
 
-    if (push) history.pushState(null, null, _u.set_query_param(adm, id));
+    if (push) history.replaceState(null, null, _u.set_query_param(adm, id));
 
     nanny.tell();
   };
