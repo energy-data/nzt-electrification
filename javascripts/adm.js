@@ -129,7 +129,7 @@ define(['d3', 'map', 'points', 'place', 'nanny'], (d3, map, points, place, nanny
       .on('mouseover', function() {
         if (window.locked_point) return;
 
-        if (d3.select(this).classed('hoverable'))
+        if (d3.select(this).classed('hoverable') && _d.place.adm2)
           points.hide_info(this);
       });
 

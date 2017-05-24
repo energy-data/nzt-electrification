@@ -41,8 +41,13 @@ define(['mode', 'd3', 'map', 'nanny'], (mode, d3, map, nanny) => {
 
     var url = _conf['data_source'];
 
-    if (_conf['source_type'] === 'static')
-      url += `/points/${ _d.place['adm0_code'] }-${ _u.get_query_param('adm1') }-${ o.adm[2] }.json`;
+    if (_conf['source_type'] === 'static') {
+      url += `/points/${ _d.place['adm0_code'] }-${ _u.get_query_param('adm1') }`;
+
+      if (o.adm[1] == "2") url += `-${ o.adm[2] }`;
+
+      url += '.json';
+    }
 
     else if (_conf['source_type'] === 'api') {
       url += `/points?` +
